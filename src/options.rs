@@ -86,7 +86,7 @@ pub enum Resource {
     /// Input byte size, checked before copying/indexing caller input.
     #[error("input bytes")]
     InputBytes,
-    /// Recursive grammar or AST depth (both must be checked).
+    /// Recursive grammar or AST depth. The parser additionally caps effective depth at 128.
     #[error("nesting depth")]
     Depth,
     /// Retained tokens, including trivia, EOF and abort bookkeeping.

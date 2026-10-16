@@ -45,3 +45,15 @@ pub fn tokenize(input: &[u8]) -> Result<pprs::LexResult, pprs::lexer::InputTooLa
 pub fn decode_string(raw: &[u8]) -> Result<pprs::ByteString, pprs::literal::LiteralError> {
     pprs::literal::decode_quoted(raw)
 }
+
+/// Parse PHP and inspect a clean, owned syntax tree through public APIs.
+///
+/// # Errors
+/// Returns preflight, syntax or resource failures with their available context.
+pub fn parse_and_count(input: &[u8]) -> Result<usize, pprs::StrictError> {
+    let parsed = pprs::parse_strict(input, ParseOptions::default())?;
+    Ok(parsed
+        .result()
+        .program()
+        .map_or(0, |program| pprs::visit::walk(program).count()))
+}

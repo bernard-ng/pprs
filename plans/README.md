@@ -1,6 +1,6 @@
 # Implementation plans
 
-Status: **P00–P06 complete** (2026-10-16). Production lexing, literal utilities and public data foundations exist; parsing remains pending.
+Status: **P00–P07 complete** (2026-10-16). The first public expression/file parser, production lexing, literal utilities and read-only traversal are available.
 
 The first stable release will be a reusable Rust library for PHP **7.0–8.4**, as confirmed on 2026-10-16. There is no product CLI.
 
@@ -13,7 +13,7 @@ P01 delivered the [library scaffold](../src/lib.rs), [Cargo metadata and lint po
 
 P02 delivered the [reference exporter](../tools/reference/README.md), [313-case corpus and comparison contract](../tests/fixtures/README.md), and [coverage report](../tests/fixtures/coverage-report.json). All 290 original dumps reproduce; the four mixed cases have supported derivations. All 300 eligible parser cases remain pending.
 
-P03 selected Logos regular scanning with explicit byte states and recursive descent/Pratt parsing. The [strategy decision](../docs/decisions/0002-parser-strategy.md) records the comparison and the [hard cases](../tests/fixtures/strategy/README.md) remain executable tests. Production parser APIs are still pending.
+P03 selected Logos regular scanning with explicit byte states and recursive descent/Pratt parsing. The [strategy decision](../docs/decisions/0002-parser-strategy.md) records the comparison and the [hard cases](../tests/fixtures/strategy/README.md) remain executable tests. At P03, production parser APIs remained pending.
 
 P04 delivered [source/token/AST/options/diagnostic/result foundations](../src/lib.rs), the private lazy cursor and abort-finalization contract, [decision 0003](../docs/decisions/0003-foundation-contracts.md), and the [live node ledger](../docs/implementation/README.md). Boundary, ownership, limit and strict-conversion tests exercise the public skeleton without claiming PHP parsing support.
 
@@ -21,4 +21,6 @@ P05 delivered [production regular lexing](../src/lexer/mod.rs), [75 lexical orac
 
 P06 delivered [string/interpolation/doc-string modes](../src/lexer/strings.rs), [literal utilities](../src/literal/mod.rs), and the tested [parser-authorized halt boundary](../src/halt.rs). [Decision 0005](../docs/decisions/0005-strings-literals-and-halt.md) records behavior and limits. All 300 token channels are exercised: 296 pass exactly and four record intentional standalone-lexer halt differences. Dedicated oracles cover 109 lexical streams and 139 literal values/errors.
 
-Next: **P07**, deliver the first parsing slice and expression grammar. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.
+P07 delivered the [public parser](../src/parser/mod.rs), expression grammar, interpolation, recovery, resource limits and [iterative traversal](../src/visit.rs). [Decision 0006](../docs/decisions/0006-expression-parser.md) records 133 dedicated reference observations, 69 exact upstream structure matches, eight explicit Unicode recovery differences and reassignment of 32 complete files needing later-phase syntax. No P07 structure channel remains pending; metadata and broad diagnostics stay P10/P11.
+
+Next: **P08**, implement statements, functions and control flow. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.

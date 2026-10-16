@@ -1,7 +1,7 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: P00–P06 complete; P07 onward pending; production lexing, literal utilities and public data foundations exist
+Status: P00–P07 complete; P08 onward pending; public expression/file parsing, lexing, literal utilities and traversal exist
 
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
@@ -305,6 +305,8 @@ Deliverables: complete PHP lexical modes and literal utilities.
 Acceptance: scalar and lexer-state cases assigned to this phase pass at token/value level; unterminated constructs report bounded diagnostics without losing source bytes. Full scalar AST parity is completed in P07.
 
 ### P07 — Deliver the first complete parsing slice and expression grammar
+
+Status: **complete, 2026-10-16**. The [public parser](../src/parser/mod.rs), typed expression AST, [read-only traversal](../src/visit.rs), recovery and cumulative budgets are implemented. [Decision 0006](../docs/decisions/0006-expression-parser.md) records 133 dedicated oracle cases, 69 passing upstream structure channels, eight exact Unicode recovery differences and 32 complete-file ownership corrections to P08/P09. Frozen inventories remain unchanged. Acceptance now runs through the production parser; metadata and broad diagnostic parity remain P10/P11.
 
 Dependencies: P04–P06.
 

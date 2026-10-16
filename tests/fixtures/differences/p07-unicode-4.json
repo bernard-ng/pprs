@@ -1,0 +1,15 @@
+{
+  "ast": [
+    {
+      "fields": {
+        "expr": {
+          "fields": {},
+          "kind": "Expr_Error"
+        }
+      },
+      "kind": "Stmt_Expression"
+    }
+  ],
+  "status": "recovered",
+  "target": "8.4"
+}

@@ -56,6 +56,9 @@ impl<L: TokenSource> TokenCursor<L> {
             stopped: false,
         }
     }
+    pub(crate) fn retained(&self) -> &[Token] {
+        &self.tokens
+    }
     pub(crate) fn take_diagnostics(&mut self) -> Vec<crate::diagnostic::Diagnostic> {
         self.producer.take_diagnostics()
     }

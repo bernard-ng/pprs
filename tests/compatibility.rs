@@ -1,6 +1,8 @@
 //! Offline P02 corpus integrity and comparison adapter tests.
 #[path = "support/lexer.rs"]
 mod lexer_adapter;
+#[path = "support/parser.rs"]
+mod parser_adapter;
 mod support;
 
 use serde_json::{Value, json};
@@ -100,6 +102,17 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
             // them into this library's PHP 7.0–8.4 compatibility range.
             None
         };
+        let parsed = (case["scope"] == "core").then(|| {
+            let result = pprs::parse(
+                &source,
+                pprs::ParseOptions {
+                    version: target.parse().unwrap(),
+                    ..Default::default()
+                },
+            )
+            .unwrap();
+            parser_adapter::observation(&result, target)
+        });
         for channel in CHANNELS {
             let state = channels.get(channel).expect("explicit channel state");
             if case["scope"] == "core" {
@@ -116,6 +129,8 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
                 &case["oracle"],
                 if channel == "tokens" {
                     actual.as_ref()
+                } else if channel == "structure" {
+                    parsed.as_ref()
                 } else {
                     None
                 },

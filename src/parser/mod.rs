@@ -1,0 +1,589 @@
+//! Recovering parser for the expression slice, with finite resource budgets.
+// Grammar/semantics adapted from nikic/PHP-Parser, Copyright (c) 2011 Nikita Popov.
+// See THIRD_PARTY_NOTICES.md and reference/LICENSE.nikic-PHP-Parser (BSD-3-Clause).
+mod expression;
+mod operators;
+mod strings;
+use crate::halt::{self, HaltError, HaltScope};
+use crate::{
+    ParseOptions, ParseResult, ParsedFile, SourceText,
+    ast::{
+        Expr, ExprKind, Identifier, Name, NodeMeta, Origin, Program, Qualification, Stmt, StmtKind,
+    },
+    cursor::{CursorError, TokenCursor},
+    diagnostic::{Diagnostic, DiagnosticCode as D},
+    lexer::{InputTooLarge, LexStop, scanner::Scanner},
+    options::Resource,
+    outcome::Completion,
+    token::{Token, TokenKind as K},
+};
+
+/// Strict parse failure, including preflight rejection before source allocation.
+#[derive(Debug, thiserror::Error)]
+pub enum StrictError {
+    /// Input exceeds its configured byte budget.
+    #[error(transparent)]
+    Input(#[from] InputTooLarge),
+    /// Syntax, lexical, contextual or resource failure retaining the parse result.
+    #[error(transparent)]
+    Parse(#[from] crate::ParseError),
+}
+/// Parse owned PHP syntax with recovery. Source, tokens and any partial tree are
+/// retained; inspect status/diagnostics or call `into_strict()` before use as valid PHP.
+/// Functions, control flow and declarations are explicitly unsupported until P08/P09.
+///
+/// # Errors
+/// Returns `InputTooLarge` before copying/indexing input beyond its byte budget.
+pub fn parse(input: impl AsRef<[u8]>, options: ParseOptions) -> Result<ParseResult, InputTooLarge> {
+    let bytes = input.as_ref();
+    check_input(bytes.len(), options)?;
+    parse_source(SourceText::from(bytes), options)
+}
+/// Parse shared source storage without copying bytes or line indices.
+///
+/// # Errors
+/// Returns `InputTooLarge` when the source exceeds its byte budget.
+pub fn parse_source(
+    source: SourceText,
+    options: ParseOptions,
+) -> Result<ParseResult, InputTooLarge> {
+    check_input(source.len(), options)?;
+    Ok(Parser::new(source, options).run())
+}
+/// Require parsing without recovery, error diagnostics or resource aborts.
+///
+/// # Errors
+/// Retains the recovering parse result on parse failure, or returns a preflight size error.
+pub fn parse_strict(
+    input: impl AsRef<[u8]>,
+    options: ParseOptions,
+) -> Result<ParsedFile, StrictError> {
+    Ok(parse(input, options)?.into_strict()?)
+}
+fn check_input(length: usize, options: ParseOptions) -> Result<(), InputTooLarge> {
+    let limit = options.limits.get(Resource::InputBytes);
+    if length > limit {
+        Err(InputTooLarge { length, limit })
+    } else {
+        Ok(())
+    }
+}
+type PResult<T> = Result<T, ()>;
+struct Parser {
+    source: SourceText,
+    cursor: TokenCursor<Scanner>,
+    options: ParseOptions,
+    diagnostics: Vec<Diagnostic>,
+    aborted: bool,
+    nodes: usize,
+    depth: usize,
+    block_depth: usize,
+    last_end: usize,
+}
+impl Parser {
+    fn new(source: SourceText, options: ParseOptions) -> Self {
+        let scanner = Scanner::new(source.clone(), options);
+        Self {
+            cursor: TokenCursor::new(source.clone(), scanner, options.limits),
+            source,
+            options,
+            diagnostics: Vec::new(),
+            aborted: false,
+            nodes: 1,
+            depth: 1,
+            block_depth: 0,
+            last_end: 0,
+        }
+    }
+    fn run(mut self) -> ParseResult {
+        let mut statements = Vec::new();
+        while !self.aborted {
+            match self.peek() {
+                Ok((index, t)) if t.kind() == K::Eof => {
+                    if let Ok(Some(stmt)) = self.trailing_nop(index) {
+                        statements.push(stmt);
+                    }
+                    break;
+                }
+                Err(()) => break,
+                _ => {}
+            }
+            let before = self.cursor.position();
+            match self.statement() {
+                Ok(Some(stmt)) => statements.push(stmt),
+                Err(()) if !self.aborted => {
+                    self.recover_statement();
+                }
+                Ok(None) | Err(()) => {}
+            }
+            if !self.aborted && self.cursor.position() == before {
+                let _ = self.bump();
+            }
+        }
+        let program = Program { statements };
+        // Array-hole diagnostics are delayed until assignment has converted patterns.
+        let holes: Vec<_> = crate::visit::walk(&program)
+            .filter_map(|entry| match entry.node {
+                crate::visit::Node::Expr(Expr {
+                    kind: ExprKind::Array { items, .. },
+                    ..
+                }) => Some(
+                    items
+                        .iter()
+                        .flatten()
+                        .filter(|item| matches!(item.value.kind, ExprKind::Error))
+                        .map(|item| item.meta.clone())
+                        .collect::<Vec<_>>(),
+                ),
+                _ => None,
+            })
+            .flatten()
+            .collect();
+        for meta in holes {
+            if self
+                .error_meta(
+                    D::InvalidContext,
+                    &meta,
+                    "Cannot use empty array elements in arrays",
+                )
+                .is_err()
+            {
+                break;
+            }
+        }
+        let completion = if self.aborted {
+            Completion::Aborted(Some(program))
+        } else {
+            Completion::Complete(program)
+        };
+        let tokens = self
+            .cursor
+            .abort()
+            .expect("parser retains contiguous lexer tokens");
+        ParseResult::assemble(tokens, completion, self.diagnostics)
+    }
+    fn record(&mut self, diagnostic: Diagnostic) -> PResult<()> {
+        if self.aborted {
+            return Err(());
+        }
+        let limit = self.options.limits.get(Resource::Diagnostics);
+        if self.diagnostics.len() >= limit - 1 && !matches!(diagnostic.code, D::ResourceLimit(_)) {
+            self.diagnostics.push(Diagnostic::error(
+                D::ResourceLimit(Resource::Diagnostics),
+                diagnostic.primary,
+                "diagnostic budget exhausted",
+            ));
+            self.aborted = true;
+            return Err(());
+        }
+        if self.diagnostics.len() < limit {
+            self.diagnostics.push(diagnostic);
+        }
+        if self
+            .diagnostics
+            .last()
+            .is_some_and(|d| matches!(d.code, D::ResourceLimit(_)))
+        {
+            self.aborted = true;
+            return Err(());
+        }
+        Ok(())
+    }
+    fn cursor_result(
+        &mut self,
+        result: Result<(usize, Token), CursorError>,
+    ) -> PResult<(usize, Token)> {
+        for diagnostic in self.cursor.take_diagnostics() {
+            self.record(diagnostic)?;
+        }
+        match result {
+            Ok(value) => Ok(value),
+            Err(CursorError::TokenLimit) => {
+                self.limit(Resource::Tokens)?;
+                Err(())
+            }
+            Err(CursorError::Lexical(LexStop::Limit(resource))) => {
+                self.limit(resource)?;
+                Err(())
+            }
+            Err(error) => panic!("private parser/cursor invariant: {error}"),
+        }
+    }
+    fn peek(&mut self) -> PResult<(usize, Token)> {
+        if self.aborted {
+            return Err(());
+        }
+        let result = self.cursor.peek(0);
+        self.cursor_result(result)
+    }
+    fn kind(&mut self) -> PResult<K> {
+        Ok(self.peek()?.1.kind())
+    }
+    fn ahead(&mut self, distance: usize) -> PResult<K> {
+        if self.aborted {
+            return Err(());
+        }
+        let result = self.cursor.peek(distance);
+        Ok(self.cursor_result(result)?.1.kind())
+    }
+    fn bump(&mut self) -> PResult<(usize, Token)> {
+        if self.aborted {
+            return Err(());
+        }
+        let result = self.cursor.bump();
+        let value = self.cursor_result(result)?;
+        self.last_end = value.0 + usize::from(value.1.kind() != K::Eof);
+        Ok(value)
+    }
+    fn eat(&mut self, kind: K) -> PResult<bool> {
+        if self.kind()? == kind {
+            self.bump()?;
+            Ok(true)
+        } else {
+            Ok(false)
+        }
+    }
+    fn expect(&mut self, kind: K) -> PResult<(usize, Token)> {
+        let next = self.peek()?;
+        if next.1.kind() == kind {
+            self.bump()
+        } else {
+            let mut d = Diagnostic::error(
+                D::UnexpectedToken,
+                next.1.span(),
+                format!("expected {kind:?}, found {:?}", next.1.kind()),
+            );
+            d.expected.push(kind);
+            d.found = Some(next.1.kind());
+            self.record(d)?;
+            Err(())
+        }
+    }
+    fn limit(&mut self, resource: Resource) -> PResult<()> {
+        let pos = self.cursor.scanned_end();
+        self.record(Diagnostic::error(
+            D::ResourceLimit(resource),
+            self.source.span(pos..pos).unwrap(),
+            format!("{resource} budget exhausted"),
+        ))
+    }
+    fn alloc(&mut self) -> PResult<()> {
+        if self.nodes >= self.options.limits.get(Resource::Nodes) {
+            return self.limit(Resource::Nodes);
+        }
+        self.nodes += 1;
+        Ok(())
+    }
+    fn enter(&mut self) -> PResult<()> {
+        // Bound the native stack even when a caller requests an excessive depth.
+        if self.depth >= self.options.limits.get(Resource::Depth).min(128) {
+            return self.limit(Resource::Depth);
+        }
+        self.depth += 1;
+        Ok(())
+    }
+    fn meta(&self, start: usize) -> NodeMeta {
+        NodeMeta::prefix(
+            &self.source,
+            self.cursor.retained(),
+            start,
+            self.last_end.max(start),
+        )
+    }
+    fn point(&self, index: usize) -> NodeMeta {
+        NodeMeta::prefix(&self.source, self.cursor.retained(), index, index)
+    }
+    fn error_meta(&mut self, code: D, meta: &NodeMeta, message: &str) -> PResult<()> {
+        let Origin::Parsed { span, .. } = meta.origin() else {
+            unreachable!()
+        };
+        self.record(Diagnostic::error(code, span, message))
+    }
+    fn make(&mut self, start: usize, kind: ExprKind) -> PResult<Box<Expr>> {
+        self.alloc()?;
+        let expr = Box::new(Expr {
+            meta: self.meta(start),
+            kind,
+        });
+        if crate::visit::walk_node(crate::visit::Node::Expr(&expr)).any(|entry| {
+            entry.depth
+                > self
+                    .options
+                    .limits
+                    .get(Resource::Depth)
+                    .min(128)
+                    .saturating_sub(self.block_depth + 2)
+        }) {
+            self.limit(Resource::Depth)?;
+        }
+        Ok(expr)
+    }
+    fn bytes(&self, token: Token) -> &[u8] {
+        self.source.slice(token.span()).unwrap()
+    }
+    fn name(&mut self, index: usize, token: Token) -> PResult<Name> {
+        self.alloc()?;
+        let mut bytes = self.bytes(token);
+        let qualification = if bytes.starts_with(b"\\") {
+            bytes = &bytes[1..];
+            Qualification::FullyQualified
+        } else if token.kind() == K::NameRelative {
+            bytes = &bytes[10..];
+            Qualification::Relative
+        } else {
+            Qualification::Normal
+        };
+        Ok(Name::new(
+            bytes.split(|b| *b == b'\\').map(Into::into).collect(),
+            qualification,
+            self.meta(index),
+        )
+        .expect("lexer name components"))
+    }
+    fn identifier(&mut self, index: usize, bytes: &[u8]) -> PResult<Identifier> {
+        self.alloc()?;
+        Ok(Identifier::new(bytes, self.meta(index)).expect("parser identifier spelling"))
+    }
+    fn statement(&mut self) -> PResult<Option<Stmt>> {
+        self.enter()?;
+        let result = self.statement_inner();
+        self.depth -= 1;
+        result
+    }
+    #[allow(clippy::too_many_lines, reason = "statement grammar dispatch")]
+    fn statement_inner(&mut self) -> PResult<Option<Stmt>> {
+        let (start, token) = self.peek()?;
+        let kind = match token.kind() {
+            K::InlineHtml => {
+                self.bump()?;
+                StmtKind::InlineHtml(self.bytes(token).into())
+            }
+            K::Semicolon | K::CloseTag => {
+                self.bump()?;
+                if self.meta(start).comments().is_empty() {
+                    return Ok(None);
+                }
+                StmtKind::Nop
+            }
+            K::Echo | K::OpenEchoTag => {
+                self.bump()?;
+                let mut values = vec![*self.expression(0)?];
+                while self.eat(K::Comma)? {
+                    values.push(*self.expression(0)?);
+                }
+                self.terminate()?;
+                StmtKind::Echo(values)
+            }
+            K::Return => {
+                self.bump()?;
+                let value = if matches!(self.kind()?, K::Semicolon | K::CloseTag | K::Eof) {
+                    None
+                } else {
+                    Some(*self.expression(0)?)
+                };
+                self.terminate()?;
+                StmtKind::Return(value)
+            }
+            K::LeftBrace => {
+                self.bump()?;
+                self.block_depth += 1;
+                let result = self.block();
+                self.block_depth -= 1;
+                StmtKind::Block(result?)
+            }
+            K::HaltCompiler => {
+                let result = halt::consume(
+                    &mut self.cursor,
+                    if self.block_depth == 0 {
+                        HaltScope::Outermost
+                    } else {
+                        HaltScope::Nested
+                    },
+                );
+                for diagnostic in self.cursor.take_diagnostics() {
+                    self.record(diagnostic)?;
+                }
+                self.last_end = self.cursor.position();
+                match result {
+                    Ok(()) => {
+                        let tail = if self.kind()? == K::HaltTail {
+                            let (_, t) = self.bump()?;
+                            self.bytes(t).into()
+                        } else {
+                            crate::ByteString::default()
+                        };
+                        StmtKind::HaltCompiler(tail)
+                    }
+                    Err(HaltError::Cursor(error)) => {
+                        self.cursor_result(Err(error))?;
+                        unreachable!()
+                    }
+                    Err(HaltError::Scope) => {
+                        self.record(Diagnostic::error(
+                            D::InvalidContext,
+                            token.span(),
+                            "__halt_compiler must appear in outermost scope",
+                        ))?;
+                        return Err(());
+                    }
+                    Err(HaltError::Syntax) => {
+                        self.record(Diagnostic::error(
+                            D::UnexpectedToken,
+                            token.span(),
+                            "expected __halt_compiler();",
+                        ))?;
+                        return Err(());
+                    }
+                }
+            }
+            K::Function
+            | K::Fn
+            | K::Class
+            | K::Interface
+            | K::Trait
+            | K::Enum
+            | K::Namespace
+            | K::Use
+            | K::Const
+            | K::If
+            | K::While
+            | K::Do
+            | K::For
+            | K::Foreach
+            | K::Switch
+            | K::Try
+            | K::Declare
+            | K::Global
+            | K::Unset
+            | K::Attribute => {
+                self.record(Diagnostic::error(
+                    D::UnsupportedSyntax,
+                    token.span(),
+                    "statement syntax is scheduled for P08/P09",
+                ))?;
+                self.bump()?;
+                return Err(());
+            }
+            _ => {
+                let expr = self.expression(0)?;
+                self.terminate()?;
+                StmtKind::Expression(*expr)
+            }
+        };
+        self.alloc()?;
+        Ok(Some(Stmt {
+            meta: self.meta(start),
+            kind,
+        }))
+    }
+    fn block(&mut self) -> PResult<Vec<Stmt>> {
+        let mut body = Vec::new();
+        while !matches!(self.kind()?, K::RightBrace | K::Eof) {
+            let before = self.cursor.position();
+            match self.statement() {
+                Ok(Some(stmt)) => body.push(stmt),
+                Ok(None) => {}
+                Err(()) if !self.aborted => self.recover_statement(),
+                Err(()) => return Err(()),
+            }
+            if !self.aborted && self.cursor.position() == before {
+                self.bump()?;
+            }
+        }
+        let (index, token) = self.peek()?;
+        if token.kind() == K::RightBrace {
+            if let Some(stmt) = self.trailing_nop(index)? {
+                body.push(stmt);
+            }
+        }
+        self.expect(K::RightBrace)?;
+        Ok(body)
+    }
+    fn trailing_nop(&mut self, index: usize) -> PResult<Option<Stmt>> {
+        let meta = self.point(index);
+        if meta.comments().is_empty() {
+            return Ok(None);
+        }
+        self.enter()?;
+        let allocated = self.alloc();
+        self.depth -= 1;
+        allocated?;
+        Ok(Some(Stmt {
+            meta,
+            kind: StmtKind::Nop,
+        }))
+    }
+    fn terminate(&mut self) -> PResult<()> {
+        if matches!(self.kind()?, K::Semicolon | K::CloseTag) {
+            self.bump()?;
+            Ok(())
+        } else {
+            let (_, token) = self.peek()?;
+            self.record(Diagnostic::error(
+                D::UnexpectedToken,
+                token.span(),
+                "expected statement terminator",
+            ))?;
+            if matches!(
+                token.kind(),
+                K::Identifier
+                    | K::Variable
+                    | K::Integer
+                    | K::Float
+                    | K::QuotedString
+                    | K::Echo
+                    | K::Return
+                    | K::RightBrace
+                    | K::Eof
+            ) {
+                Ok(())
+            } else {
+                Err(())
+            }
+        }
+    }
+    fn recover_statement(&mut self) {
+        let mut delimiters = Vec::new();
+        while !self.aborted {
+            let Ok(kind) = self.kind() else {
+                break;
+            };
+            if kind == K::Eof {
+                break;
+            }
+            if delimiters.is_empty() {
+                if kind == K::RightBrace && self.block_depth > 0 {
+                    break;
+                }
+                if matches!(kind, K::Semicolon | K::CloseTag) {
+                    let _ = self.bump();
+                    break;
+                }
+                if matches!(kind, K::Echo | K::OpenEchoTag | K::Return | K::InlineHtml) {
+                    break;
+                }
+            }
+            match kind {
+                K::LeftParen => delimiters.push(K::RightParen),
+                K::LeftBracket => delimiters.push(K::RightBracket),
+                K::LeftBrace => delimiters.push(K::RightBrace),
+                K::RightParen | K::RightBracket | K::RightBrace
+                    if delimiters.last() == Some(&kind) =>
+                {
+                    delimiters.pop();
+                }
+                _ => {}
+            }
+            if delimiters.len() > self.options.limits.get(Resource::Depth).min(128) {
+                let _ = self.limit(Resource::Depth);
+                break;
+            }
+            if self.bump().is_err() {
+                break;
+            }
+            if kind == K::RightBrace && delimiters.is_empty() {
+                break;
+            }
+        }
+    }
+}

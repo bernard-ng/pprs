@@ -377,7 +377,7 @@ fn diagnostic_codes_are_unique_and_expected_eof_differs_from_absence() {
 }
 
 #[test]
-fn live_node_ledger_covers_the_frozen_inventory_without_promoting_parser_coverage() {
+fn live_node_ledger_preserves_inventory_and_requires_evidence_for_parser_progress() {
     let parse = |input: &str| -> Vec<serde_json::Value> {
         input
             .lines()
@@ -405,7 +405,18 @@ fn live_node_ledger_covers_the_frozen_inventory_without_promoting_parser_coverag
             assert!(row["parser_phase"].is_null());
             assert!(row["rust_model"].is_null());
         } else {
-            assert_eq!(row["parser_status"], "pending");
+            assert!(["pending", "slice"].contains(&row["parser_status"].as_str().unwrap()));
+            if row["parser_status"] == "slice" {
+                assert_eq!(row["parser_phase"], "P07");
+                for path in row["evidence"].as_array().unwrap() {
+                    assert!(
+                        std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+                            .join(path.as_str().unwrap())
+                            .is_file()
+                    );
+                }
+                assert_eq!(row["model_status"], "foundation");
+            }
             assert!(["P07", "P08", "P09"].contains(&row["parser_phase"].as_str().unwrap()));
             match row["model_status"].as_str().unwrap() {
                 "foundation" => assert_ne!(row["rust_model"].as_str().unwrap(), ""),

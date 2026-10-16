@@ -2,7 +2,7 @@
 
 A PHP parser library written in Rust. The first release is planned to support **PHP 7.0–8.4**, using [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) as its compatibility reference.
 
-**Status:** P00–P06 are complete. `lex` and `lex_source` handle regular tokens, strings, interpolation, heredoc/nowdoc and file boundaries. The `literal` module decodes string/numeric values. Of 300 corpus token channels, 296 match exactly and four have documented halt-tail differences: raw tails require parser authorization. Parsing APIs remain pending. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md).
+**Status:** P00–P07 are complete. `parse`, `parse_source` and `parse_strict` deliver the first expression/file parsing slice, with owned ASTs, lossless tokens, diagnostics, recovery and read-only traversal. Functions/control flow remain P08; declarations and anonymous classes remain P09. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md) and [P07 contract](docs/decisions/0006-expression-parser.md).
 
 ## Development
 
@@ -34,7 +34,23 @@ cargo +1.85.0 test --locked --doc
 cargo +1.85.0 check --locked --manifest-path tests/consumer/Cargo.toml
 ```
 
-[tests/consumer](tests/consumer/Cargo.toml) is a separate Cargo package with a path dependency on `pprs`. It verifies source ownership, options and AST construction through public APIs without private modules, PHP or the reference checkout. Its lockfile is checked in alongside the root lockfile. Foundation tests cover byte positions, lossless tokens, AST metadata, budgets and result contracts. The P02 integration suite reads 313 reference/probe cases and tests the comparison adapters; 296 token channels pass and four have exact intentional differences, and all 300 complete parser cases remain pending.
+[tests/consumer](tests/consumer/Cargo.toml) is a separate Cargo package with a path dependency on `pprs`. It verifies public lexing, parsing, strict failures, traversal, source ownership, options and AST construction through public APIs without private modules, PHP or the reference checkout. Its lockfile is checked in alongside the root lockfile. Foundation tests cover byte positions, lossless tokens, AST metadata, budgets and result contracts. The P02 integration suite reads 313 reference/probe cases and tests the comparison adapters; 296 token channels pass and four have exact intentional differences. P07 adds 69 passing structure channels, eight exact Unicode recovery differences and 133 dedicated expression observations. All 300 complete parser cases remain pending overall until later phases complete the remaining channels.
+
+Parse the supported subset and inspect the tree:
+
+```rust
+use pprs::{parse_strict, visit, ParseOptions};
+
+let parsed = parse_strict("<?php echo $value + 1; return [1, 2];", ParseOptions::default())?;
+let program = parsed.result().program().unwrap();
+assert_eq!(program.statements.len(), 2);
+for entry in visit::walk(program) {
+    println!("{}: {:?}", entry.depth, entry.node);
+}
+# Ok::<(), pprs::StrictError>(())
+```
+
+Use `parse` for recovery and inspect `ParseResult::status()` and diagnostics. Strict failures retain the recovering result; oversized input returns a separate preflight error. `parse_source` reuses a `SourceText` without copying. The effective parser depth is capped at 128 even when configured higher. Strict completion does not imply full PHP compiler validation or strict historical-version validity.
 
 The lexer accepts arbitrary bytes and owns its output. Always distinguish completion from diagnostics:
 
@@ -59,7 +75,7 @@ assert_eq!(source.slice(name), Some(&b"\xff"[..]));
 assert_eq!(source.location(7).unwrap().line, 2);
 ```
 
-The [foundation decision](docs/decisions/0003-foundation-contracts.md) documents provisional limits, source/metadata invariants and strict-result semantics. No placeholder parse function returns fabricated success.
+The [foundation decision](docs/decisions/0003-foundation-contracts.md) documents provisional limits, source/metadata invariants and strict-result semantics. Unsupported later-phase grammar produces diagnostics and fails strict parsing.
 
 ## Quality policy and CI
 
@@ -85,7 +101,7 @@ Rust CI needs no PHP, Composer, `.references` checkout, or network corpus downlo
 - [Foundation contracts and resource policy](docs/decisions/0003-foundation-contracts.md).
 - [Live AST implementation ledger](docs/implementation/README.md).
 
-The default PHP target will be 8.4. Target-version interpretation follows nikic's best-effort behavior; parsing will not imply complete PHP compiler or strict version validation. PHP 8.5/8.6 features in the pinned reference remain outside the initial release.
+The default PHP target is 8.4. Target-version interpretation follows nikic's best-effort behavior; parsing will not imply complete PHP compiler or strict version validation. PHP 8.5/8.6 features in the pinned reference remain outside the initial release.
 
 ## License and publication
 

@@ -1,4 +1,4 @@
-//! Owned results and strict/recovering conversion. Parsing entry points arrive later.
+//! Owned results and strict/recovering conversion for public parsing entry points.
 
 use crate::{
     SourceText,

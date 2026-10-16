@@ -419,6 +419,11 @@ pub struct TokenRange {
     end: usize,
 }
 impl TokenRange {
+    pub(crate) fn prefix(start: usize, end: usize, len: usize) -> Self {
+        assert!(start <= end && end <= len);
+        Self { start, end }
+    }
+
     /// First retained index.
     #[must_use]
     pub const fn start(self) -> usize {

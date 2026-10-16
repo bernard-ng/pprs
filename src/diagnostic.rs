@@ -36,6 +36,10 @@ pub enum DiagnosticCode {
     UnterminatedString,
     /// Unexpected token or missing syntax.
     UnexpectedToken,
+    /// Grammar intentionally outside the currently implemented slice.
+    UnsupportedSyntax,
+    /// Literal interpretation failed.
+    InvalidLiteral,
     /// Syntax invalid in its surrounding parser context.
     InvalidContext,
     /// Processing stopped at a finite limit.
@@ -50,6 +54,8 @@ impl DiagnosticCode {
             Self::Unterminated => "PPRS-L002",
             Self::UnterminatedString => "PPRS-L003",
             Self::UnexpectedToken => "PPRS-S001",
+            Self::UnsupportedSyntax => "PPRS-S002",
+            Self::InvalidLiteral => "PPRS-L004",
             Self::InvalidContext => "PPRS-C001",
             Self::ResourceLimit(Resource::InputBytes) => "PPRS-R001",
             Self::ResourceLimit(Resource::Depth) => "PPRS-R002",
@@ -62,8 +68,11 @@ impl DiagnosticCode {
     #[must_use]
     pub const fn category(self) -> Category {
         match self {
-            Self::InvalidByte | Self::Unterminated | Self::UnterminatedString => Category::Lexical,
-            Self::UnexpectedToken => Category::Syntax,
+            Self::InvalidByte
+            | Self::Unterminated
+            | Self::UnterminatedString
+            | Self::InvalidLiteral => Category::Lexical,
+            Self::UnexpectedToken | Self::UnsupportedSyntax => Category::Syntax,
             Self::InvalidContext => Category::Context,
             Self::ResourceLimit(_) => Category::Resource,
         }

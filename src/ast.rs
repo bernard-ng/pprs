@@ -1,4 +1,4 @@
-//! Typed AST for the first vertical slice. These types do not imply parser coverage.
+//! Typed AST for the expression parsing slice. Callable/declaration nodes arrive later.
 //!
 //! Children are owned. An absent optional child differs from an empty list and
 //! from an explicit error expression. Raw spelling is obtained from node origins.
@@ -77,6 +77,36 @@ impl NodeMeta {
             origin: Origin::Parsed { span, tokens },
             comments,
         })
+    }
+    pub(crate) fn prefix(
+        source: &crate::SourceText,
+        tokens: &[crate::token::Token],
+        start: usize,
+        end: usize,
+    ) -> Self {
+        let begin = tokens.get(start).map_or(source.len(), |t| t.span().start());
+        let finish = if end > start {
+            tokens[end - 1].span().end()
+        } else {
+            begin
+        };
+        let mut comments = Vec::new();
+        for index in (0..start).rev() {
+            if !tokens[index].kind().is_trivia() {
+                break;
+            }
+            if tokens[index].kind().is_comment() {
+                comments.push(index);
+            }
+        }
+        comments.reverse();
+        Self {
+            origin: Origin::Parsed {
+                span: source.span(begin..finish).expect("parser token bounds"),
+                tokens: TokenRange::prefix(start, end, tokens.len()),
+            },
+            comments,
+        }
     }
     /// Metadata for a constructed/transformed node without fabricated offsets.
     #[must_use]
@@ -234,8 +264,215 @@ pub enum BinaryOp {
     Divide,
     /// String concatenation, with target-dependent precedence.
     Concat,
+    /// Remainder.
+    Modulo,
+    /// Exponentiation.
+    Power,
+    /// Left shift.
+    ShiftLeft,
+    /// Right shift.
+    ShiftRight,
+    /// Bitwise AND.
+    BitwiseAnd,
+    /// Bitwise OR.
+    BitwiseOr,
+    /// Bitwise XOR.
+    BitwiseXor,
+    /// Short-circuit AND.
+    BooleanAnd,
+    /// Short-circuit OR.
+    BooleanOr,
+    /// Low-precedence AND.
+    LogicalAnd,
+    /// Low-precedence OR.
+    LogicalOr,
+    /// Low-precedence XOR.
+    LogicalXor,
+    /// Loose equality.
+    Equal,
+    /// Loose inequality.
+    NotEqual,
+    /// Strict equality.
+    Identical,
+    /// Strict inequality.
+    NotIdentical,
+    /// Less than.
+    Less,
+    /// Less than or equal.
+    LessEqual,
+    /// Greater than.
+    Greater,
+    /// Greater than or equal.
+    GreaterEqual,
+    /// Three-way comparison.
+    Spaceship,
+    /// Null coalescing.
+    Coalesce,
 }
 
+/// Prefix/postfix expression operators.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum UnaryOp {
+    /// Unary plus.
+    Plus,
+    /// Unary minus.
+    Minus,
+    /// Boolean negation.
+    Not,
+    /// Bitwise complement.
+    BitwiseNot,
+    /// Error suppression.
+    Suppress,
+    /// Prefix increment.
+    PreIncrement,
+    /// Postfix increment.
+    PostIncrement,
+    /// Prefix decrement.
+    PreDecrement,
+    /// Postfix decrement.
+    PostDecrement,
+    /// Object cloning.
+    Clone,
+    /// Print expression.
+    Print,
+    /// Throw expression.
+    Throw,
+    /// Yield delegation.
+    YieldFrom,
+    /// Eval construct.
+    Eval,
+    /// Empty construct.
+    Empty,
+}
+/// PHP cast syntax.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum CastKind {
+    /// Integer cast.
+    Integer,
+    /// Float cast.
+    Float,
+    /// String cast.
+    String,
+    /// Array cast.
+    Array,
+    /// Object cast.
+    Object,
+    /// Boolean cast.
+    Boolean,
+    /// Unset cast.
+    Unset,
+}
+/// Include/require operation.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum IncludeKind {
+    /// Include operation.
+    Include,
+    /// `IncludeOnce` operation.
+    IncludeOnce,
+    /// Require operation.
+    Require,
+    /// `RequireOnce` operation.
+    RequireOnce,
+}
+/// Unevaluated PHP magic constant.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum MagicConstant {
+    /// Line magic constant.
+    Line,
+    /// File magic constant.
+    File,
+    /// Directory magic constant.
+    Directory,
+    /// Class magic constant.
+    Class,
+    /// Trait magic constant.
+    Trait,
+    /// Method magic constant.
+    Method,
+    /// Function magic constant.
+    Function,
+    /// Namespace magic constant.
+    Namespace,
+    /// Property magic constant.
+    Property,
+}
+/// Original array or pattern delimiter syntax.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ArrayKind {
+    /// Square brackets.
+    Short,
+    /// Array keyword and parentheses.
+    Long,
+    /// List keyword and parentheses.
+    List,
+}
+/// A name or evaluated expression used as a class or function target.
+#[derive(Debug, Clone, PartialEq)]
+pub enum Target {
+    /// Syntactic class/function name.
+    Name(Name),
+    /// Dynamic target.
+    Expr(Box<Expr>),
+}
+/// A literal member name or evaluated expression.
+#[derive(Debug, Clone, PartialEq)]
+pub enum Member {
+    /// Identifier; static properties interpret it as a variable-like identifier.
+    Identifier(Identifier),
+    /// Dynamic member expression.
+    Expr(Box<Expr>),
+}
+/// Call argument, retaining named/reference/unpack distinctions.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Argument {
+    /// Source metadata.
+    pub meta: NodeMeta,
+    /// Argument name, if named.
+    pub name: Option<Identifier>,
+    /// Value; absent only for a first-class callable placeholder.
+    pub value: Option<Expr>,
+    /// Call-time reference syntax.
+    pub by_ref: bool,
+    /// Unpack syntax; the standalone placeholder instead has no value.
+    pub unpack: bool,
+}
+/// Array element or destructuring entry.
+#[derive(Debug, Clone, PartialEq)]
+pub struct ArrayItem {
+    /// Source metadata.
+    pub meta: NodeMeta,
+    /// Explicit key.
+    pub key: Option<Expr>,
+    /// Element or pattern value.
+    pub value: Expr,
+    /// Reference syntax.
+    pub by_ref: bool,
+    /// Unpacked element.
+    pub unpack: bool,
+}
+/// Part of an interpolated string or shell command.
+#[derive(Debug, Clone, PartialEq)]
+pub enum StringPart {
+    /// Decoded text segment, whose metadata retains raw spelling.
+    Text {
+        /// Source metadata.
+        meta: NodeMeta,
+        /// Decoded bytes.
+        value: ByteString,
+    },
+    /// Embedded expression.
+    Expr(Expr),
+}
+/// A match expression arm.
+#[derive(Debug, Clone, PartialEq)]
+pub struct MatchArm {
+    /// Source metadata.
+    pub meta: NodeMeta,
+    /// Conditions, or `None` for default.
+    pub conditions: Option<Vec<Expr>>,
+    /// Result expression.
+    pub body: Expr,
+}
 /// Expression node and its origin.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Expr {
@@ -265,7 +502,7 @@ pub enum ExprKind {
         /// Delimiter interpretation.
         kind: StringKind,
     },
-    /// Simple variable; dynamic variable expressions arrive in P07.
+    /// Simple variable.
     Variable(Identifier),
     /// Constant/name lookup; this is not an identifier expression.
     ConstFetch(Name),
@@ -285,6 +522,168 @@ pub enum ExprKind {
         /// Right operand.
         right: Box<Expr>,
     },
+    /// Variable whose name is evaluated.
+    DynamicVariable(Box<Expr>),
+    /// Unevaluated magic constant.
+    MagicConstant(MagicConstant),
+    /// Unary operation.
+    Unary {
+        /// Operator.
+        op: UnaryOp,
+        /// Operand.
+        expr: Box<Expr>,
+    },
+    /// Compound assignment.
+    AssignOp {
+        /// Operator applied before assignment.
+        op: BinaryOp,
+        /// Target.
+        target: Box<Expr>,
+        /// Value.
+        value: Box<Expr>,
+    },
+    /// Assignment by reference.
+    AssignRef {
+        /// Target.
+        target: Box<Expr>,
+        /// Referenced value.
+        value: Box<Expr>,
+    },
+    /// Conditional expression, including shorthand ternary.
+    Ternary {
+        /// Condition.
+        condition: Box<Expr>,
+        /// True branch; absent for shorthand.
+        then: Option<Box<Expr>>,
+        /// False branch.
+        otherwise: Box<Expr>,
+    },
+    /// Array literal; absent entries are retained as error expressions until pattern conversion.
+    Array {
+        /// Items.
+        items: Vec<Option<ArrayItem>>,
+        /// Delimiter syntax.
+        kind: ArrayKind,
+    },
+    /// Destructuring pattern; omitted slots are absent items.
+    List {
+        /// Pattern slots.
+        items: Vec<Option<ArrayItem>>,
+        /// Delimiter syntax.
+        kind: ArrayKind,
+    },
+    /// Array access; absent dimension means append syntax.
+    ArrayDim {
+        /// Base.
+        array: Box<Expr>,
+        /// Optional index.
+        dim: Option<Box<Expr>>,
+    },
+    /// Function or dynamic call.
+    Call {
+        /// Callable.
+        target: Target,
+        /// Arguments or first-class placeholder.
+        args: Vec<Argument>,
+    },
+    /// Property access.
+    Property {
+        /// Object.
+        object: Box<Expr>,
+        /// Property name.
+        name: Member,
+        /// Nullsafe access.
+        nullsafe: bool,
+    },
+    /// Method call.
+    MethodCall {
+        /// Object.
+        object: Box<Expr>,
+        /// Method name.
+        name: Member,
+        /// Arguments.
+        args: Vec<Argument>,
+        /// Nullsafe call.
+        nullsafe: bool,
+    },
+    /// Static property access.
+    StaticProperty {
+        /// Class.
+        class: Target,
+        /// Property name.
+        name: Member,
+    },
+    /// Class constant access.
+    ClassConst {
+        /// Class.
+        class: Target,
+        /// Constant name.
+        name: Member,
+    },
+    /// Static method call.
+    StaticCall {
+        /// Class.
+        class: Target,
+        /// Method name.
+        name: Member,
+        /// Arguments.
+        args: Vec<Argument>,
+    },
+    /// Object construction; anonymous classes arrive in P09.
+    New {
+        /// Class expression/name.
+        class: Target,
+        /// Constructor arguments.
+        args: Vec<Argument>,
+    },
+    /// Instance check.
+    Instanceof {
+        /// Tested expression.
+        expr: Box<Expr>,
+        /// Class expression/name.
+        class: Target,
+    },
+    /// Cast syntax.
+    Cast {
+        /// Cast operation.
+        kind: CastKind,
+        /// Operand.
+        expr: Box<Expr>,
+    },
+    /// Include/require syntax.
+    Include {
+        /// Include operation.
+        kind: IncludeKind,
+        /// Operand.
+        expr: Box<Expr>,
+    },
+    /// Isset construct.
+    Isset(Vec<Expr>),
+    /// Simple exit/die syntax; complex argument forms are calls, matching the reference.
+    Exit(Option<Box<Expr>>),
+    /// Yield expression; generator context validation arrives with callable bodies.
+    Yield {
+        /// Optional key.
+        key: Option<Box<Expr>>,
+        /// Optional value.
+        value: Option<Box<Expr>>,
+    },
+    /// Match expression.
+    Match {
+        /// Subject.
+        condition: Box<Expr>,
+        /// Ordered arms.
+        arms: Vec<MatchArm>,
+    },
+    /// Double-quoted/heredoc interpolated string.
+    Interpolated {
+        /// Decoded text and expression parts.
+        parts: Vec<StringPart>,
+        /// Delimiter syntax.
+        kind: StringKind,
+    },
+    /// Shell command syntax, never executed by the library.
+    ShellExec(Vec<StringPart>),
     /// Explicit missing/damaged expression. Metadata may be an empty insertion point.
     Error,
 }
@@ -311,6 +710,10 @@ pub enum StmtKind {
     Echo(Vec<Expr>),
     /// An absent return value is distinct from a damaged expression.
     Return(Option<Expr>),
+    /// Braced statement block.
+    Block(Vec<Stmt>),
+    /// Validated outermost halt statement and uninterpreted tail bytes.
+    HaltCompiler(ByteString),
 }
 /// File root. An empty statement list is a valid empty program; a partial root is
 /// distinguished by the containing [`crate::ParseResult`]'s status.
