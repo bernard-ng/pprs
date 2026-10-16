@@ -2,11 +2,11 @@
 
 A PHP parser library written in Rust. The first release is planned to support **PHP 7.0–8.4**, using [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) as its compatibility reference.
 
-**Status:** P00–P02 are complete: library foundations, reference export and compatibility harness. The project builds as a library; parsing APIs are not implemented yet. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md) for subsequent phases.
+**Status:** P00–P03 are complete: library foundations, reference harness and parser-strategy selection. The project builds as a library; parsing APIs are not implemented yet. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md) for subsequent phases.
 
 ## Development
 
-The minimum supported Rust version is **1.85.0**, with edition 2024. [rust-toolchain.toml](rust-toolchain.toml) selects stable Rust with rustfmt and Clippy for normal development. The library currently has no runtime dependencies or feature flags. Test-only dependencies are `serde_json`, `sha2` and `hex` for corpus decoding and integrity checks.
+The minimum supported Rust version is **1.85.0**, with edition 2024. [rust-toolchain.toml](rust-toolchain.toml) selects stable Rust with rustfmt and Clippy for normal development. The library currently has no runtime dependencies or feature flags. Test-only dependencies are `serde_json`, `sha2` and `hex` for corpus checks, plus Logos for the test-only strategy prototype.
 
 Run the same Rust checks used in CI:
 
@@ -54,6 +54,7 @@ Rust CI needs no PHP, Composer, `.references` checkout, or network corpus downlo
 - [Reference testing strategy](plans/reference-and-testing-strategy.md).
 - [Exported corpus contract and coverage](tests/fixtures/README.md).
 - [Oracle setup and regeneration](tools/reference/README.md).
+- [Selected parser strategy and experiment results](docs/decisions/0002-parser-strategy.md).
 
 The default PHP target will be 8.4. Target-version interpretation follows nikic's best-effort behavior; parsing will not imply complete PHP compiler or strict version validation. PHP 8.5/8.6 features in the pinned reference remain outside the initial release.
 

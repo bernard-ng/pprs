@@ -1,7 +1,7 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: P00–P02 complete; P03 onward pending; parser implementation has not started
+Status: P00–P03 complete; P04 onward pending; only a test-only parser prototype exists
 
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
@@ -70,7 +70,7 @@ Caller supplies bytes + ParseOptions
        Stateful Lexer ------------> lexical diagnostics
              |
              v
-    complete tokens + TokenCursor
+    retained tokens + lazy TokenCursor
              |
              v
    Parser + recovery + local checks -> syntax/context diagnostics
@@ -92,7 +92,7 @@ Caller supplies bytes + ParseOptions
 | `SourceText` | Own/share immutable bytes, initially `Arc<[u8]>`; build a line-start index once. Convenience parsing from `&str` or `&[u8]` copies into owned storage; an owned-source entry point avoids that copy. |
 | `Span` | Validated half-open byte range `[start, end)` within one source. Begin with `usize` offsets and checked construction; a compact representation requires measurements and an explicit file-size policy. |
 | `Token` / `TokenKind` | Project-owned kinds and byte spans, including whitespace, comments, tags, invalid bytes, and EOF. Text is sliced from source; no per-token string allocation. |
-| `TokenCursor` | Skip trivia for grammar decisions while retaining original token indices; provide bounded lookahead and progress tracking. |
+| `TokenCursor` | Lazily request tokens from the stateful lexer; skip trivia for grammar decisions while retaining original token indices; provide bounded lookahead, progress tracking and a parser-authorized halt-tail transition. |
 | `Lexer` | Maintain HTML, PHP, string, interpolation, heredoc/nowdoc, and terminal raw-tail states; emit complete token coverage and lexical diagnostics. |
 | `PhpVersion` / syntax rules | Centralize target-version interpretation and token/precedence decisions. |
 | Typed AST | Rust enums and structs with `Box`/`Vec` for recursive children. Preserve distinct statements, expressions, names, identifiers, types, arguments, parameters, members, and patterns. |
@@ -127,7 +127,7 @@ Byte offsets are authoritative. P00 decision D03 specifies one-based lines and b
 1. **Ordinary file:** source ownership is established once; lexer emits trivia and semantic tokens; parser uses a cursor over that stream; AST keeps source origins; caller walks function declarations without knowing lexer implementation types.
 2. **Interpolated string:** the lexer pushes interpolation state and tracks nested delimiters; parser builds string-part and expression nodes; returning to the string resumes the correct state and preserves raw bytes.
 3. **Malformed function followed by valid code:** a missing operand emits a diagnostic/error node; recovery stops at the nearest owned delimiter; parsing continues to the next statement; result status is recovered, and strict parsing reports failure.
-4. **`__halt_compiler()`:** validate the required syntax and scope before entering terminal raw-tail handling; retain all remaining bytes without interpreting them as PHP. Exact representation is settled in the lexer/parser spike.
+4. **`__halt_compiler()`:** validate the required syntax and scope before entering terminal raw-tail handling; retain all remaining bytes without interpreting them as PHP. P03 selects a parser-authorized terminal lexer transition before requesting tail tokens; P04 defines its typed contract.
 
 ## 4. Reuse and dependency policy
 
@@ -135,8 +135,8 @@ Add dependencies when their phase needs them, with compatible versions selected 
 
 | Task | Proposed tool | Decision |
 |---|---|---|
-| Regular byte token scanning | [Logos](https://logos.maciej.codes/attributes/logos.html) | Prototype in P03. Use explicit PHP states/callbacks; keep trivia. It supports byte input, but must prove the hard cases. |
-| Yacc-compatible parser generation | [`lrpar`](https://docs.rs/lrpar/latest/lrpar/) / grmtools | Compare with recursive descent + Pratt in P03; upstream Yacc structure makes this a credible reuse option. |
+| Regular byte token scanning | [Logos](https://logos.maciej.codes/attributes/logos.html) | Selected in P03: 0.16.1, byte mode with explicit non-Unicode identifier regexes and `forbid_unsafe`. Explicit PHP states retain trivia. |
+| Yacc-compatible parser generation | [`lrpar`](https://docs.rs/lrpar/latest/lrpar/) / grmtools | Evaluated in P03; not selected. The byte-source adapter, contextual recovery and halt prepass add coordination cost. |
 | Byte-string ergonomics | [`bstr`](https://docs.rs/bstr/latest/bstr/) | Adopt when semantic byte strings are introduced; keep source/token storage simple. |
 | Searching byte buffers | [`memchr`](https://docs.rs/memchr/latest/memchr/) | Use for delimiter/newline scanning where useful; no custom SIMD search implementation. |
 | Conventional error traits | [`thiserror`](https://docs.rs/thiserror/latest/thiserror/) | Use if it removes real boilerplate; keep syntax diagnostics structured. |
@@ -147,7 +147,7 @@ Add dependencies when their phase needs them, with compatible versions selected 
 | Benchmarks | [Criterion](https://bheisler.github.io/criterion.rs/book/) | Add once representative lex/parse operations exist. |
 | Rich diagnostic display | [`miette`](https://docs.rs/miette/latest/miette/) | Later optional adapter; no terminal renderer in the core. |
 
-The provisional parsing choice is **recursive descent for statements/declarations and Pratt parsing for expressions**, with a stateful byte lexer using Logos where it fits. It offers direct control over PHP context and diagnostics. P03 may replace this with `lrpar` if the grammar translation and recovery are materially simpler. Either outcome must reuse generic machinery where helpful and maintain a production-to-implementation map.
+P03 selected **recursive descent for statements/declarations/types and Pratt parsing for expressions**, with Logos regular byte tokens and explicit lexical states. The [decision and evidence](../docs/decisions/0002-parser-strategy.md) define the parser/lexer coordination contract and the limits of the prototype. Maintain a production-to-implementation map as production code arrives.
 
 [LALRPOP](https://lalrpop.github.io/lalrpop/lexer_tutorial/006_error_recovery_custom_lexer.html) and [Chumsky](https://docs.rs/chumsky/latest/chumsky/) are fallback candidates, not simultaneous dependencies. [Tree-sitter PHP](https://github.com/tree-sitter/tree-sitter-php) is worth checking for reuse, but adopting it would introduce a separate syntax-tree and recovery contract requiring a substantial compatibility adapter. Do not assume its existence proves nikic-compatible behavior.
 
@@ -238,6 +238,8 @@ Deliverables: development exporter, checked-in corpus, manifest, comparison adap
 Acceptance: fixture counts and source bytes reproduce the pinned corpus; explicit-version modes and macros survive; `cargo test` can read the exported corpus without PHP or a reference checkout.
 
 ### P03 — Resolve lexer/parser strategy with a bounded prototype
+
+Status: **complete, 2026-10-16**. Evidence: [decision 0002](../docs/decisions/0002-parser-strategy.md), [comparison observations](../docs/experiments/p03-results.json), [17 reusable hard cases](../tests/fixtures/strategy/README.md), and [retained test-only probe](../tests/strategy.rs). Logos plus explicit byte states and RD/Pratt is selected; rejected candidate code is discarded. Both Rust toolchains run the retained checks without PHP. P02 compatibility states remain pending.
 
 Dependencies: P01–P02. This is the only planned implementation-strategy fork.
 
@@ -451,7 +453,7 @@ Implement these only when prioritized; they do not block the parser-library rele
 
 | Item | Planned resolution |
 |---|---|
-| Parser/lexer framework choice | P03 hard-case comparison, then one documented selection |
+| Parser/lexer framework choice | Resolved in P03: Logos regular byte scanning + explicit states, RD/Pratt parser; see decision 0002 |
 | Project license | Maintainer choice before package release; upstream notices retained from P00 |
 | Exact MSRV/dependency versions | P01 validated Rust 1.85.0 with no dependencies; P02 test-only JSON/hash/hex dependencies also pass MSRV checks; validate future dependency versions as introduced |
 | Short-open-tag profile | P00 fixes default disabled; implement explicit option and matching oracle settings in P05 |

@@ -1,6 +1,6 @@
 # PHP 7.0–8.4 compatibility matrix
 
-P00 completed on 2026-10-16. **This is the frozen implementation scope, not a claim of implemented support.** All parser features are still unimplemented. P01/P02 foundations and reference harness are complete; the next implementation phase is P03.
+P00 completed on 2026-10-16. **This is the frozen implementation scope, not a claim of implemented support.** All parser features are still unimplemented. P01–P03 foundations, reference harness and strategy selection are complete; the next implementation phase is P04. The test-only strategy probe does not change implementation coverage.
 
 ## Reading the matrix
 

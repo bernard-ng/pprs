@@ -1,0 +1,197 @@
+[
+  {
+    "id": "html-bytes",
+    "source": {
+      "bytes": "68656c6c6fff3c3f706870202461203d20313b203f3e7461696c"
+    },
+    "target": "8.4",
+    "productions": [
+      "top_statement",
+      "expr"
+    ],
+    "errors": false
+  },
+  {
+    "id": "nested-interpolation",
+    "source": {
+      "bytes": "3c3f70687020226f75746572207b24615b22696e6e6572207b24627d225d7d223b"
+    },
+    "target": "8.4",
+    "productions": [
+      "encaps_list",
+      "encaps_var"
+    ],
+    "errors": false
+  },
+  {
+    "id": "non-utf8-name",
+    "source": {
+      "bytes": "3c3f7068702024ff203d2022fe223b"
+    },
+    "target": "8.4",
+    "productions": [
+      "variable",
+      "scalar"
+    ],
+    "errors": false
+  },
+  {
+    "id": "heredoc",
+    "source": {
+      "bytes": "3c3f706870203c3c3c454e440a20202020454e44494e470a2020202076616c75650a20202020454e443b"
+    },
+    "target": "8.4",
+    "productions": [
+      "scalar"
+    ],
+    "errors": false
+  },
+  {
+    "id": "nowdoc",
+    "source": {
+      "bytes": "3c3f706870203c3c3c27454e44270a20202020246c69746572616c0a20202020454e443b"
+    },
+    "target": "8.4",
+    "productions": [
+      "scalar"
+    ],
+    "errors": false
+  },
+  {
+    "id": "bad-indent",
+    "source": {
+      "bytes": "3c3f706870203c3c3c454e440a2020746f6f207368616c6c6f770a20202020454e443b"
+    },
+    "target": "8.4",
+    "productions": [
+      "scalar"
+    ],
+    "errors": true
+  },
+  {
+    "id": "contextual-members",
+    "source": {
+      "bytes": "3c3f7068702024612d3e726561646f6e6c792831295b305d3f2d3e6d6174636828293b"
+    },
+    "target": "8.4",
+    "productions": [
+      "callable_variable",
+      "member_name"
+    ],
+    "errors": false
+  },
+  {
+    "id": "precedence-7",
+    "source": {
+      "bytes": "3c3f70687020227822202e2031202b2032202a20333b"
+    },
+    "target": "7.4",
+    "productions": [
+      "expr"
+    ],
+    "errors": false
+  },
+  {
+    "id": "precedence-8",
+    "source": {
+      "bytes": "3c3f70687020227822202e2031202b2032202a20333b"
+    },
+    "target": "8.4",
+    "productions": [
+      "expr"
+    ],
+    "errors": false
+  },
+  {
+    "id": "dnf-reference",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c6e756c6c2026247829207b7d"
+    },
+    "target": "8.4",
+    "productions": [
+      "type",
+      "parameter"
+    ],
+    "errors": false
+  },
+  {
+    "id": "missing-operand",
+    "source": {
+      "bytes": "3c3f7068702031202b203b20373b"
+    },
+    "target": "8.4",
+    "productions": [
+      "expr",
+      "statement"
+    ],
+    "errors": true
+  },
+  {
+    "id": "missing-call-arg",
+    "source": {
+      "bytes": "3c3f706870206628312c202a293b20373b"
+    },
+    "target": "8.4",
+    "productions": [
+      "argument_list"
+    ],
+    "errors": true
+  },
+  {
+    "id": "halt-tail",
+    "source": {
+      "bytes": "3c3f706870205f5f68616c745f636f6d70696c657228293bff0022756e7465726d696e61746564"
+    },
+    "target": "8.4",
+    "productions": [
+      "statement"
+    ],
+    "errors": false
+  },
+  {
+    "id": "halt-invalid",
+    "source": {
+      "bytes": "3c3f706870205f5f68616c745f636f6d70696c65722831293b20373b"
+    },
+    "target": "8.4",
+    "productions": [
+      "statement"
+    ],
+    "errors": true
+  },
+  {
+    "id": "halt-nested",
+    "source": {
+      "bytes": "3c3f706870207b205f5f68616c745f636f6d70696c657228293b20373b207d"
+    },
+    "target": "8.4",
+    "productions": [
+      "statement"
+    ],
+    "errors": true
+  },
+  {
+    "id": "unterminated-template",
+    "source": {
+      "bytes": "3c3f7068702022756e636c6f736564207b24617d"
+    },
+    "target": "8.4",
+    "productions": [
+      "encaps_list"
+    ],
+    "errors": true
+  },
+  {
+    "id": "ampersands",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066284126422026247829207b7d"
+    },
+    "target": "8.4",
+    "productions": [
+      "type",
+      "parameter",
+      "ampersand"
+    ],
+    "errors": false
+  }
+]
