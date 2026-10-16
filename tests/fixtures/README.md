@@ -1,6 +1,6 @@
 # Reference corpus and compatibility contract (schema 1)
 
-P02 exports **313 cases**: 290 unchanged upstream parser cases, four supported derivations, and 19 project probes. The comparator has **300 eligible cases**, all pending implementation. Nine out-of-scope originals and four mixed originals are deferred; the four mixed originals each have a supported derivation. The remaining **240 printer cases** are inventoried separately, not executed or counted as parser coverage.
+P02 exports **313 cases**: 290 unchanged upstream parser cases, four supported derivations, and 19 project probes. The comparator has **300 eligible cases**, all still pending complete parser implementation (218 token channels now pass). Nine out-of-scope originals and four mixed originals are deferred; the four mixed originals each have a supported derivation. The remaining **240 printer cases** are inventoried separately, not executed or counted as parser coverage.
 
 The [manifest](upstream/manifest.json) records the frozen upstream commit, SHA-256 hashes, exporter inputs and exact PHP runtime profile. [coverage.json](coverage.json) is an independently maintained state ledger; [coverage-report.json](coverage-report.json) reports case totals and channel obligations by phase. A successful harness test is not a successful PHP parser test.
 
@@ -51,7 +51,7 @@ Only `raw_attributes` are removed from comparison. Dump text is retained for aud
 
 States are `pending`, `passing`, `intentional-difference`, and `deferred`. Every channel has a phase owner. Core cases cannot be deferred. Differences need a reason and an `expectation` file under `tests/fixtures/differences/` containing the exact alternative observation; the expected channel must actually differ from the reference. Passing and difference cases require output from a real Rust adapter. An absent adapter or mismatch fails the test.
 
-P02 wires no parser adapter, so every eligible channel is pending. The regression gate is already active: promoting a state now fails. As implementation arrives, replace the explicit absent adapter in `tests/compatibility.rs` with the Rust normalization adapter, add focused behavioral tests, and promote only the demonstrated channels. Pending cases are enumerated, not hidden via `#[ignore]`. Project AST names/shapes may differ; document an explicit mapping before relaxing normalization.
+P05 connects the production lexer through `tests/support/lexer.rs` in `tests/compatibility.rs`: 218 full token channels pass, including bytes/kinds/spans/coordinates. The 82 remaining token channels explicitly await P06 string/heredoc/halt modes. AST, AST-position and full parser-diagnostic adapters remain absent; promoting those states still fails. Pending cases are enumerated, not hidden via `#[ignore]`. The [dedicated P05 lexical oracle](lexer/README.md) separately checks 75 focused cases and lexical diagnostics.
 
 The CI history check rejects demotion/deletion of previously passing/difference channels relative to the pull request base. An intentional policy change to that rule requires a reviewed code change. Regeneration cannot silently reset states. The per-phase report counts channel obligations separately from case totals.
 

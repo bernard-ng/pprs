@@ -6,7 +6,7 @@ use crate::{
 };
 use std::ops::Range;
 
-/// Token vocabulary for the first vertical slice; extended with later grammar phases.
+/// Regular-token vocabulary; string-mode kinds arrive with P06.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[non_exhaustive]
 pub enum TokenKind {
@@ -28,7 +28,7 @@ pub enum TokenKind {
     Identifier,
     /// Simple variable including its dollar sign.
     Variable,
-    /// Integer-shaped spelling; overflow interpretation occurs in P06.
+    /// Integer spelling within the 64-bit model; value decoding occurs in P06.
     Integer,
     /// Floating-point spelling.
     Float,
@@ -64,6 +64,284 @@ pub enum TokenKind {
     Slash,
     /// `.`.
     Dot,
+    /// `include`.
+    Include,
+    /// `include_once`.
+    IncludeOnce,
+    /// `eval`.
+    Eval,
+    /// `require`.
+    Require,
+    /// `require_once`.
+    RequireOnce,
+    /// `or`.
+    LogicalOr,
+    /// `xor`.
+    LogicalXor,
+    /// `and`.
+    LogicalAnd,
+    /// `print`.
+    Print,
+    /// `yield`.
+    Yield,
+    /// `instanceof`.
+    Instanceof,
+    /// `new`.
+    New,
+    /// `clone`.
+    Clone,
+    /// `die`.
+    Exit,
+    /// `if`.
+    If,
+    /// `elseif`.
+    ElseIf,
+    /// `else`.
+    Else,
+    /// `endif`.
+    EndIf,
+    /// `do`.
+    Do,
+    /// `while`.
+    While,
+    /// `endwhile`.
+    EndWhile,
+    /// `for`.
+    For,
+    /// `endfor`.
+    EndFor,
+    /// `foreach`.
+    Foreach,
+    /// `endforeach`.
+    EndForeach,
+    /// `declare`.
+    Declare,
+    /// `enddeclare`.
+    EndDeclare,
+    /// `as`.
+    As,
+    /// `switch`.
+    Switch,
+    /// `endswitch`.
+    EndSwitch,
+    /// `case`.
+    Case,
+    /// `default`.
+    Default,
+    /// `match`.
+    Match,
+    /// `break`.
+    Break,
+    /// `continue`.
+    Continue,
+    /// `goto`.
+    Goto,
+    /// `function`.
+    Function,
+    /// `fn`.
+    Fn,
+    /// `const`.
+    Const,
+    /// `try`.
+    Try,
+    /// `catch`.
+    Catch,
+    /// `finally`.
+    Finally,
+    /// `throw`.
+    Throw,
+    /// `use`.
+    Use,
+    /// `insteadof`.
+    InsteadOf,
+    /// `global`.
+    Global,
+    /// `static`.
+    Static,
+    /// `abstract`.
+    Abstract,
+    /// `final`.
+    Final,
+    /// `private`.
+    Private,
+    /// `protected`.
+    Protected,
+    /// `public`.
+    Public,
+    /// `readonly`.
+    Readonly,
+    /// `var`.
+    Var,
+    /// `unset`.
+    Unset,
+    /// `isset`.
+    Isset,
+    /// `empty`.
+    Empty,
+    /// `class`.
+    Class,
+    /// `trait`.
+    Trait,
+    /// `interface`.
+    Interface,
+    /// `enum`.
+    Enum,
+    /// `extends`.
+    Extends,
+    /// `implements`.
+    Implements,
+    /// `namespace`.
+    Namespace,
+    /// `list`.
+    List,
+    /// `array`.
+    Array,
+    /// `callable`.
+    Callable,
+    /// `__line__`.
+    LineConstant,
+    /// `__file__`.
+    FileConstant,
+    /// `__dir__`.
+    DirConstant,
+    /// `__class__`.
+    ClassConstant,
+    /// `__trait__`.
+    TraitConstant,
+    /// `__method__`.
+    MethodConstant,
+    /// `__function__`.
+    FunctionConstant,
+    /// `__namespace__`.
+    NamespaceConstant,
+    /// `__property__`.
+    PropertyConstant,
+    /// `[`.
+    LeftBracket,
+    /// `]`.
+    RightBracket,
+    /// `%`.
+    Percent,
+    /// `&`.
+    Ampersand,
+    /// `|`.
+    Pipe,
+    /// `^`.
+    Caret,
+    /// `!`.
+    Bang,
+    /// `~`.
+    Tilde,
+    /// `?`.
+    Question,
+    /// `:`.
+    Colon,
+    /// `<`.
+    Less,
+    /// `>`.
+    Greater,
+    /// `@`.
+    At,
+    /// `$`.
+    Dollar,
+    /// `\`.
+    NamespaceSeparator,
+    /// `...`.
+    Ellipsis,
+    /// `->`.
+    ObjectArrow,
+    /// `?->`.
+    NullsafeArrow,
+    /// `::`.
+    DoubleColon,
+    /// `=>`.
+    DoubleArrow,
+    /// `++`.
+    Increment,
+    /// `--`.
+    Decrement,
+    /// `**`.
+    Power,
+    /// `<<`.
+    ShiftLeft,
+    /// `>>`.
+    ShiftRight,
+    /// `<=`.
+    LessEqual,
+    /// `>=`.
+    GreaterEqual,
+    /// `==`.
+    EqualEqual,
+    /// `<>`.
+    NotEqual,
+    /// `===`.
+    Identical,
+    /// `!==`.
+    NotIdentical,
+    /// `<=>`.
+    Spaceship,
+    /// `&&`.
+    BooleanAnd,
+    /// `||`.
+    BooleanOr,
+    /// `??`.
+    Coalesce,
+    /// `+=`.
+    PlusEqual,
+    /// `-=`.
+    MinusEqual,
+    /// `*=`.
+    MultiplyEqual,
+    /// `/=`.
+    DivideEqual,
+    /// `.=`.
+    ConcatEqual,
+    /// `%=`.
+    ModuloEqual,
+    /// `&=`.
+    AndEqual,
+    /// `|=`.
+    OrEqual,
+    /// `^=`.
+    XorEqual,
+    /// `<<=`.
+    ShiftLeftEqual,
+    /// `>>=`.
+    ShiftRightEqual,
+    /// `**=`.
+    PowerEqual,
+    /// `??=`.
+    CoalesceEqual,
+    /// `#[`.
+    Attribute,
+    /// `cast: int|integer`.
+    IntCast,
+    /// `cast: bool|boolean`.
+    BoolCast,
+    /// `cast: float|double|real`.
+    FloatCast,
+    /// `cast: string|binary`.
+    StringCast,
+    /// `cast: array`.
+    ArrayCast,
+    /// `cast: object`.
+    ObjectCast,
+    /// `cast: unset`.
+    UnsetCast,
+    /// `namespace-qualified name`.
+    NameQualified,
+    /// `fully qualified name`.
+    NameFullyQualified,
+    /// `namespace-relative name`.
+    NameRelative,
+    /// `yield followed by whitespace and from`.
+    YieldFrom,
+    /// `public(set)`.
+    PublicSet,
+    /// `protected(set)`.
+    ProtectedSet,
+    /// `private(set)`.
+    PrivateSet,
     /// A byte sequence rejected by the lexer; always consumes bytes.
     Invalid,
     /// Bytes after a parser-validated top-level halt statement.

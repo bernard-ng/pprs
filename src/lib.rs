@@ -1,7 +1,8 @@
 //! Byte-preserving foundations for a PHP 7.0–8.4 parser library.
 //!
-//! Parsing and lexing entry points are not implemented yet. The source, token,
-//! AST, options and result contracts are available for inspection and tooling.
+//! [`lex`] and [`lex_source`] implement regular tokens and file boundaries. String,
+//! heredoc and halt modes stop explicitly pending P06. Parsing APIs are not yet
+//! implemented; AST and parse-result types are foundational contracts.
 //!
 //! ```
 //! use pprs::{SourceText, ParseOptions, PhpVersion};
@@ -13,6 +14,9 @@
 //! # Ok::<(), pprs::source::RangeError>(())
 //! ```
 
+pub mod lexer;
+pub use lexer::{LexResult, lex, lex_source};
+
 pub mod ast;
 pub mod diagnostic;
 pub mod options;
@@ -20,7 +24,7 @@ pub mod outcome;
 pub mod source;
 pub mod token;
 
-// Exercised by unit tests; the production lexer/parser will connect these in P05–P07.
+// Production lexing uses the cursor; parser lookahead/halt methods connect in P06–P07.
 #[allow(dead_code)]
 mod cursor;
 

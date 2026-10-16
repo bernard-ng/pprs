@@ -1,7 +1,7 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: P00–P04 complete; P05 onward pending; public data foundations and a test-only parser prototype exist
+Status: P00–P05 complete; P06 onward pending; production regular lexing and public data foundations exist
 
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
@@ -271,6 +271,8 @@ Deliverables: foundational modules and a testable public API skeleton.
 Acceptance: spans remain valid for empty files, non-UTF-8, CRLF/LF, EOF and empty nodes; owned results outlive caller buffers; configuration has no hidden PHP-host dependence.
 
 ### P05 — Implement regular lexing and file boundaries
+
+Status: **complete, 2026-10-16**. [Production lexer](../src/lexer/mod.rs), [decision 0004](../docs/decisions/0004-regular-lexer.md), [75 dedicated oracle cases](../tests/fixtures/lexer/README.md), byte/truncation/Proptest checks, and the compiled [fuzz target](../fuzz/README.md) are implemented. All 218 complete regular-token corpus streams pass the production adapter; 82 token channels requiring strings/heredocs/halt are assigned to P06. Numeric spelling/overflow token classification is implemented; reference parser-level numeric validity diagnostics remain P06/P07 work. Incomplete modes return an explicit stop and unscanned suffix. Production parsing is still pending.
 
 Dependencies: P04.
 

@@ -20,7 +20,10 @@
       "deferred": 16
     },
     "P05": {
-      "pending": 300
+      "passing": 218
+    },
+    "P06": {
+      "pending": 82
     },
     "P07": {
       "pending": 109

@@ -29,3 +29,11 @@ pub fn configure() -> (ParseOptions, Identifier) {
         .expect("nonempty identifier without namespace separators");
     (ParseOptions::default(), identifier)
 }
+
+/// Tokenize a file using the supported regular lexer, retaining owned output.
+///
+/// # Errors
+/// Returns an input-size error before allocation for oversized input.
+pub fn tokenize(input: &[u8]) -> Result<pprs::LexResult, pprs::lexer::InputTooLarge> {
+    pprs::lex(input, ParseOptions::default())
+}

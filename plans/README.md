@@ -1,6 +1,6 @@
 # Implementation plans
 
-Status: **P00–P04 complete** (2026-10-16). Public data foundations and a test-only parser prototype exist; production lexing/parsing entry points are still pending.
+Status: **P00–P05 complete** (2026-10-16). Production regular lexing and public data foundations exist; full string modes and parsing remain pending.
 
 The first stable release will be a reusable Rust library for PHP **7.0–8.4**, as confirmed on 2026-10-16. There is no product CLI.
 
@@ -17,4 +17,6 @@ P03 selected Logos regular scanning with explicit byte states and recursive desc
 
 P04 delivered [source/token/AST/options/diagnostic/result foundations](../src/lib.rs), the private lazy cursor and abort-finalization contract, [decision 0003](../docs/decisions/0003-foundation-contracts.md), and the [live node ledger](../docs/implementation/README.md). Boundary, ownership, limit and strict-conversion tests exercise the public skeleton without claiming PHP parsing support.
 
-Next: **P05**, implement regular lexing and file boundaries. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.
+P05 delivered [production regular lexing](../src/lexer/mod.rs), [75 lexical oracle cases](../tests/fixtures/lexer/README.md), property/truncation checks, a [fuzz target](../fuzz/README.md), and [decision 0004](../docs/decisions/0004-regular-lexer.md). The compatibility gate now runs the real lexer: 218 token channels pass and 82 remain assigned to P06. AST/parser coverage remains pending.
+
+Next: **P06**, complete string lexing and literal interpretation. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.

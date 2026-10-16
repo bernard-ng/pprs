@@ -17,7 +17,7 @@
     "serialize_precision": "-1"
   },
   "exporter_sha256": {
-    "bootstrap.php": "45845b23634f0299b11c07d387c8ce6ee4d24184e54d950c04613231a90eaef2",
+    "bootstrap.php": "a081de0c72f3091353d1e97906a4b5813daf870c44806bf0dad28273cee649ef",
     "normalize.php": "bb3bc2fbddce658507c7549c86dd9ead95fbb9950f60974aa39109a17a013902",
     "export.php": "3a775edc5ac6c777836a39cc79b7b403385b256c81d9c03cc820089db259c7e3",
     "export.py": "30cae1451bb321437786c81daaacf2dc7e0dc4e557778b25e1f121e1e9b8b95b",

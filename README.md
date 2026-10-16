@@ -2,22 +2,24 @@
 
 A PHP parser library written in Rust. The first release is planned to support **PHP 7.0–8.4**, using [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) as its compatibility reference.
 
-**Status:** P00–P04 are complete: library setup, reference harness, parser-strategy selection, and source/token/AST/diagnostic/result foundations. Public data types are usable; lexing and parsing entry points are not implemented yet. There is no product binary or PHP runtime dependency. Next is P05, regular lexing and file boundaries. See the [implementation plan](plans/README.md).
+**Status:** P00–P05 are complete. `lex` and `lex_source` now implement regular PHP tokens and file boundaries, with 218 corpus token channels passing. Strings, heredocs and halt handling stop explicitly pending P06. Parsing APIs remain pending. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md).
 
 ## Development
 
-The minimum supported Rust version is **1.85.0**, with edition 2024. [rust-toolchain.toml](rust-toolchain.toml) selects stable Rust with rustfmt and Clippy for normal development. Runtime dependencies are `bstr` for semantic byte strings/debugging and `thiserror` for typed errors; there are no feature flags. Test-only dependencies are `serde_json`, `sha2` and `hex` for corpus checks, plus Logos for the test-only strategy prototype.
+The minimum supported Rust version is **1.85.0**, with edition 2024. [rust-toolchain.toml](rust-toolchain.toml) selects stable Rust with rustfmt and Clippy for normal development. Runtime dependencies are Logos for regular byte scanning, `bstr` for semantic byte strings/debugging and `thiserror` for typed errors; there are no feature flags. Test dependencies include `serde_json`, `sha2`, `hex` and Proptest. A separate [fuzz package](fuzz/README.md) uses libFuzzer.
 
 Run the same Rust checks used in CI:
 
 ```sh
 cargo fmt --all --check
 cargo fmt --manifest-path tests/consumer/Cargo.toml --all --check
+cargo fmt --manifest-path fuzz/Cargo.toml --all --check
 cargo clippy --locked --all-targets -- -D warnings
 cargo clippy --locked --manifest-path tests/consumer/Cargo.toml --all-targets -- -D warnings
 cargo test --locked --all-targets
 cargo test --locked --doc
 cargo check --locked --manifest-path tests/consumer/Cargo.toml
+cargo check --locked --manifest-path fuzz/Cargo.toml
 RUSTDOCFLAGS="-D warnings" cargo doc --locked --no-deps
 ```
 
@@ -32,9 +34,21 @@ cargo +1.85.0 test --locked --doc
 cargo +1.85.0 check --locked --manifest-path tests/consumer/Cargo.toml
 ```
 
-[tests/consumer](tests/consumer/Cargo.toml) is a separate Cargo package with a path dependency on `pprs`. It verifies source ownership, options and AST construction through public APIs without private modules, PHP or the reference checkout. Its lockfile is checked in alongside the root lockfile. Foundation tests cover byte positions, lossless tokens, AST metadata, budgets and result contracts. The P02 integration suite reads 313 reference/probe cases and tests the comparison adapters; all 300 eligible parser cases remain pending implementation.
+[tests/consumer](tests/consumer/Cargo.toml) is a separate Cargo package with a path dependency on `pprs`. It verifies source ownership, options and AST construction through public APIs without private modules, PHP or the reference checkout. Its lockfile is checked in alongside the root lockfile. Foundation tests cover byte positions, lossless tokens, AST metadata, budgets and result contracts. The P02 integration suite reads 313 reference/probe cases and tests the comparison adapters; 218 token channels pass, 82 await P06, and all 300 complete parser cases remain pending.
 
-The current source API accepts arbitrary bytes and owns its storage:
+The lexer accepts arbitrary bytes and owns its output. Always distinguish completion from diagnostics:
+
+```rust
+use pprs::{lex, ParseOptions};
+
+let result = lex("<?php echo $value + 1; ?>tail", ParseOptions::default()).unwrap();
+assert!(result.is_complete());
+assert!(result.diagnostics().is_empty());
+```
+
+For now, strings/heredocs/halt return `LexStop::Deferred` and retain an unscanned suffix. Oversized input returns `InputTooLarge` before copying. See the [P05 contract](docs/decisions/0004-regular-lexer.md) and [lexical oracle](tests/fixtures/lexer/README.md).
+
+The source API preserves raw bytes:
 
 ```rust
 use pprs::SourceText;

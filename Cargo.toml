@@ -23,11 +23,12 @@ all = { level = "warn", priority = -1 }
 pedantic = { level = "warn", priority = -1 }
 
 [dependencies]
+logos = { version = "0.16.1", features = ["forbid_unsafe"] }
 bstr = { version = "1.13.1", default-features = false, features = ["std"] }
 thiserror = "2.0.21"
 
 [dev-dependencies]
 hex = "0.4.3"
-logos = { version = "0.16.1", features = ["forbid_unsafe"] }
+proptest = { version = "~1.11.0", default-features = false, features = ["std"] }
 serde_json = "1.0.145"
 sha2 = "0.10.9"

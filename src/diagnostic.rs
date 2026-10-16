@@ -111,15 +111,13 @@ impl Diagnostic {
     }
 }
 
-// Used by tests now and production diagnostic emission starting in P05.
-#[allow(dead_code)]
+// Bounded production lexer diagnostics; parser emission connects in P07.
 #[derive(Debug)]
 pub(crate) struct DiagnosticBag {
     entries: Vec<Diagnostic>,
     limit: usize,
     stopped: bool,
 }
-#[allow(dead_code)]
 impl DiagnosticBag {
     pub(crate) fn new(limits: crate::Limits) -> Self {
         Self {

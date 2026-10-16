@@ -17,7 +17,7 @@ namespace PprsReference {
         if (!$condition) { throw new \RuntimeException($message); }
     }
 
-    function bootstrap(): array {
+    function bootstrap(bool $shortOpenTag = false): array {
         $root = dirname(__DIR__, 2);
         $lock = json_decode(file_get_contents("$root/reference/lock.json"), true, 512, JSON_THROW_ON_ERROR);
         $reference = "$root/.references";
@@ -30,7 +30,7 @@ namespace PprsReference {
         }
         requireThat(PHP_VERSION === '8.5.6' && PHP_INT_SIZE === 8, 'Oracle requires 64-bit PHP 8.5.6');
         requireThat(extension_loaded('tokenizer') && extension_loaded('json'), 'Missing tokenizer/json');
-        requireThat(!ini_get('short_open_tag'), 'short_open_tag must be disabled');
+        requireThat((bool) ini_get('short_open_tag') === $shortOpenTag, 'short_open_tag profile mismatch');
         requireThat(php_ini_loaded_file() === false && !php_ini_scanned_files(), 'Run PHP with -n');
         requireThat(setlocale(LC_ALL, 'C') !== false, 'C locale unavailable');
         date_default_timezone_set('UTC');

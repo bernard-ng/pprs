@@ -1,4 +1,6 @@
 //! Offline P02 corpus integrity and comparison adapter tests.
+#[path = "support/lexer.rs"]
+mod lexer_adapter;
 mod support;
 
 use serde_json::{Value, json};
@@ -79,9 +81,25 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
         let id = case["id"].as_str().unwrap();
         let channels = states["cases"].get(id).expect("explicit case state");
         assert_eq!(channels.as_object().unwrap().len(), CHANNELS.len());
-        // P02 deliberately has no parser. Future phases wire a real Rust adapter
-        // here. Promoting any state before that is a hard failure, never a skip.
-        let actual: Option<Value> = None;
+        let source = bytes(&case["source"]);
+        let target = case["oracle"]["target"].as_str().unwrap();
+        let actual = if case["scope"] == "core" {
+            let lexical = pprs::lex(
+                &source,
+                pprs::ParseOptions {
+                    version: target.parse().unwrap(),
+                    ..pprs::ParseOptions::default()
+                },
+            )
+            .unwrap();
+            lexical
+                .is_complete()
+                .then(|| lexer_adapter::observation(&lexical, target))
+        } else {
+            // Deferred originals may target PHP 8.5/8.6; do not silently coerce
+            // them into this library's PHP 7.0–8.4 compatibility range.
+            None
+        };
         for channel in CHANNELS {
             let state = channels.get(channel).expect("explicit channel state");
             if case["scope"] == "core" {
@@ -96,7 +114,11 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
             });
             gate(
                 &case["oracle"],
-                actual.as_ref(),
+                if channel == "tokens" {
+                    actual.as_ref()
+                } else {
+                    None
+                },
                 channel,
                 state,
                 difference.as_ref(),

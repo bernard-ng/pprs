@@ -7,9 +7,13 @@ use crate::{
 };
 
 /// Producers own their lexical state. They must emit contiguous positive-width
-/// tokens and then EOF. They must not pre-scan beyond the returned token.
+/// tokens and then EOF. They must not consume beyond the returned token;
+/// read-only lookahead is allowed.
 pub(crate) trait TokenSource {
-    fn next_token(&mut self) -> Token;
+    fn next_token(&mut self) -> Result<Token, crate::lexer::LexStop>;
+    fn take_diagnostics(&mut self) -> Vec<crate::diagnostic::Diagnostic> {
+        Vec::new()
+    }
     /// Switch at the current byte position, before requesting any tail token.
     fn enter_halt_tail(&mut self);
 }
@@ -18,6 +22,8 @@ pub(crate) trait TokenSource {
 pub(crate) enum CursorError {
     #[error("lookahead exceeds the three-token grammar window")]
     Lookahead,
+    #[error(transparent)]
+    Lexical(crate::lexer::LexStop),
     #[error("token budget exhausted")]
     TokenLimit,
     #[error("token source violated coverage at retained index {0}")]
@@ -50,6 +56,12 @@ impl<L: TokenSource> TokenCursor<L> {
             stopped: false,
         }
     }
+    pub(crate) fn take_diagnostics(&mut self) -> Vec<crate::diagnostic::Diagnostic> {
+        self.producer.take_diagnostics()
+    }
+    pub(crate) fn scanned_end(&self) -> usize {
+        self.tokens.last().map_or(0, |token| token.span().end())
+    }
     /// Retained index of the next unconsumed token; useful for progress guards.
     pub(crate) fn position(&self) -> usize {
         self.position
@@ -64,7 +76,10 @@ impl<L: TokenSource> TokenCursor<L> {
             self.stopped = true;
             return Err(CursorError::TokenLimit);
         }
-        let token = self.producer.next_token();
+        let token = self.producer.next_token().map_err(|reason| {
+            self.stopped = true;
+            CursorError::Lexical(reason)
+        })?;
         let eof = token.kind() == TokenKind::Eof;
         if token.span().start() != start
             || token.span().end() > self.source.len()
@@ -177,7 +192,7 @@ mod tests {
         tail: bool,
     }
     impl TokenSource for Fixture {
-        fn next_token(&mut self) -> Token {
+        fn next_token(&mut self) -> Result<Token, crate::lexer::LexStop> {
             self.calls.set(self.calls.get() + 1);
             let start = self.offset;
             let kind = match self.source.as_bytes().get(start) {
@@ -197,7 +212,10 @@ mod tests {
                     }
                 }
             };
-            Token::new(kind, self.source.span(start..self.offset).unwrap())
+            Ok(Token::new(
+                kind,
+                self.source.span(start..self.offset).unwrap(),
+            ))
         }
         fn enter_halt_tail(&mut self) {
             self.tail = true;
@@ -288,8 +306,8 @@ mod tests {
     fn invalid_bytes_consume_and_broken_producers_stop() {
         struct Broken(Token);
         impl TokenSource for Broken {
-            fn next_token(&mut self) -> Token {
-                self.0
+            fn next_token(&mut self) -> Result<Token, crate::lexer::LexStop> {
+                Ok(self.0)
             }
             fn enter_halt_tail(&mut self) {}
         }
