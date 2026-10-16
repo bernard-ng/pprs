@@ -1,0 +1,258 @@
+{
+  "target": "8.4",
+  "tokens": [
+    {
+      "end": [
+        2,
+        1
+      ],
+      "kind": "T_OPEN_TAG",
+      "span": [
+        0,
+        6
+      ],
+      "start": [
+        1,
+        1
+      ],
+      "text": {
+        "bytes": "3c3f7068700a"
+      }
+    },
+    {
+      "end": [
+        3,
+        1
+      ],
+      "kind": "T_WHITESPACE",
+      "span": [
+        6,
+        7
+      ],
+      "start": [
+        2,
+        1
+      ],
+      "text": {
+        "bytes": "0a"
+      }
+    },
+    {
+      "end": [
+        3,
+        3
+      ],
+      "kind": "T_VARIABLE",
+      "span": [
+        7,
+        9
+      ],
+      "start": [
+        3,
+        1
+      ],
+      "text": {
+        "bytes": "2461"
+      }
+    },
+    {
+      "end": [
+        3,
+        4
+      ],
+      "kind": "CHAR_3b",
+      "span": [
+        9,
+        10
+      ],
+      "start": [
+        3,
+        3
+      ],
+      "text": {
+        "bytes": "3b"
+      }
+    },
+    {
+      "end": [
+        4,
+        1
+      ],
+      "kind": "T_WHITESPACE",
+      "span": [
+        10,
+        11
+      ],
+      "start": [
+        3,
+        4
+      ],
+      "text": {
+        "bytes": "0a"
+      }
+    },
+    {
+      "end": [
+        4,
+        16
+      ],
+      "kind": "T_HALT_COMPILER",
+      "span": [
+        11,
+        26
+      ],
+      "start": [
+        4,
+        1
+      ],
+      "text": {
+        "bytes": "5f5f68616c745f636f6d70696c6572"
+      }
+    },
+    {
+      "end": [
+        4,
+        17
+      ],
+      "kind": "CHAR_28",
+      "span": [
+        26,
+        27
+      ],
+      "start": [
+        4,
+        16
+      ],
+      "text": {
+        "bytes": "28"
+      }
+    },
+    {
+      "end": [
+        4,
+        18
+      ],
+      "kind": "CHAR_29",
+      "span": [
+        27,
+        28
+      ],
+      "start": [
+        4,
+        17
+      ],
+      "text": {
+        "bytes": "29"
+      }
+    },
+    {
+      "end": [
+        4,
+        19
+      ],
+      "kind": "CHAR_3b",
+      "span": [
+        28,
+        29
+      ],
+      "start": [
+        4,
+        18
+      ],
+      "text": {
+        "bytes": "3b"
+      }
+    },
+    {
+      "end": [
+        4,
+        24
+      ],
+      "kind": "T_STRING",
+      "span": [
+        29,
+        34
+      ],
+      "start": [
+        4,
+        19
+      ],
+      "text": {
+        "bytes": "48616c6c6f"
+      }
+    },
+    {
+      "end": [
+        4,
+        25
+      ],
+      "kind": "T_WHITESPACE",
+      "span": [
+        34,
+        35
+      ],
+      "start": [
+        4,
+        24
+      ],
+      "text": {
+        "bytes": "20"
+      }
+    },
+    {
+      "end": [
+        4,
+        30
+      ],
+      "kind": "T_STRING",
+      "span": [
+        35,
+        40
+      ],
+      "start": [
+        4,
+        25
+      ],
+      "text": {
+        "bytes": "576f726c64"
+      }
+    },
+    {
+      "end": [
+        4,
+        31
+      ],
+      "kind": "CHAR_21",
+      "span": [
+        40,
+        41
+      ],
+      "start": [
+        4,
+        30
+      ],
+      "text": {
+        "bytes": "21"
+      }
+    },
+    {
+      "end": [
+        4,
+        31
+      ],
+      "kind": "EOF",
+      "span": [
+        41,
+        41
+      ],
+      "start": [
+        4,
+        31
+      ],
+      "text": {
+        "bytes": ""
+      }
+    }
+  ],
+  "lexical_diagnostics": []
+}

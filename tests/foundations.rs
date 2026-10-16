@@ -347,6 +347,7 @@ fn diagnostic_codes_are_unique_and_expected_eof_differs_from_absence() {
     let codes = [
         DiagnosticCode::InvalidByte,
         DiagnosticCode::Unterminated,
+        DiagnosticCode::UnterminatedString,
         DiagnosticCode::UnexpectedToken,
         DiagnosticCode::InvalidContext,
         DiagnosticCode::ResourceLimit(Resource::InputBytes),

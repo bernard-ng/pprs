@@ -2,7 +2,7 @@
 
 A PHP parser library written in Rust. The first release is planned to support **PHP 7.0–8.4**, using [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) as its compatibility reference.
 
-**Status:** P00–P05 are complete. `lex` and `lex_source` now implement regular PHP tokens and file boundaries, with 218 corpus token channels passing. Strings, heredocs and halt handling stop explicitly pending P06. Parsing APIs remain pending. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md).
+**Status:** P00–P06 are complete. `lex` and `lex_source` handle regular tokens, strings, interpolation, heredoc/nowdoc and file boundaries. The `literal` module decodes string/numeric values. Of 300 corpus token channels, 296 match exactly and four have documented halt-tail differences: raw tails require parser authorization. Parsing APIs remain pending. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md).
 
 ## Development
 
@@ -34,7 +34,7 @@ cargo +1.85.0 test --locked --doc
 cargo +1.85.0 check --locked --manifest-path tests/consumer/Cargo.toml
 ```
 
-[tests/consumer](tests/consumer/Cargo.toml) is a separate Cargo package with a path dependency on `pprs`. It verifies source ownership, options and AST construction through public APIs without private modules, PHP or the reference checkout. Its lockfile is checked in alongside the root lockfile. Foundation tests cover byte positions, lossless tokens, AST metadata, budgets and result contracts. The P02 integration suite reads 313 reference/probe cases and tests the comparison adapters; 218 token channels pass, 82 await P06, and all 300 complete parser cases remain pending.
+[tests/consumer](tests/consumer/Cargo.toml) is a separate Cargo package with a path dependency on `pprs`. It verifies source ownership, options and AST construction through public APIs without private modules, PHP or the reference checkout. Its lockfile is checked in alongside the root lockfile. Foundation tests cover byte positions, lossless tokens, AST metadata, budgets and result contracts. The P02 integration suite reads 313 reference/probe cases and tests the comparison adapters; 296 token channels pass and four have exact intentional differences, and all 300 complete parser cases remain pending.
 
 The lexer accepts arbitrary bytes and owns its output. Always distinguish completion from diagnostics:
 
@@ -46,7 +46,7 @@ assert!(result.is_complete());
 assert!(result.diagnostics().is_empty());
 ```
 
-For now, strings/heredocs/halt return `LexStop::Deferred` and retain an unscanned suffix. Oversized input returns `InputTooLarge` before copying. See the [P05 contract](docs/decisions/0004-regular-lexer.md) and [lexical oracle](tests/fixtures/lexer/README.md).
+Resource stops retain any unscanned suffix. Oversized input returns `InputTooLarge` before copying. Unfinished strings produce bounded diagnostics; an empty diagnostic list alone does not establish completion. Standalone lexing never activates halt tails; the private parser boundary validates syntax and scope first. See the [P06 contract](docs/decisions/0005-strings-literals-and-halt.md), [lexical oracle](tests/fixtures/lexer/README.md) and [literal oracle](tests/fixtures/literal/README.md).
 
 The source API preserves raw bytes:
 

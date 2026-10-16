@@ -32,6 +32,9 @@ pub fn diagnostics(result: &LexResult) -> Vec<Value> {
     result
         .diagnostics()
         .iter()
+        // PPRS reports unfinished strings lexically; the reference reports them in its parser.
+        // Dedicated P06 assertions check these additional diagnostics separately.
+        .filter(|diagnostic| diagnostic.code != DiagnosticCode::UnterminatedString)
         .map(|diagnostic| {
             let code = match diagnostic.code {
                 DiagnosticCode::InvalidByte

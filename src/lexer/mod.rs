@@ -1,7 +1,8 @@
-//! Regular PHP lexing and file boundaries. String and halt modes arrive in P06.
+//! PHP lexical modes and file boundaries. Raw halt tails require parser authorization.
 mod keywords;
-mod regular;
-mod scanner;
+pub(crate) mod regular;
+pub(crate) mod scanner;
+mod strings;
 
 use crate::{
     Limits, ParseOptions, SourceText,
@@ -12,30 +13,12 @@ use crate::{
 };
 use scanner::Scanner;
 
-/// A lexical mode intentionally deferred to the next implementation phase.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
-pub enum DeferredSyntax {
-    /// Quoted strings, binary-prefixed strings, backticks and interpolation.
-    #[error("string mode is not implemented yet")]
-    String,
-    /// Heredoc and nowdoc.
-    #[error("heredoc mode is not implemented yet")]
-    Heredoc,
-    /// Parser-authorized halt handling.
-    #[error("halt handling is not implemented yet")]
-    HaltCompiler,
-}
-
-/// Why scanning stopped before completing the file. Unsupported syntax is a
-/// library capability boundary, not a claim that the PHP source is invalid.
+/// Why scanning stopped before completing the file.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
 pub enum LexStop {
     /// Finite resource budget exhausted; a corresponding diagnostic is retained.
     #[error("{0} budget exhausted")]
     Limit(Resource),
-    /// Explicit unfinished lexer mode, with all remaining bytes retained unscanned.
-    #[error(transparent)]
-    Deferred(DeferredSyntax),
 }
 
 /// Input rejected before copying source bytes or building a line index.
@@ -76,7 +59,9 @@ impl LexResult {
     pub const fn stop(&self) -> Option<LexStop> {
         self.stop
     }
-    /// Whether every byte was scanned. This does not imply error-free or valid PHP.
+    /// Whether scanning and EOF checks finished without a resource stop.
+    /// This does not imply error-free or valid PHP; EOF checks can exhaust the
+    /// diagnostic budget even when every source byte has already been scanned.
     #[must_use]
     pub const fn is_complete(&self) -> bool {
         self.stop.is_none()

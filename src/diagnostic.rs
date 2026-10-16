@@ -32,6 +32,8 @@ pub enum DiagnosticCode {
     InvalidByte,
     /// Unterminated lexical construct.
     Unterminated,
+    /// Unterminated quoted string, doc string or interpolation.
+    UnterminatedString,
     /// Unexpected token or missing syntax.
     UnexpectedToken,
     /// Syntax invalid in its surrounding parser context.
@@ -46,6 +48,7 @@ impl DiagnosticCode {
         match self {
             Self::InvalidByte => "PPRS-L001",
             Self::Unterminated => "PPRS-L002",
+            Self::UnterminatedString => "PPRS-L003",
             Self::UnexpectedToken => "PPRS-S001",
             Self::InvalidContext => "PPRS-C001",
             Self::ResourceLimit(Resource::InputBytes) => "PPRS-R001",
@@ -59,7 +62,7 @@ impl DiagnosticCode {
     #[must_use]
     pub const fn category(self) -> Category {
         match self {
-            Self::InvalidByte | Self::Unterminated => Category::Lexical,
+            Self::InvalidByte | Self::Unterminated | Self::UnterminatedString => Category::Lexical,
             Self::UnexpectedToken => Category::Syntax,
             Self::InvalidContext => Category::Context,
             Self::ResourceLimit(_) => Category::Resource,

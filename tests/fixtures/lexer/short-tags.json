@@ -7,8 +7,8 @@
     "sources_sha256": {
         "tools/reference/bootstrap.php": "a081de0c72f3091353d1e97906a4b5813daf870c44806bf0dad28273cee649ef",
         "tools/reference/normalize.php": "bb3bc2fbddce658507c7549c86dd9ead95fbb9950f60974aa39109a17a013902",
-        "tools/lexer/export.php": "b0dc3a7578b3d94f3ae9d87497108ea5bb930f23991bf24b1b3e642f38bae00c",
-        "tools/lexer/inputs.json": "a29eb959f7798ccbb7f19ef90ece898aaf9d9d92a831531bfe03c1bb5bd28999"
+        "tools/lexer/export.php": "fe768784a2b6562661628280977ae62f5c02706dc6fdddb8e6924146a4315ef4",
+        "tools/lexer/inputs.json": "b305472bb6296ba3c995813d5e019ab15c975d4adcc2a3af72265148d2d0ed27"
     },
     "cases": [
         {

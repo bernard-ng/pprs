@@ -30,10 +30,18 @@ pub fn configure() -> (ParseOptions, Identifier) {
     (ParseOptions::default(), identifier)
 }
 
-/// Tokenize a file using the supported regular lexer, retaining owned output.
+/// Tokenize a file using the production lexer, retaining owned output.
 ///
 /// # Errors
 /// Returns an input-size error before allocation for oversized input.
 pub fn tokenize(input: &[u8]) -> Result<pprs::LexResult, pprs::lexer::InputTooLarge> {
     pprs::lex(input, ParseOptions::default())
+}
+
+/// Decode a constant quoted token without exposing a dependency's byte type.
+///
+/// # Errors
+/// Returns an input-relative literal error for malformed spelling or escapes.
+pub fn decode_string(raw: &[u8]) -> Result<pprs::ByteString, pprs::literal::LiteralError> {
+    pprs::literal::decode_quoted(raw)
 }

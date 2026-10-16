@@ -4,7 +4,7 @@ use logos::Logos;
 
 #[derive(Logos, Debug, Clone, Copy, PartialEq, Eq)]
 #[logos(utf8 = false)]
-pub(super) enum Regular {
+pub(crate) enum Regular {
     #[regex(r"[ \t\r\n]+")]
     Whitespace,
     #[regex(r"(?-u:[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*)")]

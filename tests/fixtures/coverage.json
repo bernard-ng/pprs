@@ -21,9 +21,8 @@
     },
     "derived/stmt/class/property_promotion.test#0/supported": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -40,9 +39,8 @@
     },
     "derived/stmt/const.test#0/supported": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -581,9 +579,8 @@
     },
     "parser/errorHandling/recovery.test#22": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -618,9 +615,8 @@
     },
     "parser/errorHandling/recovery.test#24": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -781,9 +777,8 @@
     },
     "parser/expr/alternative_array_syntax.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -800,9 +795,8 @@
     },
     "parser/expr/alternative_array_syntax.test#1": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -863,9 +857,8 @@
     },
     "parser/expr/arrayDef.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -882,9 +875,8 @@
     },
     "parser/expr/arrayDestructuring.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -919,9 +911,8 @@
     },
     "parser/expr/arraySpread.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1140,9 +1131,8 @@
     },
     "parser/expr/constant_expr.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1195,9 +1185,8 @@
     },
     "parser/expr/exit.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1286,9 +1275,8 @@
     },
     "parser/expr/fetchAndCall/constantDeref.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1305,9 +1293,8 @@
     },
     "parser/expr/fetchAndCall/funcCall.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1342,9 +1329,8 @@
     },
     "parser/expr/fetchAndCall/newDeref.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1361,9 +1347,8 @@
     },
     "parser/expr/fetchAndCall/objectAccess.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1380,9 +1365,8 @@
     },
     "parser/expr/fetchAndCall/simpleArrayAccess.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1399,9 +1383,8 @@
     },
     "parser/expr/fetchAndCall/staticCall.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1418,9 +1401,8 @@
     },
     "parser/expr/fetchAndCall/staticPropertyFetch.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1455,9 +1437,8 @@
     },
     "parser/expr/includeAndEval.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1510,9 +1491,8 @@
     },
     "parser/expr/listReferences.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1529,9 +1509,8 @@
     },
     "parser/expr/listWithKeys.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1566,9 +1545,8 @@
     },
     "parser/expr/match.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1585,9 +1563,8 @@
     },
     "parser/expr/match.test#1": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1622,9 +1599,8 @@
     },
     "parser/expr/match.test#3": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1641,9 +1617,8 @@
     },
     "parser/expr/match.test#4": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1678,9 +1653,8 @@
     },
     "parser/expr/new.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1733,9 +1707,8 @@
     },
     "parser/expr/nullsafe.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1836,9 +1809,8 @@
     },
     "parser/expr/shellExec.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1945,9 +1917,8 @@
     },
     "parser/expr/uvs/indirectCall.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1964,9 +1935,8 @@
     },
     "parser/expr/uvs/isset.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -1983,9 +1953,8 @@
     },
     "parser/expr/uvs/misc.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2002,9 +1971,8 @@
     },
     "parser/expr/uvs/new.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2021,9 +1989,8 @@
     },
     "parser/expr/uvs/newInstanceofExpr.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2040,9 +2007,8 @@
     },
     "parser/expr/uvs/staticProperty.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2077,9 +2043,8 @@
     },
     "parser/expr/variable.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2096,9 +2061,8 @@
     },
     "parser/formattingAttributes.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2151,9 +2115,8 @@
     },
     "parser/scalar/constantString.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2170,9 +2133,8 @@
     },
     "parser/scalar/docString.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2189,9 +2151,8 @@
     },
     "parser/scalar/docStringNewlines.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2208,9 +2169,8 @@
     },
     "parser/scalar/encapsedNegVarOffset.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2227,9 +2187,8 @@
     },
     "parser/scalar/encapsedString.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2264,9 +2223,8 @@
     },
     "parser/scalar/flexibleDocString.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2283,9 +2241,8 @@
     },
     "parser/scalar/flexibleDocStringErrors.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2414,9 +2371,8 @@
     },
     "parser/scalar/unicodeEscape.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2455,9 +2411,8 @@
     },
     "parser/scalar/unicodeEscape.test#2": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2474,9 +2429,8 @@
     },
     "parser/scalar/unicodeEscape.test#3": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2493,9 +2447,8 @@
     },
     "parser/scalar/unicodeEscape.test#4": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2512,9 +2465,8 @@
     },
     "parser/scalar/unicodeEscape.test#5": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2531,9 +2483,8 @@
     },
     "parser/scalar/unicodeEscape.test#6": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2550,9 +2501,8 @@
     },
     "parser/scalar/unicodeEscape.test#7": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2569,9 +2519,8 @@
     },
     "parser/scalar/unicodeEscape.test#8": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2588,9 +2537,8 @@
     },
     "parser/scalar/unicodeEscape.test#9": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2643,9 +2591,8 @@
     },
     "parser/stmt/blocklessStatement.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2680,9 +2627,8 @@
     },
     "parser/stmt/class/anonymous.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -2915,9 +2861,8 @@
     },
     "parser/stmt/class/enum_with_string.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -3730,9 +3675,8 @@
     },
     "parser/stmt/class/simple.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -3893,9 +3837,8 @@
     },
     "parser/stmt/class/typedConstants.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -3952,9 +3895,8 @@
     },
     "parser/stmt/declare.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -3971,9 +3913,8 @@
     },
     "parser/stmt/echo.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -4066,9 +4007,8 @@
     },
     "parser/stmt/function/defaultValues.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -4337,9 +4277,8 @@
     },
     "parser/stmt/function/specialVars.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -4576,9 +4515,8 @@
     },
     "parser/stmt/generator/yieldPrecedence.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -4613,9 +4551,8 @@
     },
     "parser/stmt/haltCompiler.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -4632,9 +4569,10 @@
     },
     "parser/stmt/haltCompiler.test#1": {
       "tokens": {
-        "state": "pending",
+        "state": "intentional-difference",
         "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "reason": "Standalone lexing does not authorize halt tails. Only the statement parser, after validating outermost scope and exact syntax, may switch the production cursor to raw-tail mode. See decision 0005.",
+        "expectation": "differences/lexical-halt-1.json"
       },
       "structure": {
         "state": "pending",
@@ -4651,9 +4589,8 @@
     },
     "parser/stmt/haltCompiler.test#2": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -4670,9 +4607,8 @@
     },
     "parser/stmt/haltCompilerInvalidSyntax.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -4689,9 +4625,10 @@
     },
     "parser/stmt/haltCompilerOffset.test#0": {
       "tokens": {
-        "state": "pending",
+        "state": "intentional-difference",
         "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "reason": "Standalone lexing does not authorize halt tails. Only the statement parser, after validating outermost scope and exact syntax, may switch the production cursor to raw-tail mode. See decision 0005.",
+        "expectation": "differences/lexical-halt-2.json"
       },
       "structure": {
         "state": "pending",
@@ -4708,9 +4645,10 @@
     },
     "parser/stmt/haltCompilerOutermostScope.test#0": {
       "tokens": {
-        "state": "pending",
+        "state": "intentional-difference",
         "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "reason": "Standalone lexing does not authorize halt tails. Only the statement parser, after validating outermost scope and exact syntax, may switch the production cursor to raw-tail mode. See decision 0005.",
+        "expectation": "differences/lexical-halt-3.json"
       },
       "structure": {
         "state": "pending",
@@ -4727,9 +4665,8 @@
     },
     "parser/stmt/hashbang.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5196,9 +5133,8 @@
     },
     "parser/stmt/namespace/outsideStmt.test#0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5489,9 +5425,10 @@
     },
     "project/adapter/halt-tail": {
       "tokens": {
-        "state": "pending",
+        "state": "intentional-difference",
         "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "reason": "Standalone lexing does not authorize halt tails. Only the statement parser, after validating outermost scope and exact syntax, may switch the production cursor to raw-tail mode. See decision 0005.",
+        "expectation": "differences/lexical-halt-4.json"
       },
       "structure": {
         "state": "pending",
@@ -5508,9 +5445,8 @@
     },
     "project/adapter/line-endings": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5581,9 +5517,8 @@
     },
     "project/version/7.0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5600,9 +5535,8 @@
     },
     "project/version/7.1": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5619,9 +5553,8 @@
     },
     "project/version/7.2": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5638,9 +5571,8 @@
     },
     "project/version/7.3": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5657,9 +5589,8 @@
     },
     "project/version/7.4": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5676,9 +5607,8 @@
     },
     "project/version/8.0": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5695,9 +5625,8 @@
     },
     "project/version/8.1": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5714,9 +5643,8 @@
     },
     "project/version/8.2": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5733,9 +5661,8 @@
     },
     "project/version/8.3": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",
@@ -5752,9 +5679,8 @@
     },
     "project/version/8.4": {
       "tokens": {
-        "state": "pending",
-        "phase": "P06",
-        "reason": "Requires string/heredoc or parser-authorized halt modes; P05 preserves the unscanned suffix."
+        "state": "passing",
+        "phase": "P06"
       },
       "structure": {
         "state": "pending",

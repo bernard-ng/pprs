@@ -598,5 +598,277 @@
       "bytes": "3c3f7068702024782d3e235b785d200a24782d3e5c666f6f2024782d3e313233666f6f2024782d3e7969656c642066726f6d2024783b2024782d3e454e554d20453b2024782d3e2f2a632a2f5055424c494328736574293b"
     },
     "short_open_tag": false
+  },
+  {
+    "id": "strings/quoted/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f70687020276162635c6e5c5c5c27273b2062275c786666273b2042225c6e5c757b31663630307d223b20606563686f60203b2022223b2027273b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/interpolation/7.0",
+    "target": "7.0",
+    "source": {
+      "bytes": "3c3f706870202224612024615b305d2024615b2d31325d2024615b307831325d2024615b315f325d2024615b24625d2024612d3e69662024613f2d3e6d617463682024612d3e782d3e79223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/interpolation/7.3",
+    "target": "7.3",
+    "source": {
+      "bytes": "3c3f706870202224612024615b305d2024615b2d31325d2024615b307831325d2024615b315f325d2024615b24625d2024612d3e69662024613f2d3e6d617463682024612d3e782d3e79223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/interpolation/8.0",
+    "target": "8.0",
+    "source": {
+      "bytes": "3c3f706870202224612024615b305d2024615b2d31325d2024615b307831325d2024615b315f325d2024615b24625d2024612d3e69662024613f2d3e6d617463682024612d3e782d3e79223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/interpolation/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870202224612024615b305d2024615b2d31325d2024615b307831325d2024615b315f325d2024615b24625d2024612d3e69662024613f2d3e6d617463682024612d3e782d3e79223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/nested-interpolation/7.0",
+    "target": "7.0",
+    "source": {
+      "bytes": "3c3f7068702022247b666f6f7d20247b666f6f5b315d7d20247b666f6f28297d207b24612d3e7b666f6f28297d7d207b24615b2778275d7d207b247b222478227d7d223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/nested-interpolation/7.3",
+    "target": "7.3",
+    "source": {
+      "bytes": "3c3f7068702022247b666f6f7d20247b666f6f5b315d7d20247b666f6f28297d207b24612d3e7b666f6f28297d7d207b24615b2778275d7d207b247b222478227d7d223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/nested-interpolation/8.0",
+    "target": "8.0",
+    "source": {
+      "bytes": "3c3f7068702022247b666f6f7d20247b666f6f5b315d7d20247b666f6f28297d207b24612d3e7b666f6f28297d7d207b24615b2778275d7d207b247b222478227d7d223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/nested-interpolation/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f7068702022247b666f6f7d20247b666f6f5b315d7d20247b666f6f28297d207b24612d3e7b666f6f28297d7d207b24615b2778275d7d207b247b222478227d7d223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/escaping-boundaries/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f70687020225c7b24617d205c247b617d205c5c7b24617d2024612d3e20782024612d3e31223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/backtick/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f70687020606563686f205c60205c22202478207b24785b2261225d7d20247b6e616d657d603b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-modes/7.0",
+    "target": "7.0",
+    "source": {
+      "bytes": "3c3f70687020623c3c3c2241220d0a20202478207b24615b2778275d7d0d0a2020413b0a20423c3c3c27454e44270a5c6e24780a454e443b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-modes/7.3",
+    "target": "7.3",
+    "source": {
+      "bytes": "3c3f70687020623c3c3c2241220d0a20202478207b24615b2778275d7d0d0a2020413b0a20423c3c3c27454e44270a5c6e24780a454e443b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-modes/8.0",
+    "target": "8.0",
+    "source": {
+      "bytes": "3c3f70687020623c3c3c2241220d0a20202478207b24615b2778275d7d0d0a2020413b0a20423c3c3c27454e44270a5c6e24780a454e443b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-modes/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f70687020623c3c3c2241220d0a20202478207b24615b2778275d7d0d0a2020413b0a20423c3c3c27454e44270a5c6e24780a454e443b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-labels/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870203c3c3c454e440a454e447375666669780a454e445f0a454e44390a202020454e442c20313b203c3c3c580a583b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-newlines/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870203c3c3c580d666f6f0d583b203c3c3c580d0a666f6f0d0a583b203c3c3c580a666f6f0a583b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-nested/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870203c3c3c4f55540a7b24615b3c3c3c494e0a696e6e65720a494e5d7d0a4f55543b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-invalid-indent/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870203c3c3c580a20610a0920583b203c3c3c580a20780a2020583b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-false-openers/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870203c3c3c2058200a6162633b203c3c3c2758220a6162633b203c3c3c390a783b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/doc-prefix/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870203c3c3c580a5c0a583b203c3c3c580a58213b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/unterminated-double/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f7068702022616263"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/unterminated-single/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f7068702062276162635c27"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/unterminated-backtick/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f7068702060616263202478"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/unterminated-doc/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870203c3c3c580a616263202478"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/unterminated-interpolation/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f70687020227b24785b2261225d"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/empty-docs/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870203c3c3c580a583b203c3c3c2758270a583b203c3c3c580a202020583b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/byte-strings/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f7068702022ff00202478223b2027fe00273b203c3c3cff0afe0aff3b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/offset-punctuation/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870202224615b312e325d2024615b7b617d5d2024615b2278225d2024615b5d223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/offset-invalid-number/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870202224615b3132666f6f5d2024615b306231325d2024615b306f31325d2024615b315f5f325d2024615b3165325d223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/offset-invalid-transition/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870202224615b2020785d2024615b666f6f5c6261725d2024615b2778275d2024615b2024625d223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/offset-invalid-byte/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f706870202224615b005d223b"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/interpolation-close-tag/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f70687020227b2461203f3e7261777d22"
+    },
+    "short_open_tag": false
+  },
+  {
+    "id": "strings/interpolation-comment/8.4",
+    "target": "8.4",
+    "source": {
+      "bytes": "3c3f70687020227b2461202f2a20756e66696e6973686564"
+    },
+    "short_open_tag": false
   }
 ]

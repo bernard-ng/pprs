@@ -28,7 +28,7 @@ pub(crate) enum CursorError {
     TokenLimit,
     #[error("token source violated coverage at retained index {0}")]
     InvalidProducer(usize),
-    #[error("halt transition requires a consumed semicolon and no buffered suffix")]
+    #[error("halt transition requires a consumed statement terminator and no buffered suffix")]
     HaltBoundary,
     #[error("cursor has stopped")]
     Stopped,
@@ -127,12 +127,15 @@ impl<L: TokenSource> TokenCursor<L> {
         self.last_consumed = Some(token.kind());
         Ok((index, token))
     }
-    /// Parser-only authorization after validating top-level `__halt_compiler();`.
+    /// Parser-only authorization after validating outermost `__halt_compiler()` and its statement terminator.
     /// Lexical buffering cannot verify syntax or scope. It rejects speculative
     /// lookahead beyond the boundary, so such bytes can never be silently discarded.
     pub(crate) fn enter_halt_tail(&mut self) -> Result<(), CursorError> {
         if self.stopped
-            || self.last_consumed != Some(TokenKind::Semicolon)
+            || !matches!(
+                self.last_consumed,
+                Some(TokenKind::Semicolon | TokenKind::CloseTag)
+            )
             || self.position != self.tokens.len()
         {
             return Err(CursorError::HaltBoundary);

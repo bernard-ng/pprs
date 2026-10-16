@@ -1,0 +1,294 @@
+{
+  "target": "8.4",
+  "tokens": [
+    {
+      "end": [
+        2,
+        1
+      ],
+      "kind": "T_OPEN_TAG",
+      "span": [
+        0,
+        6
+      ],
+      "start": [
+        1,
+        1
+      ],
+      "text": {
+        "bytes": "3c3f7068700a"
+      }
+    },
+    {
+      "end": [
+        2,
+        3
+      ],
+      "kind": "T_IF",
+      "span": [
+        6,
+        8
+      ],
+      "start": [
+        2,
+        1
+      ],
+      "text": {
+        "bytes": "6966"
+      }
+    },
+    {
+      "end": [
+        2,
+        4
+      ],
+      "kind": "T_WHITESPACE",
+      "span": [
+        8,
+        9
+      ],
+      "start": [
+        2,
+        3
+      ],
+      "text": {
+        "bytes": "20"
+      }
+    },
+    {
+      "end": [
+        2,
+        5
+      ],
+      "kind": "CHAR_28",
+      "span": [
+        9,
+        10
+      ],
+      "start": [
+        2,
+        4
+      ],
+      "text": {
+        "bytes": "28"
+      }
+    },
+    {
+      "end": [
+        2,
+        9
+      ],
+      "kind": "T_STRING",
+      "span": [
+        10,
+        14
+      ],
+      "start": [
+        2,
+        5
+      ],
+      "text": {
+        "bytes": "74727565"
+      }
+    },
+    {
+      "end": [
+        2,
+        10
+      ],
+      "kind": "CHAR_29",
+      "span": [
+        14,
+        15
+      ],
+      "start": [
+        2,
+        9
+      ],
+      "text": {
+        "bytes": "29"
+      }
+    },
+    {
+      "end": [
+        2,
+        11
+      ],
+      "kind": "T_WHITESPACE",
+      "span": [
+        15,
+        16
+      ],
+      "start": [
+        2,
+        10
+      ],
+      "text": {
+        "bytes": "20"
+      }
+    },
+    {
+      "end": [
+        2,
+        12
+      ],
+      "kind": "CHAR_7b",
+      "span": [
+        16,
+        17
+      ],
+      "start": [
+        2,
+        11
+      ],
+      "text": {
+        "bytes": "7b"
+      }
+    },
+    {
+      "end": [
+        3,
+        5
+      ],
+      "kind": "T_WHITESPACE",
+      "span": [
+        17,
+        22
+      ],
+      "start": [
+        2,
+        12
+      ],
+      "text": {
+        "bytes": "0a20202020"
+      }
+    },
+    {
+      "end": [
+        3,
+        20
+      ],
+      "kind": "T_HALT_COMPILER",
+      "span": [
+        22,
+        37
+      ],
+      "start": [
+        3,
+        5
+      ],
+      "text": {
+        "bytes": "5f5f68616c745f636f6d70696c6572"
+      }
+    },
+    {
+      "end": [
+        3,
+        21
+      ],
+      "kind": "CHAR_28",
+      "span": [
+        37,
+        38
+      ],
+      "start": [
+        3,
+        20
+      ],
+      "text": {
+        "bytes": "28"
+      }
+    },
+    {
+      "end": [
+        3,
+        22
+      ],
+      "kind": "CHAR_29",
+      "span": [
+        38,
+        39
+      ],
+      "start": [
+        3,
+        21
+      ],
+      "text": {
+        "bytes": "29"
+      }
+    },
+    {
+      "end": [
+        3,
+        23
+      ],
+      "kind": "CHAR_3b",
+      "span": [
+        39,
+        40
+      ],
+      "start": [
+        3,
+        22
+      ],
+      "text": {
+        "bytes": "3b"
+      }
+    },
+    {
+      "end": [
+        4,
+        1
+      ],
+      "kind": "T_WHITESPACE",
+      "span": [
+        40,
+        41
+      ],
+      "start": [
+        3,
+        23
+      ],
+      "text": {
+        "bytes": "0a"
+      }
+    },
+    {
+      "end": [
+        4,
+        2
+      ],
+      "kind": "CHAR_7d",
+      "span": [
+        41,
+        42
+      ],
+      "start": [
+        4,
+        1
+      ],
+      "text": {
+        "bytes": "7d"
+      }
+    },
+    {
+      "end": [
+        4,
+        2
+      ],
+      "kind": "EOF",
+      "span": [
+        42,
+        42
+      ],
+      "start": [
+        4,
+        2
+      ],
+      "text": {
+        "bytes": ""
+      }
+    }
+  ],
+  "lexical_diagnostics": []
+}

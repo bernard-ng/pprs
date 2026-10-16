@@ -1,5 +1,5 @@
 //! Explicit file/comment states around the regular Logos byte scanner.
-use super::{DeferredSyntax, LexStop, keywords::keyword, regular::Regular};
+use super::{LexStop, keywords::keyword, regular::Regular, strings::Mode};
 use crate::{
     ParseOptions, PhpVersion, SourceText,
     cursor::TokenSource,
@@ -8,17 +8,18 @@ use crate::{
 };
 use logos::Logos;
 
-pub(super) struct Scanner {
-    source: SourceText,
-    options: ParseOptions,
-    offset: usize,
+pub(crate) struct Scanner {
+    pub(super) source: SourceText,
+    pub(super) options: ParseOptions,
+    pub(super) offset: usize,
     php: bool,
-    property: bool,
+    pub(super) property: bool,
     tail: bool,
+    pub(super) modes: Vec<Mode>,
     diagnostics: DiagnosticBag,
 }
 impl Scanner {
-    pub(super) fn new(source: SourceText, options: ParseOptions) -> Self {
+    pub(crate) fn new(source: SourceText, options: ParseOptions) -> Self {
         Self {
             source,
             options,
@@ -26,10 +27,11 @@ impl Scanner {
             php: false,
             property: false,
             tail: false,
+            modes: Vec::new(),
             diagnostics: DiagnosticBag::new(options.limits),
         }
     }
-    fn token(&mut self, kind: TokenKind, end: usize) -> Token {
+    pub(super) fn token(&mut self, kind: TokenKind, end: usize) -> Token {
         let span = self
             .source
             .span(self.offset..end)
@@ -40,7 +42,7 @@ impl Scanner {
         }
         Token::new(kind, span)
     }
-    fn report(
+    pub(super) fn report(
         &mut self,
         code: DiagnosticCode,
         start: usize,
@@ -71,7 +73,7 @@ impl Scanner {
         }
         self.token(TokenKind::InlineHtml, next)
     }
-    fn php(&mut self) -> Result<Token, LexStop> {
+    pub(super) fn php(&mut self) -> Result<Token, LexStop> {
         let start = self.offset;
         let rest = &self.source.as_bytes()[start..];
         if rest.starts_with(b"?>") {
@@ -116,15 +118,10 @@ impl Scanner {
             }
             return Ok(self.token(TokenKind::Comment, end));
         }
-        if matches!(rest[0], b'\'' | b'"' | b'`')
-            || (matches!(rest[0], b'b' | b'B')
-                && rest.get(1).is_some_and(|b| matches!(b, b'\'' | b'"')))
-        {
-            return Err(LexStop::Deferred(DeferredSyntax::String));
+        if let Some(token) = self.start_string()? {
+            return Ok(token);
         }
-        if rest.starts_with(b"<<<") {
-            return Err(LexStop::Deferred(DeferredSyntax::Heredoc));
-        }
+        let rest = &self.source.as_bytes()[start..];
         let mut lexer = Regular::lexer(rest);
         let regular = lexer.next().expect("nonempty input produces a Logos token");
         let mut end = start + lexer.span().end;
@@ -173,9 +170,6 @@ impl Scanner {
                 TokenKind::Invalid
             }
         };
-        if kind == TokenKind::HaltCompiler {
-            return Err(LexStop::Deferred(DeferredSyntax::HaltCompiler));
-        }
         let following = &self.source.as_bytes()[end..];
         if kind == TokenKind::Enum {
             let skipped = skip_trivia(following);
@@ -218,15 +212,18 @@ impl Scanner {
 impl TokenSource for Scanner {
     fn next_token(&mut self) -> Result<Token, LexStop> {
         if self.offset == self.source.len() {
+            self.end_modes()?;
             return Ok(Token::new(TokenKind::Eof, self.source.eof()));
         }
         if self.tail {
             return Ok(self.token(TokenKind::HaltTail, self.source.len()));
         }
-        if self.php {
-            self.php()
-        } else {
+        if !self.php {
             Ok(self.html())
+        } else if !self.modes.is_empty() {
+            self.string_token()
+        } else {
+            self.php()
         }
     }
     fn enter_halt_tail(&mut self) {
@@ -244,10 +241,10 @@ impl TokenSource for Scanner {
 fn whitespace(byte: u8) -> bool {
     matches!(byte, b' ' | b'\t' | b'\n' | b'\r')
 }
-fn identifier_continue(byte: u8) -> bool {
+pub(super) fn identifier_continue(byte: u8) -> bool {
     byte.is_ascii_alphanumeric() || byte == b'_' || byte >= 0x80
 }
-fn newline_width(bytes: &[u8]) -> usize {
+pub(super) fn newline_width(bytes: &[u8]) -> usize {
     if bytes.starts_with(b"\r\n") {
         2
     } else {
@@ -309,7 +306,7 @@ fn number_kind(bytes: &[u8]) -> TokenKind {
     TokenKind::Integer
 }
 
-fn identifier_start(byte: u8) -> bool {
+pub(super) fn identifier_start(byte: u8) -> bool {
     byte.is_ascii_alphabetic() || byte == b'_' || byte >= 0x80
 }
 

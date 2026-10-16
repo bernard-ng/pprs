@@ -23,7 +23,8 @@
       "passing": 218
     },
     "P06": {
-      "pending": 82
+      "intentional-difference": 4,
+      "passing": 78
     },
     "P07": {
       "pending": 109

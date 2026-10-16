@@ -10,12 +10,23 @@ fuzz_target!(|data: &[u8]| {
     let options = ParseOptions {
         version: PhpVersion::ALL[usize::from(selector) % 10],
         short_open_tag: selector & 16 != 0,
-        limits: Limits::new(65542, 128, 4096, 4096, 32).unwrap(),
+        limits: Limits::new(65600, 1 + usize::from(selector % 64), 4096, 4096, 32).unwrap(),
     };
-    // Exercise both file mode and PHP mode; arbitrary HTML alone rarely reaches
-    // the regular scanner without a seed containing an opening tag.
-    let php = [b"<?php ".as_slice(), data].concat();
-    for input in [data, php.as_slice()] {
+    // Seed each lexical mode; random file bytes alone rarely reach interpolation.
+    for prefix in [
+        b"".as_slice(),
+        b"<?php ",
+        b"<?php '",
+        b"<?php \"",
+        b"<?php `",
+        b"<?php <<<X\n",
+        b"<?php <<<'X'\n",
+        b"<?php \"{$x[",
+        b"<?php \"${",
+        b"<?php \"$x[",
+    ] {
+        let source = [prefix, data].concat();
+        let input = source.as_slice();
         let result = lex(input, options).unwrap();
         let mut offset = 0;
         for (index, token) in result.tokens().tokens().iter().enumerate() {
@@ -32,11 +43,26 @@ fuzz_target!(|data: &[u8]| {
             result.tokens().tokens().last().unwrap().kind(),
             TokenKind::Eof
         );
-        assert_eq!(result.is_complete(), result.tokens().is_complete());
+        if result.is_complete() {
+            assert!(result.tokens().is_complete());
+        }
         assert!(result.tokens().tokens().len() <= 4096);
         assert!(result.diagnostics().len() <= 32);
         for diagnostic in result.diagnostics() {
             assert!(result.source().slice(diagnostic.primary).is_some());
         }
     }
+    for mode in [
+        pprs::literal::EscapeMode::DoubleQuoted,
+        pprs::literal::EscapeMode::Heredoc,
+        pprs::literal::EscapeMode::Nowdoc,
+    ] {
+        match pprs::literal::decode_escapes(data, mode) {
+            Ok(value) => assert!(value.as_bytes().len() <= data.len()),
+            Err(error) => {
+                assert!(error.range.start <= error.range.end && error.range.end <= data.len())
+            }
+        }
+    }
+    let _ = pprs::literal::decode_number(data);
 });

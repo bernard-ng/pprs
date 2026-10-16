@@ -6,7 +6,7 @@ use crate::{
 };
 use std::ops::Range;
 
-/// Regular-token vocabulary; string-mode kinds arrive with P06.
+/// Byte-preserving PHP token vocabulary.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[non_exhaustive]
 pub enum TokenKind {
@@ -28,12 +28,30 @@ pub enum TokenKind {
     Identifier,
     /// Simple variable including its dollar sign.
     Variable,
-    /// Integer spelling within the 64-bit model; value decoding occurs in P06.
+    /// Integer spelling within the 64-bit model; value decoding uses `literal::decode_number`.
     Integer,
     /// Floating-point spelling.
     Float,
     /// A non-interpolated quoted string.
     QuotedString,
+    /// Opening or closing double quote (opening token may include a binary prefix).
+    DoubleQuote,
+    /// Opening or closing shell-command backtick.
+    Backtick,
+    /// Raw text in an interpolated string, heredoc, nowdoc or unfinished quote.
+    StringPart,
+    /// Heredoc/nowdoc opener, label and newline.
+    StartHeredoc,
+    /// Closing heredoc/nowdoc indentation and label.
+    EndHeredoc,
+    /// `{$` interpolation opener; this token owns only the opening brace.
+    CurlyOpen,
+    /// `${` interpolation opener.
+    DollarOpenCurly,
+    /// Bare name in `${name}` or `${name[...]}`.
+    StringVarname,
+    /// Numeric spelling in a simple interpolated array offset.
+    NumString,
     /// `echo`.
     Echo,
     /// `return`.

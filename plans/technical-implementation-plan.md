@@ -1,7 +1,7 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: P00–P05 complete; P06 onward pending; production regular lexing and public data foundations exist
+Status: P00–P06 complete; P07 onward pending; production lexing, literal utilities and public data foundations exist
 
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
@@ -288,6 +288,8 @@ Deliverables: regular scanner and file-mode behavior.
 Acceptance: assigned lexer/unit cases pass; tokens cover source bytes exactly once, aside from the empty EOF sentinel; malformed inputs make progress and preserve byte offsets.
 
 ### P06 — Complete string lexing and literal interpretation
+
+Status: **complete, 2026-10-16**. [String states](../src/lexer/strings.rs), [literal utilities](../src/literal/mod.rs), and the production-scanner-tested [halt boundary](../src/halt.rs) are implemented. [Decision 0005](../docs/decisions/0005-strings-literals-and-halt.md) records 109 lexical and 139 literal oracle observations, bounded state/error behavior, and four intentional standalone-lexer halt differences. All 300 token channels are exercised (296 exact matches); AST construction, scope inference and calls into the halt boundary remain with the statement parser in P07.
 
 Dependencies: P05; parser support for embedded expressions is completed in P07.
 

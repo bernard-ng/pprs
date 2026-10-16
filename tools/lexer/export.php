@@ -35,9 +35,9 @@ $output = json_encode(['schema_version' => 1, 'reference_commit' => $lock['commi
     JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . "\n";
 $path = "$root/tests/fixtures/lexer/" . ($short ? 'short-tags' : 'regular') . '.json';
 if (in_array('--check', $argv, true)) {
-    requireThat(file_get_contents($path) === $output, 'P05 export drift');
-    echo "P05 lexical oracle reproduced: " . count($cases) . " cases.\n";
+    requireThat(file_get_contents($path) === $output, 'P05/P06 export drift');
+    echo "P05/P06 lexical oracle reproduced: " . count($cases) . " cases.\n";
 } elseif (in_array('--write', $argv, true)) {
     file_put_contents($path, $output);
-    echo "P05 lexical oracle written: " . count($cases) . " cases.\n";
+    echo "P05/P06 lexical oracle written: " . count($cases) . " cases.\n";
 } else { echo $output; }
