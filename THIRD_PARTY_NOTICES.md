@@ -13,3 +13,5 @@ P02 includes copied parser fixture files, expanded/normalized oracle expectation
 P06 adapts literal interpretation behavior from upstream `Node/Scalar/String_.php`, `Int_.php`, `Float_.php`, and `ParserAbstract.php` in `src/literal/` and its oracle exporter. The copyright and BSD-3-Clause notice above apply to those adaptations. Dedicated lexer/literal inputs are project-authored; their snapshots contain observations of the pinned reference.
 
 P07 adapts expression productions, precedence and AST construction behavior from upstream `grammar/php.y` and `ParserAbstract.php` in `src/parser/`. The copyright and BSD-3-Clause notice above apply. `tests/support/parser.rs` projects the Rust AST to the upstream schema; `tests/fixtures/parser/` and the P07 difference snapshots retain reference-derived observations.
+
+P08 extends those adaptations with statement, callable and type productions in `src/parser/statements.rs` and `callables.rs`, typed payloads in `src/ast/procedural.rs`, and reference-schema projections. `tests/fixtures/statements/` contains observations of the frozen reference from project-authored probes. The copyright and BSD-3-Clause notice above apply.

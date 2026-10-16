@@ -1,10 +1,10 @@
-//! Byte-preserving PHP 7.0–8.4 parsing, with expressions and file statements.
+//! Byte-preserving PHP 7.0–8.4 parsing, with expressions, statements and callables.
 //!
 //! [`lex`] and [`lex_source`] implement PHP lexical modes and file boundaries.
 //! [`literal`] decodes byte strings and numeric values. Raw halt tails require
 //! parser authorization; standalone lexing keeps scanning ordinary PHP tokens.
 //! [`parse`], [`parse_source`] and [`parse_strict`] return owned syntax and diagnostics.
-//! Functions/control flow and declarations remain later implementation phases.
+//! Namespaces, classes, members and attributes remain later implementation phases.
 //! Strict completion rejects recovery, errors and resource aborts.
 //!
 //! ```
@@ -13,6 +13,19 @@
 //! let program = file.result().program().unwrap();
 //! assert_eq!(program.statements.len(), 1);
 //! assert!(visit::walk(program).count() > 1);
+//! # Ok::<(), pprs::StrictError>(())
+//! ```
+//!
+//! ```
+//! use pprs::{ast::{StmtKind, Type}, parse_strict, ParseOptions};
+//! let file = parse_strict(
+//!     "<?php function sum(int $a, int $b): int { return $a + $b; }",
+//!     ParseOptions::default(),
+//! )?;
+//! let program = file.result().program().unwrap();
+//! let StmtKind::Function(function) = &program.statements[0].kind else { panic!() };
+//! assert_eq!(function.signature.params.len(), 2);
+//! assert!(matches!(function.signature.return_type, Some(Type::Builtin(_))));
 //! # Ok::<(), pprs::StrictError>(())
 //! ```
 //!

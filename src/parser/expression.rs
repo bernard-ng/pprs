@@ -175,6 +175,10 @@ impl Parser {
             K::QuotedString => self.quoted_literal(start, token),
             K::DoubleQuote | K::Backtick | K::StartHeredoc => self.string_expression(),
             K::Variable | K::Dollar => self.variable(),
+            K::Function | K::Fn => self.callable_expression(),
+            K::Static if matches!(self.ahead(1)?, K::Function | K::Fn) => {
+                self.callable_expression()
+            }
             K::Identifier
             | K::NameQualified
             | K::NameFullyQualified
@@ -439,7 +443,11 @@ impl Parser {
 
     fn yield_expression(&mut self, start: usize) -> PResult<Box<Expr>> {
         self.bump()?;
-        let first = if operators::boundary(self.kind()?) {
+        let kind = self.kind()?;
+        let no_operand = matches!(kind, K::Question | K::Instanceof)
+            || operators::binary(kind, self.options.version).is_some()
+                && !matches!(kind, K::Plus | K::Minus);
+        let first = if operators::boundary(kind) || no_operand {
             None
         } else {
             Some(self.expression(20)?)
@@ -806,7 +814,7 @@ impl Parser {
         self.expect(K::RightParen)?;
         Ok(args)
     }
-    fn array(&mut self) -> PResult<Box<Expr>> {
+    pub(super) fn array(&mut self) -> PResult<Box<Expr>> {
         let (start, token) = self.bump()?;
         let kind = match token.kind() {
             K::LeftBracket => ArrayKind::Short,
@@ -904,7 +912,7 @@ impl Parser {
         }
         Ok(expr)
     }
-    fn pattern(expr: &mut Expr) {
+    pub(super) fn pattern(expr: &mut Expr) {
         match &mut expr.kind {
             ExprKind::Array {
                 items,

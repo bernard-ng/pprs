@@ -31,10 +31,11 @@
       "passing": 69
     },
     "P08": {
-      "pending": 57
+      "intentional-difference": 2,
+      "passing": 49
     },
     "P09": {
-      "pending": 95
+      "pending": 101
     },
     "P10": {
       "pending": 337

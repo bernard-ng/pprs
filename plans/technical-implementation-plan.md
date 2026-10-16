@@ -1,7 +1,7 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: P00–P07 complete; P08 onward pending; public expression/file parsing, lexing, literal utilities and traversal exist
+Status: P00–P08 complete; P09 onward pending; public expression/procedural/callable parsing, signature types, lexing, literal utilities and traversal exist
 
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
@@ -324,6 +324,8 @@ Deliverables: usable parse-to-AST vertical slice and core expression grammar; ca
 Acceptance: assigned scalar/expression cases pass; the same ambiguous expressions have the expected PHP 7/8 trees; malformed expressions retain subsequent statements; strict parsing never treats a recovered tree as a clean success.
 
 ### P08 — Implement statements, functions, and control flow
+
+Status: **complete, 2026-10-17**. [Decision 0007](../docs/decisions/0007-procedural-parser.md) records typed statements/callables, shared signature types, scoped recovery, traversal and bounded nesting. Evidence includes 49 additional passing upstream structure channels, two exact recovery differences and 49 dedicated probes. Six mixed declaration files now have live P09 ownership; no P08 structure channel remains pending. Metadata and broad diagnostics remain P10/P11.
 
 Dependencies: P07.
 

@@ -2,7 +2,7 @@
 
 A PHP parser library written in Rust. The first release is planned to support **PHP 7.0–8.4**, using [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) as its compatibility reference.
 
-**Status:** P00–P07 are complete. `parse`, `parse_source` and `parse_strict` deliver the first expression/file parsing slice, with owned ASTs, lossless tokens, diagnostics, recovery and read-only traversal. Functions/control flow remain P08; declarations and anonymous classes remain P09. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md) and [P07 contract](docs/decisions/0006-expression-parser.md).
+**Status:** P00–P08 are complete. `parse`, `parse_source` and `parse_strict` deliver expression, procedural and callable parsing, with owned ASTs, lossless tokens, diagnostics, recovery and read-only traversal. Functions, closures, arrows, control flow and signature types are implemented; declarations and anonymous classes remain P09. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md) and [P08 contract](docs/decisions/0007-procedural-parser.md).
 
 ## Development
 
@@ -34,7 +34,7 @@ cargo +1.85.0 test --locked --doc
 cargo +1.85.0 check --locked --manifest-path tests/consumer/Cargo.toml
 ```
 
-[tests/consumer](tests/consumer/Cargo.toml) is a separate Cargo package with a path dependency on `pprs`. It verifies public lexing, parsing, strict failures, traversal, source ownership, options and AST construction through public APIs without private modules, PHP or the reference checkout. Its lockfile is checked in alongside the root lockfile. Foundation tests cover byte positions, lossless tokens, AST metadata, budgets and result contracts. The P02 integration suite reads 313 reference/probe cases and tests the comparison adapters; 296 token channels pass and four have exact intentional differences. P07 adds 69 passing structure channels, eight exact Unicode recovery differences and 133 dedicated expression observations. All 300 complete parser cases remain pending overall until later phases complete the remaining channels.
+[tests/consumer](tests/consumer/Cargo.toml) is a separate Cargo package with a path dependency on `pprs`. It verifies public lexing, parsing, strict failures, traversal, source ownership, options and AST construction through public APIs without private modules, PHP or the reference checkout. Its lockfile is checked in alongside the root lockfile. Foundation tests cover byte positions, lossless tokens, AST metadata, budgets and result contracts. The P02 integration suite reads 313 reference/probe cases and tests the comparison adapters; 296 token channels pass and four have exact intentional differences. P07/P08 provide 118 passing structure channels, ten explicit recovery differences, 133 dedicated expression observations and 49 statement/callable observations. All 300 complete parser cases remain pending overall until later phases complete the remaining channels.
 
 Parse the supported subset and inspect the tree:
 

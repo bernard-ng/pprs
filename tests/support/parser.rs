@@ -76,6 +76,24 @@ fn parts(values: &[StringPart]) -> Vec<Value> {
         })
         .collect()
 }
+fn ty(value: &Type) -> Value {
+    match value {
+        Type::Name(n) => name(n),
+        Type::Builtin(n) => identifier(n, false),
+        Type::Nullable { inner, .. } => node("NullableType", json!({"type":ty(inner)})),
+        Type::Union { types, .. } => node(
+            "UnionType",
+            json!({"types":types.iter().map(ty).collect::<Vec<_>>()}),
+        ),
+        Type::Intersection { types, .. } => node(
+            "IntersectionType",
+            json!({"types":types.iter().map(ty).collect::<Vec<_>>()}),
+        ),
+    }
+}
+fn params(s: &Signature) -> Vec<Value> {
+    s.params.iter().map(|p|node("Param",json!({"attrGroups":[],"flags":integer(0),"type":p.ty.as_ref().map(ty),"byRef":p.by_ref,"variadic":p.variadic,"var":expr(&p.variable),"default":p.default.as_ref().map(|v|expr(v)),"hooks":[]}))).collect()
+}
 fn binary(op: BinaryOp) -> &'static str {
     match op {
         BinaryOp::Add => "Plus",
@@ -133,6 +151,14 @@ fn unary(op: UnaryOp) -> &'static str {
 )]
 pub fn expr(value: &Expr) -> Value {
     match &value.kind {
+        ExprKind::Closure(c) => node(
+            "Expr_Closure",
+            json!({"attrGroups":[],"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"uses":c.uses.iter().map(|u|node("ClosureUse",json!({"var":expr(&u.variable),"byRef":u.by_ref}))).collect::<Vec<_>>(),"returnType":c.signature.return_type.as_ref().map(ty),"stmts":statements(&c.body)}),
+        ),
+        ExprKind::ArrowFunction(c) => node(
+            "Expr_ArrowFunction",
+            json!({"attrGroups":[],"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"returnType":c.signature.return_type.as_ref().map(ty),"expr":expr(&c.expr)}),
+        ),
         ExprKind::Integer { value, .. } => node("Scalar_Int", json!({"value":integer(*value)})),
         ExprKind::Float(value) => node(
             "Scalar_Float",
@@ -313,6 +339,22 @@ fn statements(stmts: &[Stmt]) -> Vec<Value> {
             StmtKind::HaltCompiler(value) => {
                 node("Stmt_HaltCompiler", json!({"remaining":bytes(value)}))
             }
+            StmtKind::Function(f) => node("Stmt_Function",json!({"attrGroups":[],"byRef":f.signature.by_ref,"name":identifier(&f.name,false),"params":params(&f.signature),"returnType":f.signature.return_type.as_ref().map(ty),"stmts":statements(&f.body)})),
+            StmtKind::If(s) => node("Stmt_If",json!({"cond":expr(&s.condition),"stmts":statements(&s.body),"elseifs":s.elseifs.iter().map(|b|node("Stmt_ElseIf",json!({"cond":expr(&b.condition),"stmts":statements(&b.body)}))).collect::<Vec<_>>(),"else":s.otherwise.as_ref().map(|b|node("Stmt_Else",json!({"stmts":statements(&b.body)})))})),
+            StmtKind::While(s) => node("Stmt_While",json!({"cond":expr(&s.condition),"stmts":statements(&s.body)})),
+            StmtKind::Do(s) => node("Stmt_Do",json!({"cond":expr(&s.condition),"stmts":statements(&s.body)})),
+            StmtKind::For(s) => node("Stmt_For",json!({"init":s.init.iter().map(expr).collect::<Vec<_>>(),"cond":s.conditions.iter().map(expr).collect::<Vec<_>>(),"loop":s.steps.iter().map(expr).collect::<Vec<_>>(),"stmts":statements(&s.body)})),
+            StmtKind::Foreach(s) => node("Stmt_Foreach",json!({"expr":expr(&s.iterable),"keyVar":s.key.as_ref().map(|v|expr(v)),"valueVar":expr(&s.value),"byRef":s.by_ref,"stmts":statements(&s.body)})),
+            StmtKind::Switch(s) => node("Stmt_Switch",json!({"cond":expr(&s.condition),"cases":s.cases.iter().map(|c|node("Stmt_Case",json!({"cond":c.condition.as_ref().map(|e|expr(e)),"stmts":statements(&c.body)}))).collect::<Vec<_>>()})),
+            StmtKind::Break(e) => node("Stmt_Break",json!({"num":e.as_ref().map(expr)})),
+            StmtKind::Continue(e) => node("Stmt_Continue",json!({"num":e.as_ref().map(expr)})),
+            StmtKind::Goto(n) => node("Stmt_Goto",json!({"name":identifier(n,false)})),
+            StmtKind::Label(n) => node("Stmt_Label",json!({"name":identifier(n,false)})),
+            StmtKind::Global(v) => node("Stmt_Global",json!({"vars":v.iter().map(expr).collect::<Vec<_>>()})),
+            StmtKind::Unset(v) => node("Stmt_Unset",json!({"vars":v.iter().map(expr).collect::<Vec<_>>()})),
+            StmtKind::Static(v) => node("Stmt_Static",json!({"vars":v.iter().map(|v|node("StaticVar",json!({"var":expr(&v.variable),"default":v.default.as_ref().map(|e|expr(e))}))).collect::<Vec<_>>()})),
+            StmtKind::Declare(s) => node("Stmt_Declare",json!({"declares":s.items.iter().map(|d|node("DeclareItem",json!({"key":identifier(&d.key,false),"value":expr(&d.value)}))).collect::<Vec<_>>(),"stmts":s.body.as_ref().map(|b|statements(b))})),
+            StmtKind::Try(s) => node("Stmt_TryCatch",json!({"stmts":statements(&s.body),"catches":s.catches.iter().map(|c|node("Stmt_Catch",json!({"types":c.types.iter().map(name).collect::<Vec<_>>(),"var":c.variable.as_ref().map(|e|expr(e)),"stmts":statements(&c.body)}))).collect::<Vec<_>>(),"finally":s.finally.as_ref().map(|f|node("Stmt_Finally",json!({"stmts":statements(&f.body)})))})),
             _ => panic!("unmapped statement"),
         });
     }

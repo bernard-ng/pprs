@@ -44,7 +44,8 @@
       },
       "structure": {
         "state": "pending",
-        "phase": "P08"
+        "phase": "P09",
+        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
       },
       "positions": {
         "state": "pending",
@@ -915,9 +916,8 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P08",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P08"
       },
       "positions": {
         "state": "pending",
@@ -934,7 +934,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -1046,7 +1046,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -1064,7 +1064,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -1872,9 +1872,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P08",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P08"
       },
       "positions": {
         "state": "pending",
@@ -1909,9 +1908,10 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "intentional-difference",
         "phase": "P08",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "reason": "P08 discards a damaged global statement through its terminator instead of synthesizing a separate constant expression from an invalid property suffix; following statements are retained.",
+        "expectation": "differences/p08-global-recovery.json"
       },
       "positions": {
         "state": "pending",
@@ -1928,9 +1928,8 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P08",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P08"
       },
       "positions": {
         "state": "pending",
@@ -2620,9 +2619,8 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P08",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P08"
       },
       "positions": {
         "state": "pending",
@@ -3850,7 +3848,8 @@
       },
       "structure": {
         "state": "pending",
-        "phase": "P08"
+        "phase": "P09",
+        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
       },
       "positions": {
         "state": "pending",
@@ -3925,7 +3924,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -3943,7 +3942,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -3961,7 +3960,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -3979,7 +3978,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -3997,7 +3996,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4037,7 +4036,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4055,7 +4054,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4074,7 +4073,8 @@
       },
       "structure": {
         "state": "pending",
-        "phase": "P08"
+        "phase": "P09",
+        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
       },
       "positions": {
         "state": "pending",
@@ -4091,9 +4091,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P08",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P08"
       },
       "positions": {
         "state": "pending",
@@ -4110,7 +4109,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4129,7 +4128,8 @@
       },
       "structure": {
         "state": "pending",
-        "phase": "P08"
+        "phase": "P09",
+        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
       },
       "positions": {
         "state": "pending",
@@ -4146,7 +4146,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4164,7 +4164,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4182,7 +4182,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4200,7 +4200,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4218,7 +4218,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4236,7 +4236,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4255,7 +4255,8 @@
       },
       "structure": {
         "state": "pending",
-        "phase": "P08"
+        "phase": "P09",
+        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
       },
       "positions": {
         "state": "pending",
@@ -4272,7 +4273,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4290,9 +4291,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P08",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P08"
       },
       "positions": {
         "state": "pending",
@@ -4309,7 +4309,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4327,7 +4327,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4345,7 +4345,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4385,7 +4385,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4403,7 +4403,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4421,7 +4421,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4439,7 +4439,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4457,7 +4457,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4476,7 +4476,8 @@
       },
       "structure": {
         "state": "pending",
-        "phase": "P08"
+        "phase": "P09",
+        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
       },
       "positions": {
         "state": "pending",
@@ -4493,7 +4494,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4511,7 +4512,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4529,7 +4530,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4547,7 +4548,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4565,7 +4566,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4583,7 +4584,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4698,9 +4699,10 @@
         "expectation": "differences/lexical-halt-3.json"
       },
       "structure": {
-        "state": "pending",
+        "state": "intentional-difference",
         "phase": "P08",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "reason": "P08 aborts on nested halt and retains completed outer statements (an empty partial program here); the reference discards its entire AST. The payload is not activated.",
+        "expectation": "differences/p08-nested-halt.json"
       },
       "positions": {
         "state": "pending",
@@ -4735,7 +4737,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4771,7 +4773,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4789,7 +4791,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4807,7 +4809,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4825,7 +4827,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -4843,7 +4845,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -5293,7 +5295,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -5311,7 +5313,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -5329,7 +5331,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -5347,7 +5349,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {
@@ -5365,7 +5367,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P08"
       },
       "positions": {

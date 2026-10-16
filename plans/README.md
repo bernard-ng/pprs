@@ -1,6 +1,6 @@
 # Implementation plans
 
-Status: **P00–P07 complete** (2026-10-16). The first public expression/file parser, production lexing, literal utilities and read-only traversal are available.
+Status: **P00–P08 complete** (2026-10-17). The public expression/procedural/callable parser, production lexing, literal utilities and read-only traversal are available.
 
 The first stable release will be a reusable Rust library for PHP **7.0–8.4**, as confirmed on 2026-10-16. There is no product CLI.
 
@@ -23,4 +23,6 @@ P06 delivered [string/interpolation/doc-string modes](../src/lexer/strings.rs), 
 
 P07 delivered the [public parser](../src/parser/mod.rs), expression grammar, interpolation, recovery, resource limits and [iterative traversal](../src/visit.rs). [Decision 0006](../docs/decisions/0006-expression-parser.md) records 133 dedicated reference observations, 69 exact upstream structure matches, eight explicit Unicode recovery differences and reassignment of 32 complete files needing later-phase syntax. No P07 structure channel remains pending; metadata and broad diagnostics stay P10/P11.
 
-Next: **P08**, implement statements, functions and control flow. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.
+P08 delivered [procedural statements](../src/parser/statements.rs), [callables and signature types](../src/parser/callables.rs), recovery and traversal extensions. [Decision 0007](../docs/decisions/0007-procedural-parser.md) records 49 dedicated probes, 49 additional exact upstream structure matches, two explicit recovery differences and six complete-file ownership corrections to P09. Deep nesting, every probe truncation, small budgets and malformed token sequences are tested.
+
+Next: **P09**, implement namespaces, declarations, class members and declaration type contexts. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.

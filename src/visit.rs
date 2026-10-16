@@ -1,7 +1,8 @@
 //! Read-only, iterative traversal in source order, including auxiliary AST nodes.
 use crate::ast::{
-    Argument, ArrayItem, Expr, ExprKind, Identifier, MatchArm, Member, Name, Program, Stmt,
-    StmtKind, StringPart, Target,
+    Argument, ArrayItem, Case, Catch, ClosureUse, DeclareItem, Else, ElseIf, Expr, ExprKind,
+    Finally, Identifier, MatchArm, Member, Name, Parameter, Program, Signature, StaticVariable,
+    Stmt, StmtKind, StringPart, Target, Type,
 };
 /// A borrowed AST node; traversal does not mutate metadata or semantic values.
 #[derive(Clone, Copy, Debug)]
@@ -22,6 +23,26 @@ pub enum Node<'a> {
     ArrayItem(&'a ArrayItem),
     /// String text segment.
     StringPart(&'a StringPart),
+    /// Composite type.
+    Type(&'a Type),
+    /// Parameter.
+    Parameter(&'a Parameter),
+    /// Captured variable.
+    ClosureUse(&'a ClosureUse),
+    /// Conditional branch.
+    ElseIf(&'a ElseIf),
+    /// Fallback branch.
+    Else(&'a Else),
+    /// Switch case.
+    Case(&'a Case),
+    /// Catch clause.
+    Catch(&'a Catch),
+    /// Finally clause.
+    Finally(&'a Finally),
+    /// Static local declaration.
+    StaticVariable(&'a StaticVariable),
+    /// Declare directive.
+    DeclareItem(&'a DeclareItem),
     /// Match arm.
     MatchArm(&'a MatchArm),
 }
@@ -77,6 +98,17 @@ fn parts<'a>(values: &'a [StringPart], out: &mut Vec<Node<'a>>) {
         StringPart::Text { .. } => Node::StringPart(part),
     }));
 }
+fn type_node(ty: &Type) -> Node<'_> {
+    match ty {
+        Type::Name(n) => Node::Name(n),
+        Type::Builtin(n) => Node::Identifier(n),
+        _ => Node::Type(ty),
+    }
+}
+fn signature<'a>(value: &'a Signature, out: &mut Vec<Node<'a>>) {
+    out.extend(value.params.iter().map(Node::Parameter));
+    out.extend(value.return_type.iter().map(type_node));
+}
 #[allow(
     clippy::too_many_lines,
     reason = "exhaustive child ordering for the typed AST"
@@ -90,6 +122,60 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
             StmtKind::Echo(exprs) => out.extend(exprs.iter().map(Node::Expr)),
             StmtKind::Return(expr) => out.extend(expr.iter().map(Node::Expr)),
             StmtKind::Block(stmts) => out.extend(stmts.iter().map(Node::Stmt)),
+            StmtKind::Function(f) => {
+                out.push(Node::Identifier(&f.name));
+                signature(&f.signature, &mut out);
+                out.extend(f.body.iter().map(Node::Stmt));
+            }
+            StmtKind::If(s) => {
+                out.push(Node::Expr(&s.condition));
+                out.extend(s.body.iter().map(Node::Stmt));
+                out.extend(s.elseifs.iter().map(Node::ElseIf));
+                out.extend(s.otherwise.iter().map(Node::Else));
+            }
+            StmtKind::While(s) => {
+                out.push(Node::Expr(&s.condition));
+                out.extend(s.body.iter().map(Node::Stmt));
+            }
+            StmtKind::Do(s) => {
+                out.extend(s.body.iter().map(Node::Stmt));
+                out.push(Node::Expr(&s.condition));
+            }
+            StmtKind::For(s) => {
+                out.extend(s.init.iter().map(Node::Expr));
+                out.extend(s.conditions.iter().map(Node::Expr));
+                out.extend(s.steps.iter().map(Node::Expr));
+                out.extend(s.body.iter().map(Node::Stmt));
+            }
+            StmtKind::Foreach(s) => {
+                out.push(Node::Expr(&s.iterable));
+                out.extend(s.key.iter().map(|e| Node::Expr(e)));
+                out.push(Node::Expr(&s.value));
+                out.extend(s.body.iter().map(Node::Stmt));
+            }
+            StmtKind::Switch(s) => {
+                out.push(Node::Expr(&s.condition));
+                out.extend(s.cases.iter().map(Node::Case));
+            }
+            StmtKind::Try(s) => {
+                out.extend(s.body.iter().map(Node::Stmt));
+                out.extend(s.catches.iter().map(Node::Catch));
+                out.extend(s.finally.iter().map(Node::Finally));
+            }
+            StmtKind::Declare(s) => {
+                out.extend(s.items.iter().map(Node::DeclareItem));
+                if let Some(body) = &s.body {
+                    out.extend(body.iter().map(Node::Stmt));
+                }
+            }
+            StmtKind::Break(expr) | StmtKind::Continue(expr) => {
+                out.extend(expr.iter().map(Node::Expr));
+            }
+            StmtKind::Global(exprs) | StmtKind::Unset(exprs) => {
+                out.extend(exprs.iter().map(Node::Expr));
+            }
+            StmtKind::Static(vars) => out.extend(vars.iter().map(Node::StaticVariable)),
+            StmtKind::Goto(id) | StmtKind::Label(id) => out.push(Node::Identifier(id)),
             StmtKind::Nop | StmtKind::InlineHtml(_) | StmtKind::HaltCompiler(_) => {}
         },
         Node::Expr(expr) => match &expr.kind {
@@ -173,6 +259,16 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
             ExprKind::Interpolated { parts: values, .. } | ExprKind::ShellExec(values) => {
                 parts(values, &mut out);
             }
+            ExprKind::Closure(c) => {
+                out.extend(c.signature.params.iter().map(Node::Parameter));
+                out.extend(c.uses.iter().map(Node::ClosureUse));
+                out.extend(c.signature.return_type.iter().map(type_node));
+                out.extend(c.body.iter().map(Node::Stmt));
+            }
+            ExprKind::ArrowFunction(f) => {
+                signature(&f.signature, &mut out);
+                out.push(Node::Expr(&f.expr));
+            }
             ExprKind::Integer { .. }
             | ExprKind::Float(_)
             | ExprKind::String { .. }
@@ -192,6 +288,43 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
                 out.extend(conditions.iter().map(Node::Expr));
             }
             out.push(Node::Expr(&arm.body));
+        }
+        Node::Type(ty) => match ty {
+            Type::Nullable { inner, .. } => out.push(type_node(inner)),
+            Type::Union { types, .. } | Type::Intersection { types, .. } => {
+                out.extend(types.iter().map(type_node));
+            }
+            Type::Name(n) => out.push(Node::Name(n)),
+            Type::Builtin(n) => out.push(Node::Identifier(n)),
+        },
+        Node::Parameter(p) => {
+            out.extend(p.ty.iter().map(type_node));
+            out.push(Node::Expr(&p.variable));
+            out.extend(p.default.iter().map(|e| Node::Expr(e)));
+        }
+        Node::ClosureUse(u) => out.push(Node::Expr(&u.variable)),
+        Node::ElseIf(s) => {
+            out.push(Node::Expr(&s.condition));
+            out.extend(s.body.iter().map(Node::Stmt));
+        }
+        Node::Else(s) => out.extend(s.body.iter().map(Node::Stmt)),
+        Node::Case(s) => {
+            out.extend(s.condition.iter().map(|e| Node::Expr(e)));
+            out.extend(s.body.iter().map(Node::Stmt));
+        }
+        Node::Catch(s) => {
+            out.extend(s.types.iter().map(Node::Name));
+            out.extend(s.variable.iter().map(|e| Node::Expr(e)));
+            out.extend(s.body.iter().map(Node::Stmt));
+        }
+        Node::Finally(s) => out.extend(s.body.iter().map(Node::Stmt)),
+        Node::StaticVariable(s) => {
+            out.push(Node::Expr(&s.variable));
+            out.extend(s.default.iter().map(|e| Node::Expr(e)));
+        }
+        Node::DeclareItem(s) => {
+            out.push(Node::Identifier(&s.key));
+            out.push(Node::Expr(&s.value));
         }
         Node::Name(_) | Node::Identifier(_) | Node::StringPart(_) => {}
     }

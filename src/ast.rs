@@ -3,6 +3,9 @@
 //! Children are owned. An absent optional child differs from an empty list and
 //! from an explicit error expression. Raw spelling is obtained from node origins.
 
+mod procedural;
+pub use procedural::*;
+
 use crate::{
     ByteString, Span,
     source::RangeError,
@@ -682,6 +685,10 @@ pub enum ExprKind {
         /// Delimiter syntax.
         kind: StringKind,
     },
+    /// Anonymous function.
+    Closure(Box<Closure>),
+    /// Arrow function.
+    ArrowFunction(Box<ArrowFunction>),
     /// Shell command syntax, never executed by the library.
     ShellExec(Vec<StringPart>),
     /// Explicit missing/damaged expression. Metadata may be an empty insertion point.
@@ -712,6 +719,38 @@ pub enum StmtKind {
     Return(Option<Expr>),
     /// Braced statement block.
     Block(Vec<Stmt>),
+    /// Named function declaration.
+    Function(Box<Function>),
+    /// Conditional branches.
+    If(Box<IfStatement>),
+    /// Precondition loop.
+    While(Box<ConditionalLoop>),
+    /// Postcondition loop.
+    Do(Box<ConditionalLoop>),
+    /// For loop.
+    For(Box<ForStatement>),
+    /// Foreach loop.
+    Foreach(Box<ForeachStatement>),
+    /// Switch with ordered cases.
+    Switch(Box<SwitchStatement>),
+    /// Break, optionally with a level expression.
+    Break(Option<Expr>),
+    /// Continue, optionally with a level expression.
+    Continue(Option<Expr>),
+    /// Jump to a label.
+    Goto(Identifier),
+    /// Label declaration.
+    Label(Identifier),
+    /// Global variable bindings.
+    Global(Vec<Expr>),
+    /// Static local bindings.
+    Static(Vec<StaticVariable>),
+    /// Unset variables.
+    Unset(Vec<Expr>),
+    /// Scoped or unscoped directives.
+    Declare(Box<DeclareStatement>),
+    /// Exception handling.
+    Try(Box<TryStatement>),
     /// Validated outermost halt statement and uninterpreted tail bytes.
     HaltCompiler(ByteString),
 }

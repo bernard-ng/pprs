@@ -1,8 +1,10 @@
-//! Recovering parser for the expression slice, with finite resource budgets.
+//! Recovering parser for expressions, statements and callables, with finite resource budgets.
 // Grammar/semantics adapted from nikic/PHP-Parser, Copyright (c) 2011 Nikita Popov.
 // See THIRD_PARTY_NOTICES.md and reference/LICENSE.nikic-PHP-Parser (BSD-3-Clause).
+mod callables;
 mod expression;
 mod operators;
+mod statements;
 mod strings;
 use crate::halt::{self, HaltError, HaltScope};
 use crate::{
@@ -30,7 +32,7 @@ pub enum StrictError {
 }
 /// Parse owned PHP syntax with recovery. Source, tokens and any partial tree are
 /// retained; inspect status/diagnostics or call `into_strict()` before use as valid PHP.
-/// Functions, control flow and declarations are explicitly unsupported until P08/P09.
+/// Namespaces, class declarations, members and attributes remain unsupported until P09.
 ///
 /// # Errors
 /// Returns `InputTooLarge` before copying/indexing input beyond its byte budget.
@@ -424,6 +426,7 @@ impl Parser {
                             token.span(),
                             "__halt_compiler must appear in outermost scope",
                         ))?;
+                        self.aborted = true;
                         return Err(());
                     }
                     Err(HaltError::Syntax) => {
@@ -436,16 +439,7 @@ impl Parser {
                     }
                 }
             }
-            K::Function
-            | K::Fn
-            | K::Class
-            | K::Interface
-            | K::Trait
-            | K::Enum
-            | K::Namespace
-            | K::Use
-            | K::Const
-            | K::If
+            K::If
             | K::While
             | K::Do
             | K::For
@@ -455,11 +449,33 @@ impl Parser {
             | K::Declare
             | K::Global
             | K::Unset
+            | K::Break
+            | K::Continue
+            | K::Goto => self.procedural(token.kind())?,
+            K::Static if self.ahead(1)? == K::Variable => self.procedural(K::Static)?,
+            K::Function
+                if !(matches!(self.ahead(1)?, K::LeftParen)
+                    || self.ahead(1)? == K::Ampersand && self.ahead(2)? == K::LeftParen) =>
+            {
+                self.function_statement()?
+            }
+            K::Identifier if self.ahead(1)? == K::Colon => {
+                let name = self.plain_identifier()?;
+                self.bump()?;
+                StmtKind::Label(name)
+            }
+            K::Class
+            | K::Interface
+            | K::Trait
+            | K::Enum
+            | K::Namespace
+            | K::Use
+            | K::Const
             | K::Attribute => {
                 self.record(Diagnostic::error(
                     D::UnsupportedSyntax,
                     token.span(),
-                    "statement syntax is scheduled for P08/P09",
+                    "declarations are scheduled for P09",
                 ))?;
                 self.bump()?;
                 return Err(());
@@ -471,31 +487,25 @@ impl Parser {
             }
         };
         self.alloc()?;
-        Ok(Some(Stmt {
+        let stmt = Stmt {
             meta: self.meta(start),
             kind,
-        }))
+        };
+        if crate::visit::walk_node(crate::visit::Node::Stmt(&stmt)).any(|entry| {
+            entry.depth
+                > self
+                    .options
+                    .limits
+                    .get(Resource::Depth)
+                    .min(128)
+                    .saturating_sub(self.block_depth + 1)
+        }) {
+            self.limit(Resource::Depth)?;
+        }
+        Ok(Some(stmt))
     }
     fn block(&mut self) -> PResult<Vec<Stmt>> {
-        let mut body = Vec::new();
-        while !matches!(self.kind()?, K::RightBrace | K::Eof) {
-            let before = self.cursor.position();
-            match self.statement() {
-                Ok(Some(stmt)) => body.push(stmt),
-                Ok(None) => {}
-                Err(()) if !self.aborted => self.recover_statement(),
-                Err(()) => return Err(()),
-            }
-            if !self.aborted && self.cursor.position() == before {
-                self.bump()?;
-            }
-        }
-        let (index, token) = self.peek()?;
-        if token.kind() == K::RightBrace {
-            if let Some(stmt) = self.trailing_nop(index)? {
-                body.push(stmt);
-            }
-        }
+        let body = self.statement_list(&[K::RightBrace], true)?;
         self.expect(K::RightBrace)?;
         Ok(body)
     }
@@ -552,6 +562,9 @@ impl Parser {
                 break;
             }
             if delimiters.is_empty() {
+                if Self::clause_boundary(kind) {
+                    break;
+                }
                 if kind == K::RightBrace && self.block_depth > 0 {
                     break;
                 }
