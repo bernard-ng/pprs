@@ -51,7 +51,7 @@ The comparison cursor and LR implementation were discarded after recording resul
 ## Required production interfaces
 
 1. `SourceText` owns immutable bytes; all scanners and grammar decisions use byte spans. No UTF-8 conversion is required for PHP values.
-2. A project-owned token buffer requests tokens lazily from the stateful lexer, preserves trivia and original indices, and supplies significant lookahead. It yields a complete retained stream when parsing finishes, including uninterpreted halt tails and EOF. An aborted parse still needs a defined token-finalization policy in P04/P11.
+2. A project-owned token buffer requests tokens lazily from the stateful lexer, preserves trivia and original indices, and supplies significant lookahead. It yields a complete retained stream when parsing finishes, including uninterpreted halt tails and EOF. P04 resolved abort finalization as an explicit unscanned suffix with no further lexing; see [decision 0003](0003-foundation-contracts.md). P11 audits integration with recovery.
 3. The lexer owns HTML/PHP, quoted string, interpolation and heredoc/nowdoc states. P06 will expose string parts and embedded PHP tokens; P03's coarse template atoms are not the final token model.
 4. The parser can commit terminal tail handling only after recognizing a complete `__halt_compiler();` at an allowed scope and statement boundary. No tail token is requested first. Invalid syntax or scope must leave subsequent input available.
 5. Statements/declarations own their synchronization delimiters and contextual checks. Expression parsing takes explicit target-dependent binding powers. Type parsing is a separate production context, not a public boolean mode.

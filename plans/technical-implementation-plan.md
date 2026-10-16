@@ -1,7 +1,7 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: P00–P03 complete; P04 onward pending; only a test-only parser prototype exists
+Status: P00–P04 complete; P05 onward pending; public data foundations and a test-only parser prototype exist
 
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
@@ -255,6 +255,8 @@ Deliverables: parser/lexer strategy decision and a small reusable hard-case test
 Acceptance: a single chosen approach can express the hard cases, produce byte-accurate spans, and terminate on malformed input. No public API exposes framework internals.
 
 ### P04 — Implement source, token, diagnostic, and AST foundations
+
+Status: **complete, 2026-10-16**. Evidence: [foundation contracts](../docs/decisions/0003-foundation-contracts.md), [public modules](../src/lib.rs), [boundary tests](../tests/foundations.rs), private cursor/diagnostic/result unit tests, and [193-entry live node ledger](../docs/implementation/README.md). Checked byte/token ranges, shared owned sources, explicit ten-version options, finite limits, initial typed ASTs, structured diagnostics, and strict/recovering result contracts are implemented. Abort retains an explicit unscanned suffix without further lexing. Production lexer/parser integration remains P05–P07; P02 coverage states stay pending.
 
 Dependencies: P03.
 

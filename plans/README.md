@@ -1,6 +1,6 @@
 # Implementation plans
 
-Status: **P00–P03 complete** (2026-10-16). A test-only parser prototype exists; production implementation has not started.
+Status: **P00–P04 complete** (2026-10-16). Public data foundations and a test-only parser prototype exist; production lexing/parsing entry points are still pending.
 
 The first stable release will be a reusable Rust library for PHP **7.0–8.4**, as confirmed on 2026-10-16. There is no product CLI.
 
@@ -15,4 +15,6 @@ P02 delivered the [reference exporter](../tools/reference/README.md), [313-case 
 
 P03 selected Logos regular scanning with explicit byte states and recursive descent/Pratt parsing. The [strategy decision](../docs/decisions/0002-parser-strategy.md) records the comparison and the [hard cases](../tests/fixtures/strategy/README.md) remain executable tests. Production parser APIs are still pending.
 
-Next: **P04**, implement source, token, diagnostic and AST foundations. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.
+P04 delivered [source/token/AST/options/diagnostic/result foundations](../src/lib.rs), the private lazy cursor and abort-finalization contract, [decision 0003](../docs/decisions/0003-foundation-contracts.md), and the [live node ledger](../docs/implementation/README.md). Boundary, ownership, limit and strict-conversion tests exercise the public skeleton without claiming PHP parsing support.
+
+Next: **P05**, implement regular lexing and file boundaries. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.
