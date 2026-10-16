@@ -1,7 +1,8 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: proposed design; implementation has not started  
+Status: P00–P02 complete; P03 onward pending; parser implementation has not started
+
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
 
@@ -40,7 +41,7 @@ The reference is nikic's parser, not the PHP runtime itself. Follow its AST sema
 
 The first release follows the reference's **best-effort target-version interpretation**, within this project's 7.0–8.4 feature ceiling. Target version controls relevant token classification, precedence, and historical syntax behavior. It is **not a promise to reject every construct introduced after the selected minor version**. A complete strict version validator is a separate capability. Likewise, parse success does not imply successful PHP compilation, type checking, or execution.
 
-Use an explicit supported `PhpVersion` value. Propose PHP 8.4 as the default; document it as a fixed release default, never “whatever PHP is installed.” Reject unsupported configuration values. There is no host PHP version at library runtime.
+Use an explicit supported `PhpVersion` value. P00 fixes PHP 8.4 as the default; document it as a fixed release default, never “whatever PHP is installed.” Reject unsupported configuration values. There is no host PHP version at library runtime.
 
 Maintain a feature/version matrix for every grammar family. Each rule records its upstream production, lexical requirements, introduction/removal or interpretation changes, Rust owner, fixture IDs, and compatibility status. Do not scatter unexplained numeric version checks through parser functions.
 
@@ -119,7 +120,7 @@ Names below are design targets, not implemented signatures:
 
 Validate options at construction; malformed PHP is a normal diagnostic outcome. Configure nesting, token/node, input-size and diagnostic budgets; choose defaults from stress measurements before release. A limit hit returns an aborted/recovered result with a specific diagnostic. Do not claim recoverable handling of system-wide allocation failure.
 
-Byte offsets are authoritative. Define line and column indexing explicitly; use one-based lines and byte columns for reference comparison, including the reference's newline rules. UTF-16/editor display columns, if later needed, belong in adapters. EOF is the empty span at source length. Upstream AST ends are inclusive, but `Token::getEndPos()` is already exclusive; their conversions must remain separate.
+Byte offsets are authoritative. P00 decision D03 specifies one-based lines and byte columns, recognizing LF, CRLF and lone CR without changing source bytes. Normalize inconsistent upstream line/column helpers at the adapter boundary while preserving their raw attributes. UTF-16/editor display columns, if later needed, belong in adapters. EOF is the empty span at source length. Upstream AST ends are inclusive, but `Token::getEndPos()` is already exclusive; their conversions must remain separate.
 
 ### Walkthroughs that the design must support
 
@@ -189,6 +190,8 @@ Every phase adds its tests and compatibility entries alongside behavior. Recover
 
 ### P00 — Freeze scope, provenance, and behavior decisions
 
+Status: **complete, 2026-10-16**. Evidence: [reference lock and verification](../reference/README.md), [compatibility inventories](../docs/compatibility/README.md), [behavior decisions](../docs/decisions/0001-parser-behavior.md), and [attribution](../THIRD_PARTY_NOTICES.md). Inventory: 192 productions, 193 node source files, 530 fixture cases; parser scope is 277 core / 9 deferred / 4 mixed. Implementation remains pending.
+
 Dependencies: none.
 
 - Record the pinned reference revision, source URL, clean/dirty state, and upstream license.
@@ -203,10 +206,12 @@ Acceptance: no unclassified fixture families; support limits are explicit; scope
 
 ### P01 — Establish the library crate and quality checks
 
+Status: **complete, 2026-10-16**. Evidence: [library scaffold](../src/lib.rs), [package metadata and lint policy](../Cargo.toml), [independent consumer](../tests/consumer/Cargo.toml), [CI workflow](../.github/workflows/ci.yml), and [development instructions](../README.md). Formatting and Clippy pass on stable Rust 1.99.0; library test targets, the import doctest, consumer compilation and documentation builds pass on stable and Rust 1.85.0. A clean copied consumer also builds offline without `.references`, and Cargo metadata exposes only a library target. The six P00 verifier tests and metadata verification pass. Hosted CI results await a push to GitHub. Original-code licensing remains a release decision; publication is disabled until then.
+
 Dependencies: P00.
 
 - Replace the current Hello World binary with `src/lib.rs`; remove the binary target from the product.
-- Keep edition 2024. Propose Rust 1.85 as the baseline MSRV, then validate dependency compatibility before committing to it.
+- Keep edition 2024 and Rust 1.85.0 as the validated baseline MSRV. Validate each dependency against it when introduced.
 - Add package description, documentation metadata, and the agreed license once chosen.
 - Configure formatting, Rust/Clippy warnings, and an unsafe-code policy; start with no project-authored unsafe code.
 - Set up CI for stable Rust and the declared MSRV, unit/integration/doc tests, and feature combinations when features exist.
@@ -217,6 +222,8 @@ Deliverables: library scaffold, Cargo metadata, CI skeleton, initial README.
 Acceptance: Cargo builds a library without a product binary; test/doc/format/lint commands pass; no PHP is required.
 
 ### P02 — Build the reference exporter and compatibility harness
+
+Status: **complete, 2026-10-16**. Evidence: [exporter and oracle setup](../tools/reference/README.md), [corpus schema and comparison contract](../tests/fixtures/README.md), [manifest](../tests/fixtures/upstream/manifest.json), [coverage ledger](../tests/fixtures/coverage.json), and [Rust harness](../tests/compatibility.rs). All 290 upstream parser dumps reproduce under their original modes on the pinned 64-bit PHP 8.5.6 profile. Exported observations include four supported derivations and 19 project probes (all ten target versions), for 313 records / 300 comparable cases; parser implementation coverage remains zero. The remaining 240 printer cases stay inventoried and deferred. Offline integrity/adapter tests run in ordinary CI; oracle regeneration is an explicit development check.
 
 Dependencies: P00–P01.
 
@@ -264,7 +271,7 @@ Acceptance: spans remain valid for empty files, non-UTF-8, CRLF/LF, EOF and empt
 Dependencies: P04.
 
 - Handle HTML/PHP transitions, open tags, short echo tags, closing-tag statement termination, and newline consumption.
-- Specify short-open-tag behavior as an explicit option, with a deterministic default; test hashbangs, BOM bytes, and text before the first tag against the reference profile.
+- Implement the P00 short-open-tag decision: explicit option, default disabled; test hashbangs, BOM bytes, and text before the first tag against the reference profile.
 - Implement whitespace, comments/doc comments, names, variables, keywords, contextual identifiers, punctuation, operators, and numeric tokens.
 - Preserve original spelling and case; classify keywords using PHP's byte rules without Unicode identifier assumptions.
 - Implement malformed-character/comment/number diagnostics and stop conditions; account for reference `&` disambiguation without forcing its internal token split on the public API.
@@ -446,8 +453,8 @@ Implement these only when prioritized; they do not block the parser-library rele
 |---|---|
 | Parser/lexer framework choice | P03 hard-case comparison, then one documented selection |
 | Project license | Maintainer choice before package release; upstream notices retained from P00 |
-| Exact MSRV/dependency versions | P01/P03 dependency validation; proposed baseline is 1.85 |
-| Short-open-tag profile | Explicit deterministic option and oracle settings in P05 |
+| Exact MSRV/dependency versions | P01 validated Rust 1.85.0 with no dependencies; P02 test-only JSON/hash/hex dependencies also pass MSRV checks; validate future dependency versions as introduced |
+| Short-open-tag profile | P00 fixes default disabled; implement explicit option and matching oracle settings in P05 |
 | Default resource limits | Measurements and stress testing in P12, with safe interim bounds from P04 |
 | Lexer complexity hidden by reference runtime | Treat standalone lexing as a first-class phase and test against token oracles |
 | Reference/oracle drift or permissive version behavior | Pinned revisions, explicit targets, recorded host settings, separate strict-validation claims |

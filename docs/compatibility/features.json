@@ -1,0 +1,2481 @@
+{
+  "schema_version": 1,
+  "target_versions": [
+    "7.0",
+    "7.1",
+    "7.2",
+    "7.3",
+    "7.4",
+    "8.0",
+    "8.1",
+    "8.2",
+    "8.3",
+    "8.4"
+  ],
+  "default_target": "8.4",
+  "matrix_semantics": "Language introduction is evidence/context, not strict per-target rejection or implemented support. baseline means present by PHP7.0.",
+  "features": [
+    {
+      "id": "file",
+      "title": "File structure, PHP tags, inline HTML and blocks",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P05",
+      "planned_owner": "lexer/file + parser/statements",
+      "lexical_requirements": "HTML/PHP modes; open/close tags; close-tag newline and semicolon handling",
+      "productions": [
+        "blocklike_statement",
+        "inner_statement",
+        "inner_statement_list",
+        "inner_statement_list_ex",
+        "non_empty_statement",
+        "start",
+        "statement",
+        "top_statement",
+        "top_statement_list",
+        "top_statement_list_ex"
+      ],
+      "fixture_files": [
+        "test/code/parser/emptyFile.test",
+        "test/code/parser/stmt/inlineHTML.test",
+        "test/code/parser/stmt/hashbang.test",
+        "test/code/parser/stmt/blocklessStatement.test"
+      ],
+      "notes": "Default short_open_tag=false; <?= always recognized. BOM/text remain bytes, not stripped.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "names",
+      "title": "Names, variables, contextual and semi-reserved identifiers",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P05",
+      "planned_owner": "lexer/names + ast/names",
+      "lexical_requirements": "Byte identifiers, case-insensitive ASCII keyword lookup; qualified names and contextual keywords",
+      "productions": [
+        "ampersand",
+        "class_name",
+        "class_name_or_var",
+        "class_name_reference",
+        "identifier_maybe_reserved",
+        "identifier_not_reserved",
+        "legacy_namespace_name",
+        "name",
+        "name_readonly",
+        "namespace_declaration_name",
+        "namespace_name",
+        "plain_variable",
+        "reserved_non_modifiers",
+        "reserved_non_modifiers_identifier",
+        "semi_reserved"
+      ],
+      "fixture_files": [
+        "test/code/parser/semiReserved.test",
+        "test/code/parser/expr/keywordsInNamespacedName.test",
+        "test/code/parser/stmt/class/name.test",
+        "test/code/parser/stmt/class/shortEchoAsIdentifier.test",
+        "test/code/parser/stmt/class/readonlyAsClassName.test",
+        "test/code/parser/stmt/function/fn.test",
+        "test/code/parser/stmt/function/readonlyFunction.test"
+      ],
+      "notes": "Canonical qualified-name tokens and reference ampersand split are upstream conventions, not public token ABI.",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer.php",
+        "lib/PhpParser/Lexer/Emulative.php",
+        "lib/PhpParser/Lexer/TokenEmulator/KeywordEmulator.php",
+        "lib/PhpParser/Lexer/TokenEmulator/ReadonlyFunctionTokenEmulator.php",
+        "lib/PhpParser/Lexer/TokenEmulator/ReverseEmulator.php",
+        "lib/PhpParser/Lexer/TokenEmulator/TokenEmulator.php"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "comments",
+      "title": "Comments, no-ops, positions and spelling metadata",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P10",
+      "planned_owner": "ast/metadata + parser/normalization",
+      "lexical_requirements": "Retain whitespace/comments/doc comments; complete token indices",
+      "productions": [
+        "inner_statement_list",
+        "top_statement_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/blockComments.test",
+        "test/code/parser/commentAtEndOfClass.test",
+        "test/code/parser/comments.test",
+        "test/code/parser/formattingAttributes.test",
+        "test/code/parser/nopPositions.test",
+        "test/code/parser/expr/varVarPos.test",
+        "test/code/parser/stmt/class/class_position.test",
+        "test/code/parser/stmt/namespace/commentAfterNamespace.test",
+        "test/code/parser/stmt/namespace/groupUsePositions.test"
+      ],
+      "notes": "Metadata checks apply to every node, not only fixtures requesting position dumps.",
+      "reference_paths": [
+        "lib/PhpParser/ParserAbstract.php",
+        "lib/PhpParser/NodeAbstract.php",
+        "lib/PhpParser/NodeVisitor/CommentAnnotatingVisitor.php",
+        "lib/PhpParser/Token.php"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "recovery",
+      "title": "Lexical errors, grammar recovery and contextual diagnostics",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P11",
+      "planned_owner": "diagnostic + parser/recovery",
+      "lexical_requirements": "Bad bytes, unterminated states, EOF and delimiter ownership",
+      "productions": [
+        "block_or_error",
+        "comma_or_error",
+        "no_comma",
+        "optional_comma",
+        "semi"
+      ],
+      "fixture_files": [
+        "test/code/parser/errorHandling/eofError.test",
+        "test/code/parser/errorHandling/lexerErrors.test",
+        "test/code/parser/errorHandling/recovery.test",
+        "test/code/parser/expr/newWithoutClass.test"
+      ],
+      "notes": "Error cases in every family must also be covered. Generic LR error-production wording is not a public contract.",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/ParserAbstract.php",
+        "lib/PhpParser/Lexer.php",
+        "lib/PhpParser/Error.php"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "numbers",
+      "title": "Numeric bases, overflow and floating-point values",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P06",
+      "planned_owner": "lexer/numbers + ast/literal",
+      "lexical_requirements": "Digits, prefixes, exponents; checked 64-bit integer and binary64 conversion",
+      "productions": [
+        "scalar"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/int.test",
+        "test/code/parser/scalar/float.test",
+        "test/code/parser/scalar/invalidOctal.test"
+      ],
+      "notes": "Preserve raw spelling; numeric token kind can change on overflow.",
+      "reference_paths": [
+        "lib/PhpParser/Node/Scalar/Int_.php",
+        "lib/PhpParser/Node/Scalar/Float_.php",
+        "lib/PhpParser/ParserAbstract.php"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "numeric-separators",
+      "title": "Numeric literal separators",
+      "language_since": "7.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P06",
+      "planned_owner": "lexer/numbers",
+      "lexical_requirements": "Underscores inside numeric tokens",
+      "productions": [
+        "scalar"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/numberSeparators.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration74.new-features.php"
+      ]
+    },
+    {
+      "id": "explicit-octal",
+      "title": "Explicit 0o/0O octal literals",
+      "language_since": "8.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P06",
+      "planned_owner": "lexer/numbers",
+      "lexical_requirements": "Octal prefixes",
+      "productions": [
+        "scalar"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/explicitOctal.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "lib/PhpParser/Lexer/TokenEmulator/ExplicitOctalEmulator.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration81.new-features.php"
+      ]
+    },
+    {
+      "id": "strings",
+      "title": "Byte strings, interpolation and shell strings",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P06",
+      "planned_owner": "lexer/strings + parser/expressions",
+      "lexical_requirements": "Quote/binary-prefix/backtick modes; nested interpolation",
+      "productions": [
+        "backticks_expr",
+        "dereferenceable_scalar",
+        "encaps_list",
+        "encaps_str_varname",
+        "encaps_string_part",
+        "encaps_var",
+        "encaps_var_offset",
+        "scalar"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/constantString.test",
+        "test/code/parser/scalar/encapsedString.test",
+        "test/code/parser/expr/shellExec.test"
+      ],
+      "notes": "Decoded values and heredoc labels need not be UTF-8.",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Node/Scalar/String_.php"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "unicode-escapes",
+      "title": "Unicode escape syntax in strings",
+      "language_since": "7.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P06",
+      "planned_owner": "lexer/strings",
+      "lexical_requirements": "Validate code-point escapes, encode resulting bytes",
+      "productions": [
+        "encaps_string_part",
+        "scalar"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/unicodeEscape.test"
+      ],
+      "notes": "Reject invalid code points per pinned reference; do not inherit a newer host tokenizer bug.",
+      "reference_paths": [
+        "lib/PhpParser/Node/Scalar/String_.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration70.new-features.php"
+      ]
+    },
+    {
+      "id": "interpolated-offsets",
+      "title": "Negative offsets in simple string interpolation",
+      "language_since": "7.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P06",
+      "planned_owner": "lexer/strings + parser/expressions",
+      "lexical_requirements": "Signed numeric offsets in interpolation",
+      "productions": [
+        "encaps_var_offset"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/encapsedNegVarOffset.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration71.new-features.php"
+      ]
+    },
+    {
+      "id": "heredoc",
+      "title": "Heredoc and nowdoc delimiters/newlines",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P06",
+      "planned_owner": "lexer/heredoc",
+      "lexical_requirements": "Byte labels; line-sensitive endings and literal/interpolated modes",
+      "productions": [
+        "scalar"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/docString.test",
+        "test/code/parser/scalar/docStringNewlines.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/ParserAbstract.php"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "flexible-heredoc",
+      "title": "Flexible heredoc/nowdoc indentation and closing labels",
+      "language_since": "7.3",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P06",
+      "planned_owner": "lexer/heredoc",
+      "lexical_requirements": "Indent validation/dedent; relaxed closing position",
+      "productions": [
+        "scalar"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/flexibleDocString.test",
+        "test/code/parser/scalar/flexibleDocStringErrors.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "lib/PhpParser/ParserAbstract.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration73.new-features.php"
+      ]
+    },
+    {
+      "id": "magic-constants",
+      "title": "Magic constant nodes (without evaluation)",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "ast/literal + parser/expressions",
+      "lexical_requirements": "Case-insensitive magic-constant tokens",
+      "productions": [
+        "scalar"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/magicConst.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "property-magic",
+      "title": "__PROPERTY__ magic constant",
+      "language_since": "8.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "lexer/names + ast/literal",
+      "lexical_requirements": "Property magic-constant token",
+      "productions": [
+        "scalar"
+      ],
+      "fixture_files": [
+        "test/code/parser/scalar/magicConst.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "lib/PhpParser/Lexer/TokenEmulator/PropertyTokenEmulator.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration84.new-features.php"
+      ]
+    },
+    {
+      "id": "operators",
+      "title": "Unary, binary, assignment, ternary and coalescing operators",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "Longest-match operators, references and contextual precedence",
+      "productions": [
+        "expr",
+        "expr_list_allow_comma",
+        "expr_list_forbid_comma",
+        "non_empty_expr_list",
+        "optional_expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/assign.test",
+        "test/code/parser/expr/assignNewByRef.test",
+        "test/code/parser/expr/comparison.test",
+        "test/code/parser/expr/errorSuppress.test",
+        "test/code/parser/expr/logic.test",
+        "test/code/parser/expr/math.test",
+        "test/code/parser/expr/ternaryAndCoalesce.test",
+        "test/code/parser/expr/constant_expr.test"
+      ],
+      "notes": "Baseline includes PHP 7 spaceship/coalesce, exponentiation and compound assignments; coalesce-assignment is a 7.4 addition.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "coalesce-assignment",
+      "title": "Null-coalescing assignment operator",
+      "language_since": "7.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "??= token",
+      "productions": [
+        "expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/assign.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration74.new-features.php"
+      ]
+    },
+    {
+      "id": "precedence",
+      "title": "PHP 8 concatenation precedence; ternary language change",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P10",
+      "planned_owner": "version + parser/expressions",
+      "lexical_requirements": "Separate PHP7/PHP8 binding tables",
+      "productions": [
+        "expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/concatPrecedence.test",
+        "test/code/parser/expr/ternaryAndCoalesce.test"
+      ],
+      "notes": "Reference grammar gives ternary left precedence; do not silently promise PHP engine non-associativity checks absent upstream. Record that validation difference.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.incompatible.php"
+      ]
+    },
+    {
+      "id": "casts",
+      "title": "Scalar/object/array casts and historical spellings",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "lexer/operators + parser/expressions",
+      "lexical_requirements": "Parenthesized cast-token recognition",
+      "productions": [
+        "expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/cast.test"
+      ],
+      "notes": "(unset) and (real) removed by PHP 8 language rules; nikic may retain them. Best-effort parser compatibility is distinct from engine validation.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "variables",
+      "title": "Variables, variable variables and static members",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "Dollar/member/static access tokens",
+      "productions": [
+        "member_name",
+        "new_variable",
+        "optional_plain_variable",
+        "property_name",
+        "simple_variable",
+        "static_member",
+        "static_member_prop_name",
+        "variable"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/variable.test",
+        "test/code/parser/expr/fetchAndCall/staticPropertyFetch.test",
+        "test/code/parser/expr/uvs/staticProperty.test",
+        "test/code/parser/expr/uvs/globalNonSimpleVarError.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "access",
+      "title": "Uniform variable syntax, calls and dereference chains",
+      "language_since": "7.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "Contextual names after member operators; bracket/brace boundaries",
+      "productions": [
+        "array_object_dereferenceable",
+        "callable_expr",
+        "callable_variable",
+        "fully_dereferenceable"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/fetchAndCall/constFetch.test",
+        "test/code/parser/expr/fetchAndCall/constantDeref.test",
+        "test/code/parser/expr/fetchAndCall/funcCall.test",
+        "test/code/parser/expr/fetchAndCall/objectAccess.test",
+        "test/code/parser/expr/fetchAndCall/simpleArrayAccess.test",
+        "test/code/parser/expr/fetchAndCall/staticCall.test",
+        "test/code/parser/expr/uvs/constDeref.test",
+        "test/code/parser/expr/uvs/indirectCall.test",
+        "test/code/parser/expr/uvs/isset.test",
+        "test/code/parser/expr/uvs/misc.test",
+        "test/code/parser/expr/uvs/new.test",
+        "test/code/parser/expr/uvs/newInstanceofExpr.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration70.new-features.php"
+      ]
+    },
+    {
+      "id": "nullsafe",
+      "title": "Nullsafe member access",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "?-> token",
+      "productions": [
+        "array_object_dereferenceable",
+        "new_variable"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/nullsafe.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer/TokenEmulator/NullsafeTokenEmulator.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.new-features.php"
+      ]
+    },
+    {
+      "id": "curly-offsets",
+      "title": "Legacy curly-brace array/string offsets",
+      "language_since": "baseline",
+      "language_until": "7.4",
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P10",
+      "planned_owner": "version + parser/expressions",
+      "lexical_requirements": "Curly offset grammar only in PHP7 branch",
+      "productions": [
+        "array_object_dereferenceable",
+        "new_variable"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/alternative_array_syntax.test"
+      ],
+      "notes": "Deprecated in PHP 7.4; PHP8 grammar removes this alternative.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "arrays",
+      "title": "Arrays and list-pattern infrastructure",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions + parser/normalization",
+      "lexical_requirements": "Bracket/list contexts and =>",
+      "productions": [
+        "array_pair",
+        "array_pair_list",
+        "array_short_syntax",
+        "inner_array_pair_list",
+        "list_expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/arrayDef.test",
+        "test/code/parser/expr/arrayDestructuring.test",
+        "test/code/parser/expr/arrayEmptyElemens.test",
+        "test/code/parser/expr/exprInList.test",
+        "test/code/parser/expr/listWithKeys.test"
+      ],
+      "notes": "Empty entries allowed in patterns, not ordinary arrays; preserve kind and holes.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "short-destructuring",
+      "title": "Short and keyed destructuring forms",
+      "language_since": "7.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/normalization",
+      "lexical_requirements": "[] patterns and keyed list items",
+      "productions": [
+        "array_pair",
+        "list_expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/arrayDestructuring.test",
+        "test/code/parser/expr/listWithKeys.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration71.new-features.php"
+      ]
+    },
+    {
+      "id": "list-references",
+      "title": "References in destructuring",
+      "language_since": "7.3",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "& in list/array patterns",
+      "productions": [
+        "array_pair"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/listReferences.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration73.new-features.php"
+      ]
+    },
+    {
+      "id": "array-unpack",
+      "title": "Unpacking in array literals",
+      "language_since": "7.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "... before array element",
+      "productions": [
+        "array_pair"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/arraySpread.test"
+      ],
+      "notes": "PHP 8.1 string-key unpacking is runtime semantics, not a new AST shape.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration74.new-features.php"
+      ]
+    },
+    {
+      "id": "calls",
+      "title": "Call arguments, unpacking and reference forms",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "Argument delimiters; & and ...",
+      "productions": [
+        "argument",
+        "argument_list",
+        "argument_no_expr",
+        "ctor_arguments",
+        "function_call",
+        "non_empty_argument_list",
+        "optional_arg_ref",
+        "optional_ellipsis"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/argumentList.test",
+        "test/code/parser/expr/fetchAndCall/args.test",
+        "test/code/parser/expr/fetchAndCall/namedArgs.test"
+      ],
+      "notes": "Shared argument grammar also has deferred 8.6 placeholders; exclude those alternatives.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "call-trailing-comma",
+      "title": "Trailing commas in calls",
+      "language_since": "7.3",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "Trailing comma before closing parenthesis",
+      "productions": [
+        "argument_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/trailingCommas.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration73.new-features.php"
+      ]
+    },
+    {
+      "id": "named-arguments",
+      "title": "Named arguments",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "Argument identifier followed by colon",
+      "productions": [
+        "argument"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/fetchAndCall/namedArgs.test"
+      ],
+      "notes": "PHP 8.1 permits named arguments after unpack; compiler-level ordering checks are not all parser requirements.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.new-features.php"
+      ]
+    },
+    {
+      "id": "first-class-callables",
+      "title": "First-class callable ellipsis",
+      "language_since": "8.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "Bare ... argument list versus unpack expression",
+      "productions": [
+        "argument_no_expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/firstClassCallables.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration81.new-features.php"
+      ]
+    },
+    {
+      "id": "new-clone",
+      "title": "Instantiation and ordinary clone expressions",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "new/clone tokens; anonymous class and argument boundaries",
+      "productions": [
+        "new_dereferenceable",
+        "new_expr",
+        "new_non_dereferenceable"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/new.test",
+        "test/code/parser/expr/clone.test",
+        "test/code/parser/expr/fetchAndCall/newDeref.test",
+        "test/code/parser/stmt/function/clone_function.test"
+      ],
+      "notes": "Ordinary clone($x) is an expression; expanded clone call arguments belong to 8.5.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "new-dereference",
+      "title": "Dereference new expressions without surrounding parentheses",
+      "language_since": "8.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "Postfix access after new constructor expression",
+      "productions": [
+        "fully_dereferenceable",
+        "new_expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/newDeref.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration84.new-features.php"
+      ]
+    },
+    {
+      "id": "constructs",
+      "title": "include/require/eval/print/isset/empty/exit language constructs",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "Construct keywords and argument forms",
+      "productions": [
+        "expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/includeAndEval.test",
+        "test/code/parser/expr/print.test",
+        "test/code/parser/expr/issetAndEmpty.test",
+        "test/code/parser/expr/exprInIsset.test",
+        "test/code/parser/expr/exit.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "exit-call",
+      "title": "Extended exit/die call syntax and stub names",
+      "language_since": "8.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions + parser/declarations",
+      "lexical_requirements": "Exit token in argument/callable/function-name contexts",
+      "productions": [
+        "expr",
+        "fn_identifier"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/exit.test",
+        "test/code/parser/stmt/function/exit_die_function.test"
+      ],
+      "notes": "Keep reference Exit node for simple forms and FuncCall for extended forms.",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/ParserAbstract.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration84.incompatible.php"
+      ]
+    },
+    {
+      "id": "match",
+      "title": "Match expressions",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "match keyword and => arms",
+      "productions": [
+        "match",
+        "match_arm",
+        "match_arm_list",
+        "non_empty_match_arm_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/match.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer/TokenEmulator/MatchTokenEmulator.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.new-features.php"
+      ]
+    },
+    {
+      "id": "throw-expression",
+      "title": "Throw as an expression",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "throw binding in expression context",
+      "productions": [
+        "expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/throw.test"
+      ],
+      "notes": "Standalone throw exists in baseline; expression placement is the version change.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.new-features.php"
+      ]
+    },
+    {
+      "id": "closures",
+      "title": "Closures, capture lists and callable references",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/functions",
+      "lexical_requirements": "function/use keywords, & and static",
+      "productions": [
+        "lexical_var",
+        "lexical_var_list",
+        "lexical_vars",
+        "non_empty_lexical_var_list",
+        "optional_ref"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/closure.test",
+        "test/code/parser/stmt/function/byRef.test",
+        "test/code/parser/stmt/function/specialVars.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "arrow-functions",
+      "title": "Arrow functions",
+      "language_since": "7.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/functions",
+      "lexical_requirements": "fn keyword and =>",
+      "productions": [
+        "expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/arrow_function.test",
+        "test/code/parser/stmt/function/fn.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer/TokenEmulator/FnTokenEmulator.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration74.new-features.php"
+      ]
+    },
+    {
+      "id": "generators",
+      "title": "Yield, yield-from and generator binding",
+      "language_since": "7.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/functions + parser/expressions",
+      "lexical_requirements": "yield/yield from and => binding",
+      "productions": [
+        "expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/generator/basic.test",
+        "test/code/parser/stmt/generator/yieldPrecedence.test",
+        "test/code/parser/stmt/generator/yieldUnaryPrecedence.test"
+      ],
+      "notes": "yield predates PHP7; yield-from is PHP7.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration70.new-features.php"
+      ]
+    },
+    {
+      "id": "statements",
+      "title": "Statements, declare, static/global variables, labels and unset",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/statements",
+      "lexical_requirements": "Statement keywords, terminators and delimiters",
+      "productions": [
+        "declare_list",
+        "declare_list_element",
+        "declare_statement",
+        "global_var",
+        "global_var_list",
+        "non_empty_declare_list",
+        "non_empty_global_var_list",
+        "non_empty_static_var_list",
+        "non_empty_variables_list",
+        "static_var",
+        "static_var_list",
+        "variables_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/controlFlow.test",
+        "test/code/parser/stmt/declare.test",
+        "test/code/parser/stmt/echo.test",
+        "test/code/parser/stmt/unset.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "control-flow",
+      "title": "Conditionals, switch and alternate syntax",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/statements",
+      "lexical_requirements": "if/else/switch/case and end markers",
+      "productions": [
+        "case",
+        "case_list",
+        "case_separator",
+        "else_single",
+        "elseif",
+        "elseif_list",
+        "new_else_single",
+        "new_elseif",
+        "new_elseif_list",
+        "switch_case_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/if.test",
+        "test/code/parser/stmt/switch.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "loops",
+      "title": "For, foreach, while and do loops",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/statements",
+      "lexical_requirements": "Loop keywords, AS and alternate end markers",
+      "productions": [
+        "for_expr",
+        "for_statement",
+        "foreach_statement",
+        "foreach_variable",
+        "while_statement"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/loop/do.test",
+        "test/code/parser/stmt/loop/for.test",
+        "test/code/parser/stmt/loop/foreach.test",
+        "test/code/parser/stmt/loop/while.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "exceptions",
+      "title": "Try/catch/finally structure",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/statements",
+      "lexical_requirements": "Exception keywords and catch delimiters",
+      "productions": [
+        "catch",
+        "catches",
+        "name_union",
+        "optional_finally"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/tryCatch.test",
+        "test/code/parser/stmt/tryWithoutCatch.test",
+        "test/code/parser/stmt/multiCatch.test",
+        "test/code/parser/stmt/tryCatch_without_variable.test"
+      ],
+      "notes": "Catch union added in 7.1; optional catch variable added in 8.0.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "multi-catch",
+      "title": "Multiple exception types in catch",
+      "language_since": "7.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/statements",
+      "lexical_requirements": "Catch type separator |",
+      "productions": [
+        "name_union"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/multiCatch.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration71.new-features.php"
+      ]
+    },
+    {
+      "id": "optional-catch-variable",
+      "title": "Catch without a bound variable",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/statements",
+      "lexical_requirements": "Optional variable in catch",
+      "productions": [
+        "optional_plain_variable"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/tryCatch_without_variable.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.new-features.php"
+      ]
+    },
+    {
+      "id": "functions",
+      "title": "Functions, conditional declarations and parameters",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/functions",
+      "lexical_requirements": "function names, parameters/defaults, variadics",
+      "productions": [
+        "fn_identifier",
+        "function_declaration_statement",
+        "non_empty_parameter_list",
+        "parameter",
+        "parameter_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/function/conditional.test",
+        "test/code/parser/stmt/function/defaultValues.test",
+        "test/code/parser/stmt/function/returnTypes.test",
+        "test/code/parser/stmt/function/typeDeclarations.test",
+        "test/code/parser/stmt/function/variadic.test",
+        "test/code/parser/stmt/function/variadicDefaultValue.test"
+      ],
+      "notes": "Includes PHP7 scalar and return type syntax; void parameter behavior follows target-sensitive built-in classification.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "parameter-trailing-comma",
+      "title": "Trailing commas in parameters and closure captures",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/functions",
+      "lexical_requirements": "Trailing comma in parameter/use lists",
+      "productions": [
+        "lexical_vars",
+        "parameter_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/function/parameters_trailing_comma.test",
+        "test/code/parser/expr/closure_use_trailing_comma.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.new-features.php"
+      ]
+    },
+    {
+      "id": "types",
+      "title": "Named/built-in types and target-sensitive classification",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/types + version",
+      "lexical_requirements": "type identifiers; static/self/parent and punctuation",
+      "productions": [
+        "optional_return_type",
+        "optional_type_without_static",
+        "type",
+        "type_expr",
+        "type_expr_without_static",
+        "type_without_static"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/function/builtinTypeDeclarations.test",
+        "test/code/parser/stmt/function/typeDeclarations.test",
+        "test/code/parser/stmt/function/typeVersions.test",
+        "test/code/parser/stmt/function/invalidVoidParam.test",
+        "test/code/parser/stmt/function/validVoidParam.test"
+      ],
+      "notes": "Builtin recognition can differ from strict language validity; null/false recognized from 8.0 even where standalone type validity arrived later.",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/PhpVersion.php",
+        "lib/PhpParser/ParserAbstract.php"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "nullable-void-iterable",
+      "title": "Nullable types and void/iterable built-ins",
+      "language_since": "7.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/types",
+      "lexical_requirements": "? prefix; void/iterable identifiers",
+      "productions": [
+        "type",
+        "type_expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/function/nullableTypes.test",
+        "test/code/parser/stmt/function/typeVersions.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration71.new-features.php"
+      ]
+    },
+    {
+      "id": "object-type",
+      "title": "object built-in type",
+      "language_since": "7.2",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/types",
+      "lexical_requirements": "object identifier in type context",
+      "productions": [
+        "type"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/function/typeVersions.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration72.new-features.php"
+      ]
+    },
+    {
+      "id": "union-types",
+      "title": "Union types, mixed and static return types",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/types",
+      "lexical_requirements": "| separators; mixed/static context",
+      "productions": [
+        "union_type",
+        "union_type_element",
+        "union_type_without_static",
+        "union_type_without_static_element"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/function/unionTypes.test",
+        "test/code/parser/stmt/class/staticType.test",
+        "test/code/parser/stmt/function/typeVersions.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.new-features.php"
+      ]
+    },
+    {
+      "id": "intersection-types",
+      "title": "Intersection types and never return type",
+      "language_since": "8.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/types",
+      "lexical_requirements": "& type separator versus reference",
+      "productions": [
+        "intersection_type",
+        "intersection_type_list",
+        "intersection_type_without_static",
+        "intersection_type_without_static_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/function/intersectionTypes.test",
+        "test/code/parser/stmt/function/neverType.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration81.new-features.php"
+      ]
+    },
+    {
+      "id": "dnf-types",
+      "title": "DNF types and standalone null/false/true",
+      "language_since": "8.2",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/types",
+      "lexical_requirements": "Parenthesized intersections within unions; true type",
+      "productions": [
+        "type",
+        "union_type_element"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/function/disjointNormalFormTypes.test",
+        "test/code/parser/stmt/function/nullFalseTrueTypes.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration82.new-features.php"
+      ]
+    },
+    {
+      "id": "namespaces",
+      "title": "Namespaces, imports, aliases and namespace normalization",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/namespaces",
+      "lexical_requirements": "namespace/use/as and qualified names",
+      "productions": [
+        "inline_use_declaration",
+        "inline_use_declarations",
+        "non_empty_inline_use_declarations",
+        "non_empty_unprefixed_use_declarations",
+        "non_empty_use_declarations",
+        "unprefixed_use_declaration",
+        "unprefixed_use_declarations",
+        "use_declaration",
+        "use_declarations",
+        "use_type"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/namespace/alias.test",
+        "test/code/parser/stmt/namespace/braced.test",
+        "test/code/parser/stmt/namespace/invalidName.test",
+        "test/code/parser/stmt/namespace/mix.test",
+        "test/code/parser/stmt/namespace/name.test",
+        "test/code/parser/stmt/namespace/nested.test",
+        "test/code/parser/stmt/namespace/notBraced.test",
+        "test/code/parser/stmt/namespace/nsAfterHashbang.test",
+        "test/code/parser/stmt/namespace/outsideStmt.test",
+        "test/code/parser/stmt/namespace/outsideStmtInvalid.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "group-imports",
+      "title": "Grouped namespace imports",
+      "language_since": "7.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/namespaces",
+      "lexical_requirements": "Qualified prefix plus braced use items",
+      "productions": [
+        "group_use_declaration"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/namespace/groupUse.test",
+        "test/code/parser/stmt/namespace/groupUseErrors.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration70.new-features.php"
+      ]
+    },
+    {
+      "id": "group-trailing-comma",
+      "title": "Trailing commas in grouped imports",
+      "language_since": "7.2",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/namespaces",
+      "lexical_requirements": "Trailing comma inside group-use braces",
+      "productions": [
+        "inline_use_declarations",
+        "unprefixed_use_declarations"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/namespace/groupUseTrailingComma.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration72.new-features.php"
+      ]
+    },
+    {
+      "id": "classes",
+      "title": "Classes/interfaces/traits, modifiers and members",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "Declaration keywords and member identifiers",
+      "productions": [
+        "class_declaration_statement",
+        "class_entry_type",
+        "class_modifier",
+        "class_modifiers",
+        "class_name_list",
+        "class_statement",
+        "class_statement_list",
+        "class_statement_list_ex",
+        "extends_from",
+        "implements_list",
+        "interface_extends_list",
+        "member_modifier",
+        "method_body",
+        "method_modifiers",
+        "non_empty_class_name_list",
+        "non_empty_member_modifiers",
+        "variable_modifiers"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/abstract.test",
+        "test/code/parser/stmt/class/conditional.test",
+        "test/code/parser/stmt/class/final.test",
+        "test/code/parser/stmt/class/implicitPublic.test",
+        "test/code/parser/stmt/class/interface.test",
+        "test/code/parser/stmt/class/modifier_error.test",
+        "test/code/parser/stmt/class/php4Style.test",
+        "test/code/parser/stmt/class/readonlyMethod.test",
+        "test/code/parser/stmt/class/simple.test",
+        "test/code/parser/stmt/class/staticMethod.test"
+      ],
+      "notes": "Historical constructor names are ordinary methods; no runtime execution semantics.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "anonymous-classes",
+      "title": "Anonymous classes",
+      "language_since": "7.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "new class and optional constructor arguments",
+      "productions": [
+        "anonymous_class"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/anonymous.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration70.new-features.php"
+      ]
+    },
+    {
+      "id": "traits",
+      "title": "Trait use and adaptations",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "insteadof/as, qualified method references",
+      "productions": [
+        "trait_adaptation",
+        "trait_adaptation_list",
+        "trait_adaptations",
+        "trait_method_reference",
+        "trait_method_reference_fully_qualified"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/trait.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "trait-constants",
+      "title": "Constants declared in traits",
+      "language_since": "8.2",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "Existing const/member syntax",
+      "productions": [
+        "class_statement"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/trait.test"
+      ],
+      "notes": "Add a focused transition fixture if imported trait case does not exercise constants.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration82.new-features.php"
+      ]
+    },
+    {
+      "id": "trait-final",
+      "title": "Final trait-method adaptation",
+      "language_since": "8.3",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "final in trait alias adaptation",
+      "productions": [
+        "trait_adaptation"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/trait.test"
+      ],
+      "notes": "Add a focused transition fixture; broad trait case alone is not evidence of this subfeature.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration83.new-features.php"
+      ]
+    },
+    {
+      "id": "constants",
+      "title": "Global/class constants and constant fetches",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "const declarations and :: fetches",
+      "productions": [
+        "class_const",
+        "class_const_list",
+        "class_constant",
+        "constant",
+        "constant_declaration",
+        "constant_declaration_list",
+        "non_empty_class_const_list",
+        "non_empty_constant_declaration_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/const.test",
+        "test/code/parser/stmt/class/constModifierErrors.test",
+        "test/code/parser/stmt/class/constModifiers.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "class-constant-visibility",
+      "title": "Class constant visibility",
+      "language_since": "7.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "Visibility modifier before const",
+      "productions": [
+        "class_statement"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/constModifiers.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration71.new-features.php"
+      ]
+    },
+    {
+      "id": "final-constants",
+      "title": "Final class constants",
+      "language_since": "8.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "final const",
+      "productions": [
+        "class_statement"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/constModifiers.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration81.new-features.php"
+      ]
+    },
+    {
+      "id": "typed-constants",
+      "title": "Typed class/interface/trait/enum constants",
+      "language_since": "8.3",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations + parser/types",
+      "lexical_requirements": "Type preceding constant name",
+      "productions": [
+        "class_statement"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/typedConstants.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration83.new-features.php"
+      ]
+    },
+    {
+      "id": "dynamic-class-constant",
+      "title": "Dynamic class constant fetch",
+      "language_since": "8.3",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P07",
+      "planned_owner": "parser/expressions",
+      "lexical_requirements": "::{expression}",
+      "productions": [
+        "class_constant"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/dynamicClassConst.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration83.new-features.php"
+      ]
+    },
+    {
+      "id": "properties",
+      "title": "Properties and property modifier validation",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "var/visibility/static keywords and variable lists",
+      "productions": [
+        "non_empty_property_declaration_list",
+        "property_decl_name",
+        "property_declaration",
+        "property_declaration_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/propertyTypes.test",
+        "test/code/parser/stmt/class/property_modifiers.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "typed-properties",
+      "title": "Typed properties",
+      "language_since": "7.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "Type before property variable",
+      "productions": [
+        "class_statement"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/propertyTypes.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration74.new-features.php"
+      ]
+    },
+    {
+      "id": "promotion",
+      "title": "Constructor property promotion",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/functions + parser/declarations",
+      "lexical_requirements": "Parameter visibility/property modifiers",
+      "productions": [
+        "optional_property_modifiers",
+        "property_modifier"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/property_promotion.test"
+      ],
+      "notes": "Mixed fixture includes final promotion from PHP8.5; derive an in-scope variant in P02.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.new-features.php"
+      ]
+    },
+    {
+      "id": "readonly-properties",
+      "title": "Readonly properties",
+      "language_since": "8.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "readonly keyword in property context",
+      "productions": [
+        "member_modifier",
+        "property_modifier"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/property_modifiers.test",
+        "test/code/parser/stmt/class/property_promotion.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer/TokenEmulator/ReadonlyTokenEmulator.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration81.new-features.php"
+      ]
+    },
+    {
+      "id": "readonly-classes",
+      "title": "Readonly classes",
+      "language_since": "8.2",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "readonly class modifier",
+      "productions": [
+        "class_modifier"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/readonly.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration82.new-features.php"
+      ]
+    },
+    {
+      "id": "readonly-anonymous",
+      "title": "Readonly anonymous classes",
+      "language_since": "8.3",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "new readonly class",
+      "productions": [
+        "anonymous_class"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/readonlyAnonyous.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration83.new-features.php"
+      ]
+    },
+    {
+      "id": "enums",
+      "title": "Unit/backed enums and enum cases",
+      "language_since": "8.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "enum keyword, backing type and case",
+      "productions": [
+        "enum_case_expr",
+        "enum_scalar_type"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/enum.test",
+        "test/code/parser/stmt/class/enum_with_string.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer/TokenEmulator/EnumTokenEmulator.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration81.new-features.php"
+      ]
+    },
+    {
+      "id": "attributes",
+      "title": "Attribute groups on in-scope declaration targets",
+      "language_since": "8.0",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "#[ opener versus hash comment",
+      "productions": [
+        "attribute",
+        "attribute_decl",
+        "attribute_group",
+        "attributes",
+        "optional_attributes"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/attributes.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer/TokenEmulator/AttributeEmulator.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration80.new-features.php"
+      ]
+    },
+    {
+      "id": "property-hooks",
+      "title": "Property hooks, abstract/final properties and hook bodies",
+      "language_since": "8.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "get/set contextual names, hooks and modifiers",
+      "productions": [
+        "optional_property_hook_list",
+        "property_hook",
+        "property_hook_body",
+        "property_hook_list",
+        "property_hook_modifiers"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/property_hooks.test",
+        "test/code/parser/stmt/class/property_modifiers.test",
+        "test/code/parser/stmt/class/property_promotion.test"
+      ],
+      "notes": "Hooks also appear on promoted parameters; base grammar contains PHP8-only branches.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration84.new-features.php"
+      ]
+    },
+    {
+      "id": "asymmetric-visibility",
+      "title": "Asymmetric property visibility",
+      "language_since": "8.4",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "lexer/names + parser/declarations",
+      "lexical_requirements": "public/protected/private(set) tokens",
+      "productions": [
+        "member_modifier",
+        "property_modifier"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/asymmetric_visibility.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer/TokenEmulator/AsymmetricVisibilityTokenEmulator.php"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration84.new-features.php"
+      ]
+    },
+    {
+      "id": "new-initializers",
+      "title": "New expressions in permitted initializers",
+      "language_since": "8.1",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P09",
+      "planned_owner": "parser/declarations",
+      "lexical_requirements": "Existing new expression syntax in defaults",
+      "productions": [
+        "attribute_decl",
+        "constant_declaration",
+        "parameter",
+        "static_var"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/newInInitializer.test"
+      ],
+      "notes": "Full constant-expression legality is a compiler/evaluator concern.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration81.new-features.php"
+      ]
+    },
+    {
+      "id": "static-initializers",
+      "title": "Arbitrary static variable initializers",
+      "language_since": "8.3",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P08",
+      "planned_owner": "parser/statements",
+      "lexical_requirements": "Existing expression syntax after static default",
+      "productions": [
+        "static_var"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/controlFlow.test"
+      ],
+      "notes": "Add focused transition test; parser permissiveness does not prove runtime constant-expression legality.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": [
+        "https://www.php.net/manual/en/migration83.new-features.php"
+      ]
+    },
+    {
+      "id": "halt",
+      "title": "__halt_compiler syntax, scope and raw tail",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P06",
+      "planned_owner": "lexer/file + parser/statements",
+      "lexical_requirements": "Validate halt syntax then retain terminal bytes",
+      "productions": [
+        "inner_statement",
+        "top_statement"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/haltCompiler.test",
+        "test/code/parser/stmt/haltCompilerInvalidSyntax.test",
+        "test/code/parser/stmt/haltCompilerOffset.test",
+        "test/code/parser/stmt/haltCompilerOutermostScope.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/ParserAbstract.php"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "legacy-five",
+      "title": "PHP 5.x target-specific interpretation",
+      "language_since": "5.x",
+      "language_until": null,
+      "scope": "deferred",
+      "status": "not-implemented",
+      "phase": "E08",
+      "planned_owner": "version (deferred)",
+      "lexical_requirements": "Legacy tokenizer/numeric/identifier rules",
+      "productions": [
+        "expr",
+        "scalar",
+        "type"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/assignNewByRef.test",
+        "test/code/parser/scalar/invalidOctal.test",
+        "test/code/parser/scalar/unicodeEscape.test",
+        "test/code/parser/stmt/function/typeVersions.test"
+      ],
+      "notes": "Only explicit 5.x cases are deferred; their PHP7+ negative counterparts stay core.",
+      "reference_paths": [
+        "grammar/php.y"
+      ],
+      "language_sources": []
+    },
+    {
+      "id": "pipe",
+      "title": "Pipe operator",
+      "language_since": "8.5",
+      "language_until": null,
+      "scope": "deferred",
+      "status": "not-implemented",
+      "phase": "E07",
+      "planned_owner": "parser/expressions (deferred)",
+      "lexical_requirements": "|> token",
+      "productions": [
+        "expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/pipe.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer/TokenEmulator/PipeOperatorEmulator.php",
+        "CHANGELOG.md"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/CHANGELOG.md"
+      ]
+    },
+    {
+      "id": "void-cast",
+      "title": "Void cast",
+      "language_since": "8.5",
+      "language_until": null,
+      "scope": "deferred",
+      "status": "not-implemented",
+      "phase": "E07",
+      "planned_owner": "lexer/operators (deferred)",
+      "lexical_requirements": "(void) token",
+      "productions": [
+        "expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/voidCast.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Lexer/TokenEmulator/VoidCastEmulator.php",
+        "CHANGELOG.md"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/CHANGELOG.md"
+      ]
+    },
+    {
+      "id": "clone-call",
+      "title": "Expanded clone call arguments and clone stub name",
+      "language_since": "8.5",
+      "language_until": null,
+      "scope": "deferred",
+      "status": "not-implemented",
+      "phase": "E07",
+      "planned_owner": "parser/expressions (deferred)",
+      "lexical_requirements": "clone call context",
+      "productions": [
+        "clone_argument_list",
+        "fn_identifier",
+        "non_empty_clone_argument_list"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/function/clone_function.test",
+        "test/code/parser/expr/argumentList.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "CHANGELOG.md"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/CHANGELOG.md"
+      ]
+    },
+    {
+      "id": "constant-attributes",
+      "title": "Attributes on global constants",
+      "language_since": "8.5",
+      "language_until": null,
+      "scope": "deferred",
+      "status": "not-implemented",
+      "phase": "E07",
+      "planned_owner": "parser/declarations (deferred)",
+      "lexical_requirements": "Attributes before top-level const",
+      "productions": [
+        "top_statement"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/const.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/ParserAbstract.php",
+        "CHANGELOG.md"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/CHANGELOG.md"
+      ]
+    },
+    {
+      "id": "final-promotion",
+      "title": "Final modifier on promoted parameters",
+      "language_since": "8.5",
+      "language_until": null,
+      "scope": "deferred",
+      "status": "not-implemented",
+      "phase": "E07",
+      "planned_owner": "parser/declarations (deferred)",
+      "lexical_requirements": "final parameter modifier",
+      "productions": [
+        "property_modifier"
+      ],
+      "fixture_files": [
+        "test/code/parser/stmt/class/property_promotion.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "CHANGELOG.md"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/CHANGELOG.md"
+      ]
+    },
+    {
+      "id": "partial-application",
+      "title": "Experimental partial function application",
+      "language_since": "8.6",
+      "language_until": null,
+      "scope": "deferred",
+      "status": "not-implemented",
+      "phase": "E07",
+      "planned_owner": "parser/expressions (deferred)",
+      "lexical_requirements": "? argument placeholders; expanded bare ellipsis forms",
+      "productions": [
+        "argument_no_expr"
+      ],
+      "fixture_files": [
+        "test/code/parser/expr/partialFunctionApplication.test"
+      ],
+      "notes": "",
+      "reference_paths": [
+        "grammar/php.y",
+        "lib/PhpParser/Node/ArgPlaceholder.php",
+        "CHANGELOG.md"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/CHANGELOG.md"
+      ]
+    },
+    {
+      "id": "ast-model",
+      "title": "AST common structures, bases and compatibility aliases",
+      "language_since": "baseline",
+      "language_until": null,
+      "scope": "core",
+      "status": "not-implemented",
+      "phase": "P04",
+      "planned_owner": "ast",
+      "lexical_requirements": "No additional lexical requirements",
+      "productions": [],
+      "fixture_files": [],
+      "notes": "",
+      "reference_paths": [
+        "lib/PhpParser/Node.php",
+        "lib/PhpParser/NodeAbstract.php"
+      ],
+      "language_sources": [
+        "https://github.com/nikic/PHP-Parser/blob/8d2b672aff65a1a4dbf7936cec27d19f51989412/grammar/php.y"
+      ]
+    },
+    {
+      "id": "printer",
+      "title": "Standard printing",
+      "language_since": "extension",
+      "language_until": null,
+      "scope": "deferred",
+      "status": "not-implemented",
+      "phase": "E04",
+      "planned_owner": "printer (deferred)",
+      "lexical_requirements": "Separate parser/printer targets",
+      "productions": [],
+      "fixture_files": [],
+      "notes": "",
+      "reference_paths": [
+        "lib/PhpParser/PrettyPrinterAbstract.php"
+      ],
+      "language_sources": []
+    },
+    {
+      "id": "format-preservation",
+      "title": "Formatting-preserving transforms",
+      "language_since": "extension",
+      "language_until": null,
+      "scope": "deferred",
+      "status": "not-implemented",
+      "phase": "E05",
+      "planned_owner": "printer (deferred)",
+      "lexical_requirements": "Original-token and mutation provenance",
+      "productions": [],
+      "fixture_files": [],
+      "notes": "",
+      "reference_paths": [
+        "lib/PhpParser/PrettyPrinterAbstract.php"
+      ],
+      "language_sources": []
+    }
+  ]
+}

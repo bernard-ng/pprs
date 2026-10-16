@@ -2,5 +2,27 @@
 name = "pprs"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.85"
+description = "A Rust PHP parser library targeting PHP 7.0–8.4 (under development)"
+readme = "README.md"
+keywords = ["php", "parser", "ast"]
+categories = ["parsing", "development-tools"]
+# Enable publication after choosing the original-code license and completing release checks.
+publish = false
+autobins = false
 
-[dependencies]
+[lib]
+path = "src/lib.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+
+[dev-dependencies]
+hex = "0.4.3"
+serde_json = "1.0.145"
+sha2 = "0.10.9"

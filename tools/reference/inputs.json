@@ -1,0 +1,351 @@
+[
+  {
+    "id": "derived/expr/argumentList.test#1/supported",
+    "title": "In-scope subset of expr/argumentList.test",
+    "target": "7.4",
+    "phase": "P07",
+    "features": [
+      "calls"
+    ],
+    "reason": "Retain in-scope source slices; remove newer clone calls, constant attributes or final promotion. Expectations freshly generated.",
+    "derivation": {
+      "parent": "parser/expr/argumentList.test#1",
+      "source_sha256": "b9f6fa68dfabe9a749c8780974ceaccdca8f7cee4ad0270c902bca3e4110e7d0",
+      "segments": [
+        [
+          0,
+          43
+        ]
+      ]
+    }
+  },
+  {
+    "id": "derived/stmt/class/property_promotion.test#0/supported",
+    "title": "In-scope subset of stmt/class/property_promotion.test",
+    "target": "8.4",
+    "phase": "P09",
+    "features": [
+      "promotion",
+      "property-hooks",
+      "readonly-properties"
+    ],
+    "reason": "Retain in-scope source slices; remove newer clone calls, constant attributes or final promotion. Expectations freshly generated.",
+    "derivation": {
+      "parent": "parser/stmt/class/property_promotion.test#0",
+      "source_sha256": "5511c22febe6973272501d2aea75966a44b032fbad034e126ddc6c9887ff4071",
+      "segments": [
+        [
+          0,
+          266
+        ],
+        [
+          284,
+          294
+        ]
+      ]
+    }
+  },
+  {
+    "id": "derived/stmt/const.test#0/supported",
+    "title": "In-scope subset of stmt/const.test",
+    "target": "8.4",
+    "phase": "P08",
+    "features": [
+      "constants"
+    ],
+    "reason": "Retain in-scope source slices; remove newer clone calls, constant attributes or final promotion. Expectations freshly generated.",
+    "derivation": {
+      "parent": "parser/stmt/const.test#0",
+      "source_sha256": "3310e4b5ccd8d82c88814dd51afe92421b07aa23f34177cc4709b5f893a096c3",
+      "segments": [
+        [
+          0,
+          45
+        ]
+      ]
+    }
+  },
+  {
+    "id": "derived/stmt/function/clone_function.test#0/supported",
+    "title": "In-scope subset of stmt/function/clone_function.test",
+    "target": "8.4",
+    "phase": "P07",
+    "features": [
+      "new-clone"
+    ],
+    "reason": "Retain in-scope source slices; remove newer clone calls, constant attributes or final promotion. Expectations freshly generated.",
+    "derivation": {
+      "parent": "parser/stmt/function/clone_function.test#0",
+      "source_sha256": "bc29ee9746aeec1f724647bbbb5a936e572ba876b8a67099cce111b099522e78",
+      "segments": [
+        [
+          0,
+          6
+        ],
+        [
+          77,
+          98
+        ]
+      ]
+    }
+  },
+  {
+    "id": "project/version/7.0",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "7.0",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/version/7.1",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "7.1",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/version/7.2",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "7.2",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/version/7.3",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "7.3",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/version/7.4",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "7.4",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/version/8.0",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "8.0",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/version/8.1",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "8.1",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/version/8.2",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "8.2",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/version/8.3",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "8.3",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/version/8.4",
+    "title": "Concatenation precedence and type interpretation",
+    "target": "8.4",
+    "phase": "P10",
+    "features": [
+      "operators",
+      "types"
+    ],
+    "reason": "Explicit target probe; PHP7/PHP8 precedence and best-effort type classification.",
+    "source": {
+      "bytes": "3c3f706870202276616c75653d22202e2031202b20323b2066756e6374696f6e206628293a2066616c7365207b7d"
+    }
+  },
+  {
+    "id": "project/adapter/empty",
+    "title": "empty",
+    "target": "8.4",
+    "phase": "P10",
+    "features": [
+      "file"
+    ],
+    "reason": "Byte/position/normalization edge case; not an implemented parser claim.",
+    "source": {
+      "bytes": ""
+    }
+  },
+  {
+    "id": "project/adapter/eof-error",
+    "title": "eof-error",
+    "target": "8.4",
+    "phase": "P10",
+    "features": [
+      "recovery"
+    ],
+    "reason": "Byte/position/normalization edge case; not an implemented parser claim.",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628"
+    }
+  },
+  {
+    "id": "project/adapter/unterminated-comment",
+    "title": "unterminated-comment",
+    "target": "8.4",
+    "phase": "P10",
+    "features": [
+      "comments",
+      "recovery"
+    ],
+    "reason": "Byte/position/normalization edge case; not an implemented parser claim.",
+    "source": {
+      "bytes": "3c3f706870202f2a20726177ff"
+    }
+  },
+  {
+    "id": "project/adapter/bad-bytes",
+    "title": "bad-bytes",
+    "target": "8.4",
+    "phase": "P10",
+    "features": [
+      "recovery"
+    ],
+    "reason": "Byte/position/normalization edge case; not an implemented parser claim.",
+    "source": {
+      "bytes": "3c3f7068702000013b"
+    }
+  },
+  {
+    "id": "project/adapter/line-endings",
+    "title": "line-endings",
+    "target": "8.4",
+    "phase": "P10",
+    "features": [
+      "comments",
+      "strings"
+    ],
+    "reason": "Byte/position/normalization edge case; not an implemented parser claim.",
+    "source": {
+      "bytes": "3c3f7068700d2f2a2a20646f63202a2f0d0a6563686f2022ff223b0a6563686f20323b"
+    }
+  },
+  {
+    "id": "project/adapter/halt-tail",
+    "title": "halt-tail",
+    "target": "8.4",
+    "phase": "P10",
+    "features": [
+      "halt"
+    ],
+    "reason": "Byte/position/normalization edge case; not an implemented parser claim.",
+    "source": {
+      "bytes": "3c3f706870205f5f68616c745f636f6d70696c657228293b00ff7261770d0a"
+    }
+  },
+  {
+    "id": "project/adapter/numbers",
+    "title": "numbers",
+    "target": "8.4",
+    "phase": "P10",
+    "features": [
+      "numbers"
+    ],
+    "reason": "Byte/position/normalization edge case; not an implemented parser claim.",
+    "source": {
+      "bytes": "3c3f70687020393232333337323033363835343737353830373b2031653939393b20302e303b"
+    }
+  },
+  {
+    "id": "project/adapter/short-tags",
+    "title": "short-tags",
+    "target": "8.4",
+    "phase": "P05",
+    "features": [
+      "file"
+    ],
+    "reason": "Byte/position/normalization edge case; not an implemented parser claim.",
+    "source": {
+      "bytes": "3c3f206563686f20313b203f3e3c3f3d2032203f3e"
+    }
+  },
+  {
+    "id": "project/adapter/bom",
+    "title": "bom",
+    "target": "8.4",
+    "phase": "P10",
+    "features": [
+      "file"
+    ],
+    "reason": "Byte/position/normalization edge case; not an implemented parser claim.",
+    "source": {
+      "bytes": "efbbbf3c3f706870206563686f20313b"
+    }
+  }
+]

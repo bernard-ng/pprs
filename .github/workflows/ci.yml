@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -D warnings
+  RUSTDOCFLAGS: -D warnings
+
+jobs:
+  quality:
+    name: Format, Clippy and documentation
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # master
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+      - name: Check formatting
+        run: |
+          cargo fmt --all --check
+          cargo fmt --manifest-path tests/consumer/Cargo.toml --all --check
+      - name: Lint library and tests
+        run: cargo clippy --locked --all-targets -- -D warnings
+      - name: Lint downstream consumer
+        run: cargo clippy --locked --manifest-path tests/consumer/Cargo.toml --all-targets -- -D warnings
+      - name: Build documentation
+        run: cargo doc --locked --no-deps
+
+  test:
+    name: Rust ${{ matrix.toolchain }} / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            toolchain: "1.85.0"
+          - os: ubuntu-24.04
+            toolchain: stable
+          - os: macos-latest
+            toolchain: stable
+          - os: windows-latest
+            toolchain: stable
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # master
+        with:
+          toolchain: ${{ matrix.toolchain }}
+      - name: Run unit and integration tests
+        run: cargo +${{ matrix.toolchain }} test --locked --all-targets
+      # --all-targets does not run doctests; keep this explicit.
+      - name: Run documentation tests
+        run: cargo +${{ matrix.toolchain }} test --locked --doc
+      - name: Check downstream consumer
+        run: cargo +${{ matrix.toolchain }} check --locked --manifest-path tests/consumer/Cargo.toml
+
+  reference-metadata:
+    name: Reference corpus and coverage
+    runs-on: ubuntu-24.04
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Verify committed baseline without PHP or .references
+        run: python3 tools/reference/verify_p00.py --metadata-only
+      - name: Test baseline verifier
+        run: python3 -m unittest discover -s tools/reference -p 'test_*.py' -v
+      - name: Verify exported corpus and phase coverage without PHP
+        run: python3 tools/reference/corpus.py
+      - name: Prevent coverage demotions relative to the pull request base
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if git cat-file -e "$BASE_SHA:tests/fixtures/coverage.json" 2>/dev/null; then
+            git show "$BASE_SHA:tests/fixtures/coverage.json" > "$RUNNER_TEMP/pprs-previous-coverage.json"
+            python3 tools/reference/corpus.py --previous-coverage "$RUNNER_TEMP/pprs-previous-coverage.json"
+          fi

@@ -1,0 +1,58 @@
+{"path": "test/PhpParser/Builder/ClassConstTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/ClassTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/EnumCaseTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/EnumTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/FunctionTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/InterfaceTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/MethodTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/NamespaceTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/ParamTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/PropertyTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/TraitTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/TraitUseAdaptationTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/TraitUseTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Builder/UseTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/BuilderFactoryTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/BuilderHelpersTest.php", "scope": "deferred", "phase": "E03", "reason": "AST construction helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/CodeParsingTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/CommentTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/CompatibilityTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/ConstExprEvaluatorTest.php", "scope": "deferred", "phase": "E06", "reason": "Constant evaluation.", "status": "not-ported"}
+{"path": "test/PhpParser/ErrorHandler/CollectingTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/ErrorHandler/ThrowingTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/ErrorTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Internal/DifferTest.php", "scope": "deferred", "phase": "E05", "reason": "Formatting-preserving diff helper.", "status": "not-ported"}
+{"path": "test/PhpParser/JsonDecoderTest.php", "scope": "deferred", "phase": "E01", "reason": "Public serialization.", "status": "not-ported"}
+{"path": "test/PhpParser/Lexer/EmulativeTest.php", "scope": "core", "phase": "P05", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/LexerTest.php", "scope": "core", "phase": "P05", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/ModifiersTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/NameContextTest.php", "scope": "deferred", "phase": "E02", "reason": "Name resolution.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Expr/CallableLikeTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/IdentifierTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/NameTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/ParamTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/PropertyHookTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Scalar/DNumberTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Scalar/MagicConstTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Scalar/NumberTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Scalar/StringTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Stmt/ClassConstTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Stmt/ClassMethodTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Stmt/ClassTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Stmt/InterfaceTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Node/Stmt/PropertyTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/NodeAbstractTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/NodeDumperTest.php", "scope": "core", "phase": "P02", "reason": "Fixture/dump tooling behavior; not public API parity.", "status": "not-ported"}
+{"path": "test/PhpParser/NodeFinderTest.php", "scope": "core", "phase": "P13", "reason": "Read-only traversal subset; mutation/parent links deferred to E03.", "status": "not-ported"}
+{"path": "test/PhpParser/NodeTraverserTest.php", "scope": "core", "phase": "P13", "reason": "Read-only traversal subset; mutation/parent links deferred to E03.", "status": "not-ported"}
+{"path": "test/PhpParser/NodeVisitor/FindingVisitorTest.php", "scope": "core", "phase": "P13", "reason": "Read-only traversal subset; mutation/parent links deferred to E03.", "status": "not-ported"}
+{"path": "test/PhpParser/NodeVisitor/FirstFindingVisitorTest.php", "scope": "core", "phase": "P13", "reason": "Read-only traversal subset; mutation/parent links deferred to E03.", "status": "not-ported"}
+{"path": "test/PhpParser/NodeVisitor/NameResolverTest.php", "scope": "deferred", "phase": "E02", "reason": "Name resolution.", "status": "not-ported"}
+{"path": "test/PhpParser/NodeVisitor/NodeConnectingVisitorTest.php", "scope": "deferred", "phase": "E03", "reason": "Parent/sibling link mutation helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/NodeVisitor/ParentConnectingVisitorTest.php", "scope": "deferred", "phase": "E03", "reason": "Parent/sibling link mutation helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/Parser/Php7Test.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/Parser/Php8Test.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/ParserFactoryTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/PhpVersionTest.php", "scope": "core", "phase": "P10", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}
+{"path": "test/PhpParser/PrettyPrinterTest.php", "scope": "deferred", "phase": "E04", "reason": "Printing helpers.", "status": "not-ported"}
+{"path": "test/PhpParser/TokenTest.php", "scope": "core", "phase": "P05", "reason": "Parser, AST, source or literal behavior to extract during implementation.", "status": "not-ported"}

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-10-16",
+  "project_phase": "P00",
+  "repository": "https://github.com/nikic/PHP-Parser",
+  "local_checkout": ".references",
+  "commit": "8d2b672aff65a1a4dbf7936cec27d19f51989412",
+  "tree": "3e0686c617877c36ea796f1110d8478d26c4281f",
+  "describe": "v5.9.0-7-g8d2b672a",
+  "origin_url_at_freeze": "https://github.com/nikic/php-Parser",
+  "worktree_at_freeze": "clean",
+  "license": "BSD-3-Clause",
+  "license_path": "reference/LICENSE.nikic-PHP-Parser",
+  "file_manifest": "reference/files.sha256",
+  "file_manifest_sha256": "64bf83fe6535142fab4d7daa34a758ce908e45876bf01ac70f23cca2f300d60a",
+  "tracked_file_count": 668,
+  "supported_target_versions": [
+    "7.0",
+    "7.1",
+    "7.2",
+    "7.3",
+    "7.4",
+    "8.0",
+    "8.1",
+    "8.2",
+    "8.3",
+    "8.4"
+  ],
+  "default_target": "8.4",
+  "reference_newest_target": "8.5",
+  "reference_contains_experimental": "8.6 partial application",
+  "counts": {
+    "grammar_productions": 192,
+    "node_source_files": 193,
+    "unit_test_source_files": 58,
+    "fixture_files": 288,
+    "fixture_cases": 530,
+    "parser_cases": 290
+  },
+  "parser_case_scopes": {
+    "core": 277,
+    "deferred": 9,
+    "mixed": 4
+  },
+  "inventory_sha256": {
+    "docs/compatibility/features.json": "11e1535a94b66d6cc5ca7f3261900fab12b24909ef4f44fd9b8586bd54fe678f",
+    "docs/compatibility/fixtures.jsonl": "e93e87460e4177878fa6d57a08e29b64c97b8c4afb8374a27f814d26672af9b8",
+    "docs/compatibility/grammar.jsonl": "db3edd154c8e349cd1ad88b4f8951ebd28ccd5260100e9811d60feaa9757d208",
+    "docs/compatibility/nodes.jsonl": "139b348737e805fed6586e231d6beea32155ee84c4801513d7b4d0d31f1f98c6",
+    "docs/compatibility/unit-tests.jsonl": "794d681ea75de8acb7ff3291838d7d57b5953502ae0b665dba42d31fbdb27451"
+  },
+  "oracle_execution": "not-run; P02 exports expanded fixtures and normalized reference results"
+}

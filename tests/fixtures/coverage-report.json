@@ -1,0 +1,41 @@
+{
+  "total": 313,
+  "comparable": 300,
+  "original_scopes": {
+    "core": 277,
+    "deferred": 9,
+    "mixed": 4
+  },
+  "cases": {
+    "deferred": 13,
+    "intentional-difference": 0,
+    "passing": 0,
+    "pending": 300
+  },
+  "channels_by_phase": {
+    "E07": {
+      "deferred": 36
+    },
+    "E08": {
+      "deferred": 16
+    },
+    "P05": {
+      "pending": 300
+    },
+    "P07": {
+      "pending": 109
+    },
+    "P08": {
+      "pending": 49
+    },
+    "P09": {
+      "pending": 71
+    },
+    "P10": {
+      "pending": 337
+    },
+    "P11": {
+      "pending": 334
+    }
+  }
+}

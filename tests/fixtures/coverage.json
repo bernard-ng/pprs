@@ -1,0 +1,5691 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "derived/expr/argumentList.test#1/supported": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "derived/stmt/class/property_promotion.test#0/supported": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "derived/stmt/const.test#0/supported": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "derived/stmt/function/clone_function.test#0/supported": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/blockComments.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/commentAtEndOfClass.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/comments.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/comments.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/comments.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/emptyFile.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/eofError.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/eofError.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/lexerErrors.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/lexerErrors.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/lexerErrors.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/lexerErrors.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/lexerErrors.test#4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#10": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#11": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#12": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#13": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#14": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#15": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#16": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#17": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#18": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#19": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#20": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#21": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#22": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#23": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#24": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#25": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#5": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#6": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#7": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#8": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/errorHandling/recovery.test#9": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/alternative_array_syntax.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/alternative_array_syntax.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/argumentList.test#0": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Empty clone call is accepted by newer parser grammar; not an in-scope valid clone expression."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Empty clone call is accepted by newer parser grammar; not an in-scope valid clone expression."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Empty clone call is accepted by newer parser grammar; not an in-scope valid clone expression."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Empty clone call is accepted by newer parser grammar; not an in-scope valid clone expression."
+      }
+    },
+    "parser/expr/argumentList.test#1": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Ordinary call forms plus PHP8.5 clone arguments; derive call-only case in P02. Supported slices are covered by a derived case."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Ordinary call forms plus PHP8.5 clone arguments; derive call-only case in P02. Supported slices are covered by a derived case."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Ordinary call forms plus PHP8.5 clone arguments; derive call-only case in P02. Supported slices are covered by a derived case."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Ordinary call forms plus PHP8.5 clone arguments; derive call-only case in P02. Supported slices are covered by a derived case."
+      }
+    },
+    "parser/expr/arrayDef.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/arrayDestructuring.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/arrayEmptyElemens.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/arraySpread.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/arrow_function.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/assign.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/assignNewByRef.test#0": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      }
+    },
+    "parser/expr/assignNewByRef.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/cast.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/clone.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/closure.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/closure_use_trailing_comma.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/comparison.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/concatPrecedence.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/concatPrecedence.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/constant_expr.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/dynamicClassConst.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/errorSuppress.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/exit.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/exprInIsset.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/exprInList.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/args.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/constFetch.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/constantDeref.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/funcCall.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/namedArgs.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/newDeref.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/objectAccess.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/simpleArrayAccess.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/staticCall.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/fetchAndCall/staticPropertyFetch.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/firstClassCallables.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/includeAndEval.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/issetAndEmpty.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/keywordsInNamespacedName.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/listReferences.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/listWithKeys.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/logic.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/match.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/match.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/match.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/match.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/match.test#4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/math.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/new.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/newDeref.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/newWithoutClass.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P11"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/nullsafe.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/partialFunctionApplication.test#0": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Experimental PHP8.6 placeholders; no in-scope original case."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Experimental PHP8.6 placeholders; no in-scope original case."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Experimental PHP8.6 placeholders; no in-scope original case."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Experimental PHP8.6 placeholders; no in-scope original case."
+      }
+    },
+    "parser/expr/partialFunctionApplication.test#1": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP7.4 mode still expects PHP8.6 placeholders; mode is not scope."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP7.4 mode still expects PHP8.6 placeholders; mode is not scope."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP7.4 mode still expects PHP8.6 placeholders; mode is not scope."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP7.4 mode still expects PHP8.6 placeholders; mode is not scope."
+      }
+    },
+    "parser/expr/pipe.test#0": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.5 pipe syntax."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.5 pipe syntax."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.5 pipe syntax."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.5 pipe syntax."
+      }
+    },
+    "parser/expr/print.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/shellExec.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/ternaryAndCoalesce.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/throw.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/trailingCommas.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/uvs/constDeref.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/uvs/globalNonSimpleVarError.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/uvs/indirectCall.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/uvs/isset.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/uvs/misc.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/uvs/new.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/uvs/newInstanceofExpr.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/uvs/staticProperty.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/varVarPos.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/expr/variable.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/formattingAttributes.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/nopPositions.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/nopPositions.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/constantString.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/docString.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/docStringNewlines.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/encapsedNegVarOffset.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/encapsedString.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/explicitOctal.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/flexibleDocString.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/flexibleDocStringErrors.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/float.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/int.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/invalidOctal.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/invalidOctal.test#1": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      }
+    },
+    "parser/scalar/magicConst.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/numberSeparators.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/unicodeEscape.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/unicodeEscape.test#1": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      }
+    },
+    "parser/scalar/unicodeEscape.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/unicodeEscape.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/unicodeEscape.test#4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/unicodeEscape.test#5": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/unicodeEscape.test#6": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/unicodeEscape.test#7": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/unicodeEscape.test#8": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/scalar/unicodeEscape.test#9": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/semiReserved.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/attributes.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/blocklessStatement.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/abstract.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/anonymous.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/asymmetric_visibility.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/asymmetric_visibility.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/class_position.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/class_position.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/class_position.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/conditional.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/constModifierErrors.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/constModifierErrors.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/constModifierErrors.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/constModifierErrors.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/constModifiers.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/enum.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/enum_with_string.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/final.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/implicitPublic.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/interface.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/modifier_error.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/modifier_error.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/modifier_error.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/modifier_error.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/modifier_error.test#4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/modifier_error.test#5": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/modifier_error.test#6": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/modifier_error.test#7": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#10": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#11": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#12": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#13": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#14": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#5": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#6": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#7": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#8": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/name.test#9": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/php4Style.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/propertyTypes.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/property_hooks.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/property_hooks.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/property_hooks.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/property_hooks.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/property_hooks.test#4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/property_hooks.test#5": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/property_hooks.test#6": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/property_modifiers.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/property_promotion.test#0": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.0/8.1/8.4 promotion forms plus PHP8.5 final promotion; derive without final parameter in P02. Supported slices are covered by a derived case."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.0/8.1/8.4 promotion forms plus PHP8.5 final promotion; derive without final parameter in P02. Supported slices are covered by a derived case."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.0/8.1/8.4 promotion forms plus PHP8.5 final promotion; derive without final parameter in P02. Supported slices are covered by a derived case."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.0/8.1/8.4 promotion forms plus PHP8.5 final promotion; derive without final parameter in P02. Supported slices are covered by a derived case."
+      }
+    },
+    "parser/stmt/class/readonly.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/readonly.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/readonlyAnonyous.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/readonlyAsClassName.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/readonlyAsClassName.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/readonlyMethod.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/shortEchoAsIdentifier.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/simple.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/staticMethod.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/staticMethod.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/staticMethod.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/staticMethod.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/staticMethod.test#4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/staticMethod.test#5": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/staticType.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/trait.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/class/typedConstants.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/const.test#0": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Plain constants plus PHP8.5 constant attributes; derive plain-constant case in P02. Supported slices are covered by a derived case."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Plain constants plus PHP8.5 constant attributes; derive plain-constant case in P02. Supported slices are covered by a derived case."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Plain constants plus PHP8.5 constant attributes; derive plain-constant case in P02. Supported slices are covered by a derived case."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Plain constants plus PHP8.5 constant attributes; derive plain-constant case in P02. Supported slices are covered by a derived case."
+      }
+    },
+    "parser/stmt/controlFlow.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/declare.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/echo.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/builtinTypeDeclarations.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/byRef.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/clone_function.test#0": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Ordinary clone expressions plus PHP8.5 clone-call/stub syntax; derive ordinary expressions in P02. Supported slices are covered by a derived case."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Ordinary clone expressions plus PHP8.5 clone-call/stub syntax; derive ordinary expressions in P02. Supported slices are covered by a derived case."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Ordinary clone expressions plus PHP8.5 clone-call/stub syntax; derive ordinary expressions in P02. Supported slices are covered by a derived case."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "Ordinary clone expressions plus PHP8.5 clone-call/stub syntax; derive ordinary expressions in P02. Supported slices are covered by a derived case."
+      }
+    },
+    "parser/stmt/function/conditional.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/defaultValues.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/disjointNormalFormTypes.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/exit_die_function.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/fn.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/intersectionTypes.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/invalidVoidParam.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/neverType.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/nullFalseTrueTypes.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/nullFalseTrueTypes.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/nullableTypes.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/parameters_trailing_comma.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/parameters_trailing_comma.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/parameters_trailing_comma.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/readonlyFunction.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/returnTypes.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/specialVars.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/typeDeclarations.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/typeVersions.test#0": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E08",
+        "reason": "Explicit PHP5.x target interpretation is outside the supported target range."
+      }
+    },
+    "parser/stmt/function/typeVersions.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/typeVersions.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/typeVersions.test#3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/typeVersions.test#4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/typeVersions.test#5": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/unionTypes.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/validVoidParam.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/variadic.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/function/variadicDefaultValue.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/generator/basic.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/generator/yieldPrecedence.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/generator/yieldUnaryPrecedence.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/haltCompiler.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/haltCompiler.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/haltCompiler.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/haltCompilerInvalidSyntax.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/haltCompilerOffset.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/haltCompilerOutermostScope.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/hashbang.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/if.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/inlineHTML.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/loop/do.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/loop/for.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/loop/foreach.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/loop/while.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/multiCatch.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/alias.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/braced.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/commentAfterNamespace.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/groupUse.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/groupUseErrors.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/groupUseErrors.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/groupUseErrors.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/groupUsePositions.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/groupUseTrailingComma.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/invalidName.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/invalidName.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/invalidName.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/mix.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/mix.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/name.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/nested.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/notBraced.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/nsAfterHashbang.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/outsideStmt.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/outsideStmt.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/outsideStmtInvalid.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/outsideStmtInvalid.test#1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/namespace/outsideStmtInvalid.test#2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/newInInitializer.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P09"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/switch.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/tryCatch.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/tryCatch_without_variable.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/tryWithoutCatch.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/unset.test#0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P08"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "parser/stmt/voidCast.test#0": {
+      "tokens": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.5 void cast."
+      },
+      "structure": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.5 void cast."
+      },
+      "positions": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.5 void cast."
+      },
+      "diagnostics": {
+        "state": "deferred",
+        "phase": "E07",
+        "reason": "PHP8.5 void cast."
+      }
+    },
+    "project/adapter/bad-bytes": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/adapter/bom": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/adapter/empty": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/adapter/eof-error": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/adapter/halt-tail": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/adapter/line-endings": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/adapter/numbers": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/adapter/short-tags": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P07"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/adapter/unterminated-comment": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/7.0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/7.1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/7.2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/7.3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/7.4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/8.0": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/8.1": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/8.2": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/8.3": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    },
+    "project/version/8.4": {
+      "tokens": {
+        "state": "pending",
+        "phase": "P05"
+      },
+      "structure": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "positions": {
+        "state": "pending",
+        "phase": "P10"
+      },
+      "diagnostics": {
+        "state": "pending",
+        "phase": "P11"
+      }
+    }
+  }
+}

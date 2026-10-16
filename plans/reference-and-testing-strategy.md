@@ -4,7 +4,7 @@ Date: 2026-10-16
 Scope: PHP 7.0–8.4 parser library  
 Companion: [technical implementation plan](technical-implementation-plan.md)
 
-This document specifies future implementation/testing work. The corpus has been inspected and counted; no fixture exporter, Rust parser, or compatibility test runner has been implemented yet.
+P00 is complete: the [reference lock](../reference/README.md), [scope inventories](../docs/compatibility/README.md) and [behavior decisions](../docs/decisions/0001-parser-behavior.md) now exist and verify. Parser cases are classified as 277 core, nine deferred and four mixed. P02 is also complete: the [exporter](../tools/reference/README.md) reproduces all 290 original parser dumps and produces the [313-case corpus](../tests/fixtures/README.md), including four derived and 19 project cases. The offline harness and regression gates exist; all 300 comparable cases remain pending because no Rust parser is implemented. The strategy below remains the contract for later implementation.
 
 ## 1. Reference identity and relevant source
 
@@ -39,7 +39,7 @@ Counts below describe the whole pinned checkout, including features outside the 
 
 | Corpus | Files | Cases | Initial use |
 |---|---:|---:|---|
-| Parser `.test` | 180 | 290 | Export and classify in P02 |
+| Parser `.test` | 180 | 290 | Exported and classified in P02 |
 | Pretty printer `.test` | 72 | 83 | Inventory for E04 |
 | Pretty printer `.file-test` | 4 | 12 | Inventory for E04 |
 | Format preservation `.test` | 32 | 145 | Inventory for E05 |
@@ -89,9 +89,9 @@ The reference README says PHP 7.0–8.4, `PhpVersion::getNewestSupported()` retu
 
 Classify features independently of the mode: `expr/partialFunctionApplication.test#1` requests PHP 7.4 but expects newer argument-placeholder nodes. An old explicit target is not sufficient evidence that a fixture belongs to the 7.0–8.4 scope. Mixed cases include `stmt/const.test#0` (constant attributes), `stmt/class/property_promotion.test#0` (final promotion), and `stmt/function/clone_function.test#0` (clone calls/declarations). Ordinary clone expressions remain in scope.
 
-Fixture scope and implementation status are separate fields. Proposed statuses are `pending` with a phase, `passing`, `intentional-difference` with an explanation, and `deferred` with an out-of-scope reason. A failure in a case already marked passing is always a regression; it cannot become a blanket ignore or expected failure without review.
+Fixture scope and implementation status are separate fields. Coverage statuses are `pending` with a phase, `passing`, `intentional-difference` with an explanation, and `deferred` with an out-of-scope reason. A failure in a case already marked passing is always a regression; it cannot become a blanket ignore or expected failure without review.
 
-Do not promise an in-scope case total until this per-case classification is complete. The 290-case figure is the inventory total, not the first stable release's acceptance denominator.
+P00 completed per-case classification: 277 original parser cases are core, nine are deferred, and four need derived cases. The 290-case figure remains the whole-reference inventory; the final acceptance denominator also depends on P02's derived and additional cases.
 
 ## 4. Reproducible exporter and oracle
 
@@ -112,7 +112,7 @@ Parser and standard printer cases are pairs; format-preservation cases are tripl
 
 Record the reference commit and file hashes, exporter/schema version, host PHP version, `PHP_INT_SIZE`, tokenizer/JSON extension availability, short-open-tag setting, relevant locale/configuration and requested target version. Use a defined 64-bit oracle profile. A local PHP 8.5.6 executable was observed during planning; that fact does not constitute an executed upstream test run.
 
-The reference requires PHP >=7.4 with tokenizer and JSON. Its development tooling includes PHPUnit 9 and php-yacc. `.references/vendor` is absent in the inspected checkout, so upstream PHPUnit is not immediately runnable. P02 should establish an isolated documented oracle setup; do not introduce PHP/Composer requirements into normal Cargo builds.
+The reference requires PHP >=7.4 with tokenizer and JSON. Its development tooling includes PHPUnit 9 and php-yacc. `.references/vendor` is absent in the inspected checkout, so upstream PHPUnit is not immediately runnable. P02 established the [isolated oracle profile](../tools/reference/README.md) using PHP 8.5.6 with INI disabled, a verified source autoloader and no Composer/PHPUnit dependencies. It executes all parser fixture expectations; it does not claim a complete upstream PHPUnit run. Normal Cargo builds have no PHP/Composer requirement.
 
 ### Export records
 
@@ -154,6 +154,8 @@ Upstream AST `endFilePos`/`endTokenPos` are inclusive. Convert them to half-open
 Normalize diagnostic ranges separately from AST and token ranges. The reference's unterminated-comment error uses the token's exclusive end position, while EOF errors locate a point at source length. Preserve raw oracle error attributes and apply explicit category-specific conversion; blindly adding one to every diagnostic `endFilePos` can produce an out-of-bounds span. Test unterminated comments, bad bytes, ordinary syntax errors, and EOF in the adapter suite.
 
 Verify bounds for all nodes and diagnostic spans, including EOF and synthetic/error positions. Do not assume every semantic parent's span strictly contains every child/comment after upstream normalization; enumerate legitimate exceptions before imposing that property.
+
+For comparable lines/columns, apply P00 D03's source-derived LF/CRLF/lone-CR rule to spans, retaining raw upstream attributes. Native tokenization and some reference line/column helpers differ on lone CR; this normalization must not hide differing byte spans.
 
 Compare comment text, spans, type and attachment, including doc comments and comments at the end of files/classes. Token preservation and comment attachment are separate assertions.
 

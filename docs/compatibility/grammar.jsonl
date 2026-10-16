@@ -1,0 +1,192 @@
+{"name": "start", "line": 132, "end_line": 135, "features": ["file"], "scope": "core", "status": "not-implemented"}
+{"name": "top_statement_list_ex", "line": 136, "end_line": 140, "features": ["file"], "scope": "core", "status": "not-implemented"}
+{"name": "top_statement_list", "line": 141, "end_line": 146, "features": ["file", "comments"], "scope": "core", "status": "not-implemented"}
+{"name": "ampersand", "line": 147, "end_line": 151, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "reserved_non_modifiers", "line": 152, "end_line": 163, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "semi_reserved", "line": 164, "end_line": 168, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "identifier_maybe_reserved", "line": 169, "end_line": 173, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "identifier_not_reserved", "line": 174, "end_line": 177, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "reserved_non_modifiers_identifier", "line": 178, "end_line": 181, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "namespace_declaration_name", "line": 182, "end_line": 187, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "namespace_name", "line": 188, "end_line": 192, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "legacy_namespace_name", "line": 193, "end_line": 197, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "plain_variable", "line": 198, "end_line": 201, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "semi", "line": 202, "end_line": 206, "features": ["recovery"], "scope": "core", "status": "not-implemented"}
+{"name": "no_comma", "line": 207, "end_line": 211, "features": ["recovery"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_comma", "line": 212, "end_line": 216, "features": ["recovery"], "scope": "core", "status": "not-implemented"}
+{"name": "attribute_decl", "line": 217, "end_line": 221, "features": ["attributes", "new-initializers"], "scope": "core", "status": "not-implemented"}
+{"name": "attribute_group", "line": 222, "end_line": 226, "features": ["attributes"], "scope": "core", "status": "not-implemented"}
+{"name": "attribute", "line": 227, "end_line": 230, "features": ["attributes"], "scope": "core", "status": "not-implemented"}
+{"name": "attributes", "line": 231, "end_line": 235, "features": ["attributes"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_attributes", "line": 236, "end_line": 240, "features": ["attributes"], "scope": "core", "status": "not-implemented"}
+{"name": "top_statement", "line": 241, "end_line": 267, "features": ["file", "halt", "constant-attributes"], "scope": "mixed", "status": "not-implemented"}
+{"name": "use_type", "line": 268, "end_line": 272, "features": ["namespaces"], "scope": "core", "status": "not-implemented"}
+{"name": "group_use_declaration", "line": 273, "end_line": 279, "features": ["group-imports"], "scope": "core", "status": "not-implemented"}
+{"name": "unprefixed_use_declarations", "line": 280, "end_line": 283, "features": ["namespaces", "group-trailing-comma"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_unprefixed_use_declarations", "line": 284, "end_line": 289, "features": ["namespaces"], "scope": "core", "status": "not-implemented"}
+{"name": "use_declarations", "line": 290, "end_line": 293, "features": ["namespaces"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_use_declarations", "line": 294, "end_line": 298, "features": ["namespaces"], "scope": "core", "status": "not-implemented"}
+{"name": "inline_use_declarations", "line": 299, "end_line": 302, "features": ["namespaces", "group-trailing-comma"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_inline_use_declarations", "line": 303, "end_line": 308, "features": ["namespaces"], "scope": "core", "status": "not-implemented"}
+{"name": "unprefixed_use_declaration", "line": 309, "end_line": 315, "features": ["namespaces"], "scope": "core", "status": "not-implemented"}
+{"name": "use_declaration", "line": 316, "end_line": 322, "features": ["namespaces"], "scope": "core", "status": "not-implemented"}
+{"name": "inline_use_declaration", "line": 323, "end_line": 327, "features": ["namespaces"], "scope": "core", "status": "not-implemented"}
+{"name": "constant_declaration_list", "line": 328, "end_line": 331, "features": ["constants"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_constant_declaration_list", "line": 332, "end_line": 337, "features": ["constants"], "scope": "core", "status": "not-implemented"}
+{"name": "constant_declaration", "line": 338, "end_line": 341, "features": ["constants", "new-initializers"], "scope": "core", "status": "not-implemented"}
+{"name": "class_const_list", "line": 342, "end_line": 345, "features": ["constants"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_class_const_list", "line": 346, "end_line": 350, "features": ["constants"], "scope": "core", "status": "not-implemented"}
+{"name": "class_const", "line": 351, "end_line": 357, "features": ["constants"], "scope": "core", "status": "not-implemented"}
+{"name": "inner_statement_list_ex", "line": 358, "end_line": 362, "features": ["file"], "scope": "core", "status": "not-implemented"}
+{"name": "inner_statement_list", "line": 363, "end_line": 368, "features": ["file", "comments"], "scope": "core", "status": "not-implemented"}
+{"name": "inner_statement", "line": 369, "end_line": 376, "features": ["file", "halt"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_statement", "line": 377, "end_line": 413, "features": ["file"], "scope": "core", "status": "not-implemented"}
+{"name": "statement", "line": 414, "end_line": 418, "features": ["file"], "scope": "core", "status": "not-implemented"}
+{"name": "blocklike_statement", "line": 419, "end_line": 422, "features": ["file"], "scope": "core", "status": "not-implemented"}
+{"name": "catches", "line": 423, "end_line": 427, "features": ["exceptions"], "scope": "core", "status": "not-implemented"}
+{"name": "name_union", "line": 428, "end_line": 432, "features": ["exceptions", "multi-catch"], "scope": "core", "status": "not-implemented"}
+{"name": "catch", "line": 433, "end_line": 437, "features": ["exceptions"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_finally", "line": 438, "end_line": 442, "features": ["exceptions"], "scope": "core", "status": "not-implemented"}
+{"name": "variables_list", "line": 443, "end_line": 446, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_variables_list", "line": 447, "end_line": 451, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_ref", "line": 452, "end_line": 456, "features": ["closures"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_arg_ref", "line": 457, "end_line": 461, "features": ["calls"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_ellipsis", "line": 462, "end_line": 466, "features": ["calls"], "scope": "core", "status": "not-implemented"}
+{"name": "block_or_error", "line": 467, "end_line": 471, "features": ["recovery"], "scope": "core", "status": "not-implemented"}
+{"name": "fn_identifier", "line": 472, "end_line": 478, "features": ["exit-call", "functions", "clone-call"], "scope": "mixed", "status": "not-implemented"}
+{"name": "function_declaration_statement", "line": 479, "end_line": 485, "features": ["functions"], "scope": "core", "status": "not-implemented"}
+{"name": "class_declaration_statement", "line": 486, "end_line": 502, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "enum_scalar_type", "line": 503, "end_line": 506, "features": ["enums"], "scope": "core", "status": "not-implemented"}
+{"name": "enum_case_expr", "line": 507, "end_line": 511, "features": ["enums"], "scope": "core", "status": "not-implemented"}
+{"name": "class_entry_type", "line": 512, "end_line": 516, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "class_modifiers", "line": 517, "end_line": 521, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "class_modifier", "line": 522, "end_line": 527, "features": ["classes", "readonly-classes"], "scope": "core", "status": "not-implemented"}
+{"name": "extends_from", "line": 528, "end_line": 532, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "interface_extends_list", "line": 533, "end_line": 537, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "implements_list", "line": 538, "end_line": 542, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "class_name_list", "line": 543, "end_line": 546, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_class_name_list", "line": 547, "end_line": 551, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "for_statement", "line": 552, "end_line": 556, "features": ["loops"], "scope": "core", "status": "not-implemented"}
+{"name": "foreach_statement", "line": 557, "end_line": 561, "features": ["loops"], "scope": "core", "status": "not-implemented"}
+{"name": "declare_statement", "line": 562, "end_line": 567, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "declare_list", "line": 568, "end_line": 571, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_declare_list", "line": 572, "end_line": 576, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "declare_list_element", "line": 577, "end_line": 580, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "switch_case_list", "line": 581, "end_line": 587, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "case_list", "line": 588, "end_line": 592, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "case", "line": 593, "end_line": 597, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "case_separator", "line": 598, "end_line": 602, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "match", "line": 603, "end_line": 606, "features": ["match"], "scope": "core", "status": "not-implemented"}
+{"name": "match_arm_list", "line": 607, "end_line": 611, "features": ["match"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_match_arm_list", "line": 612, "end_line": 616, "features": ["match"], "scope": "core", "status": "not-implemented"}
+{"name": "match_arm", "line": 617, "end_line": 621, "features": ["match"], "scope": "core", "status": "not-implemented"}
+{"name": "while_statement", "line": 622, "end_line": 626, "features": ["loops"], "scope": "core", "status": "not-implemented"}
+{"name": "elseif_list", "line": 627, "end_line": 631, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "elseif", "line": 632, "end_line": 635, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "new_elseif_list", "line": 636, "end_line": 640, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "new_elseif", "line": 641, "end_line": 645, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "else_single", "line": 646, "end_line": 650, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "new_else_single", "line": 651, "end_line": 656, "features": ["control-flow"], "scope": "core", "status": "not-implemented"}
+{"name": "foreach_variable", "line": 657, "end_line": 664, "features": ["loops"], "scope": "core", "status": "not-implemented"}
+{"name": "parameter_list", "line": 665, "end_line": 669, "features": ["functions", "parameter-trailing-comma"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_parameter_list", "line": 670, "end_line": 674, "features": ["functions"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_property_modifiers", "line": 675, "end_line": 680, "features": ["promotion"], "scope": "core", "status": "not-implemented"}
+{"name": "property_modifier", "line": 681, "end_line": 691, "features": ["promotion", "readonly-properties", "asymmetric-visibility", "final-promotion"], "scope": "mixed", "status": "not-implemented"}
+{"name": "parameter", "line": 692, "end_line": 707, "features": ["functions", "new-initializers"], "scope": "core", "status": "not-implemented"}
+{"name": "type_expr", "line": 708, "end_line": 714, "features": ["types", "nullable-void-iterable"], "scope": "core", "status": "not-implemented"}
+{"name": "type", "line": 715, "end_line": 719, "features": ["types", "nullable-void-iterable", "object-type", "dnf-types", "legacy-five"], "scope": "mixed", "status": "not-implemented"}
+{"name": "type_without_static", "line": 720, "end_line": 725, "features": ["types"], "scope": "core", "status": "not-implemented"}
+{"name": "union_type_element", "line": 726, "end_line": 730, "features": ["union-types", "dnf-types"], "scope": "core", "status": "not-implemented"}
+{"name": "union_type", "line": 731, "end_line": 735, "features": ["union-types"], "scope": "core", "status": "not-implemented"}
+{"name": "union_type_without_static_element", "line": 736, "end_line": 740, "features": ["union-types"], "scope": "core", "status": "not-implemented"}
+{"name": "union_type_without_static", "line": 741, "end_line": 745, "features": ["union-types"], "scope": "core", "status": "not-implemented"}
+{"name": "intersection_type_list", "line": 746, "end_line": 751, "features": ["intersection-types"], "scope": "core", "status": "not-implemented"}
+{"name": "intersection_type", "line": 752, "end_line": 755, "features": ["intersection-types"], "scope": "core", "status": "not-implemented"}
+{"name": "intersection_type_without_static_list", "line": 756, "end_line": 762, "features": ["intersection-types"], "scope": "core", "status": "not-implemented"}
+{"name": "intersection_type_without_static", "line": 763, "end_line": 766, "features": ["intersection-types"], "scope": "core", "status": "not-implemented"}
+{"name": "type_expr_without_static", "line": 767, "end_line": 773, "features": ["types"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_type_without_static", "line": 774, "end_line": 778, "features": ["types"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_return_type", "line": 779, "end_line": 784, "features": ["types"], "scope": "core", "status": "not-implemented"}
+{"name": "argument_list", "line": 785, "end_line": 789, "features": ["calls", "call-trailing-comma"], "scope": "core", "status": "not-implemented"}
+{"name": "clone_argument_list", "line": 790, "end_line": 795, "features": ["clone-call"], "scope": "deferred", "status": "not-implemented"}
+{"name": "non_empty_clone_argument_list", "line": 796, "end_line": 804, "features": ["clone-call"], "scope": "deferred", "status": "not-implemented"}
+{"name": "non_empty_argument_list", "line": 805, "end_line": 809, "features": ["calls"], "scope": "core", "status": "not-implemented"}
+{"name": "argument_no_expr", "line": 810, "end_line": 819, "features": ["calls", "first-class-callables", "partial-application"], "scope": "mixed", "status": "not-implemented"}
+{"name": "argument", "line": 820, "end_line": 824, "features": ["calls", "named-arguments"], "scope": "core", "status": "not-implemented"}
+{"name": "global_var_list", "line": 825, "end_line": 828, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_global_var_list", "line": 829, "end_line": 833, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "global_var", "line": 834, "end_line": 837, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "static_var_list", "line": 838, "end_line": 841, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_static_var_list", "line": 842, "end_line": 846, "features": ["statements"], "scope": "core", "status": "not-implemented"}
+{"name": "static_var", "line": 847, "end_line": 851, "features": ["statements", "new-initializers", "static-initializers"], "scope": "core", "status": "not-implemented"}
+{"name": "class_statement_list_ex", "line": 852, "end_line": 856, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "class_statement_list", "line": 857, "end_line": 862, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "class_statement", "line": 863, "end_line": 888, "features": ["classes", "trait-constants", "class-constant-visibility", "final-constants", "typed-constants", "typed-properties"], "scope": "core", "status": "not-implemented"}
+{"name": "trait_adaptations", "line": 889, "end_line": 893, "features": ["traits"], "scope": "core", "status": "not-implemented"}
+{"name": "trait_adaptation_list", "line": 894, "end_line": 898, "features": ["traits"], "scope": "core", "status": "not-implemented"}
+{"name": "trait_adaptation", "line": 899, "end_line": 911, "features": ["traits", "trait-final"], "scope": "core", "status": "not-implemented"}
+{"name": "trait_method_reference_fully_qualified", "line": 912, "end_line": 914, "features": ["traits"], "scope": "core", "status": "not-implemented"}
+{"name": "trait_method_reference", "line": 915, "end_line": 919, "features": ["traits"], "scope": "core", "status": "not-implemented"}
+{"name": "method_body", "line": 920, "end_line": 924, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "variable_modifiers", "line": 925, "end_line": 929, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "method_modifiers", "line": 930, "end_line": 934, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_member_modifiers", "line": 935, "end_line": 939, "features": ["classes"], "scope": "core", "status": "not-implemented"}
+{"name": "member_modifier", "line": 940, "end_line": 952, "features": ["classes", "readonly-properties", "asymmetric-visibility"], "scope": "core", "status": "not-implemented"}
+{"name": "property_declaration_list", "line": 953, "end_line": 956, "features": ["properties"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_property_declaration_list", "line": 957, "end_line": 962, "features": ["properties"], "scope": "core", "status": "not-implemented"}
+{"name": "property_decl_name", "line": 963, "end_line": 966, "features": ["properties"], "scope": "core", "status": "not-implemented"}
+{"name": "property_declaration", "line": 967, "end_line": 971, "features": ["properties"], "scope": "core", "status": "not-implemented"}
+{"name": "property_hook_list", "line": 972, "end_line": 976, "features": ["property-hooks"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_property_hook_list", "line": 977, "end_line": 983, "features": ["property-hooks"], "scope": "core", "status": "not-implemented"}
+{"name": "property_hook", "line": 984, "end_line": 992, "features": ["property-hooks"], "scope": "core", "status": "not-implemented"}
+{"name": "property_hook_body", "line": 993, "end_line": 998, "features": ["property-hooks"], "scope": "core", "status": "not-implemented"}
+{"name": "property_hook_modifiers", "line": 999, "end_line": 1004, "features": ["property-hooks"], "scope": "core", "status": "not-implemented"}
+{"name": "expr_list_forbid_comma", "line": 1005, "end_line": 1008, "features": ["operators"], "scope": "core", "status": "not-implemented"}
+{"name": "expr_list_allow_comma", "line": 1009, "end_line": 1012, "features": ["operators"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_expr_list", "line": 1013, "end_line": 1017, "features": ["operators"], "scope": "core", "status": "not-implemented"}
+{"name": "for_expr", "line": 1018, "end_line": 1022, "features": ["loops"], "scope": "core", "status": "not-implemented"}
+{"name": "expr", "line": 1023, "end_line": 1161, "features": ["operators", "coalesce-assignment", "precedence", "casts", "constructs", "exit-call", "throw-expression", "arrow-functions", "generators", "legacy-five", "pipe", "void-cast"], "scope": "mixed", "status": "not-implemented"}
+{"name": "anonymous_class", "line": 1162, "end_line": 1167, "features": ["anonymous-classes", "readonly-anonymous"], "scope": "core", "status": "not-implemented"}
+{"name": "new_dereferenceable", "line": 1168, "end_line": 1173, "features": ["new-clone"], "scope": "core", "status": "not-implemented"}
+{"name": "new_non_dereferenceable", "line": 1174, "end_line": 1177, "features": ["new-clone"], "scope": "core", "status": "not-implemented"}
+{"name": "new_expr", "line": 1178, "end_line": 1182, "features": ["new-clone", "new-dereference"], "scope": "core", "status": "not-implemented"}
+{"name": "lexical_vars", "line": 1183, "end_line": 1187, "features": ["closures", "parameter-trailing-comma"], "scope": "core", "status": "not-implemented"}
+{"name": "lexical_var_list", "line": 1188, "end_line": 1191, "features": ["closures"], "scope": "core", "status": "not-implemented"}
+{"name": "non_empty_lexical_var_list", "line": 1192, "end_line": 1196, "features": ["closures"], "scope": "core", "status": "not-implemented"}
+{"name": "lexical_var", "line": 1197, "end_line": 1200, "features": ["closures"], "scope": "core", "status": "not-implemented"}
+{"name": "name_readonly", "line": 1201, "end_line": 1204, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "function_call", "line": 1205, "end_line": 1212, "features": ["calls"], "scope": "core", "status": "not-implemented"}
+{"name": "class_name", "line": 1213, "end_line": 1217, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "name", "line": 1218, "end_line": 1224, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "class_name_reference", "line": 1225, "end_line": 1231, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "class_name_or_var", "line": 1232, "end_line": 1236, "features": ["names"], "scope": "core", "status": "not-implemented"}
+{"name": "backticks_expr", "line": 1237, "end_line": 1243, "features": ["strings"], "scope": "core", "status": "not-implemented"}
+{"name": "ctor_arguments", "line": 1244, "end_line": 1248, "features": ["calls"], "scope": "core", "status": "not-implemented"}
+{"name": "constant", "line": 1249, "end_line": 1261, "features": ["constants"], "scope": "core", "status": "not-implemented"}
+{"name": "class_constant", "line": 1262, "end_line": 1272, "features": ["constants", "dynamic-class-constant"], "scope": "core", "status": "not-implemented"}
+{"name": "array_short_syntax", "line": 1273, "end_line": 1278, "features": ["arrays"], "scope": "core", "status": "not-implemented"}
+{"name": "dereferenceable_scalar", "line": 1279, "end_line": 1292, "features": ["strings"], "scope": "core", "status": "not-implemented"}
+{"name": "scalar", "line": 1293, "end_line": 1307, "features": ["numbers", "numeric-separators", "explicit-octal", "strings", "unicode-escapes", "heredoc", "flexible-heredoc", "magic-constants", "property-magic", "legacy-five"], "scope": "mixed", "status": "not-implemented"}
+{"name": "optional_expr", "line": 1308, "end_line": 1312, "features": ["operators"], "scope": "core", "status": "not-implemented"}
+{"name": "fully_dereferenceable", "line": 1313, "end_line": 1320, "features": ["access", "new-dereference"], "scope": "core", "status": "not-implemented"}
+{"name": "array_object_dereferenceable", "line": 1321, "end_line": 1325, "features": ["access", "nullsafe", "curly-offsets"], "scope": "core", "status": "not-implemented"}
+{"name": "callable_expr", "line": 1326, "end_line": 1332, "features": ["access"], "scope": "core", "status": "not-implemented"}
+{"name": "callable_variable", "line": 1333, "end_line": 1345, "features": ["access"], "scope": "core", "status": "not-implemented"}
+{"name": "optional_plain_variable", "line": 1346, "end_line": 1350, "features": ["variables", "optional-catch-variable"], "scope": "core", "status": "not-implemented"}
+{"name": "variable", "line": 1351, "end_line": 1359, "features": ["variables"], "scope": "core", "status": "not-implemented"}
+{"name": "simple_variable", "line": 1360, "end_line": 1366, "features": ["variables"], "scope": "core", "status": "not-implemented"}
+{"name": "static_member_prop_name", "line": 1367, "end_line": 1371, "features": ["variables"], "scope": "core", "status": "not-implemented"}
+{"name": "static_member", "line": 1372, "end_line": 1376, "features": ["variables"], "scope": "core", "status": "not-implemented"}
+{"name": "new_variable", "line": 1377, "end_line": 1390, "features": ["variables", "nullsafe", "curly-offsets"], "scope": "core", "status": "not-implemented"}
+{"name": "member_name", "line": 1391, "end_line": 1396, "features": ["variables"], "scope": "core", "status": "not-implemented"}
+{"name": "property_name", "line": 1397, "end_line": 1403, "features": ["variables"], "scope": "core", "status": "not-implemented"}
+{"name": "list_expr", "line": 1404, "end_line": 1409, "features": ["arrays", "short-destructuring"], "scope": "core", "status": "not-implemented"}
+{"name": "array_pair_list", "line": 1410, "end_line": 1414, "features": ["arrays"], "scope": "core", "status": "not-implemented"}
+{"name": "comma_or_error", "line": 1415, "end_line": 1420, "features": ["recovery"], "scope": "core", "status": "not-implemented"}
+{"name": "inner_array_pair_list", "line": 1421, "end_line": 1425, "features": ["arrays"], "scope": "core", "status": "not-implemented"}
+{"name": "array_pair", "line": 1426, "end_line": 1440, "features": ["arrays", "short-destructuring", "list-references", "array-unpack"], "scope": "core", "status": "not-implemented"}
+{"name": "encaps_list", "line": 1441, "end_line": 1447, "features": ["strings"], "scope": "core", "status": "not-implemented"}
+{"name": "encaps_string_part", "line": 1448, "end_line": 1452, "features": ["strings", "unicode-escapes"], "scope": "core", "status": "not-implemented"}
+{"name": "encaps_str_varname", "line": 1453, "end_line": 1456, "features": ["strings"], "scope": "core", "status": "not-implemented"}
+{"name": "encaps_var", "line": 1457, "end_line": 1470, "features": ["strings"], "scope": "core", "status": "not-implemented"}
+{"name": "encaps_var_offset", "line": 1471, "end_line": 1478, "features": ["strings", "interpolated-offsets"], "scope": "core", "status": "not-implemented"}
