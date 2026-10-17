@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 (unreleased)
+## 0.1.0 (2026-10-17)
 
 Initial library release for PHP 7.0–8.4, with Rust 1.85 as the minimum supported
 compiler.
