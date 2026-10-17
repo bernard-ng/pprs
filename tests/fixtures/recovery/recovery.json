@@ -1,0 +1,3366 @@
+{
+    "schema_version": 1,
+    "reference_commit": "8d2b672aff65a1a4dbf7936cec27d19f51989412",
+    "php_version": "8.5.6",
+    "php_int_size": 8,
+    "sources_sha256": {
+        "tools/reference/bootstrap.php": "a081de0c72f3091353d1e97906a4b5813daf870c44806bf0dad28273cee649ef",
+        "tools/reference/normalize.php": "bb3bc2fbddce658507c7549c86dd9ead95fbb9950f60974aa39109a17a013902",
+        "tools/recovery/export.php": "4e49e36337cc9f6d3d423a24c65be0b8984b9ab332db3010286f5a373329ee10",
+        "tools/recovery/inputs.json": "6e3031775270b04715428b1250a85bc68afc57f8397453adb7752ebfe321d581"
+    },
+    "cases": [
+        {
+            "id": "bad-bytes",
+            "source": {
+                "bytes": "3c3f70687020246265666f72653d313b0001202461667465723d323b"
+            },
+            "target": "8.4",
+            "reason": "Rejected bytes must not create syntax cascades or discard adjacent assignments.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "lexical",
+                        "code": "lex.null-byte",
+                        "message": {
+                            "bytes": "556e6578706563746564206e756c6c2062797465"
+                        },
+                        "span": [
+                            16,
+                            17
+                        ],
+                        "start": [
+                            1,
+                            17
+                        ],
+                        "end": [
+                            1,
+                            18
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "endLine": 1,
+                            "startFilePos": 16,
+                            "endFilePos": 16
+                        }
+                    },
+                    {
+                        "category": "lexical",
+                        "code": "lex.bad-character",
+                        "message": {
+                            "bytes": "556e6578706563746564206368617261637465722022012220284153434949203129"
+                        },
+                        "span": [
+                            17,
+                            18
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            19
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "endLine": 1,
+                            "startFilePos": 17,
+                            "endFilePos": 17
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "bad-byte-expression",
+            "source": {
+                "bytes": "3c3f706870202478203d2031202b0020323b206563686f20333b"
+            },
+            "target": "8.4",
+            "reason": "Invalid bytes are retained and diagnosed while significant grammar continues.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "lexical",
+                        "code": "lex.null-byte",
+                        "message": {
+                            "bytes": "556e6578706563746564206e756c6c2062797465"
+                        },
+                        "span": [
+                            14,
+                            15
+                        ],
+                        "start": [
+                            1,
+                            15
+                        ],
+                        "end": [
+                            1,
+                            16
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "endLine": 1,
+                            "startFilePos": 14,
+                            "endFilePos": 14
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "missing-terminator",
+            "source": {
+                "bytes": "3c3f70687020246265666f72653d31206563686f20323b202461667465723d333b"
+            },
+            "target": "8.4",
+            "reason": "A missing terminator preserves the following statement.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420545f4543484f"
+                        },
+                        "span": [
+                            16,
+                            20
+                        ],
+                        "start": [
+                            1,
+                            17
+                        ],
+                        "end": [
+                            1,
+                            21
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 16,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 19
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "halt-missing-open",
+            "source": {
+                "bytes": "3c3f706870205f5f68616c745f636f6d70696c6572206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "A malformed halt must leave the unexpected echo token for recovery.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420545f4543484f2c20657870656374696e6720272827"
+                        },
+                        "span": [
+                            22,
+                            26
+                        ],
+                        "start": [
+                            1,
+                            23
+                        ],
+                        "end": [
+                            1,
+                            27
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 3,
+                            "startFilePos": 22,
+                            "endLine": 1,
+                            "endTokenPos": 3,
+                            "endFilePos": 25
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "halt-missing-close",
+            "source": {
+                "bytes": "3c3f706870205f5f68616c745f636f6d70696c657228206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "A malformed halt must not consume a following statement or authorize raw tail.",
+            "oracle_failure": {
+                "class": "AssertionError",
+                "message": "assert($prevToken->id == \\T_CLOSE_TAG)"
+            }
+        },
+        {
+            "id": "halt-missing-semicolon",
+            "source": {
+                "bytes": "3c3f706870205f5f68616c745f636f6d70696c65722829206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "The terminator expectation must identify echo and preserve it.",
+            "oracle_failure": {
+                "class": "AssertionError",
+                "message": "assert($prevToken->id == \\T_CLOSE_TAG)"
+            }
+        },
+        {
+            "id": "halt-eof",
+            "source": {
+                "bytes": "3c3f706870205f5f68616c745f636f6d70696c65722829"
+            },
+            "target": "8.4",
+            "reason": "EOF is an explicit found token with an empty primary span.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420454f462c20657870656374696e6720273b27"
+                        },
+                        "span": [
+                            23,
+                            23
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            24
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 4,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 23
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "halt-nested",
+            "source": {
+                "bytes": "3c3f70687020696620287472756529207b205f5f68616c745f636f6d70696c657228293b207d206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Nested halt aborts without entering raw tail.",
+            "expected": {
+                "target": "8.4",
+                "status": "aborted",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "5f5f48414c545f434f4d50494c455228292063616e206f6e6c7920626520757365642066726f6d20746865206f757465726d6f73742073636f7065"
+                        },
+                        "span": [
+                            18,
+                            33
+                        ],
+                        "start": [
+                            1,
+                            19
+                        ],
+                        "end": [
+                            1,
+                            34
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 9,
+                            "startFilePos": 18,
+                            "endLine": 1,
+                            "endTokenPos": 9,
+                            "endFilePos": 32
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "delimiter-paren",
+            "source": {
+                "bytes": "3c3f70687020666f6f28313b206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Missing call delimiter diagnoses the semicolon and labels the opening parenthesis.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420273b272c20657870656374696e6720272927"
+                        },
+                        "span": [
+                            11,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            12
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 4,
+                            "startFilePos": 11,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "delimiter-bracket",
+            "source": {
+                "bytes": "3c3f7068702024613d5b313b206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Missing array delimiter preserves the next statement.",
+            "expected": {
+                "target": "8.4",
+                "status": "aborted",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420273b272c20657870656374696e6720272c27206f7220275d27206f7220272927"
+                        },
+                        "span": [
+                            11,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            12
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 11,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "delimiter-brace",
+            "source": {
+                "bytes": "3c3f70687020696620287472756529207b206563686f20313b"
+            },
+            "target": "8.4",
+            "reason": "Unclosed body identifies EOF and its opening brace.",
+            "expected": {
+                "target": "8.4",
+                "status": "aborted",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420454f46"
+                        },
+                        "span": [
+                            25,
+                            25
+                        ],
+                        "start": [
+                            1,
+                            26
+                        ],
+                        "end": [
+                            1,
+                            26
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 13,
+                            "startFilePos": 25,
+                            "endLine": 1,
+                            "endTokenPos": 13,
+                            "endFilePos": 25
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "argument-hole",
+            "source": {
+                "bytes": "3c3f706870206628312c202c2033293b206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "An argument hole must be diagnosed without losing the subsequent statement.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420272c272c20657870656374696e6720272927"
+                        },
+                        "span": [
+                            11,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            12
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 6,
+                            "startFilePos": 11,
+                            "endLine": 1,
+                            "endTokenPos": 6,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "argument-name",
+            "source": {
+                "bytes": "3c3f7068702066286e616d653a293b206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Missing named argument value is an error expression.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420272927"
+                        },
+                        "span": [
+                            13,
+                            14
+                        ],
+                        "start": [
+                            1,
+                            14
+                        ],
+                        "end": [
+                            1,
+                            15
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 13,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 13
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "parameter-hole",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e20662824612c202c20246329207b7d206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Signature recovery must progress at repeated commas.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420272c272c20657870656374696e6720545f5641524941424c45"
+                        },
+                        "span": [
+                            21,
+                            22
+                        ],
+                        "start": [
+                            1,
+                            22
+                        ],
+                        "end": [
+                            1,
+                            23
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 21,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 21
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "parameter-type",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628466f6f2c20696e7420246229207b7d206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Missing parameter variables retain useful signature structure.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420272c272c20657870656374696e6720545f5641524941424c45"
+                        },
+                        "span": [
+                            20,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            21
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 6,
+                            "startFilePos": 20,
+                            "endLine": 1,
+                            "endTokenPos": 6,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "parameter-default",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e2461203d203129207b7d"
+            },
+            "target": "8.4",
+            "reason": "Variadic default validation is parser local.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            25,
+                            26
+                        ],
+                        "start": [
+                            1,
+                            26
+                        ],
+                        "end": [
+                            1,
+                            27
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 10,
+                            "startFilePos": 25,
+                            "endLine": 1,
+                            "endTokenPos": 10,
+                            "endFilePos": 25,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void-parameter",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "8.4",
+            "reason": "The reference checks void on a parameter.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "member-missing-value",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b20636f6e73742058203d203b207075626c69632066756e6374696f6e2061667465722829207b7d207d206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Member synchronization retains the following method.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420273b27"
+                        },
+                        "span": [
+                            26,
+                            27
+                        ],
+                        "start": [
+                            1,
+                            27
+                        ],
+                        "end": [
+                            1,
+                            28
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 13,
+                            "startFilePos": 26,
+                            "endLine": 1,
+                            "endTokenPos": 13,
+                            "endFilePos": 26
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "member-missing-name",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b207075626c6963203b207075626c69632066756e6374696f6e2061667465722829207b7d207d206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "A damaged property must not consume the next member.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420273b272c20657870656374696e6720545f5641524941424c45"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 9,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 9,
+                            "endFilePos": 23
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "hook-missing-close",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b20676574203d3e20313b207075626c69632066756e6374696f6e2061667465722829207b7d207d206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Hook recovery recognizes a subsequent class member.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f742075736520746865207075626c6963206d6f646966696572206f6e20612070726f706572747920686f6f6b"
+                        },
+                        "span": [
+                            38,
+                            44
+                        ],
+                        "start": [
+                            1,
+                            39
+                        ],
+                        "end": [
+                            1,
+                            45
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 20,
+                            "startFilePos": 38,
+                            "endLine": 1,
+                            "endTokenPos": 20,
+                            "endFilePos": 43
+                        }
+                    },
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420545f46554e4354494f4e2c20657870656374696e6720545f535452494e47"
+                        },
+                        "span": [
+                            45,
+                            53
+                        ],
+                        "start": [
+                            1,
+                            46
+                        ],
+                        "end": [
+                            1,
+                            54
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 22,
+                            "startFilePos": 45,
+                            "endLine": 1,
+                            "endTokenPos": 22,
+                            "endFilePos": 52
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "namespace-anchor",
+            "source": {
+                "bytes": "3c3f706870202478203d202b206e616d657370616365204e207b206563686f2034323b207d"
+            },
+            "target": "8.4",
+            "reason": "Statement synchronization retains a following namespace.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420545f4e414d455350414345"
+                        },
+                        "span": [
+                            13,
+                            22
+                        ],
+                        "start": [
+                            1,
+                            14
+                        ],
+                        "end": [
+                            1,
+                            23
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 7,
+                            "startFilePos": 13,
+                            "endLine": 1,
+                            "endTokenPos": 7,
+                            "endFilePos": 21
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "class-anchor",
+            "source": {
+                "bytes": "3c3f706870202478203d202b20636c6173732043207b7d206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Statement synchronization retains a following class.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420545f434c415353"
+                        },
+                        "span": [
+                            13,
+                            18
+                        ],
+                        "start": [
+                            1,
+                            14
+                        ],
+                        "end": [
+                            1,
+                            19
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 7,
+                            "startFilePos": 13,
+                            "endLine": 1,
+                            "endTokenPos": 7,
+                            "endFilePos": 17
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "function-anchor",
+            "source": {
+                "bytes": "3c3f706870202478203d202b2066756e6374696f6e20662829207b7d206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Statement synchronization retains a following function.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420545f535452494e472c20657870656374696e6720272827"
+                        },
+                        "span": [
+                            22,
+                            23
+                        ],
+                        "start": [
+                            1,
+                            23
+                        ],
+                        "end": [
+                            1,
+                            24
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 9,
+                            "startFilePos": 22,
+                            "endLine": 1,
+                            "endTokenPos": 9,
+                            "endFilePos": 22
+                        }
+                    },
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420277b27"
+                        },
+                        "span": [
+                            26,
+                            27
+                        ],
+                        "start": [
+                            1,
+                            27
+                        ],
+                        "end": [
+                            1,
+                            28
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 13,
+                            "startFilePos": 26,
+                            "endLine": 1,
+                            "endTokenPos": 13,
+                            "endFilePos": 26
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "interpolation",
+            "source": {
+                "bytes": "3c3f70687020227b24782d3e7d223b206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Interpolation errors remain bounded at the string boundary.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420277d272c20657870656374696e6720545f535452494e47206f7220545f5641524941424c45206f7220277b27206f7220272427"
+                        },
+                        "span": [
+                            12,
+                            13
+                        ],
+                        "start": [
+                            1,
+                            13
+                        ],
+                        "end": [
+                            1,
+                            14
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 12,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 12
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "interpolation-eof",
+            "source": {
+                "bytes": "3c3f70687020227b2478"
+            },
+            "target": "8.4",
+            "reason": "Truncated interpolation produces a lexical/syntax failure.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420454f462c20657870656374696e6720275b27206f7220545f4f424a4543545f4f50455241544f52206f7220545f4e554c4c534146455f4f424a4543545f4f50455241544f52"
+                        },
+                        "span": [
+                            10,
+                            10
+                        ],
+                        "start": [
+                            1,
+                            11
+                        ],
+                        "end": [
+                            1,
+                            11
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 4,
+                            "startFilePos": 10,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "string-eof",
+            "source": {
+                "bytes": "3c3f7068702022756e7465726d696e61746564"
+            },
+            "target": "8.4",
+            "reason": "Unterminated strings fail strict parsing with retained source.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420454f462c20657870656374696e6720545f5641524941424c45206f7220545f444f4c4c41525f4f50454e5f4355524c595f425241434553206f7220545f4355524c595f4f50454e"
+                        },
+                        "span": [
+                            19,
+                            19
+                        ],
+                        "start": [
+                            1,
+                            20
+                        ],
+                        "end": [
+                            1,
+                            20
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 3,
+                            "startFilePos": 19,
+                            "endLine": 1,
+                            "endTokenPos": 3,
+                            "endFilePos": 19
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "doc-indent",
+            "source": {
+                "bytes": "3c3f706870202473203d203c3c3c444f430a20780a2020444f433b0a6563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Heredoc indentation failure is reported while later statements survive.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "496e76616c696420626f647920696e64656e746174696f6e206c6576656c2028657870656374696e6720616e20696e64656e746174696f6e206c6576656c206f66206174206c65617374203229"
+                        },
+                        "span": [
+                            11,
+                            26
+                        ],
+                        "start": [
+                            1,
+                            12
+                        ],
+                        "end": [
+                            3,
+                            6
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 11,
+                            "endLine": 3,
+                            "endTokenPos": 7,
+                            "endFilePos": 25,
+                            "kind": 3,
+                            "docLabel": "DOC",
+                            "docIndentation": "  "
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "nowdoc-eof",
+            "source": {
+                "bytes": "3c3f706870203c3c3c27444f43270a74657874"
+            },
+            "target": "8.4",
+            "reason": "Unterminated nowdoc retains all source bytes.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420454f462c20657870656374696e6720545f5641524941424c45206f7220545f444f4c4c41525f4f50454e5f4355524c595f425241434553206f7220545f4355524c595f4f50454e"
+                        },
+                        "span": [
+                            19,
+                            19
+                        ],
+                        "start": [
+                            2,
+                            5
+                        ],
+                        "end": [
+                            2,
+                            5
+                        ],
+                        "raw_attributes": {
+                            "startLine": 2,
+                            "startTokenPos": 3,
+                            "startFilePos": 19,
+                            "endLine": 2,
+                            "endTokenPos": 3,
+                            "endFilePos": 19
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try-context",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d206563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "A try without catch/finally is parser local validation.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "namespace-mix",
+            "source": {
+                "bytes": "3c3f706870206e616d65737061636520413b206e616d6573706163652042207b7d"
+            },
+            "target": "8.4",
+            "reason": "Namespace styles cannot be mixed.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74206d697820627261636b65746564206e616d657370616365206465636c61726174696f6e73207769746820756e627261636b65746564206e616d657370616365206465636c61726174696f6e73"
+                        },
+                        "span": [
+                            19,
+                            28
+                        ],
+                        "start": [
+                            1,
+                            20
+                        ],
+                        "end": [
+                            1,
+                            29
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 6,
+                            "startFilePos": 19,
+                            "endLine": 1,
+                            "endTokenPos": 6,
+                            "endFilePos": 27,
+                            "kind": 2
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "namespace-nested",
+            "source": {
+                "bytes": "3c3f706870206e616d6573706163652041207b206e616d6573706163652042207b7d207d"
+            },
+            "target": "8.4",
+            "reason": "Nested namespaces are diagnosed.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "4e616d657370616365206465636c61726174696f6e732063616e6e6f74206265206e6573746564"
+                        },
+                        "span": [
+                            20,
+                            34
+                        ],
+                        "start": [
+                            1,
+                            21
+                        ],
+                        "end": [
+                            1,
+                            35
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 7,
+                            "startFilePos": 20,
+                            "endLine": 1,
+                            "endTokenPos": 12,
+                            "endFilePos": 33,
+                            "kind": 2
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "method-two-errors",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b2073746174696320726561646f6e6c792066756e6374696f6e205f5f636f6e7374727563742829207b7d207d"
+            },
+            "target": "8.4",
+            "reason": "Static magic method and readonly errors must both be emitted.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "436f6e7374727563746f72205f5f636f6e73747275637428292063616e6e6f7420626520737461746963"
+                        },
+                        "span": [
+                            16,
+                            31
+                        ],
+                        "start": [
+                            1,
+                            17
+                        ],
+                        "end": [
+                            1,
+                            32
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 7,
+                            "startFilePos": 16,
+                            "endLine": 1,
+                            "endTokenPos": 9,
+                            "endFilePos": 30
+                        }
+                    },
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "4d6574686f64205f5f636f6e73747275637428292063616e6e6f7420626520726561646f6e6c79"
+                        },
+                        "span": [
+                            16,
+                            31
+                        ],
+                        "start": [
+                            1,
+                            17
+                        ],
+                        "end": [
+                            1,
+                            32
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 7,
+                            "startFilePos": 16,
+                            "endLine": 1,
+                            "endTokenPos": 9,
+                            "endFilePos": 30
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "constant-three-errors",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b2073746174696320616273747261637420726561646f6e6c7920636f6e73742058203d20313b207d"
+            },
+            "target": "8.4",
+            "reason": "Each invalid class constant modifier has its own diagnostic.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f742075736520277374617469632720617320636f6e7374616e74206d6f646966696572"
+                        },
+                        "span": [
+                            16,
+                            40
+                        ],
+                        "start": [
+                            1,
+                            17
+                        ],
+                        "end": [
+                            1,
+                            41
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 7,
+                            "startFilePos": 16,
+                            "endLine": 1,
+                            "endTokenPos": 11,
+                            "endFilePos": 39
+                        }
+                    },
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f7420757365202761627374726163742720617320636f6e7374616e74206d6f646966696572"
+                        },
+                        "span": [
+                            16,
+                            40
+                        ],
+                        "start": [
+                            1,
+                            17
+                        ],
+                        "end": [
+                            1,
+                            41
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 7,
+                            "startFilePos": 16,
+                            "endLine": 1,
+                            "endTokenPos": 11,
+                            "endFilePos": 39
+                        }
+                    },
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652027726561646f6e6c792720617320636f6e7374616e74206d6f646966696572"
+                        },
+                        "span": [
+                            16,
+                            40
+                        ],
+                        "start": [
+                            1,
+                            17
+                        ],
+                        "end": [
+                            1,
+                            41
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 7,
+                            "startFilePos": 16,
+                            "endLine": 1,
+                            "endTokenPos": 11,
+                            "endFilePos": 39
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "modifier-related",
+            "source": {
+                "bytes": "3c3f7068702066696e616c20616273747261637420636c6173732043207b7d"
+            },
+            "target": "8.4",
+            "reason": "Modifier conflicts identify both the offending and prior modifier.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f7420757365207468652066696e616c206d6f646966696572206f6e20616e20616273747261637420636c617373"
+                        },
+                        "span": [
+                            12,
+                            20
+                        ],
+                        "start": [
+                            1,
+                            13
+                        ],
+                        "end": [
+                            1,
+                            21
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 3,
+                            "startFilePos": 12,
+                            "endLine": 1,
+                            "endTokenPos": 3,
+                            "endFilePos": 19
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "visibility-related",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b207075626c696320707269766174652024783b207d"
+            },
+            "target": "8.4",
+            "reason": "Conflicting visibility has a related location.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "4d756c7469706c65206163636573732074797065206d6f6469666965727320617265206e6f7420616c6c6f776564"
+                        },
+                        "span": [
+                            23,
+                            30
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            31
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 9,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 9,
+                            "endFilePos": 29
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "hook-get-params",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b206765742829203d3e20313b207d207d"
+            },
+            "target": "8.4",
+            "reason": "A get parameter list is diagnosed at its opening parenthesis.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "67657420686f6f6b206d757374206e6f742068617665206120706172616d65746572206c697374"
+                        },
+                        "span": [
+                            31,
+                            32
+                        ],
+                        "start": [
+                            1,
+                            32
+                        ],
+                        "end": [
+                            1,
+                            33
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 14,
+                            "startFilePos": 31,
+                            "endLine": 1,
+                            "endTokenPos": 14,
+                            "endFilePos": 31
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "hook-empty",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b7d207d"
+            },
+            "target": "8.4",
+            "reason": "An empty hook list is diagnosed at its opening brace.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "50726f706572747920686f6f6b206c6973742063616e6e6f7420626520656d707479"
+                        },
+                        "span": [
+                            26,
+                            27
+                        ],
+                        "start": [
+                            1,
+                            27
+                        ],
+                        "end": [
+                            1,
+                            28
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 11,
+                            "startFilePos": 26,
+                            "endLine": 1,
+                            "endTokenPos": 11,
+                            "endFilePos": 26
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "hook-unknown",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b206665746368203d3e20313b207d207d"
+            },
+            "target": "8.4",
+            "reason": "Unknown hook names are parser local errors.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "556e6b6e6f776e20686f6f6b20226665746368222c206578706563746564202267657422206f72202273657422"
+                        },
+                        "span": [
+                            28,
+                            33
+                        ],
+                        "start": [
+                            1,
+                            29
+                        ],
+                        "end": [
+                            1,
+                            34
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 13,
+                            "startFilePos": 28,
+                            "endLine": 1,
+                            "endTokenPos": 13,
+                            "endFilePos": 32
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "hook-modifiers",
+            "source": {
+                "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b207075626c6963207075626c696320676574203d3e20313b207d207d"
+            },
+            "target": "8.4",
+            "reason": "Duplicate and forbidden modifiers at one token are independent context errors.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f742075736520746865207075626c6963206d6f646966696572206f6e20612070726f706572747920686f6f6b"
+                        },
+                        "span": [
+                            28,
+                            34
+                        ],
+                        "start": [
+                            1,
+                            29
+                        ],
+                        "end": [
+                            1,
+                            35
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 13,
+                            "startFilePos": 28,
+                            "endLine": 1,
+                            "endTokenPos": 13,
+                            "endFilePos": 33
+                        }
+                    },
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "4d756c7469706c65206163636573732074797065206d6f6469666965727320617265206e6f7420616c6c6f776564"
+                        },
+                        "span": [
+                            35,
+                            41
+                        ],
+                        "start": [
+                            1,
+                            36
+                        ],
+                        "end": [
+                            1,
+                            42
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 15,
+                            "startFilePos": 35,
+                            "endLine": 1,
+                            "endTokenPos": 15,
+                            "endFilePos": 40
+                        }
+                    },
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f742075736520746865207075626c6963206d6f646966696572206f6e20612070726f706572747920686f6f6b"
+                        },
+                        "span": [
+                            35,
+                            41
+                        ],
+                        "start": [
+                            1,
+                            36
+                        ],
+                        "end": [
+                            1,
+                            42
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 15,
+                            "startFilePos": 35,
+                            "endLine": 1,
+                            "endTokenPos": 15,
+                            "endFilePos": 40
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "array-holes",
+            "source": {
+                "bytes": "3c3f706870205b2c312c2c5d3b"
+            },
+            "target": "8.4",
+            "reason": "Array holes are validated after possible assignment-pattern conversion.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f742075736520656d70747920617272617920656c656d656e747320696e20617272617973"
+                        },
+                        "span": [
+                            7,
+                            8
+                        ],
+                        "start": [
+                            1,
+                            8
+                        ],
+                        "end": [
+                            1,
+                            9
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 2,
+                            "startFilePos": 7,
+                            "endLine": 1,
+                            "endTokenPos": 2,
+                            "endFilePos": 7
+                        }
+                    },
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f742075736520656d70747920617272617920656c656d656e747320696e20617272617973"
+                        },
+                        "span": [
+                            10,
+                            11
+                        ],
+                        "start": [
+                            1,
+                            11
+                        ],
+                        "end": [
+                            1,
+                            12
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 10,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "destructure-control",
+            "source": {
+                "bytes": "3c3f706870205b2c2024615d203d202476616c7565733b"
+            },
+            "target": "8.4",
+            "reason": "The same array holes are valid in destructuring patterns.",
+            "expected": {
+                "target": "8.4",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "semantic-control",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b20636f6e74696e75653b2072657475726e20313b20676f746f206d697373696e673b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "8.4",
+            "reason": "Compiler-level loop scope, label resolution and duplicate parameter checks are out of scope.",
+            "expected": {
+                "target": "8.4",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "trait-name-control",
+            "source": {
+                "bytes": "3c3f7068702074726169742073656c66207b7d"
+            },
+            "target": "8.4",
+            "reason": "The reference does not apply the class-name validation to traits.",
+            "expected": {
+                "target": "8.4",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "type-control",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628696e7426737472696e67202478293a20766f6964207b7d"
+            },
+            "target": "8.4",
+            "reason": "The parser does not perform compiler-level type consistency checks.",
+            "expected": {
+                "target": "8.4",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "halt-valid",
+            "source": {
+                "bytes": "3c3f706870205f5f68616c745f636f6d70696c657228293b006e6f7420504850"
+            },
+            "target": "8.4",
+            "reason": "Authorized outermost halt preserves arbitrary raw tail without diagnostics.",
+            "expected": {
+                "target": "8.4",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "eof-cascade",
+            "source": {
+                "bytes": "3c3f7068702024"
+            },
+            "target": "8.4",
+            "reason": "One unexpected EOF must not produce multiple unwinding syntax errors.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420454f462c20657870656374696e6720545f5641524941424c45206f7220277b27206f7220272427"
+                        },
+                        "span": [
+                            7,
+                            7
+                        ],
+                        "start": [
+                            1,
+                            8
+                        ],
+                        "end": [
+                            1,
+                            8
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 2,
+                            "startFilePos": 7,
+                            "endLine": 1,
+                            "endTokenPos": 2,
+                            "endFilePos": 7
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "multi-error-lines",
+            "source": {
+                "bytes": "3c3f7068700d0a2461203d203b0d0a2462203d203b0d0a6563686f2034323b"
+            },
+            "target": "8.4",
+            "reason": "Separate syntax errors retain deterministic CRLF byte coordinates.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420273b27"
+                        },
+                        "span": [
+                            12,
+                            13
+                        ],
+                        "start": [
+                            2,
+                            6
+                        ],
+                        "end": [
+                            2,
+                            7
+                        ],
+                        "raw_attributes": {
+                            "startLine": 2,
+                            "startTokenPos": 5,
+                            "startFilePos": 12,
+                            "endLine": 2,
+                            "endTokenPos": 5,
+                            "endFilePos": 12
+                        }
+                    },
+                    {
+                        "category": "syntax",
+                        "code": "reference.syntax",
+                        "message": {
+                            "bytes": "53796e746178206572726f722c20756e657870656374656420273b27"
+                        },
+                        "span": [
+                            20,
+                            21
+                        ],
+                        "start": [
+                            3,
+                            6
+                        ],
+                        "end": [
+                            3,
+                            7
+                        ],
+                        "raw_attributes": {
+                            "startLine": 3,
+                            "startTokenPos": 11,
+                            "startFilePos": 20,
+                            "endLine": 3,
+                            "endTokenPos": 11,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "variadic/7.0",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "7.0",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "7.0",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/7.0",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "7.0",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "7.0",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "try/7.0",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "7.0",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "7.0",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/7.0",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "7.0",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "7.0",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "variadic/7.1",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "7.1",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "7.1",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/7.1",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "7.1",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "7.1",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try/7.1",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "7.1",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "7.1",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/7.1",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "7.1",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "7.1",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "variadic/7.2",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "7.2",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "7.2",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/7.2",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "7.2",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "7.2",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try/7.2",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "7.2",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "7.2",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/7.2",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "7.2",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "7.2",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "variadic/7.3",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "7.3",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "7.3",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/7.3",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "7.3",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "7.3",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try/7.3",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "7.3",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "7.3",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/7.3",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "7.3",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "7.3",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "variadic/7.4",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "7.4",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "7.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/7.4",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "7.4",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "7.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try/7.4",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "7.4",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "7.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/7.4",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "7.4",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "7.4",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "variadic/8.0",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "8.0",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "8.0",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/8.0",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "8.0",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "8.0",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try/8.0",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "8.0",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "8.0",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/8.0",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "8.0",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "8.0",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "variadic/8.1",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "8.1",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "8.1",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/8.1",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "8.1",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "8.1",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try/8.1",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "8.1",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "8.1",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/8.1",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "8.1",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "8.1",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "variadic/8.2",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "8.2",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "8.2",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/8.2",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "8.2",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "8.2",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try/8.2",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "8.2",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "8.2",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/8.2",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "8.2",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "8.2",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "variadic/8.3",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "8.3",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "8.3",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/8.3",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "8.3",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "8.3",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try/8.3",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "8.3",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "8.3",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/8.3",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "8.3",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "8.3",
+                "status": "clean",
+                "diagnostics": []
+            }
+        },
+        {
+            "id": "variadic/8.4",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+            },
+            "target": "8.4",
+            "reason": "Variadic default validation across every target.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "566172696164696320706172616d657465722063616e6e6f74206861766520612064656661756c742076616c7565"
+                        },
+                        "span": [
+                            23,
+                            24
+                        ],
+                        "start": [
+                            1,
+                            24
+                        ],
+                        "end": [
+                            1,
+                            25
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 8,
+                            "startFilePos": 23,
+                            "endLine": 1,
+                            "endTokenPos": 8,
+                            "endFilePos": 23,
+                            "rawValue": "1",
+                            "kind": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "void/8.4",
+            "source": {
+                "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+            },
+            "target": "8.4",
+            "reason": "Parser-local void validation across every target.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "766f69642063616e6e6f742062652075736564206173206120706172616d657465722074797065"
+                        },
+                        "span": [
+                            17,
+                            21
+                        ],
+                        "start": [
+                            1,
+                            18
+                        ],
+                        "end": [
+                            1,
+                            22
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 5,
+                            "startFilePos": 17,
+                            "endLine": 1,
+                            "endTokenPos": 5,
+                            "endFilePos": 20
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "try/8.4",
+            "source": {
+                "bytes": "3c3f70687020747279207b7d"
+            },
+            "target": "8.4",
+            "reason": "Try validation across every target.",
+            "expected": {
+                "target": "8.4",
+                "status": "recovered",
+                "diagnostics": [
+                    {
+                        "category": "contextual",
+                        "code": "reference.contextual",
+                        "message": {
+                            "bytes": "43616e6e6f74207573652074727920776974686f7574206361746368206f722066696e616c6c79"
+                        },
+                        "span": [
+                            6,
+                            12
+                        ],
+                        "start": [
+                            1,
+                            7
+                        ],
+                        "end": [
+                            1,
+                            13
+                        ],
+                        "raw_attributes": {
+                            "startLine": 1,
+                            "startTokenPos": 1,
+                            "startFilePos": 6,
+                            "endLine": 1,
+                            "endTokenPos": 4,
+                            "endFilePos": 11
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "compiler-control/8.4",
+            "source": {
+                "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+            },
+            "target": "8.4",
+            "reason": "Compiler-only constraints must remain accepted across every target.",
+            "expected": {
+                "target": "8.4",
+                "status": "clean",
+                "diagnostics": []
+            }
+        }
+    ]
+}

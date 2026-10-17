@@ -1,0 +1,44 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        2,
+        16
+      ],
+      "message": {
+        "bytes": "6578706563746564205269676874427261636b65742c20666f756e64204964656e746966696572"
+      },
+      "span": [
+        16,
+        21
+      ],
+      "start": [
+        2,
+        11
+      ]
+    },
+    {
+      "category": "lexical",
+      "code": "PPRS-L003",
+      "end": [
+        2,
+        19
+      ],
+      "message": {
+        "bytes": "556e7465726d696e6174656420737472696e67206f7220696e746572706f6c6174696f6e"
+      },
+      "span": [
+        21,
+        24
+      ],
+      "start": [
+        2,
+        16
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        3,
+        15
+      ],
+      "message": {
+        "bytes": "65787065637465642041732c20666f756e64205269676874506172656e"
+      },
+      "span": [
+        20,
+        21
+      ],
+      "start": [
+        3,
+        14
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        4,
+        19
+      ],
+      "message": {
+        "bytes": "65787065637465642065787072657373696f6e2c20666f756e64205269676874506172656e"
+      },
+      "span": [
+        49,
+        50
+      ],
+      "start": [
+        4,
+        18
+      ]
+    },
+    {
+      "category": "contextual",
+      "code": "reference.contextual",
+      "end": [
+        4,
+        18
+      ],
+      "message": {
+        "bytes": "696e76616c696420666f726561636820746172676574"
+      },
+      "span": [
+        49,
+        49
+      ],
+      "start": [
+        4,
+        18
+      ]
+    }
+  ]
+}

@@ -299,19 +299,19 @@
         "empty": false,
         "end": [
           12,
-          7
+          9
         ],
         "span": [
-          97,
-          110
+          104,
+          112
         ],
         "start": [
-          11,
+          12,
           1
         ],
         "token_span": [
-          43,
-          46
+          45,
+          48
         ]
       },
       "path": "/0/fields/stmts/3",
@@ -323,70 +323,22 @@
         "empty": false,
         "end": [
           12,
-          7
+          9
         ],
         "span": [
-          104,
-          110
+          111,
+          112
         ],
         "start": [
           12,
-          1
+          8
         ],
         "token_span": [
-          45,
-          46
+          47,
+          48
         ]
       },
       "path": "/0/fields/stmts/3/fields/expr",
-      "spelling": {}
-    },
-    {
-      "comments": [],
-      "origin": {
-        "empty": false,
-        "end": [
-          12,
-          9
-        ],
-        "span": [
-          111,
-          112
-        ],
-        "start": [
-          12,
-          8
-        ],
-        "token_span": [
-          47,
-          48
-        ]
-      },
-      "path": "/0/fields/stmts/4",
-      "spelling": {}
-    },
-    {
-      "comments": [],
-      "origin": {
-        "empty": false,
-        "end": [
-          12,
-          9
-        ],
-        "span": [
-          111,
-          112
-        ],
-        "start": [
-          12,
-          8
-        ],
-        "token_span": [
-          47,
-          48
-        ]
-      },
-      "path": "/0/fields/stmts/4/fields/expr",
       "spelling": {
         "kind": {
           "integer": "10"

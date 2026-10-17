@@ -1,0 +1,99 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "fields": {
+        "expr": {
+          "fields": {
+            "expr": {
+              "fields": {
+                "value": {
+                  "integer": "0"
+                }
+              },
+              "kind": "Scalar_Int"
+            },
+            "var": {
+              "fields": {
+                "name": {
+                  "bytes": "69"
+                }
+              },
+              "kind": "Expr_Variable"
+            }
+          },
+          "kind": "Expr_Assign"
+        }
+      },
+      "kind": "Stmt_Expression"
+    },
+    {
+      "fields": {
+        "cond": {
+          "fields": {},
+          "kind": "Expr_Error"
+        },
+        "stmts": [
+          {
+            "fields": {
+              "expr": {
+                "fields": {
+                  "expr": {
+                    "fields": {
+                      "value": {
+                        "integer": "1"
+                      }
+                    },
+                    "kind": "Scalar_Int"
+                  },
+                  "var": {
+                    "fields": {
+                      "name": {
+                        "bytes": "6a"
+                      }
+                    },
+                    "kind": "Expr_Variable"
+                  }
+                },
+                "kind": "Expr_Assign"
+              }
+            },
+            "kind": "Stmt_Expression"
+          }
+        ]
+      },
+      "kind": "Stmt_While"
+    },
+    {
+      "fields": {
+        "expr": {
+          "fields": {
+            "expr": {
+              "fields": {
+                "value": {
+                  "integer": "2"
+                }
+              },
+              "kind": "Scalar_Int"
+            },
+            "var": {
+              "fields": {
+                "name": {
+                  "bytes": "6b"
+                }
+              },
+              "kind": "Expr_Variable"
+            }
+          },
+          "kind": "Expr_Assign"
+        }
+      },
+      "kind": "Stmt_Expression"
+    },
+    {
+      "fields": {},
+      "kind": "Stmt_Nop"
+    }
+  ]
+}

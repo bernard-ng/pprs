@@ -14,6 +14,7 @@ pub fn invariants(result: &pprs::ParseResult, options: ParseOptions) {
     assert_eq!(offset, result.source().len());
     assert!(result.tokens().tokens().len() <= options.limits.get(Resource::Tokens));
     assert!(result.diagnostics().len() <= options.limits.get(Resource::Diagnostics));
+    diagnostic_invariants(result);
     if let Some(program) = result.program() {
         assert!(pprs::visit::walk(program).count() <= options.limits.get(Resource::Nodes));
         let mut comments = std::collections::HashSet::new();
@@ -76,5 +77,45 @@ pub fn invariants(result: &pprs::ParseResult, options: ParseOptions) {
     }
     if result.status() == ParseStatus::Clean {
         assert_eq!(result.diagnostics(), []);
+    }
+}
+
+fn diagnostic_invariants(result: &pprs::ParseResult) {
+    let mut syntax_locations = std::collections::HashSet::new();
+    for (index, diagnostic) in result.diagnostics().iter().enumerate() {
+        assert!(diagnostic.primary.end() <= result.source().len());
+        assert!(result.source().slice(diagnostic.primary).is_some());
+        for label in &diagnostic.secondary {
+            assert!(result.source().slice(label.span).is_some());
+        }
+        for (position, kind) in diagnostic.expected.iter().enumerate() {
+            assert!(!diagnostic.expected[..position].contains(kind));
+        }
+        if diagnostic.code == pprs::diagnostic::DiagnosticCode::UnexpectedToken {
+            assert!(
+                syntax_locations.insert(diagnostic.primary),
+                "duplicate syntax cascade"
+            );
+        }
+        if let Some(found) = diagnostic.found {
+            assert!(
+                result
+                    .tokens()
+                    .tokens()
+                    .iter()
+                    .any(|token| token.kind() == found && token.span() == diagnostic.primary)
+            );
+        }
+        if matches!(
+            diagnostic.code,
+            pprs::diagnostic::DiagnosticCode::ResourceLimit(_)
+        ) {
+            assert_eq!(
+                index + 1,
+                result.diagnostics().len(),
+                "resource failure must be terminal"
+            );
+            assert_eq!(result.status(), ParseStatus::Aborted);
+        }
     }
 }

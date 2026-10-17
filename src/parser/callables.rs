@@ -159,11 +159,7 @@ impl Parser {
             self.braced_body()
         } else {
             let (_, token) = self.peek()?;
-            self.record(Diagnostic::error(
-                D::UnexpectedToken,
-                token.span(),
-                "expected function body",
-            ))?;
+            self.syntax(token, &[K::LeftBrace], "expected function body")?;
             // The reference retains a declaration with an empty body on this recovery.
             Ok(Vec::new())
         }
@@ -214,11 +210,7 @@ impl Parser {
             self.variable()?
         } else {
             let (at, token) = self.peek()?;
-            self.record(Diagnostic::error(
-                D::UnexpectedToken,
-                token.span(),
-                "expected parameter variable",
-            ))?;
+            self.syntax(token, &[K::Variable], "expected parameter variable")?;
             self.make(at, ExprKind::Error)?
         };
         let default = if self.eat(K::Equal)? {
@@ -236,7 +228,7 @@ impl Parser {
                 self.error_meta(
                     D::InvalidContext,
                     &value.meta,
-                    "variadic parameter cannot have a default value",
+                    "Variadic parameter cannot have a default value",
                 )?;
             }
         }

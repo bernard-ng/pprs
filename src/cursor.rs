@@ -42,6 +42,7 @@ pub(crate) struct TokenCursor<L> {
     last_consumed: Option<TokenKind>,
     limit: usize,
     stopped: bool,
+    skip_invalid: bool,
 }
 
 impl<L: TokenSource> TokenCursor<L> {
@@ -54,7 +55,12 @@ impl<L: TokenSource> TokenCursor<L> {
             last_consumed: None,
             limit: limits.get(Resource::Tokens),
             stopped: false,
+            skip_invalid: false,
         }
+    }
+    /// Lexically rejected bytes remain in the stream but cannot start grammar productions.
+    pub(crate) fn skip_invalid_bytes(&mut self) {
+        self.skip_invalid = true;
     }
     pub(crate) fn retained(&self) -> &[Token] {
         &self.tokens
@@ -110,10 +116,12 @@ impl<L: TokenSource> TokenCursor<L> {
                 self.fill()?;
             }
             let token = self.tokens[index];
-            if token.kind() == TokenKind::Eof || (!token.kind().is_trivia() && remaining == 0) {
+            let skipped =
+                token.kind().is_trivia() || self.skip_invalid && token.kind() == TokenKind::Invalid;
+            if token.kind() == TokenKind::Eof || (!skipped && remaining == 0) {
                 return Ok((index, token));
             }
-            if !token.kind().is_trivia() {
+            if !skipped {
                 remaining -= 1;
             }
             index += 1;

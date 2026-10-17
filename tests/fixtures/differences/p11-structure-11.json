@@ -1,0 +1,46 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "fields": {
+        "expr": {
+          "fields": {
+            "name": {
+              "fields": {
+                "name": {
+                  "bytes": "616263"
+                }
+              },
+              "kind": "Name"
+            }
+          },
+          "kind": "Expr_ConstFetch"
+        }
+      },
+      "kind": "Stmt_Expression"
+    },
+    {
+      "fields": {
+        "expr": {
+          "fields": {
+            "left": {
+              "fields": {
+                "value": {
+                  "integer": "1"
+                }
+              },
+              "kind": "Scalar_Int"
+            },
+            "right": {
+              "fields": {},
+              "kind": "Expr_Error"
+            }
+          },
+          "kind": "Expr_BinaryOp_Plus"
+        }
+      },
+      "kind": "Stmt_Expression"
+    }
+  ]
+}

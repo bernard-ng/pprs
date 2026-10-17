@@ -34,8 +34,9 @@ pub enum StrictError {
 }
 /// Parse owned PHP syntax with recovery. Source, tokens and any partial tree are
 /// retained; inspect status/diagnostics or call `into_strict()` before use as valid PHP.
-/// PHP 7.0–8.4 grammar and valid-input source fidelity are implemented; broad
-/// malformed-file compatibility remains under development. This is not a PHP compiler validator.
+/// PHP 7.0–8.4 grammar, source fidelity and reviewed malformed-input recovery are
+/// implemented. Recovery trees and diagnostic wording may differ from PHP-Parser.
+/// This is not a PHP compiler validator.
 ///
 /// # Errors
 /// Returns `InputTooLarge` before copying/indexing input beyond its byte budget.
@@ -88,8 +89,10 @@ struct Parser {
 impl Parser {
     fn new(source: SourceText, options: ParseOptions) -> Self {
         let scanner = Scanner::new(source.clone(), options);
+        let mut cursor = TokenCursor::new(source.clone(), scanner, options.limits);
+        cursor.skip_invalid_bytes();
         Self {
-            cursor: TokenCursor::new(source.clone(), scanner, options.limits),
+            cursor,
             source,
             options,
             diagnostics: Vec::new(),
@@ -176,9 +179,29 @@ impl Parser {
             .expect("parser retains contiguous lexer tokens");
         ParseResult::assemble(tokens, completion, self.diagnostics)
     }
-    fn record(&mut self, diagnostic: Diagnostic) -> PResult<()> {
+    fn record(&mut self, mut diagnostic: Diagnostic) -> PResult<()> {
         if self.aborted {
             return Err(());
+        }
+        // A grammar diagnostic anchored to one retained token always identifies it.
+        // Context/literal ranges may cover a complete construct and have no found token.
+        if diagnostic.code == D::UnexpectedToken {
+            if diagnostic.found.is_none() {
+                diagnostic.found = self
+                    .cursor
+                    .retained()
+                    .iter()
+                    .rev()
+                    .find(|token| token.span() == diagnostic.primary)
+                    .map(|token| token.kind());
+            }
+            // One unexpected token can unwind several productions. Keep the first,
+            // most local expectation; do not suppress independent contextual checks.
+            if self.diagnostics.iter().rev().any(|previous| {
+                previous.code == D::UnexpectedToken && previous.primary == diagnostic.primary
+            }) {
+                return Ok(());
+            }
         }
         let limit = self.options.limits.get(Resource::Diagnostics);
         if self.diagnostics.len() >= limit - 1 && !matches!(diagnostic.code, D::ResourceLimit(_)) {
@@ -257,6 +280,12 @@ impl Parser {
             Ok(false)
         }
     }
+    fn syntax(&mut self, token: Token, expected: &[K], message: impl Into<String>) -> PResult<()> {
+        let mut diagnostic = Diagnostic::error(D::UnexpectedToken, token.span(), message);
+        diagnostic.expected = expected.to_vec();
+        diagnostic.found = Some(token.kind());
+        self.record(diagnostic)
+    }
     fn expect(&mut self, kind: K) -> PResult<(usize, Token)> {
         let next = self.peek()?;
         if next.1.kind() == kind {
@@ -269,6 +298,33 @@ impl Parser {
             );
             d.expected.push(kind);
             d.found = Some(next.1.kind());
+            let opening = match kind {
+                K::RightParen => Some(K::LeftParen),
+                K::RightBracket => Some(K::LeftBracket),
+                K::RightBrace => Some(K::LeftBrace),
+                _ => None,
+            };
+            if let Some(opening) = opening {
+                let mut closed = 0;
+                for token in self.cursor.retained()[..next.0].iter().rev() {
+                    if token.kind() == kind {
+                        closed += 1;
+                    } else if token.kind() == opening
+                        || kind == K::RightBrace
+                            && matches!(token.kind(), K::CurlyOpen | K::DollarOpenCurly)
+                        || kind == K::RightBracket && token.kind() == K::Attribute
+                    {
+                        if closed == 0 {
+                            d.secondary.push(crate::diagnostic::Label {
+                                span: token.span(),
+                                message: "opening delimiter".into(),
+                            });
+                            break;
+                        }
+                        closed -= 1;
+                    }
+                }
+            }
             self.record(d)?;
             Err(())
         }
@@ -440,17 +496,19 @@ impl Parser {
                         self.record(Diagnostic::error(
                             D::InvalidContext,
                             token.span(),
-                            "__halt_compiler must appear in outermost scope",
+                            "__HALT_COMPILER() can only be used from the outermost scope",
                         ))?;
                         self.aborted = true;
                         return Err(());
                     }
-                    Err(HaltError::Syntax) => {
-                        self.record(Diagnostic::error(
-                            D::UnexpectedToken,
-                            token.span(),
-                            "expected __halt_compiler();",
-                        ))?;
+                    Err(HaltError::Syntax(expected)) => {
+                        let (_, found) = self.peek()?;
+                        let expected = if expected == K::Semicolon {
+                            vec![K::Semicolon, K::CloseTag]
+                        } else {
+                            vec![expected]
+                        };
+                        self.syntax(found, &expected, "expected __halt_compiler();")?;
                         return Err(());
                     }
                 }
@@ -554,11 +612,11 @@ impl Parser {
             Ok(())
         } else {
             let (_, token) = self.peek()?;
-            self.record(Diagnostic::error(
-                D::UnexpectedToken,
-                token.span(),
+            self.syntax(
+                token,
+                &[K::Semicolon, K::CloseTag],
                 "expected statement terminator",
-            ))?;
+            )?;
             if matches!(
                 token.kind(),
                 K::Identifier
@@ -586,6 +644,31 @@ impl Parser {
             }
         }
     }
+    /// Unambiguous starts that a damaged preceding statement must not consume.
+    fn statement_anchor(kind: K) -> bool {
+        matches!(
+            kind,
+            K::Echo
+                | K::OpenEchoTag
+                | K::Return
+                | K::InlineHtml
+                | K::Namespace
+                | K::Class
+                | K::Interface
+                | K::Trait
+                | K::Enum
+                | K::Function
+                | K::Const
+                | K::If
+                | K::While
+                | K::For
+                | K::Foreach
+                | K::Switch
+                | K::Try
+                | K::Declare
+                | K::Attribute
+        )
+    }
     fn recover_statement(&mut self) {
         let mut delimiters = Vec::new();
         while !self.aborted {
@@ -606,7 +689,7 @@ impl Parser {
                     let _ = self.bump();
                     break;
                 }
-                if matches!(kind, K::Echo | K::OpenEchoTag | K::Return | K::InlineHtml) {
+                if Self::statement_anchor(kind) {
                     break;
                 }
             }

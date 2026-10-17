@@ -1,0 +1,408 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "fields": {
+        "attrGroups": [],
+        "byRef": false,
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "666f6f"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "params": [
+          {
+            "fields": {
+              "attrGroups": [],
+              "byRef": false,
+              "default": null,
+              "flags": {
+                "integer": "0"
+              },
+              "hooks": [],
+              "type": {
+                "fields": {
+                  "name": {
+                    "bytes": "54797065"
+                  }
+                },
+                "kind": "Name"
+              },
+              "var": {
+                "fields": {},
+                "kind": "Expr_Error"
+              },
+              "variadic": false
+            },
+            "kind": "Param"
+          }
+        ],
+        "returnType": null,
+        "stmts": [
+          {
+            "fields": {
+              "expr": {
+                "fields": {
+                  "name": {
+                    "bytes": "666f6f"
+                  }
+                },
+                "kind": "Expr_Variable"
+              }
+            },
+            "kind": "Stmt_Expression"
+          }
+        ]
+      },
+      "kind": "Stmt_Function"
+    },
+    {
+      "fields": {
+        "attrGroups": [],
+        "byRef": false,
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "666f6f"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "params": [
+          {
+            "fields": {
+              "attrGroups": [],
+              "byRef": false,
+              "default": null,
+              "flags": {
+                "integer": "0"
+              },
+              "hooks": [],
+              "type": {
+                "fields": {
+                  "name": {
+                    "bytes": "5479706531"
+                  }
+                },
+                "kind": "Name"
+              },
+              "var": {
+                "fields": {
+                  "name": {
+                    "bytes": "666f6f"
+                  }
+                },
+                "kind": "Expr_Variable"
+              },
+              "variadic": false
+            },
+            "kind": "Param"
+          },
+          {
+            "fields": {
+              "attrGroups": [],
+              "byRef": false,
+              "default": null,
+              "flags": {
+                "integer": "0"
+              },
+              "hooks": [],
+              "type": {
+                "fields": {
+                  "name": {
+                    "bytes": "5479706532"
+                  }
+                },
+                "kind": "Name"
+              },
+              "var": {
+                "fields": {},
+                "kind": "Expr_Error"
+              },
+              "variadic": false
+            },
+            "kind": "Param"
+          }
+        ],
+        "returnType": null,
+        "stmts": [
+          {
+            "fields": {
+              "expr": {
+                "fields": {
+                  "name": {
+                    "bytes": "626172"
+                  }
+                },
+                "kind": "Expr_Variable"
+              }
+            },
+            "kind": "Stmt_Expression"
+          }
+        ]
+      },
+      "kind": "Stmt_Function"
+    },
+    {
+      "fields": {
+        "attrGroups": [],
+        "byRef": false,
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "666f6f"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "params": [
+          {
+            "fields": {
+              "attrGroups": [],
+              "byRef": false,
+              "default": null,
+              "flags": {
+                "integer": "0"
+              },
+              "hooks": [],
+              "type": null,
+              "var": {
+                "fields": {},
+                "kind": "Expr_Error"
+              },
+              "variadic": true
+            },
+            "kind": "Param"
+          }
+        ],
+        "returnType": null,
+        "stmts": [
+          {
+            "fields": {
+              "expr": {
+                "fields": {
+                  "name": {
+                    "bytes": "62617a"
+                  }
+                },
+                "kind": "Expr_Variable"
+              }
+            },
+            "kind": "Stmt_Expression"
+          }
+        ]
+      },
+      "kind": "Stmt_Function"
+    },
+    {
+      "fields": {
+        "attrGroups": [],
+        "byRef": false,
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "666f6f"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "params": [
+          {
+            "fields": {
+              "attrGroups": [],
+              "byRef": true,
+              "default": null,
+              "flags": {
+                "integer": "0"
+              },
+              "hooks": [],
+              "type": null,
+              "var": {
+                "fields": {},
+                "kind": "Expr_Error"
+              },
+              "variadic": false
+            },
+            "kind": "Param"
+          }
+        ],
+        "returnType": null,
+        "stmts": [
+          {
+            "fields": {
+              "expr": {
+                "fields": {
+                  "name": {
+                    "bytes": "717578"
+                  }
+                },
+                "kind": "Expr_Variable"
+              }
+            },
+            "kind": "Stmt_Expression"
+          }
+        ]
+      },
+      "kind": "Stmt_Function"
+    },
+    {
+      "fields": {
+        "attrGroups": [],
+        "byRef": false,
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "666f6f"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "params": [
+          {
+            "fields": {
+              "attrGroups": [],
+              "byRef": false,
+              "default": null,
+              "flags": {
+                "integer": "0"
+              },
+              "hooks": [],
+              "type": {
+                "fields": {
+                  "name": {
+                    "bytes": "426172"
+                  }
+                },
+                "kind": "Name"
+              },
+              "var": {
+                "fields": {},
+                "kind": "Expr_Error"
+              },
+              "variadic": false
+            },
+            "kind": "Param"
+          }
+        ],
+        "returnType": null,
+        "stmts": []
+      },
+      "kind": "Stmt_Function"
+    },
+    {
+      "fields": {
+        "attrGroups": [],
+        "extends": null,
+        "flags": {
+          "integer": "0"
+        },
+        "implements": [],
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "426172"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "stmts": [
+          {
+            "fields": {
+              "attrGroups": [],
+              "byRef": false,
+              "flags": {
+                "integer": "0"
+              },
+              "name": {
+                "fields": {
+                  "name": {
+                    "bytes": "666f6f"
+                  }
+                },
+                "kind": "Identifier"
+              },
+              "params": [
+                {
+                  "fields": {
+                    "attrGroups": [],
+                    "byRef": false,
+                    "default": null,
+                    "flags": {
+                      "integer": "0"
+                    },
+                    "hooks": [],
+                    "type": {
+                      "fields": {
+                        "name": {
+                          "bytes": "42617a"
+                        }
+                      },
+                      "kind": "Name"
+                    },
+                    "var": {
+                      "fields": {},
+                      "kind": "Expr_Error"
+                    },
+                    "variadic": false
+                  },
+                  "kind": "Param"
+                }
+              ],
+              "returnType": null,
+              "stmts": []
+            },
+            "kind": "Stmt_ClassMethod"
+          }
+        ]
+      },
+      "kind": "Stmt_Class"
+    },
+    {
+      "fields": {
+        "expr": {
+          "fields": {
+            "attrGroups": [],
+            "byRef": false,
+            "params": [
+              {
+                "fields": {
+                  "attrGroups": [],
+                  "byRef": false,
+                  "default": null,
+                  "flags": {
+                    "integer": "0"
+                  },
+                  "hooks": [],
+                  "type": {
+                    "fields": {
+                      "name": {
+                        "bytes": "466f6f"
+                      }
+                    },
+                    "kind": "Name"
+                  },
+                  "var": {
+                    "fields": {},
+                    "kind": "Expr_Error"
+                  },
+                  "variadic": false
+                },
+                "kind": "Param"
+              }
+            ],
+            "returnType": null,
+            "static": false,
+            "stmts": [],
+            "uses": []
+          },
+          "kind": "Expr_Closure"
+        }
+      },
+      "kind": "Stmt_Expression"
+    }
+  ]
+}

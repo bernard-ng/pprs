@@ -1,0 +1,25 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        2,
+        16
+      ],
+      "message": {
+        "bytes": "657870656374656420636c617373206e616d65206f722064796e616d696320636c6173732065787072657373696f6e"
+      },
+      "span": [
+        21,
+        21
+      ],
+      "start": [
+        2,
+        16
+      ]
+    }
+  ]
+}

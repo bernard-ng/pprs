@@ -1,0 +1,25 @@
+{
+  "target": "7.0",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "lexical",
+      "code": "PPRS-L004",
+      "end": [
+        2,
+        5
+      ],
+      "message": {
+        "bytes": "696e76616c6964206e756d65726963206c69746572616c20617420627974657320302e2e34"
+      },
+      "span": [
+        6,
+        10
+      ],
+      "start": [
+        2,
+        1
+      ]
+    }
+  ]
+}

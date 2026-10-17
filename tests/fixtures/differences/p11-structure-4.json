@@ -1,0 +1,413 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "fields": {
+        "prefix": {
+          "fields": {
+            "name": {
+              "bytes": "41"
+            }
+          },
+          "kind": "Name"
+        },
+        "type": {
+          "integer": "0"
+        },
+        "uses": [
+          {
+            "fields": {
+              "alias": null,
+              "name": {
+                "fields": {
+                  "name": {
+                    "bytes": "42"
+                  }
+                },
+                "kind": "Name"
+              },
+              "type": {
+                "integer": "1"
+              }
+            },
+            "kind": "UseItem"
+          }
+        ]
+      },
+      "kind": "Stmt_GroupUse"
+    },
+    {
+      "fields": {
+        "prefix": {
+          "fields": {
+            "name": {
+              "bytes": "41"
+            }
+          },
+          "kind": "Name"
+        },
+        "type": {
+          "integer": "2"
+        },
+        "uses": [
+          {
+            "fields": {
+              "alias": null,
+              "name": {
+                "fields": {
+                  "name": {
+                    "bytes": "62"
+                  }
+                },
+                "kind": "Name"
+              },
+              "type": {
+                "integer": "0"
+              }
+            },
+            "kind": "UseItem"
+          }
+        ]
+      },
+      "kind": "Stmt_GroupUse"
+    },
+    {
+      "fields": {
+        "type": {
+          "integer": "1"
+        },
+        "uses": [
+          {
+            "fields": {
+              "alias": null,
+              "name": {
+                "fields": {
+                  "name": {
+                    "bytes": "41"
+                  }
+                },
+                "kind": "Name"
+              },
+              "type": {
+                "integer": "0"
+              }
+            },
+            "kind": "UseItem"
+          }
+        ]
+      },
+      "kind": "Stmt_Use"
+    },
+    {
+      "fields": {
+        "attrGroups": [],
+        "consts": [
+          {
+            "fields": {
+              "name": {
+                "fields": {
+                  "name": {
+                    "bytes": "41"
+                  }
+                },
+                "kind": "Identifier"
+              },
+              "value": {
+                "fields": {
+                  "value": {
+                    "integer": "42"
+                  }
+                },
+                "kind": "Scalar_Int"
+              }
+            },
+            "kind": "Const"
+          }
+        ]
+      },
+      "kind": "Stmt_Const"
+    },
+    {
+      "fields": {
+        "attrGroups": [],
+        "extends": null,
+        "flags": {
+          "integer": "0"
+        },
+        "implements": [
+          {
+            "fields": {
+              "name": {
+                "bytes": "59"
+              }
+            },
+            "kind": "Name"
+          }
+        ],
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "58"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "stmts": [
+          {
+            "fields": {
+              "adaptations": [],
+              "traits": [
+                {
+                  "fields": {
+                    "name": {
+                      "bytes": "41"
+                    }
+                  },
+                  "kind": "Name"
+                }
+              ]
+            },
+            "kind": "Stmt_TraitUse"
+          },
+          {
+            "fields": {
+              "adaptations": [
+                {
+                  "fields": {
+                    "insteadof": [
+                      {
+                        "fields": {
+                          "name": {
+                            "bytes": "43"
+                          }
+                        },
+                        "kind": "Name"
+                      }
+                    ],
+                    "method": {
+                      "fields": {
+                        "name": {
+                          "bytes": "62"
+                        }
+                      },
+                      "kind": "Identifier"
+                    },
+                    "trait": {
+                      "fields": {
+                        "name": {
+                          "bytes": "41"
+                        }
+                      },
+                      "kind": "Name"
+                    }
+                  },
+                  "kind": "Stmt_TraitUseAdaptation_Precedence"
+                }
+              ],
+              "traits": [
+                {
+                  "fields": {
+                    "name": {
+                      "bytes": "41"
+                    }
+                  },
+                  "kind": "Name"
+                }
+              ]
+            },
+            "kind": "Stmt_TraitUse"
+          },
+          {
+            "fields": {
+              "attrGroups": [],
+              "consts": [
+                {
+                  "fields": {
+                    "name": {
+                      "fields": {
+                        "name": {
+                          "bytes": "41"
+                        }
+                      },
+                      "kind": "Identifier"
+                    },
+                    "value": {
+                      "fields": {
+                        "value": {
+                          "integer": "42"
+                        }
+                      },
+                      "kind": "Scalar_Int"
+                    }
+                  },
+                  "kind": "Const"
+                }
+              ],
+              "flags": {
+                "integer": "0"
+              },
+              "type": null
+            },
+            "kind": "Stmt_ClassConst"
+          },
+          {
+            "fields": {
+              "attrGroups": [],
+              "flags": {
+                "integer": "1"
+              },
+              "hooks": [],
+              "props": [
+                {
+                  "fields": {
+                    "default": null,
+                    "name": {
+                      "fields": {
+                        "name": {
+                          "bytes": "78"
+                        }
+                      },
+                      "kind": "VarLikeIdentifier"
+                    }
+                  },
+                  "kind": "PropertyItem"
+                }
+              ],
+              "type": null
+            },
+            "kind": "Stmt_Property"
+          }
+        ]
+      },
+      "kind": "Stmt_Class"
+    },
+    {
+      "fields": {
+        "attrGroups": [],
+        "extends": [
+          {
+            "fields": {
+              "name": {
+                "bytes": "4a"
+              }
+            },
+            "kind": "Name"
+          }
+        ],
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "49"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "stmts": []
+      },
+      "kind": "Stmt_Interface"
+    },
+    {
+      "fields": {
+        "vars": [
+          {
+            "fields": {
+              "name": {
+                "bytes": "78"
+              }
+            },
+            "kind": "Expr_Variable"
+          }
+        ]
+      },
+      "kind": "Stmt_Unset"
+    },
+    {
+      "fields": {
+        "expr": {
+          "fields": {
+            "vars": [
+              {
+                "fields": {
+                  "name": {
+                    "bytes": "78"
+                  }
+                },
+                "kind": "Expr_Variable"
+              }
+            ]
+          },
+          "kind": "Expr_Isset"
+        }
+      },
+      "kind": "Stmt_Expression"
+    },
+    {
+      "fields": {
+        "exprs": [
+          {
+            "fields": {
+              "name": {
+                "bytes": "61"
+              }
+            },
+            "kind": "Expr_Variable"
+          },
+          {
+            "fields": {},
+            "kind": "Expr_Error"
+          }
+        ]
+      },
+      "kind": "Stmt_Echo"
+    },
+    {
+      "fields": {
+        "cond": [
+          {
+            "fields": {
+              "name": {
+                "bytes": "62"
+              }
+            },
+            "kind": "Expr_Variable"
+          },
+          {
+            "fields": {},
+            "kind": "Expr_Error"
+          }
+        ],
+        "init": [
+          {
+            "fields": {
+              "name": {
+                "bytes": "61"
+              }
+            },
+            "kind": "Expr_Variable"
+          },
+          {
+            "fields": {},
+            "kind": "Expr_Error"
+          }
+        ],
+        "loop": [
+          {
+            "fields": {
+              "name": {
+                "bytes": "63"
+              }
+            },
+            "kind": "Expr_Variable"
+          },
+          {
+            "fields": {},
+            "kind": "Expr_Error"
+          }
+        ],
+        "stmts": []
+      },
+      "kind": "Stmt_For"
+    }
+  ]
+}

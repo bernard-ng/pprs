@@ -1,0 +1,44 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "lexical",
+      "code": "lex.bad-character",
+      "end": [
+        4,
+        2
+      ],
+      "message": {
+        "bytes": "556e65787065637465642062797465203078303120284153434949203129"
+      },
+      "span": [
+        15,
+        16
+      ],
+      "start": [
+        4,
+        1
+      ]
+    },
+    {
+      "category": "lexical",
+      "code": "lex.bad-character",
+      "end": [
+        6,
+        2
+      ],
+      "message": {
+        "bytes": "556e65787065637465642062797465203078303220284153434949203229"
+      },
+      "span": [
+        25,
+        26
+      ],
+      "start": [
+        6,
+        1
+      ]
+    }
+  ]
+}

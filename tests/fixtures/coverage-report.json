@@ -8,9 +8,9 @@
   },
   "cases": {
     "deferred": 13,
-    "intentional-difference": 0,
-    "passing": 0,
-    "pending": 300
+    "intentional-difference": 65,
+    "passing": 235,
+    "pending": 0
   },
   "channels_by_phase": {
     "E07": {
@@ -39,11 +39,12 @@
       "passing": 96
     },
     "P10": {
-      "intentional-difference": 40,
-      "passing": 297
+      "intentional-difference": 37,
+      "passing": 300
     },
     "P11": {
-      "pending": 334
+      "intentional-difference": 78,
+      "passing": 256
     }
   }
 }

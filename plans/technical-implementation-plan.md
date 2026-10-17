@@ -376,6 +376,8 @@ Acceptance: all in-scope valid parser fixtures match normalized AST/value/commen
 
 ### P11 — Complete diagnostics, recovery, and parser-local validation
 
+Status: **complete, 2026-10-17**. [Decision 0010](../docs/decisions/0010-diagnostics-and-recovery.md) and the [recovery ledger](../docs/implementation/recovery.md) close all 112 invalid core reviews and every remaining comparison channel. Diagnostics: 239 exact / 61 explicit differences; AST/status: 266 / 34; metadata: 265 / 35. All 188 clean core inputs remain exact. Another 87 probes cover parser-local validation, all targets, malformed boundaries and two explicit reference assertion failures. Strict equivalence, repeated parsing, every focused byte prefix, small budgets, diagnostic mutations and following-code survival are checked. Exact LR recovery and English wording remain outside the public compatibility promise.
+
 Dependencies: P07–P10; recovery tests have been added throughout.
 
 - Review all invalid-input cases, not only the `errorHandling` directory.

@@ -1,0 +1,44 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        6,
+        11
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        62,
+        68
+      ],
+      "start": [
+        6,
+        5
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        12,
+        2
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        162,
+        163
+      ],
+      "start": [
+        12,
+        1
+      ]
+    }
+  ]
+}

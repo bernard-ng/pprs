@@ -1,0 +1,3410 @@
+[
+  {
+    "id": "parser/errorHandling/eofError.test#0",
+    "reference_status": "recovered",
+    "reason": "A missing terminator at EOF retains the parsed expression and reports an explicit EOF token. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Eof",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          9,
+          9
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/eofError.test#1",
+    "reference_status": "recovered",
+    "reason": "A missing terminator at EOF retains the parsed expression and reports an explicit EOF token. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Eof",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          19,
+          19
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/lexerErrors.test#0",
+    "reference_status": "recovered",
+    "reason": "Lexical errors retain their exact source bytes; rejected bytes are skipped by grammar navigation without syntax cascades. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-L002",
+        "expected": [],
+        "found": null,
+        "message": "Unterminated comment",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          27
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/lexerErrors.test#1",
+    "reference_status": "recovered",
+    "reason": "Retains an error expression for the bad byte between assignments. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L001",
+        "expected": [],
+        "found": null,
+        "message": "Unexpected byte 0x01 (ASCII 1)",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          17
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/lexerErrors.test#2",
+    "reference_status": "recovered",
+    "reason": "Retains an error expression for the NUL byte between assignments. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-L001",
+        "expected": [],
+        "found": null,
+        "message": "Unexpected null byte",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          17
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/lexerErrors.test#3",
+    "reference_status": "recovered",
+    "reason": "Retains error expressions for both bad bytes between assignments. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L001",
+        "expected": [],
+        "found": null,
+        "message": "Unexpected byte 0x01 (ASCII 1)",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          15,
+          16
+        ]
+      },
+      {
+        "code": "PPRS-L001",
+        "expected": [],
+        "found": null,
+        "message": "Unexpected byte 0x02 (ASCII 2)",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          25,
+          26
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/lexerErrors.test#4",
+    "reference_status": "aborted",
+    "reason": "Retains the completed inner statement and trailing unterminated comment instead of a null AST. Explicit diagnostic differences: completion aborted -> recovered, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L002",
+        "expected": [],
+        "found": null,
+        "message": "Unterminated comment",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          33,
+          50
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightBrace"
+        ],
+        "found": "Eof",
+        "message": "expected RightBrace, found Eof",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              15,
+              16
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#0",
+    "reference_status": "recovered",
+    "reason": "Missing semicolons are inserted at statement starts and EOF, preserving all three calls. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          13,
+          16
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          19,
+          22
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Eof",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          24,
+          24
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#1",
+    "reference_status": "recovered",
+    "reason": "A missing terminator after the first call is inserted at the second call, retaining subsequent calls. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          13,
+          16
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#10",
+    "reference_status": "recovered",
+    "reason": "The missing terminator is inserted at EOF while retaining the expression. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Eof",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          11,
+          11
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#11",
+    "reference_status": "recovered",
+    "reason": "An unfinished new expression without a class is discarded instead of manufacturing a missing Name. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Eof",
+        "message": "expected class name or dynamic class expression",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          9,
+          9
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#12",
+    "reference_status": "recovered",
+    "reason": "An unfinished instanceof expression without a class is discarded instead of manufacturing a missing Name. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Eof",
+        "message": "expected class name or dynamic class expression",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          21,
+          21
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#13",
+    "reference_status": "recovered",
+    "reason": "The missing variable name uses a point after the dollar token and one EOF syntax diagnostic. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Eof",
+        "message": "expected variable after dollar sign",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          7,
+          7
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#14",
+    "reference_status": "recovered",
+    "reason": "The missing static variable name uses a point after the dollar token and one EOF syntax diagnostic. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Eof",
+        "message": "expected variable after dollar sign",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          12,
+          12
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#15",
+    "reference_status": "recovered",
+    "reason": "The missing member name at EOF produces one diagnostic while retaining a recoverable expression. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Eof",
+        "message": "expected member name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          11,
+          11
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#16",
+    "reference_status": "recovered",
+    "reason": "Missing terminators retain subsequent return/declaration anchors; statement boundaries and diagnostic sequence differ from LR recovery. Explicit diagnostic differences: diagnostic count 5 -> 8, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Use",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          20,
+          23
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Use",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          26,
+          29
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Use",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          41,
+          44
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Const",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          51,
+          56
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Break",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          63,
+          68
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Return",
+        "message": "expected expression, found Return",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          104,
+          110
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Echo",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          113,
+          117
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Unset",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          121,
+          126
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#17",
+    "reference_status": "recovered",
+    "reason": "Rejected trailing commas use list-specific grammar recovery, with a different retained tree and diagnostic count from LR recovery. Explicit diagnostic differences: diagnostic count 16 -> 17, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "trailing comma is not allowed in imports",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          49,
+          50
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": null,
+        "message": "trailing comma is not allowed in constants",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          57,
+          64
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "LeftBrace",
+        "message": "trailing comma is not allowed in class names",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          90,
+          91
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "trailing comma is not allowed in class names",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          103,
+          104
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "LeftBrace",
+        "message": "trailing comma is not allowed in class names",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          116,
+          117
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "trailing comma is not allowed in class names",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          144,
+          145
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": null,
+        "message": "trailing comma is not allowed in constants",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          162,
+          169
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": null,
+        "message": "trailing comma is not allowed in properties",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          183,
+          186
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "LeftBrace",
+        "message": "trailing comma is not allowed in class names",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          214,
+          215
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Identifier"
+        ],
+        "found": "RightParen",
+        "message": "expected Identifier, found RightParen",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          259,
+          260
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          274,
+          275
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "expected variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          274,
+          275
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Static",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          276,
+          282
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected expression, found Semicolon",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          298,
+          299
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected expression, found Semicolon",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          310,
+          311
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected expression, found Semicolon",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          316,
+          317
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightParen",
+        "message": "expected expression, found RightParen",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          322,
+          323
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#18",
+    "reference_status": "recovered",
+    "reason": "The invalid member expression is diagnosed at the unexpected token; remaining syntax is retained. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightParen",
+        "message": "expected member name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          17
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#19",
+    "reference_status": "recovered",
+    "reason": "Invalid class member syntax synchronizes inside its containing class. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Identifier",
+        "message": "expected class member",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          41,
+          46
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#2",
+    "reference_status": "recovered",
+    "reason": "A missing terminator after the middle call is inserted at the last call, retaining the preceding and following calls. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          20,
+          23
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#20",
+    "reference_status": "recovered",
+    "reason": "Malformed foreach headers use local expression recovery, including an invalid-target check, instead of the reference LR sequence. Explicit diagnostic differences: diagnostic count 2 -> 3, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "As"
+        ],
+        "found": "RightParen",
+        "message": "expected As, found RightParen",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          20,
+          21
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightParen",
+        "message": "expected expression, found RightParen",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          49,
+          50
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "invalid foreach target",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          49,
+          49
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#21",
+    "reference_status": "recovered",
+    "reason": "Missing parameter variables use zero-width error expressions; body and signature recovery produce additional diagnostics. Explicit diagnostic differences: diagnostic count 7 -> 10, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Variable"
+        ],
+        "found": "RightParen",
+        "message": "expected parameter variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          24,
+          25
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Variable"
+        ],
+        "found": "RightParen",
+        "message": "expected parameter variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          71,
+          72
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Variable"
+        ],
+        "found": "RightParen",
+        "message": "expected parameter variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          104,
+          105
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Variable"
+        ],
+        "found": "RightParen",
+        "message": "expected parameter variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          135,
+          136
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Variable"
+        ],
+        "found": "RightParen",
+        "message": "expected parameter variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          168,
+          169
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "LeftBrace"
+        ],
+        "found": "Class",
+        "message": "expected function body",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          171,
+          176
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Variable"
+        ],
+        "found": "RightParen",
+        "message": "expected parameter variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          203,
+          204
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "LeftBrace"
+        ],
+        "found": "RightBrace",
+        "message": "expected function body",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          205,
+          206
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Variable"
+        ],
+        "found": "RightParen",
+        "message": "expected parameter variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          220,
+          221
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "LeftBrace"
+        ],
+        "found": "Semicolon",
+        "message": "expected function body",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          221,
+          222
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#22",
+    "reference_status": "recovered",
+    "reason": "A missing array separator discards the damaged assignment at statement synchronization. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightBracket"
+        ],
+        "found": "Variable",
+        "message": "expected RightBracket, found Variable",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              15,
+              16
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          34,
+          51
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightBracket"
+        ],
+        "found": "Variable",
+        "message": "expected RightBracket, found Variable",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              71,
+              72
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          84,
+          101
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightBracket"
+        ],
+        "found": "Variable",
+        "message": "expected RightBracket, found Variable",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              114,
+              115
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          136,
+          153
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#23",
+    "reference_status": "recovered",
+    "reason": "A missing return type discards the damaged function rather than manufacturing a missing type. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "LeftBrace",
+        "message": "expected type name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#24",
+    "reference_status": "aborted",
+    "reason": "An unterminated string inside a damaged array emits an additional lexical diagnostic; neither implementation accepts it cleanly. Explicit diagnostic differences: completion aborted -> recovered, diagnostic count 1 -> 2, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightBracket"
+        ],
+        "found": "Identifier",
+        "message": "expected RightBracket, found Identifier",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              11,
+              12
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          16,
+          21
+        ]
+      },
+      {
+        "code": "PPRS-L003",
+        "expected": [],
+        "found": null,
+        "message": "Unterminated string or interpolation",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          21,
+          24
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#25",
+    "reference_status": "recovered",
+    "reason": "Missing member terminators synchronize at the following member, retaining different member ranges. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Public",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          62,
+          68
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "RightBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          162,
+          163
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#3",
+    "reference_status": "recovered",
+    "reason": "A missing right operand is represented by an explicit zero-width error expression. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected expression, found Semicolon",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          15,
+          16
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#4",
+    "reference_status": "recovered",
+    "reason": "A missing right operand before a closing brace is an error expression; the brace remains owned by its body. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightBrace",
+        "message": "expected expression, found RightBrace",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          32,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#5",
+    "reference_status": "recovered",
+    "reason": "The malformed while header is discarded through synchronization; later statements survive. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "LeftParen"
+        ],
+        "found": "Variable",
+        "message": "expected LeftParen, found Variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          22,
+          24
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#6",
+    "reference_status": "recovered",
+    "reason": "An empty while condition retains an error expression and the following body. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightParen",
+        "message": "expected expression, found RightParen",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          22,
+          23
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#7",
+    "reference_status": "aborted",
+    "reason": "A missing loop closing brace retains completed inner statements instead of a null reference AST. Explicit diagnostic differences: completion aborted -> recovered, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightBrace"
+        ],
+        "found": "Eof",
+        "message": "expected RightBrace, found Eof",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              118,
+              119
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          143,
+          143
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#8",
+    "reference_status": "recovered",
+    "reason": "The missing member name is diagnosed at its delimiter and a recovered member expression is retained. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected member name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          13,
+          14
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#9",
+    "reference_status": "recovered",
+    "reason": "The missing member name before the function closing brace produces one syntax diagnostic; unwinding terminator errors are suppressed. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightBrace",
+        "message": "expected member name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          34,
+          35
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/expr/alternative_array_syntax.test#1",
+    "reference_status": "recovered",
+    "reason": "PHP 8 curly-offset rejection synchronizes damaged expressions at statement boundaries rather than retaining the reference suffix blocks. Explicit diagnostic differences: diagnostic count 9 -> 11, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          9,
+          10
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          18,
+          19
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightParen",
+        "message": "expected expression, found RightParen",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          24,
+          25
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          32,
+          33
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          46,
+          47
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          58,
+          59
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          66,
+          67
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          75,
+          76
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          90,
+          91
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          114,
+          115
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightParen",
+        "message": "expected expression, found RightParen",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          120,
+          121
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/expr/arrayEmptyElemens.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use empty array elements in arrays. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use empty array elements in arrays",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          11,
+          12
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use empty array elements in arrays",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          26,
+          27
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/expr/assignNewByRef.test#1",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot assign new by reference. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot assign new by reference",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          17
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/expr/newWithoutClass.test#0",
+    "reference_status": "recovered",
+    "reason": "Drops new without a class rather than retaining a missing-name placeholder. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected class name or dynamic class expression",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          9,
+          10
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/expr/uvs/globalNonSimpleVarError.test#0",
+    "reference_status": "recovered",
+    "reason": "P08 discards a damaged global statement through its terminator instead of synthesizing a separate constant expression from an invalid property suffix; following statements are retained. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "ObjectArrow",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          18,
+          20
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/flexibleDocStringErrors.test#0",
+    "reference_status": "recovered",
+    "reason": "All eight indentation problems are detected; literal decoding uses native lexical codes and body-oriented ranges/wording. Explicit diagnostic differences: category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "Invalid indentation - tabs and spaces cannot be mixed",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          12,
+          15
+        ]
+      },
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "Invalid indentation - tabs and spaces cannot be mixed",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          34,
+          37
+        ]
+      },
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "Invalid indentation - tabs and spaces cannot be mixed",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          52,
+          58
+        ]
+      },
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "Invalid body indentation level",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          78,
+          99
+        ]
+      },
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "Invalid body indentation level",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          117,
+          121
+        ]
+      },
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "Invalid body indentation level",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          136,
+          142
+        ]
+      },
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "Invalid body indentation before interpolation",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          156,
+          164
+        ]
+      },
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "Invalid body indentation level",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          189,
+          192
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/invalidOctal.test#0",
+    "reference_status": "recovered",
+    "reason": "The invalid numeric literal has a lexical decoding diagnostic and retained fallback value, rather than a reference contextual code. Explicit diagnostic differences: category, code, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "invalid numeric literal at bytes 0..4",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          10
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/numberSeparators.test#0",
+    "reference_status": "recovered",
+    "reason": "Illegal separator spellings split into tokens; statement recovery differs from the reference LR error sequence. Explicit diagnostic differences: diagnostic count 8 -> 9, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          132,
+          133
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          136,
+          139
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          142,
+          143
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Float",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          143,
+          145
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          149,
+          151
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          154,
+          159
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          162,
+          167
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          170,
+          173
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Identifier",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          176,
+          179
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#2",
+    "reference_status": "aborted",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "invalid UTF-8 codepoint escape sequence at bytes 1..21",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          28
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#3",
+    "reference_status": "aborted",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "invalid UTF-8 codepoint escape sequence at bytes 1..11",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          18
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#4",
+    "reference_status": "aborted",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "invalid UTF-8 codepoint escape sequence at bytes 1..5",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          14
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#5",
+    "reference_status": "aborted",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "invalid UTF-8 codepoint escape sequence at bytes 1..5",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#6",
+    "reference_status": "aborted",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "invalid UTF-8 codepoint escape sequence at bytes 1..6",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          14
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#7",
+    "reference_status": "aborted",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "invalid UTF-8 codepoint escape sequence at bytes 1..6",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          13
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#8",
+    "reference_status": "aborted",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "invalid UTF-8 codepoint escape sequence at bytes 1..4",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          11
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#9",
+    "reference_status": "aborted",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "invalid UTF-8 codepoint escape sequence at bytes 0..4",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          13,
+          18
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/asymmetric_visibility.test#1",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Multiple access type modifiers are not allowed. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple access type modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              23,
+              35
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          36,
+          48
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple access type modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              57,
+              69
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          70,
+          81
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/constModifierErrors.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'static' as constant modifier. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'static' as constant modifier",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          20,
+          26
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/constModifierErrors.test#1",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'abstract' as constant modifier. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'abstract' as constant modifier",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          20,
+          28
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/constModifierErrors.test#2",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'readonly' as constant modifier. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'readonly' as constant modifier",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          20,
+          28
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/constModifierErrors.test#3",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Multiple access type modifiers are not allowed. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple access type modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              20,
+              26
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          27,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/modifier_error.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Multiple access type modifiers are not allowed. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple access type modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              16,
+              22
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          23,
+          29
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/modifier_error.test#1",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Multiple access type modifiers are not allowed. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple access type modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              16,
+              22
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          23,
+          32
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/modifier_error.test#2",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Multiple readonly modifiers are not allowed. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple readonly modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              16,
+              24
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          25,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/modifier_error.test#3",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Multiple abstract modifiers are not allowed. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple abstract modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              16,
+              24
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          25,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/modifier_error.test#4",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Multiple static modifiers are not allowed. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple static modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              16,
+              22
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          23,
+          29
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/modifier_error.test#5",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Multiple final modifiers are not allowed. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple final modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              16,
+              21
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          22,
+          27
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/modifier_error.test#6",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use the final modifier on an abstract class member. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the final modifier on an abstract class member",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              16,
+              24
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          25,
+          30
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/modifier_error.test#7",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use the final modifier on an abstract class. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the final modifier on an abstract class",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              6,
+              14
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          15,
+          20
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'self' as class name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'self' as class name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          12,
+          16
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#1",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'PARENT' as class name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'PARENT' as class name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          12,
+          18
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#10",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'PARENT' as class name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'PARENT' as class name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#11",
+    "reference_status": "recovered",
+    "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Identifier"
+        ],
+        "found": "Static",
+        "message": "expected Identifier, found Static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#12",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'self' as interface name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'self' as interface name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          26,
+          30
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#13",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'PARENT' as interface name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'PARENT' as interface name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          26,
+          32
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#14",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'static' as interface name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'static' as interface name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          26,
+          32
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#2",
+    "reference_status": "recovered",
+    "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Identifier"
+        ],
+        "found": "Static",
+        "message": "expected Identifier, found Static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          12,
+          18
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#3",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'self' as class name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'self' as class name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          22,
+          26
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#4",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'PARENT' as class name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'PARENT' as class name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          22,
+          28
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#5",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'static' as class name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'static' as class name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          22,
+          28
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#6",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'self' as interface name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'self' as interface name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          25,
+          29
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#7",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'PARENT' as interface name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'PARENT' as interface name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          25,
+          31
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#8",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'static' as interface name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'static' as interface name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          25,
+          31
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/name.test#9",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use 'self' as class name as it is reserved. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'self' as class name as it is reserved",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          20
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/property_hooks.test#1",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Property hook list cannot be empty. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Property hook list cannot be empty",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          36,
+          37
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Property hook list cannot be empty",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          85,
+          86
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/property_hooks.test#2",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: get hook must not have a parameter list. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "get hook must not have a parameter list",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          49,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/property_hooks.test#3",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Unknown hook \"FOO\", expected \"get\" or \"set\". Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Unknown hook \"FOO\", expected \"get\" or \"set\"",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          38,
+          41
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/property_hooks.test#4",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use the public modifier on a property hook; Multiple access type modifiers are not allowed; Cannot use the protected modifier on a property hook; Cannot use the private modifier on a property hook; Cannot use the abstract modifier on a property hook; Cannot use the static modifier on a property hook; Cannot use the readonly modifier on a property hook. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the public modifier on a property hook",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          46,
+          52
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple access type modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              46,
+              52
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          53,
+          59
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the public modifier on a property hook",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          53,
+          59
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the protected modifier on a property hook",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          73,
+          82
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the private modifier on a property hook",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          96,
+          103
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the abstract modifier on a property hook",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          117,
+          125
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the static modifier on a property hook",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          126,
+          132
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the readonly modifier on a property hook",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          146,
+          154
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/property_hooks.test#5",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use hooks when declaring multiple properties. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use hooks when declaring multiple properties",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          42,
+          43
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/property_hooks.test#6",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use hooks when declaring multiple properties; Property hook list cannot be empty. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use hooks when declaring multiple properties",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          42,
+          43
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Property hook list cannot be empty",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          42,
+          43
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/readonlyAsClassName.test#0",
+    "reference_status": "recovered",
+    "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Identifier"
+        ],
+        "found": "Readonly",
+        "message": "expected Identifier, found Readonly",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          12,
+          20
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/readonlyMethod.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Method foo() cannot be readonly. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Method foo() cannot be readonly",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          24
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/shortEchoAsIdentifier.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use \"<?=\" as an identifier. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use \"<?=\" as an identifier",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          44,
+          47
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/staticMethod.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Constructor __construct() cannot be static. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Constructor __construct() cannot be static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/staticMethod.test#1",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Destructor __destruct() cannot be static. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Destructor __destruct() cannot be static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/staticMethod.test#2",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Clone method __clone() cannot be static. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Clone method __clone() cannot be static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/staticMethod.test#3",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Constructor __CONSTRUCT() cannot be static. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Constructor __CONSTRUCT() cannot be static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/staticMethod.test#4",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Destructor __Destruct() cannot be static. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Destructor __Destruct() cannot be static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/class/staticMethod.test#5",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Clone method __cLoNe() cannot be static. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Clone method __cLoNe() cannot be static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/function/invalidVoidParam.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: void cannot be used as a parameter type. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          19,
+          23
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/function/variadicDefaultValue.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Variadic parameter cannot have a default value. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          29,
+          31
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/haltCompilerInvalidSyntax.test#0",
+    "reference_status": "recovered",
+    "reason": "The malformed halt is diagnosed at the actual expected terminator, without enabling raw-tail scanning. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Eof",
+        "message": "expected __halt_compiler();",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          23
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/haltCompilerOutermostScope.test#0",
+    "reference_status": "aborted",
+    "reason": "Nested halt emits the parser-local outermost-scope error and aborts with retained source. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "__HALT_COMPILER() can only be used from the outermost scope",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          22,
+          37
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/groupUseErrors.test#0",
+    "reference_status": "recovered",
+    "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Use",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          41,
+          44
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/groupUseErrors.test#1",
+    "reference_status": "recovered",
+    "reason": "P09 synchronizes the malformed grouped import through its braced suffix instead of reinterpreting import fragments as ordinary statements; subsequent valid statements are retained. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "LeftBrace",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          38,
+          39
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/groupUseErrors.test#2",
+    "reference_status": "recovered",
+    "reason": "P09 diagnoses an extra leading separator in a grouped import and retains the recovered import item with a normalized name; the reference drops the import and reinterprets the suffix as a constant expression. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "NameFullyQualified",
+        "message": "invalid import name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          37,
+          41
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/invalidName.test#0",
+    "reference_status": "recovered",
+    "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use A as self because 'self' is a special class name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          15,
+          19
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/invalidName.test#1",
+    "reference_status": "recovered",
+    "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use B as PARENT because 'PARENT' is a special class name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          15,
+          21
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/invalidName.test#2",
+    "reference_status": "recovered",
+    "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Identifier"
+        ],
+        "found": "Static",
+        "message": "expected Identifier, found Static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          15,
+          21
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/mix.test#0",
+    "reference_status": "recovered",
+    "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Explicit diagnostic differences: wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "cannot mix namespace styles",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          27,
+          54
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/mix.test#1",
+    "reference_status": "recovered",
+    "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Explicit diagnostic differences: diagnostic count 1 -> 2, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "code outside a braced namespace",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          34,
+          41
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "cannot mix namespace styles",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          42,
+          54
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/nested.test#0",
+    "reference_status": "recovered",
+    "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "namespace declarations cannot be nested",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          24,
+          44
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/outsideStmtInvalid.test#0",
+    "reference_status": "recovered",
+    "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "namespace must be the first statement",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          22,
+          34
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/outsideStmtInvalid.test#1",
+    "reference_status": "recovered",
+    "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "code outside a braced namespace",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          21,
+          28
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/namespace/outsideStmtInvalid.test#2",
+    "reference_status": "recovered",
+    "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "code outside a braced namespace",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          21,
+          38
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parser/stmt/tryWithoutCatch.test#0",
+    "reference_status": "recovered",
+    "reason": "Parser-local rejection reviewed: Cannot use try without catch or finally. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          7,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "id": "project/adapter/bad-bytes",
+    "reference_status": "recovered",
+    "reason": "Lexical errors retain their exact source bytes; rejected bytes are skipped by grammar navigation without syntax cascades. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-L001",
+        "expected": [],
+        "found": null,
+        "message": "Unexpected null byte",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          7
+        ]
+      },
+      {
+        "code": "PPRS-L001",
+        "expected": [],
+        "found": null,
+        "message": "Unexpected byte 0x01 (ASCII 1)",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          7,
+          8
+        ]
+      }
+    ]
+  },
+  {
+    "id": "project/adapter/eof-error",
+    "reference_status": "aborted",
+    "reason": "Missing closing parenthesis at EOF retains a partial root, with an explicit found EOF and related opening delimiter. Explicit diagnostic differences: completion aborted -> recovered, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightParen"
+        ],
+        "found": "Eof",
+        "message": "expected RightParen, found Eof",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              16,
+              17
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          17,
+          17
+        ]
+      }
+    ]
+  },
+  {
+    "id": "project/adapter/unterminated-comment",
+    "reference_status": "recovered",
+    "reason": "Unterminated comment is reported lexically with its exclusive source end. Ordered diagnostic categories, wording, ranges and completion status match the reference.",
+    "native": [
+      {
+        "code": "PPRS-L002",
+        "expected": [],
+        "found": null,
+        "message": "Unterminated comment",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          13
+        ]
+      }
+    ]
+  }
+]

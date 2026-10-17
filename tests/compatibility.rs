@@ -1,4 +1,7 @@
 //! Offline P02 corpus integrity and comparison adapter tests.
+#[path = "support/diagnostics.rs"]
+#[allow(dead_code)]
+mod diagnostic_adapter;
 #[path = "support/lexer.rs"]
 mod lexer_adapter;
 #[path = "support/parser.rs"]
@@ -113,7 +116,9 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
                 },
             )
             .unwrap();
-            parser_adapter::full_observation(&result, target)
+            let mut observation = parser_adapter::full_observation(&result, target);
+            observation["diagnostics"] = json!(diagnostic_adapter::diagnostics(&result));
+            observation
         });
         for channel in CHANNELS {
             let state = channels.get(channel).expect("explicit channel state");
@@ -123,7 +128,7 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
                 assert_eq!(state["state"], "deferred");
             }
             if case["scope"] == "core"
-                && matches!(channel, "structure" | "positions")
+                && matches!(channel, "structure" | "positions" | "diagnostics")
                 && case["oracle"]["status"] == "clean"
             {
                 assert_eq!(
@@ -151,7 +156,7 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
                 &case["oracle"],
                 if channel == "tokens" {
                     actual.as_ref()
-                } else if matches!(channel, "structure" | "positions") {
+                } else if matches!(channel, "structure" | "positions" | "diagnostics") {
                     parsed.as_ref()
                 } else {
                     None

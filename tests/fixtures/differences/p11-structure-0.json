@@ -1,0 +1,10 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "fields": {},
+      "kind": "Stmt_Nop"
+    }
+  ]
+}

@@ -26,7 +26,7 @@ pub fn observation(result: &LexResult, target: &str) -> Value {
 
 #[allow(
     dead_code,
-    reason = "the P02 channel gate uses tokens only until parser diagnostics arrive"
+    reason = "the core token adapter and dedicated lexical tests share this module"
 )]
 pub fn diagnostics(result: &LexResult) -> Vec<Value> {
     result

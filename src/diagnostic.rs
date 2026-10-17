@@ -24,7 +24,7 @@ pub enum Category {
     Resource,
 }
 
-/// Stable machine-readable codes. More specific codes arrive with their features.
+/// Stable machine-readable categories of input failure; messages provide local detail.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[non_exhaustive]
 pub enum DiagnosticCode {
@@ -36,7 +36,7 @@ pub enum DiagnosticCode {
     UnterminatedString,
     /// Unexpected token or missing syntax.
     UnexpectedToken,
-    /// Grammar intentionally outside the currently implemented slice.
+    /// Grammar outside the supported PHP 7.0–8.4 scope.
     UnsupportedSyntax,
     /// Literal interpretation failed.
     InvalidLiteral,
@@ -99,9 +99,10 @@ pub struct Diagnostic {
     pub primary: Span,
     /// Human-readable message; exact wording is not part of compatibility.
     pub message: String,
-    /// Related locations, in emission order.
+    /// Related locations, such as a previous modifier or opening delimiter.
     pub secondary: Vec<Label>,
-    /// Expected kinds, if the parser can enumerate them usefully.
+    /// Expected kinds, if the parser can enumerate them usefully. Empty means no
+    /// finite useful expectation, not that every token would be valid.
     pub expected: Vec<TokenKind>,
     /// Actual kind; `None` means not applicable, whereas EOF is explicit.
     pub found: Option<TokenKind>,
@@ -123,7 +124,7 @@ impl Diagnostic {
     }
 }
 
-// Bounded production lexer diagnostics; parser emission connects in P07.
+// Bounded production lexer diagnostics; the parser combines these with grammar errors.
 #[derive(Debug)]
 pub(crate) struct DiagnosticBag {
     entries: Vec<Diagnostic>,

@@ -1,0 +1,123 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "fields": {
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "466f6f"
+            }
+          },
+          "kind": "Name"
+        },
+        "stmts": [
+          {
+            "fields": {
+              "type": {
+                "integer": "1"
+              },
+              "uses": [
+                {
+                  "fields": {
+                    "alias": null,
+                    "name": {
+                      "fields": {
+                        "name": {
+                          "bytes": "41"
+                        }
+                      },
+                      "kind": "Name"
+                    },
+                    "type": {
+                      "integer": "0"
+                    }
+                  },
+                  "kind": "UseItem"
+                }
+              ]
+            },
+            "kind": "Stmt_Use"
+          },
+          {
+            "fields": {
+              "type": {
+                "integer": "2"
+              },
+              "uses": [
+                {
+                  "fields": {
+                    "alias": null,
+                    "name": {
+                      "fields": {
+                        "name": {
+                          "bytes": "61"
+                        }
+                      },
+                      "kind": "Name"
+                    },
+                    "type": {
+                      "integer": "0"
+                    }
+                  },
+                  "kind": "UseItem"
+                }
+              ]
+            },
+            "kind": "Stmt_Use"
+          },
+          {
+            "fields": {
+              "prefix": {
+                "fields": {
+                  "name": {
+                    "bytes": "41"
+                  }
+                },
+                "kind": "Name"
+              },
+              "type": {
+                "integer": "0"
+              },
+              "uses": [
+                {
+                  "fields": {
+                    "alias": null,
+                    "name": {
+                      "fields": {
+                        "name": {
+                          "bytes": "42"
+                        }
+                      },
+                      "kind": "Name"
+                    },
+                    "type": {
+                      "integer": "1"
+                    }
+                  },
+                  "kind": "UseItem"
+                }
+              ]
+            },
+            "kind": "Stmt_GroupUse"
+          },
+          {
+            "fields": {
+              "expr": {
+                "fields": {
+                  "value": {
+                    "integer": "2"
+                  }
+                },
+                "kind": "Scalar_Int"
+              }
+            },
+            "kind": "Stmt_Return"
+          }
+        ]
+      },
+      "kind": "Stmt_Namespace"
+    }
+  ]
+}

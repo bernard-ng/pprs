@@ -76,11 +76,8 @@ impl Parser {
                 }
                 if by_ref && matches!(right.kind, ExprKind::New { .. } | ExprKind::NewAnonymous(_))
                 {
-                    self.error_meta(
-                        D::InvalidContext,
-                        &right.meta,
-                        "Cannot assign new by reference",
-                    )?;
+                    let meta = self.meta(start);
+                    self.error_meta(D::InvalidContext, &meta, "Cannot assign new by reference")?;
                 }
                 let node = if by_ref {
                     ExprKind::AssignRef {
@@ -181,6 +178,17 @@ impl Parser {
                 let attributes = self.attributes()?;
                 self.callable_expression_with(attributes, start)
             }
+            K::Function
+                if self.ahead(1)? == K::Identifier
+                    || self.ahead(1)? == K::Ampersand && self.ahead(2)? == K::Identifier =>
+            {
+                self.syntax(
+                    token,
+                    &[],
+                    "expected expression before function declaration",
+                )?;
+                Err(())
+            }
             K::Function | K::Fn => self.callable_expression(),
             K::Static if matches!(self.ahead(1)?, K::Function | K::Fn) => {
                 self.callable_expression()
@@ -212,16 +220,10 @@ impl Parser {
             K::Yield => self.yield_expression(start),
             K::Match => self.match_expression(),
             _ => {
-                let code = if matches!(kind, K::Function | K::Fn | K::Class | K::Attribute) {
-                    D::UnsupportedSyntax
-                } else {
-                    D::UnexpectedToken
-                };
-                self.record(Diagnostic::error(
-                    code,
-                    token.span(),
-                    format!("expected expression, found {kind:?}"),
-                ))?;
+                self.syntax(token, &[], format!("expected expression, found {kind:?}"))?;
+                if Self::statement_anchor(kind) {
+                    return Err(());
+                }
                 if operators::boundary(kind) {
                     self.alloc()?;
                     Ok(Box::new(Expr {

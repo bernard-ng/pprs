@@ -1,0 +1,172 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "fields": {
+        "attrGroups": [],
+        "extends": null,
+        "flags": {
+          "integer": "0"
+        },
+        "implements": [],
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "41"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "stmts": [
+          {
+            "fields": {
+              "attrGroups": [],
+              "byRef": false,
+              "flags": {
+                "integer": "1"
+              },
+              "name": {
+                "fields": {
+                  "name": {
+                    "bytes": "5f5f636f6e737472756374"
+                  }
+                },
+                "kind": "Identifier"
+              },
+              "params": [
+                {
+                  "fields": {
+                    "attrGroups": [],
+                    "byRef": false,
+                    "default": null,
+                    "flags": {
+                      "integer": "0"
+                    },
+                    "hooks": [],
+                    "type": {
+                      "fields": {
+                        "name": {
+                          "bytes": "737472696e67"
+                        }
+                      },
+                      "kind": "Identifier"
+                    },
+                    "var": {
+                      "fields": {
+                        "name": {
+                          "bytes": "73"
+                        }
+                      },
+                      "kind": "Expr_Variable"
+                    },
+                    "variadic": false
+                  },
+                  "kind": "Param"
+                }
+              ],
+              "returnType": null,
+              "stmts": [
+                {
+                  "fields": {
+                    "expr": {
+                      "fields": {
+                        "expr": {
+                          "fields": {
+                            "name": {
+                              "bytes": "73"
+                            }
+                          },
+                          "kind": "Expr_Variable"
+                        },
+                        "var": {
+                          "fields": {
+                            "name": {
+                              "fields": {
+                                "name": {
+                                  "bytes": "666f6f"
+                                }
+                              },
+                              "kind": "Identifier"
+                            },
+                            "var": {
+                              "fields": {
+                                "name": {
+                                  "bytes": "74686973"
+                                }
+                              },
+                              "kind": "Expr_Variable"
+                            }
+                          },
+                          "kind": "Expr_PropertyFetch"
+                        }
+                      },
+                      "kind": "Expr_Assign"
+                    }
+                  },
+                  "kind": "Stmt_Expression"
+                }
+              ]
+            },
+            "kind": "Stmt_ClassMethod"
+          }
+        ]
+      },
+      "kind": "Stmt_Class"
+    },
+    {
+      "fields": {
+        "attrGroups": [],
+        "extends": null,
+        "flags": {
+          "integer": "0"
+        },
+        "implements": [],
+        "name": {
+          "fields": {
+            "name": {
+              "bytes": "42"
+            }
+          },
+          "kind": "Identifier"
+        },
+        "stmts": [
+          {
+            "fields": {
+              "attrGroups": [],
+              "consts": [
+                {
+                  "fields": {
+                    "name": {
+                      "fields": {
+                        "name": {
+                          "bytes": "58"
+                        }
+                      },
+                      "kind": "Identifier"
+                    },
+                    "value": {
+                      "fields": {
+                        "value": {
+                          "integer": "1"
+                        }
+                      },
+                      "kind": "Scalar_Int"
+                    }
+                  },
+                  "kind": "Const"
+                }
+              ],
+              "flags": {
+                "integer": "0"
+              },
+              "type": null
+            },
+            "kind": "Stmt_ClassConst"
+          }
+        ]
+      },
+      "kind": "Stmt_Class"
+    }
+  ]
+}

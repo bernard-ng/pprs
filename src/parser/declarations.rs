@@ -6,7 +6,7 @@ use crate::{
         EnumCase, HookBody, Identifier, Method, Modifiers, Name, Property, PropertyHook,
         PropertyItem, Qualification, Signature, Stmt, StmtKind, TraitAdaptation, TraitUse,
     },
-    diagnostic::{Diagnostic, DiagnosticCode as D},
+    diagnostic::{Diagnostic, DiagnosticCode as D, Label},
     token::TokenKind as K,
 };
 
@@ -88,7 +88,7 @@ impl Parser {
             self.record(Diagnostic::error(
                 D::InvalidContext,
                 token.span(),
-                "short echo tag cannot be an identifier",
+                "Cannot use \"<?=\" as an identifier",
             ))?;
         } else if !super::expression::is_identifier(&bytes) || token.kind() == K::Variable {
             self.record(Diagnostic::error(
@@ -119,6 +119,7 @@ impl Parser {
     /// Modifier mode: class, parameter, hook, or ordinary member.
     pub(super) fn modifiers(&mut self, mode: ModifierMode) -> PResult<Modifiers> {
         let mut flags = Modifiers::default();
+        let mut previous = Vec::new();
         while let Some(next) = Self::modifier(self.kind()?) {
             if mode == ModifierMode::Class && next.0 & (16 | 32 | 64) == 0 {
                 break;
@@ -141,20 +142,43 @@ impl Parser {
                 && (flags.0 & 7 != 0 && next.0 & 7 != 0
                     || flags.0 & 0x0380 != 0 && next.0 & 0x0380 != 0);
             let conflict = flags.0 & 0x0030 != 0 && next.0 & 0x0030 != 0;
+            let spelling = String::from_utf8_lossy(self.bytes(token)).to_ascii_lowercase();
             if duplicate || access || conflict {
-                self.record(Diagnostic::error(
-                    D::InvalidContext,
-                    token.span(),
-                    "conflicting or repeated modifiers",
-                ))?;
+                let message = if access {
+                    "Multiple access type modifiers are not allowed".into()
+                } else if duplicate {
+                    format!("Multiple {spelling} modifiers are not allowed")
+                } else if mode == ModifierMode::Class {
+                    "Cannot use the final modifier on an abstract class".into()
+                } else {
+                    "Cannot use the final modifier on an abstract class member".into()
+                };
+                let mut diagnostic = Diagnostic::error(D::InvalidContext, token.span(), message);
+                if let Some((_, span)) =
+                    previous
+                        .iter()
+                        .find(|(flag, _): &&(Modifiers, crate::Span)| {
+                            flag.0 & next.0 != 0
+                                || flag.0 & 7 != 0 && next.0 & 7 != 0
+                                || flag.0 & 0x0380 != 0 && next.0 & 0x0380 != 0
+                                || flag.0 & 0x0030 != 0 && next.0 & 0x0030 != 0
+                        })
+                {
+                    diagnostic.secondary.push(Label {
+                        span: *span,
+                        message: "previous modifier".into(),
+                    });
+                }
+                self.record(diagnostic)?;
             }
             if mode == ModifierMode::Hook && next != Modifiers::FINAL {
                 self.record(Diagnostic::error(
                     D::InvalidContext,
                     token.span(),
-                    "only final is allowed on a property hook",
+                    format!("Cannot use the {spelling} modifier on a property hook"),
                 ))?;
             }
+            previous.push((next, token.span()));
             flags.0 |= next.0;
         }
         Ok(flags)
@@ -230,8 +254,16 @@ impl Parser {
             if let Some(name) = &name {
                 self.check_special_identifier(name)?;
             }
-            for n in extends.iter().chain(&implements) {
-                self.check_special_name(n)?;
+            let parent_role = if kind == ClassKind::Interface {
+                "interface"
+            } else {
+                "class"
+            };
+            for n in &extends {
+                self.check_special_name(n, parent_role)?;
+            }
+            for n in &implements {
+                self.check_special_name(n, "interface")?;
             }
         }
         self.expect(K::LeftBrace)?;
@@ -289,12 +321,15 @@ impl Parser {
             self.error_meta(
                 D::InvalidContext,
                 name.meta(),
-                "reserved special class name",
+                &format!(
+                    "Cannot use '{}' as class name as it is reserved",
+                    String::from_utf8_lossy(name.bytes().as_bytes())
+                ),
             )?;
         }
         Ok(())
     }
-    fn check_special_name(&mut self, name: &Name) -> PResult<()> {
+    fn check_special_name(&mut self, name: &Name, role: &str) -> PResult<()> {
         if name.qualification() == Qualification::Normal
             && name.parts().len() == 1
             && matches!(
@@ -305,7 +340,10 @@ impl Parser {
             self.error_meta(
                 D::InvalidContext,
                 name.meta(),
-                "reserved special class name",
+                &format!(
+                    "Cannot use '{}' as {role} name as it is reserved",
+                    String::from_utf8_lossy(name.parts()[0].as_bytes())
+                ),
             )?;
         }
         Ok(())
@@ -334,6 +372,7 @@ impl Parser {
     fn class_member(&mut self) -> PResult<Stmt> {
         let start = self.peek()?.0;
         let attributes = self.attributes()?;
+        let modifier_start = self.peek()?.1.span();
         let var = self.eat(K::Var)?;
         let flags = if var {
             Modifiers::default()
@@ -341,8 +380,24 @@ impl Parser {
             self.modifiers(ModifierMode::Member)?
         };
         let kind = match self.kind()? {
-            K::Function => self.method(attributes, flags)?,
-            K::Const => self.constants_statement(attributes, flags, true)?,
+            K::Function => self.method(attributes, flags, modifier_start)?,
+            K::Const => {
+                let kind = self.constants_statement(attributes, flags, true)?;
+                for (flag, name) in [
+                    (Modifiers::STATIC, "static"),
+                    (Modifiers::ABSTRACT, "abstract"),
+                    (Modifiers::READONLY, "readonly"),
+                ] {
+                    if flags.contains(flag) {
+                        self.record(Diagnostic::error(
+                            D::InvalidContext,
+                            modifier_start,
+                            format!("Cannot use '{name}' as constant modifier"),
+                        ))?;
+                    }
+                }
+                kind
+            }
             K::Use if !var && flags.0 == 0 && attributes.is_empty() => self.trait_use()?,
             K::Case if !var && flags.0 == 0 => {
                 self.bump()?;
@@ -380,7 +435,12 @@ impl Parser {
             kind,
         })
     }
-    fn method(&mut self, attributes: Vec<AttributeGroup>, flags: Modifiers) -> PResult<StmtKind> {
+    fn method(
+        &mut self,
+        attributes: Vec<AttributeGroup>,
+        flags: Modifiers,
+        modifier_start: crate::Span,
+    ) -> PResult<StmtKind> {
         self.bump()?;
         let by_ref = self.eat(K::Ampersand)?;
         let name = self.reserved_identifier()?;
@@ -391,14 +451,28 @@ impl Parser {
         } else {
             Some(self.callable_body()?)
         };
-        if flags.contains(Modifiers::READONLY)
-            || flags.contains(Modifiers::STATIC)
-                && matches!(
-                    name.bytes().as_bytes().to_ascii_lowercase().as_slice(),
-                    b"__construct" | b"__destruct" | b"__clone"
-                )
-        {
-            self.error_meta(D::InvalidContext, name.meta(), "invalid method modifier")?;
+        let method_name = String::from_utf8_lossy(name.bytes().as_bytes());
+        if flags.contains(Modifiers::STATIC) {
+            let description = match method_name.to_ascii_lowercase().as_str() {
+                "__construct" => Some("Constructor"),
+                "__destruct" => Some("Destructor"),
+                "__clone" => Some("Clone method"),
+                _ => None,
+            };
+            if let Some(description) = description {
+                self.record(Diagnostic::error(
+                    D::InvalidContext,
+                    modifier_start,
+                    format!("{description} {method_name}() cannot be static"),
+                ))?;
+            }
+        }
+        if flags.contains(Modifiers::READONLY) {
+            self.record(Diagnostic::error(
+                D::InvalidContext,
+                modifier_start,
+                format!("Method {method_name}() cannot be readonly"),
+            ))?;
         }
         Ok(StmtKind::Method(Box::new(Method {
             attributes,
@@ -418,7 +492,7 @@ impl Parser {
         flags: Modifiers,
         class: bool,
     ) -> PResult<StmtKind> {
-        let start = self.bump()?.0;
+        self.bump()?;
         let ty = if class && self.ahead(1)? != K::Equal {
             Some(self.parse_type(true)?)
         } else {
@@ -454,10 +528,6 @@ impl Parser {
             }
         }
         self.terminate()?;
-        if class && flags.0 & (8 | 16 | 64) != 0 {
-            let meta = self.meta(start);
-            self.error_meta(D::InvalidContext, &meta, "invalid class constant modifier")?;
-        }
         let value = Box::new(Constants {
             attributes,
             flags,
@@ -511,7 +581,7 @@ impl Parser {
                 self.record(Diagnostic::error(
                     D::InvalidContext,
                     token.span(),
-                    "hooks require a single property",
+                    "Cannot use hooks when declaring multiple properties",
                 ))?;
             }
             self.property_hooks()?
@@ -528,7 +598,7 @@ impl Parser {
         })))
     }
     pub(super) fn property_hooks(&mut self) -> PResult<Vec<PropertyHook>> {
-        let (start, token) = self.expect(K::LeftBrace)?;
+        let (_, token) = self.expect(K::LeftBrace)?;
         if self.options.version < crate::PhpVersion::Php80 {
             self.record(Diagnostic::error(
                 D::UnexpectedToken,
@@ -553,12 +623,11 @@ impl Parser {
             self.expect(K::RightBrace)?;
         }
         if hooks.is_empty() {
-            let meta = self.meta(start);
-            self.error_meta(
+            self.record(Diagnostic::error(
                 D::InvalidContext,
-                &meta,
-                "property hook list cannot be empty",
-            )?;
+                token.span(),
+                "Property hook list cannot be empty",
+            ))?;
         }
         Ok(hooks)
     }
@@ -614,7 +683,8 @@ impl Parser {
         let flags = self.modifiers(ModifierMode::Hook)?;
         let by_ref = self.eat(K::Ampersand)?;
         let name = self.plain_identifier()?;
-        let has_parameter_list = self.kind()? == K::LeftParen;
+        let parameter_token = self.peek()?.1;
+        let has_parameter_list = parameter_token.kind() == K::LeftParen;
         let params = if has_parameter_list {
             self.parameters()?
         } else {
@@ -630,12 +700,22 @@ impl Parser {
             HookBody::Block(self.braced_body()?)
         };
         let lower = name.bytes().as_bytes().to_ascii_lowercase();
-        if !matches!(lower.as_slice(), b"get" | b"set") || lower == b"get" && has_parameter_list {
+        if !matches!(lower.as_slice(), b"get" | b"set") {
             self.error_meta(
                 D::InvalidContext,
                 name.meta(),
-                "invalid property hook name or parameter list",
+                &format!(
+                    "Unknown hook \"{}\", expected \"get\" or \"set\"",
+                    String::from_utf8_lossy(name.bytes().as_bytes())
+                ),
             )?;
+        }
+        if lower == b"get" && has_parameter_list {
+            self.record(Diagnostic::error(
+                D::InvalidContext,
+                parameter_token.span(),
+                "get hook must not have a parameter list",
+            ))?;
         }
         self.alloc()?;
         Ok(PropertyHook {

@@ -4,9 +4,9 @@
 
 `fields.json` is the deterministic `getType()` / `getSubNodeNames()` schema of the pinned node classes. It supplies reference preorder to the independent Rust projection, including auxiliary nodes, without consulting expected observations.
 
-`differences.json` contains 79 individually identified exact observations: 39 historical malformed-input recovery differences and 40 ceiling differences. The test rejects obsolete differences and asserts that every ceiling case fails clean/strict parsing. All 132 clean in-scope probes match the reference exactly. The remaining 11 exact observations include rejected inputs. `clone-forms.json` records P10's explicit 8.4-ceiling status correction to the unchanged P07 oracle.
+`differences.json` contains 69 individually identified exact observations: 29 historical malformed-input recovery differences and 40 ceiling differences. The test rejects obsolete differences and asserts that every ceiling case fails clean/strict parsing. All 132 clean in-scope probes match the reference exactly. The remaining 21 exact observations include rejected inputs; P11 restored all ten DEL-byte probes to exact source/AST parity. `clone-forms.json` records P10's explicit 8.4-ceiling status correction to the unchanged P07 oracle.
 
-`recovery-review.json` maps the 38 core position-channel exceptions to their reasons and exact files in `../differences`. These describe current recovery trees; P11 owns further recovery/diagnostic work. No valid core fixture has a metadata exemption.
+`recovery-review.json` maps the 35 remaining core position-channel exceptions to their reasons and exact files in `../differences`. P11 reviewed these recovery choices and restored three rejected-byte fixtures to exact fidelity. No valid core fixture has a metadata exemption.
 
 Regenerate or verify the oracle and node schema, using PHP 8.5.6 and the verified `.references` checkout:
 

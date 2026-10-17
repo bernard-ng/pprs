@@ -1,0 +1,329 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        5,
+        9
+      ],
+      "message": {
+        "bytes": "747261696c696e6720636f6d6d61206973206e6f7420616c6c6f77656420696e20696d706f727473"
+      },
+      "span": [
+        49,
+        50
+      ],
+      "start": [
+        5,
+        8
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        6,
+        14
+      ],
+      "message": {
+        "bytes": "747261696c696e6720636f6d6d61206973206e6f7420616c6c6f77656420696e20636f6e7374616e7473"
+      },
+      "span": [
+        57,
+        64
+      ],
+      "start": [
+        6,
+        7
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        8,
+        24
+      ],
+      "message": {
+        "bytes": "747261696c696e6720636f6d6d61206973206e6f7420616c6c6f77656420696e20636c617373206e616d6573"
+      },
+      "span": [
+        90,
+        91
+      ],
+      "start": [
+        8,
+        23
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        9,
+        13
+      ],
+      "message": {
+        "bytes": "747261696c696e6720636f6d6d61206973206e6f7420616c6c6f77656420696e20636c617373206e616d6573"
+      },
+      "span": [
+        103,
+        104
+      ],
+      "start": [
+        9,
+        12
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        10,
+        13
+      ],
+      "message": {
+        "bytes": "747261696c696e6720636f6d6d61206973206e6f7420616c6c6f77656420696e20636c617373206e616d6573"
+      },
+      "span": [
+        116,
+        117
+      ],
+      "start": [
+        10,
+        12
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        11,
+        28
+      ],
+      "message": {
+        "bytes": "747261696c696e6720636f6d6d61206973206e6f7420616c6c6f77656420696e20636c617373206e616d6573"
+      },
+      "span": [
+        144,
+        145
+      ],
+      "start": [
+        11,
+        27
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        13,
+        18
+      ],
+      "message": {
+        "bytes": "747261696c696e6720636f6d6d61206973206e6f7420616c6c6f77656420696e20636f6e7374616e7473"
+      },
+      "span": [
+        162,
+        169
+      ],
+      "start": [
+        13,
+        11
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        14,
+        15
+      ],
+      "message": {
+        "bytes": "747261696c696e6720636f6d6d61206973206e6f7420616c6c6f77656420696e2070726f70657274696573"
+      },
+      "span": [
+        183,
+        186
+      ],
+      "start": [
+        14,
+        12
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        16,
+        25
+      ],
+      "message": {
+        "bytes": "747261696c696e6720636f6d6d61206973206e6f7420616c6c6f77656420696e20636c617373206e616d6573"
+      },
+      "span": [
+        214,
+        215
+      ],
+      "start": [
+        16,
+        24
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        21,
+        16
+      ],
+      "message": {
+        "bytes": "6578706563746564204964656e7469666965722c20666f756e64205269676874506172656e"
+      },
+      "span": [
+        259,
+        260
+      ],
+      "start": [
+        21,
+        15
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        23,
+        13
+      ],
+      "message": {
+        "bytes": "6578706563746564207661726961626c65"
+      },
+      "span": [
+        274,
+        275
+      ],
+      "start": [
+        23,
+        12
+      ]
+    },
+    {
+      "category": "contextual",
+      "code": "reference.contextual",
+      "end": [
+        23,
+        13
+      ],
+      "message": {
+        "bytes": "6578706563746564207661726961626c65"
+      },
+      "span": [
+        274,
+        275
+      ],
+      "start": [
+        23,
+        12
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        24,
+        7
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        276,
+        282
+      ],
+      "start": [
+        24,
+        1
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        25,
+        11
+      ],
+      "message": {
+        "bytes": "65787065637465642065787072657373696f6e2c20666f756e642053656d69636f6c6f6e"
+      },
+      "span": [
+        298,
+        299
+      ],
+      "start": [
+        25,
+        10
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        27,
+        11
+      ],
+      "message": {
+        "bytes": "65787065637465642065787072657373696f6e2c20666f756e642053656d69636f6c6f6e"
+      },
+      "span": [
+        310,
+        311
+      ],
+      "start": [
+        27,
+        10
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        27,
+        17
+      ],
+      "message": {
+        "bytes": "65787065637465642065787072657373696f6e2c20666f756e642053656d69636f6c6f6e"
+      },
+      "span": [
+        316,
+        317
+      ],
+      "start": [
+        27,
+        16
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        27,
+        23
+      ],
+      "message": {
+        "bytes": "65787065637465642065787072657373696f6e2c20666f756e64205269676874506172656e"
+      },
+      "span": [
+        322,
+        323
+      ],
+      "start": [
+        27,
+        22
+      ]
+    }
+  ]
+}

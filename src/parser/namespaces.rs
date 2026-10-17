@@ -86,7 +86,21 @@ impl Parser {
             None
         };
         if let Some(alias) = &alias {
-            self.check_special_identifier(alias)?;
+            let alias_bytes = alias.bytes().as_bytes();
+            if matches!(
+                alias_bytes.to_ascii_lowercase().as_slice(),
+                b"self" | b"parent" | b"static"
+            ) {
+                let imported = name
+                    .parts()
+                    .iter()
+                    .map(|part| String::from_utf8_lossy(part.as_bytes()))
+                    .collect::<Vec<_>>()
+                    .join("\\");
+                let alias_text = String::from_utf8_lossy(alias_bytes);
+                self.error_meta(D::InvalidContext, alias.meta(), &format!(
+                    "Cannot use {imported} as {alias_text} because '{alias_text}' is a special class name"))?;
+            }
         }
         self.alloc()?;
         Ok(UseItem {

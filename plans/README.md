@@ -1,6 +1,6 @@
 # Implementation plans
 
-Status: **P00–P10 complete** (2026-10-17). The public expression/procedural/callable/declaration parser, production lexing, literal utilities and read-only traversal are available.
+Status: **P00–P11 complete** (2026-10-17). The public expression/procedural/callable/declaration parser, production lexing, literal utilities and read-only traversal are available.
 
 The first stable release will be a reusable Rust library for PHP **7.0–8.4**, as confirmed on 2026-10-16. There is no product CLI.
 
@@ -29,4 +29,6 @@ P09 delivered [declarations and class members](../src/parser/declarations.rs), [
 
 P10 delivered [version/source fidelity](../docs/decisions/0009-version-source-fidelity.md), semantic and enclosing origins, unique comment ownership, precise trailing-comment Nops and corrected interpolation/import/halt ranges. All 188 valid core fixtures match full AST/source observations. The 222 additional probes audit every target and enforce the 8.4 ceiling. All P10 channels are closed, with explicit malformed-input differences retained for P11 review.
 
-Next: **P11**, complete diagnostics, recovery and parser-local validation. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.
+P11 delivered [diagnostics and recovery](../docs/decisions/0010-diagnostics-and-recovery.md), lexical-error cascade suppression, halt/statement recovery fixes, independent parser-local checks and related locations. All 112 invalid core cases have reviewed native diagnostics; all 300 core cases exercise every comparison channel. The 87 additional probes cover all targets, recovery boundaries and compiler-only controls. No core channel remains pending.
+
+Next: **P12**, harden robustness and establish performance baselines. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.

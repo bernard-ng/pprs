@@ -1,0 +1,158 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        3,
+        4
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        20,
+        23
+      ],
+      "start": [
+        3,
+        1
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        4,
+        4
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        26,
+        29
+      ],
+      "start": [
+        4,
+        1
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        5,
+        4
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        41,
+        44
+      ],
+      "start": [
+        5,
+        1
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        6,
+        6
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        51,
+        56
+      ],
+      "start": [
+        6,
+        1
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        7,
+        6
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        63,
+        68
+      ],
+      "start": [
+        7,
+        1
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        12,
+        7
+      ],
+      "message": {
+        "bytes": "65787065637465642065787072657373696f6e2c20666f756e642052657475726e"
+      },
+      "span": [
+        104,
+        110
+      ],
+      "start": [
+        12,
+        1
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        13,
+        5
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        113,
+        117
+      ],
+      "start": [
+        13,
+        1
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        14,
+        6
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        121,
+        126
+      ],
+      "start": [
+        14,
+        1
+      ]
+    }
+  ]
+}

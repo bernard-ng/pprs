@@ -1,0 +1,2564 @@
+[
+  {
+    "id": "bad-bytes",
+    "reason": "Rejected bytes must not create syntax cascades or discard adjacent assignments. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-L001",
+        "expected": [],
+        "found": null,
+        "message": "Unexpected null byte",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          17
+        ]
+      },
+      {
+        "code": "PPRS-L001",
+        "expected": [],
+        "found": null,
+        "message": "Unexpected byte 0x01 (ASCII 1)",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          18
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "lexical",
+          "code": "lex.null-byte",
+          "end": [
+            1,
+            18
+          ],
+          "message": {
+            "bytes": "556e6578706563746564206e756c6c2062797465"
+          },
+          "span": [
+            16,
+            17
+          ],
+          "start": [
+            1,
+            17
+          ]
+        },
+        {
+          "category": "lexical",
+          "code": "lex.bad-character",
+          "end": [
+            1,
+            19
+          ],
+          "message": {
+            "bytes": "556e65787065637465642062797465203078303120284153434949203129"
+          },
+          "span": [
+            17,
+            18
+          ],
+          "start": [
+            1,
+            18
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bad-byte-expression",
+    "reason": "Invalid bytes are retained and diagnosed while significant grammar continues.",
+    "native": [
+      {
+        "code": "PPRS-L001",
+        "expected": [],
+        "found": null,
+        "message": "Unexpected null byte",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          14,
+          15
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "missing-terminator",
+    "reason": "A missing terminator preserves the following statement. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Echo",
+        "message": "expected statement terminator",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          20
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            21
+          ],
+          "message": {
+            "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+          },
+          "span": [
+            16,
+            20
+          ],
+          "start": [
+            1,
+            17
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "halt-missing-open",
+    "reason": "A malformed halt must leave the unexpected echo token for recovery. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "LeftParen"
+        ],
+        "found": "Echo",
+        "message": "expected __halt_compiler();",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          22,
+          26
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            27
+          ],
+          "message": {
+            "bytes": "6578706563746564205f5f68616c745f636f6d70696c657228293b"
+          },
+          "span": [
+            22,
+            26
+          ],
+          "start": [
+            1,
+            23
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "halt-missing-close",
+    "reason": "A malformed halt must not consume a following statement or authorize raw tail. The frozen reference asserts in inlineHtmlHasLeadingNewline after host halt tokenization; this is not a successful oracle observation.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightParen"
+        ],
+        "found": "Echo",
+        "message": "expected __halt_compiler();",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          27
+        ]
+      }
+    ],
+    "state": "reference-failure",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            28
+          ],
+          "message": {
+            "bytes": "6578706563746564205f5f68616c745f636f6d70696c657228293b"
+          },
+          "span": [
+            23,
+            27
+          ],
+          "start": [
+            1,
+            24
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "halt-missing-semicolon",
+    "reason": "The terminator expectation must identify echo and preserve it. The frozen reference asserts in inlineHtmlHasLeadingNewline after host halt tokenization; this is not a successful oracle observation.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Echo",
+        "message": "expected __halt_compiler();",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          24,
+          28
+        ]
+      }
+    ],
+    "state": "reference-failure",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            29
+          ],
+          "message": {
+            "bytes": "6578706563746564205f5f68616c745f636f6d70696c657228293b"
+          },
+          "span": [
+            24,
+            28
+          ],
+          "start": [
+            1,
+            25
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "halt-eof",
+    "reason": "EOF is an explicit found token with an empty primary span. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Semicolon",
+          "CloseTag"
+        ],
+        "found": "Eof",
+        "message": "expected __halt_compiler();",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          23
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            24
+          ],
+          "message": {
+            "bytes": "6578706563746564205f5f68616c745f636f6d70696c657228293b"
+          },
+          "span": [
+            23,
+            23
+          ],
+          "start": [
+            1,
+            24
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "halt-nested",
+    "reason": "Nested halt aborts without entering raw tail.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "__HALT_COMPILER() can only be used from the outermost scope",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          18,
+          33
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "delimiter-paren",
+    "reason": "Missing call delimiter diagnoses the semicolon and labels the opening parenthesis. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightParen"
+        ],
+        "found": "Semicolon",
+        "message": "expected RightParen, found Semicolon",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              9,
+              10
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          11,
+          12
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            13
+          ],
+          "message": {
+            "bytes": "6578706563746564205269676874506172656e2c20666f756e642053656d69636f6c6f6e"
+          },
+          "span": [
+            11,
+            12
+          ],
+          "start": [
+            1,
+            12
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "delimiter-bracket",
+    "reason": "Missing array delimiter preserves the next statement. Reviewed differences: completion aborted -> recovered, wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightBracket"
+        ],
+        "found": "Semicolon",
+        "message": "expected RightBracket, found Semicolon",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              9,
+              10
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          11,
+          12
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            13
+          ],
+          "message": {
+            "bytes": "6578706563746564205269676874427261636b65742c20666f756e642053656d69636f6c6f6e"
+          },
+          "span": [
+            11,
+            12
+          ],
+          "start": [
+            1,
+            12
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "delimiter-brace",
+    "reason": "Unclosed body identifies EOF and its opening brace. Reviewed differences: completion aborted -> recovered, wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightBrace"
+        ],
+        "found": "Eof",
+        "message": "expected RightBrace, found Eof",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              16,
+              17
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          25,
+          25
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            26
+          ],
+          "message": {
+            "bytes": "657870656374656420526967687442726163652c20666f756e6420456f66"
+          },
+          "span": [
+            25,
+            25
+          ],
+          "start": [
+            1,
+            26
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "argument-hole",
+    "reason": "An argument hole must be diagnosed without losing the subsequent statement. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Comma",
+        "message": "expected expression, found Comma",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          11,
+          12
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            13
+          ],
+          "message": {
+            "bytes": "65787065637465642065787072657373696f6e2c20666f756e6420436f6d6d61"
+          },
+          "span": [
+            11,
+            12
+          ],
+          "start": [
+            1,
+            12
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "argument-name",
+    "reason": "Missing named argument value is an error expression. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightParen",
+        "message": "expected expression, found RightParen",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          13,
+          14
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            15
+          ],
+          "message": {
+            "bytes": "65787065637465642065787072657373696f6e2c20666f756e64205269676874506172656e"
+          },
+          "span": [
+            13,
+            14
+          ],
+          "start": [
+            1,
+            14
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "parameter-hole",
+    "reason": "Signature recovery must progress at repeated commas. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Comma",
+        "message": "expected type name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          21,
+          22
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            23
+          ],
+          "message": {
+            "bytes": "65787065637465642074797065206e616d65"
+          },
+          "span": [
+            21,
+            22
+          ],
+          "start": [
+            1,
+            22
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "parameter-type",
+    "reason": "Missing parameter variables retain useful signature structure. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "Variable"
+        ],
+        "found": "Comma",
+        "message": "expected parameter variable",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          20,
+          21
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            22
+          ],
+          "message": {
+            "bytes": "657870656374656420706172616d65746572207661726961626c65"
+          },
+          "span": [
+            20,
+            21
+          ],
+          "start": [
+            1,
+            21
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "parameter-default",
+    "reason": "Variadic default validation is parser local.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          25,
+          26
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void-parameter",
+    "reason": "The reference checks void on a parameter.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "member-missing-value",
+    "reason": "Member synchronization retains the following method. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected expression, found Semicolon",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          26,
+          27
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            28
+          ],
+          "message": {
+            "bytes": "65787065637465642065787072657373696f6e2c20666f756e642053656d69636f6c6f6e"
+          },
+          "span": [
+            26,
+            27
+          ],
+          "start": [
+            1,
+            27
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "member-missing-name",
+    "reason": "A damaged property must not consume the next member. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected type name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            25
+          ],
+          "message": {
+            "bytes": "65787065637465642074797065206e616d65"
+          },
+          "span": [
+            23,
+            24
+          ],
+          "start": [
+            1,
+            24
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "hook-missing-close",
+    "reason": "Hook recovery recognizes a subsequent class member. Reviewed differences: diagnostic count 2 -> 1, category, code, wording, primary ranges. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Public",
+        "message": "expected closing brace before next member",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          38,
+          44
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            45
+          ],
+          "message": {
+            "bytes": "657870656374656420636c6f73696e67206272616365206265666f7265206e657874206d656d626572"
+          },
+          "span": [
+            38,
+            44
+          ],
+          "start": [
+            1,
+            39
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "namespace-anchor",
+    "reason": "Statement synchronization retains a following namespace. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Namespace",
+        "message": "expected expression, found Namespace",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          13,
+          22
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            23
+          ],
+          "message": {
+            "bytes": "65787065637465642065787072657373696f6e2c20666f756e64204e616d657370616365"
+          },
+          "span": [
+            13,
+            22
+          ],
+          "start": [
+            1,
+            14
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "class-anchor",
+    "reason": "Statement synchronization retains a following class. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Class",
+        "message": "expected expression, found Class",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          13,
+          18
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            19
+          ],
+          "message": {
+            "bytes": "65787065637465642065787072657373696f6e2c20666f756e6420436c617373"
+          },
+          "span": [
+            13,
+            18
+          ],
+          "start": [
+            1,
+            14
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "function-anchor",
+    "reason": "Statement synchronization retains a following function. Reviewed differences: diagnostic count 2 -> 1, category, code, wording, primary ranges. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Function",
+        "message": "expected expression before function declaration",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          13,
+          21
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            22
+          ],
+          "message": {
+            "bytes": "65787065637465642065787072657373696f6e206265666f72652066756e6374696f6e206465636c61726174696f6e"
+          },
+          "span": [
+            13,
+            21
+          ],
+          "start": [
+            1,
+            14
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "interpolation",
+    "reason": "Interpolation errors remain bounded at the string boundary. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "RightBrace",
+        "message": "expected member name",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          12,
+          13
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            14
+          ],
+          "message": {
+            "bytes": "6578706563746564206d656d626572206e616d65"
+          },
+          "span": [
+            12,
+            13
+          ],
+          "start": [
+            1,
+            13
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "interpolation-eof",
+    "reason": "Truncated interpolation produces a lexical/syntax failure. Reviewed differences: diagnostic count 1 -> 2, category, code, wording, primary ranges. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-L003",
+        "expected": [],
+        "found": null,
+        "message": "Unterminated string or interpolation",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          10
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "RightBrace"
+        ],
+        "found": "Eof",
+        "message": "expected RightBrace, found Eof",
+        "secondary": [
+          {
+            "message": "opening delimiter",
+            "span": [
+              7,
+              8
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          10,
+          10
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "lexical",
+          "code": "PPRS-L003",
+          "end": [
+            1,
+            11
+          ],
+          "message": {
+            "bytes": "556e7465726d696e6174656420737472696e67206f7220696e746572706f6c6174696f6e"
+          },
+          "span": [
+            6,
+            10
+          ],
+          "start": [
+            1,
+            7
+          ]
+        },
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            11
+          ],
+          "message": {
+            "bytes": "657870656374656420526967687442726163652c20666f756e6420456f66"
+          },
+          "span": [
+            10,
+            10
+          ],
+          "start": [
+            1,
+            11
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "string-eof",
+    "reason": "Unterminated strings fail strict parsing with retained source. Reviewed differences: diagnostic count 1 -> 2, category, code, wording, primary ranges. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-L003",
+        "expected": [],
+        "found": null,
+        "message": "Unterminated string or interpolation",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          19
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "DoubleQuote"
+        ],
+        "found": "Eof",
+        "message": "expected DoubleQuote, found Eof",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          19,
+          19
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "lexical",
+          "code": "PPRS-L003",
+          "end": [
+            1,
+            20
+          ],
+          "message": {
+            "bytes": "556e7465726d696e6174656420737472696e67206f7220696e746572706f6c6174696f6e"
+          },
+          "span": [
+            6,
+            19
+          ],
+          "start": [
+            1,
+            7
+          ]
+        },
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            20
+          ],
+          "message": {
+            "bytes": "657870656374656420446f75626c6551756f74652c20666f756e6420456f66"
+          },
+          "span": [
+            19,
+            19
+          ],
+          "start": [
+            1,
+            20
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "doc-indent",
+    "reason": "Heredoc indentation failure is reported while later statements survive. Reviewed differences: category, code, wording, primary ranges. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-L004",
+        "expected": [],
+        "found": null,
+        "message": "Invalid body indentation level",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          18,
+          21
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "lexical",
+          "code": "PPRS-L004",
+          "end": [
+            3,
+            1
+          ],
+          "message": {
+            "bytes": "496e76616c696420626f647920696e64656e746174696f6e206c6576656c"
+          },
+          "span": [
+            18,
+            21
+          ],
+          "start": [
+            2,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "nowdoc-eof",
+    "reason": "Unterminated nowdoc retains all source bytes. Reviewed differences: diagnostic count 1 -> 2, category, code, wording, primary ranges. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-L003",
+        "expected": [],
+        "found": null,
+        "message": "Unterminated string or interpolation",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          19
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [
+          "EndHeredoc"
+        ],
+        "found": "Eof",
+        "message": "expected EndHeredoc, found Eof",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          19,
+          19
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "lexical",
+          "code": "PPRS-L003",
+          "end": [
+            2,
+            5
+          ],
+          "message": {
+            "bytes": "556e7465726d696e6174656420737472696e67206f7220696e746572706f6c6174696f6e"
+          },
+          "span": [
+            6,
+            19
+          ],
+          "start": [
+            1,
+            7
+          ]
+        },
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            2,
+            5
+          ],
+          "message": {
+            "bytes": "657870656374656420456e6448657265646f632c20666f756e6420456f66"
+          },
+          "span": [
+            19,
+            19
+          ],
+          "start": [
+            2,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "try-context",
+    "reason": "A try without catch/finally is parser local validation.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "namespace-mix",
+    "reason": "Namespace styles cannot be mixed. Reviewed differences: wording, primary ranges. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "cannot mix namespace styles",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          19,
+          33
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "contextual",
+          "code": "reference.contextual",
+          "end": [
+            1,
+            34
+          ],
+          "message": {
+            "bytes": "63616e6e6f74206d6978206e616d657370616365207374796c6573"
+          },
+          "span": [
+            19,
+            33
+          ],
+          "start": [
+            1,
+            20
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "namespace-nested",
+    "reason": "Nested namespaces are diagnosed. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "namespace declarations cannot be nested",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          20,
+          34
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "contextual",
+          "code": "reference.contextual",
+          "end": [
+            1,
+            35
+          ],
+          "message": {
+            "bytes": "6e616d657370616365206465636c61726174696f6e732063616e6e6f74206265206e6573746564"
+          },
+          "span": [
+            20,
+            34
+          ],
+          "start": [
+            1,
+            21
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "method-two-errors",
+    "reason": "Static magic method and readonly errors must both be emitted. Reviewed differences: primary ranges. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Constructor __construct() cannot be static",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Method __construct() cannot be readonly",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "contextual",
+          "code": "reference.contextual",
+          "end": [
+            1,
+            23
+          ],
+          "message": {
+            "bytes": "436f6e7374727563746f72205f5f636f6e73747275637428292063616e6e6f7420626520737461746963"
+          },
+          "span": [
+            16,
+            22
+          ],
+          "start": [
+            1,
+            17
+          ]
+        },
+        {
+          "category": "contextual",
+          "code": "reference.contextual",
+          "end": [
+            1,
+            23
+          ],
+          "message": {
+            "bytes": "4d6574686f64205f5f636f6e73747275637428292063616e6e6f7420626520726561646f6e6c79"
+          },
+          "span": [
+            16,
+            22
+          ],
+          "start": [
+            1,
+            17
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "constant-three-errors",
+    "reason": "Each invalid class constant modifier has its own diagnostic. Reviewed differences: primary ranges. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'static' as constant modifier",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'abstract' as constant modifier",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use 'readonly' as constant modifier",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          16,
+          22
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "contextual",
+          "code": "reference.contextual",
+          "end": [
+            1,
+            23
+          ],
+          "message": {
+            "bytes": "43616e6e6f742075736520277374617469632720617320636f6e7374616e74206d6f646966696572"
+          },
+          "span": [
+            16,
+            22
+          ],
+          "start": [
+            1,
+            17
+          ]
+        },
+        {
+          "category": "contextual",
+          "code": "reference.contextual",
+          "end": [
+            1,
+            23
+          ],
+          "message": {
+            "bytes": "43616e6e6f7420757365202761627374726163742720617320636f6e7374616e74206d6f646966696572"
+          },
+          "span": [
+            16,
+            22
+          ],
+          "start": [
+            1,
+            17
+          ]
+        },
+        {
+          "category": "contextual",
+          "code": "reference.contextual",
+          "end": [
+            1,
+            23
+          ],
+          "message": {
+            "bytes": "43616e6e6f74207573652027726561646f6e6c792720617320636f6e7374616e74206d6f646966696572"
+          },
+          "span": [
+            16,
+            22
+          ],
+          "start": [
+            1,
+            17
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "modifier-related",
+    "reason": "Modifier conflicts identify both the offending and prior modifier.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the final modifier on an abstract class",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              6,
+              11
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          12,
+          20
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "visibility-related",
+    "reason": "Conflicting visibility has a related location.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple access type modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              16,
+              22
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          23,
+          30
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "hook-get-params",
+    "reason": "A get parameter list is diagnosed at its opening parenthesis.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "get hook must not have a parameter list",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          31,
+          32
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "hook-empty",
+    "reason": "An empty hook list is diagnosed at its opening brace.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Property hook list cannot be empty",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          26,
+          27
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "hook-unknown",
+    "reason": "Unknown hook names are parser local errors.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Unknown hook \"fetch\", expected \"get\" or \"set\"",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          28,
+          33
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "hook-modifiers",
+    "reason": "Duplicate and forbidden modifiers at one token are independent context errors.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the public modifier on a property hook",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          28,
+          34
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Multiple access type modifiers are not allowed",
+        "secondary": [
+          {
+            "message": "previous modifier",
+            "span": [
+              28,
+              34
+            ]
+          }
+        ],
+        "severity": "Error",
+        "span": [
+          35,
+          41
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use the public modifier on a property hook",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          35,
+          41
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "array-holes",
+    "reason": "Array holes are validated after possible assignment-pattern conversion.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use empty array elements in arrays",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          7,
+          8
+        ]
+      },
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use empty array elements in arrays",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          10,
+          11
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "destructure-control",
+    "reason": "The same array holes are valid in destructuring patterns.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "semantic-control",
+    "reason": "Compiler-level loop scope, label resolution and duplicate parameter checks are out of scope.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "trait-name-control",
+    "reason": "The reference does not apply the class-name validation to traits.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "type-control",
+    "reason": "The parser does not perform compiler-level type consistency checks.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "halt-valid",
+    "reason": "Authorized outermost halt preserves arbitrary raw tail without diagnostics.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "eof-cascade",
+    "reason": "One unexpected EOF must not produce multiple unwinding syntax errors. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Eof",
+        "message": "expected variable after dollar sign",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          7,
+          7
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            1,
+            8
+          ],
+          "message": {
+            "bytes": "6578706563746564207661726961626c6520616674657220646f6c6c6172207369676e"
+          },
+          "span": [
+            7,
+            7
+          ],
+          "start": [
+            1,
+            8
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "multi-error-lines",
+    "reason": "Separate syntax errors retain deterministic CRLF byte coordinates. Reviewed differences: wording. Native expected/found tokens and related locations are independently checked.",
+    "native": [
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected expression, found Semicolon",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          12,
+          13
+        ]
+      },
+      {
+        "code": "PPRS-S001",
+        "expected": [],
+        "found": "Semicolon",
+        "message": "expected expression, found Semicolon",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          20,
+          21
+        ]
+      }
+    ],
+    "state": "intentional-difference",
+    "expected": {
+      "target": "8.4",
+      "status": "recovered",
+      "diagnostics": [
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            2,
+            7
+          ],
+          "message": {
+            "bytes": "65787065637465642065787072657373696f6e2c20666f756e642053656d69636f6c6f6e"
+          },
+          "span": [
+            12,
+            13
+          ],
+          "start": [
+            2,
+            6
+          ]
+        },
+        {
+          "category": "syntax",
+          "code": "reference.syntax",
+          "end": [
+            3,
+            7
+          ],
+          "message": {
+            "bytes": "65787065637465642065787072657373696f6e2c20666f756e642053656d69636f6c6f6e"
+          },
+          "span": [
+            20,
+            21
+          ],
+          "start": [
+            3,
+            6
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "variadic/7.0",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/7.0",
+    "reason": "Parser-local void validation across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "try/7.0",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/7.0",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "variadic/7.1",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/7.1",
+    "reason": "Parser-local void validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "try/7.1",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/7.1",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "variadic/7.2",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/7.2",
+    "reason": "Parser-local void validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "try/7.2",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/7.2",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "variadic/7.3",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/7.3",
+    "reason": "Parser-local void validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "try/7.3",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/7.3",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "variadic/7.4",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/7.4",
+    "reason": "Parser-local void validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "try/7.4",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/7.4",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "variadic/8.0",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/8.0",
+    "reason": "Parser-local void validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "try/8.0",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/8.0",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "variadic/8.1",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/8.1",
+    "reason": "Parser-local void validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "try/8.1",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/8.1",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "variadic/8.2",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/8.2",
+    "reason": "Parser-local void validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "try/8.2",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/8.2",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "variadic/8.3",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/8.3",
+    "reason": "Parser-local void validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "try/8.3",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/8.3",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  },
+  {
+    "id": "variadic/8.4",
+    "reason": "Variadic default validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Variadic parameter cannot have a default value",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          23,
+          24
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "void/8.4",
+    "reason": "Parser-local void validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "void cannot be used as a parameter type",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          17,
+          21
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "try/8.4",
+    "reason": "Try validation across every target.",
+    "native": [
+      {
+        "code": "PPRS-C001",
+        "expected": [],
+        "found": null,
+        "message": "Cannot use try without catch or finally",
+        "secondary": [],
+        "severity": "Error",
+        "span": [
+          6,
+          12
+        ]
+      }
+    ],
+    "state": "passing"
+  },
+  {
+    "id": "compiler-control/8.4",
+    "reason": "Compiler-only constraints must remain accepted across every target.",
+    "native": [],
+    "state": "passing"
+  }
+]

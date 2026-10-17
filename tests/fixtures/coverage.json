@@ -15,7 +15,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -33,7 +33,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -51,7 +51,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -69,7 +69,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -87,7 +87,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -105,7 +105,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -123,7 +123,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -141,7 +141,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -159,7 +159,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -177,7 +177,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -187,7 +187,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -195,8 +195,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing terminator at EOF retains the parsed expression and reports an explicit EOF token. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-0.json"
       }
     },
     "parser/errorHandling/eofError.test#1": {
@@ -205,7 +207,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -213,8 +215,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing terminator at EOF retains the parsed expression and reports an explicit EOF token. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-1.json"
       }
     },
     "parser/errorHandling/lexerErrors.test#0": {
@@ -223,7 +227,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -231,7 +235,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -241,18 +245,18 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
-        "state": "intentional-difference",
-        "phase": "P10",
-        "reason": "Retains an error expression for the bad byte between assignments. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
-        "expectation": "differences/p10-positions-01.json"
+        "state": "passing",
+        "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Retains an error expression for the bad byte between assignments. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-2.json"
       }
     },
     "parser/errorHandling/lexerErrors.test#2": {
@@ -261,17 +265,15 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
-        "state": "intentional-difference",
-        "phase": "P10",
-        "reason": "Retains an error expression for the NUL byte between assignments. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
-        "expectation": "differences/p10-positions-02.json"
+        "state": "passing",
+        "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -281,18 +283,18 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
-        "state": "intentional-difference",
-        "phase": "P10",
-        "reason": "Retains error expressions for both bad bytes between assignments. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
-        "expectation": "differences/p10-positions-03.json"
+        "state": "passing",
+        "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Retains error expressions for both bad bytes between assignments. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-3.json"
       }
     },
     "parser/errorHandling/lexerErrors.test#4": {
@@ -301,18 +303,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Retains the completed inner statement and trailing unterminated comment instead of a null AST. Explicit diagnostic differences: completion aborted -> recovered, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-0.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Retains the completed inner statement and trailing unterminated comment instead of a null AST. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Retains the completed inner statement and trailing unterminated comment instead of a null AST. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-04.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Retains the completed inner statement and trailing unterminated comment instead of a null AST. Explicit diagnostic differences: completion aborted -> recovered, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-4.json"
       }
     },
     "parser/errorHandling/recovery.test#0": {
@@ -321,7 +327,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -329,8 +335,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Missing semicolons are inserted at statement starts and EOF, preserving all three calls. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-5.json"
       }
     },
     "parser/errorHandling/recovery.test#1": {
@@ -339,7 +347,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -347,8 +355,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing terminator after the first call is inserted at the second call, retaining subsequent calls. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-6.json"
       }
     },
     "parser/errorHandling/recovery.test#10": {
@@ -357,7 +367,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -365,8 +375,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The missing terminator is inserted at EOF while retaining the expression. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-7.json"
       }
     },
     "parser/errorHandling/recovery.test#11": {
@@ -375,18 +387,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "An unfinished new expression without a class is discarded instead of manufacturing a missing Name. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-1.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Drops unfinished new without a class rather than creating the reference missing-name placeholder. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Drops unfinished new without a class rather than creating the reference missing-name placeholder. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-05.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "An unfinished new expression without a class is discarded instead of manufacturing a missing Name. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-8.json"
       }
     },
     "parser/errorHandling/recovery.test#12": {
@@ -395,18 +411,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "An unfinished instanceof expression without a class is discarded instead of manufacturing a missing Name. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-2.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Drops unfinished instanceof without a class rather than creating a missing-name placeholder. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Drops unfinished instanceof without a class rather than creating a missing-name placeholder. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-06.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "An unfinished instanceof expression without a class is discarded instead of manufacturing a missing Name. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-9.json"
       }
     },
     "parser/errorHandling/recovery.test#13": {
@@ -415,18 +435,20 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Missing variable name is a zero-width point after the dollar token. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Missing variable name is a zero-width point after the dollar token. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-07.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The missing variable name uses a point after the dollar token and one EOF syntax diagnostic. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-10.json"
       }
     },
     "parser/errorHandling/recovery.test#14": {
@@ -435,18 +457,20 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Missing static property variable name is a zero-width point after the dollar token. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Missing static property variable name is a zero-width point after the dollar token. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-08.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The missing static variable name uses a point after the dollar token and one EOF syntax diagnostic. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-11.json"
       }
     },
     "parser/errorHandling/recovery.test#15": {
@@ -455,7 +479,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -463,8 +487,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The missing member name at EOF produces one diagnostic while retaining a recoverable expression. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-12.json"
       }
     },
     "parser/errorHandling/recovery.test#16": {
@@ -473,18 +499,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Missing terminators retain subsequent return/declaration anchors; statement boundaries and diagnostic sequence differ from LR recovery. Explicit diagnostic differences: diagnostic count 5 -> 8, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-3.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Missing terminators synchronize at later statement starts; retained statement boundaries differ. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Missing terminators synchronize at later statement starts; retained statement boundaries differ. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-09.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Missing terminators retain subsequent return/declaration anchors; statement boundaries and diagnostic sequence differ from LR recovery. Explicit diagnostic differences: diagnostic count 5 -> 8, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-13.json"
       }
     },
     "parser/errorHandling/recovery.test#17": {
@@ -493,18 +523,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Rejected trailing commas use list-specific grammar recovery, with a different retained tree and diagnostic count from LR recovery. Explicit diagnostic differences: diagnostic count 16 -> 17, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-4.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Malformed trailing-comma lists use local synchronization and retain different error items. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Malformed trailing-comma lists use local synchronization and retain different error items. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-10.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Rejected trailing commas use list-specific grammar recovery, with a different retained tree and diagnostic count from LR recovery. Explicit diagnostic differences: diagnostic count 16 -> 17, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-14.json"
       }
     },
     "parser/errorHandling/recovery.test#18": {
@@ -513,7 +547,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -521,8 +555,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The invalid member expression is diagnosed at the unexpected token; remaining syntax is retained. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-15.json"
       }
     },
     "parser/errorHandling/recovery.test#19": {
@@ -531,7 +567,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -539,8 +575,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Invalid class member syntax synchronizes inside its containing class. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-16.json"
       }
     },
     "parser/errorHandling/recovery.test#2": {
@@ -549,7 +587,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -557,8 +595,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing terminator after the middle call is inserted at the last call, retaining the preceding and following calls. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-17.json"
       }
     },
     "parser/errorHandling/recovery.test#20": {
@@ -567,18 +607,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Malformed foreach headers use local expression recovery, including an invalid-target check, instead of the reference LR sequence. Explicit diagnostic differences: diagnostic count 2 -> 3, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-5.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Malformed foreach headers synchronize before retaining the later recovered loop. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Malformed foreach headers synchronize before retaining the later recovered loop. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-11.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Malformed foreach headers use local expression recovery, including an invalid-target check, instead of the reference LR sequence. Explicit diagnostic differences: diagnostic count 2 -> 3, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-18.json"
       }
     },
     "parser/errorHandling/recovery.test#21": {
@@ -587,18 +631,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Missing parameter variables use zero-width error expressions; body and signature recovery produce additional diagnostics. Explicit diagnostic differences: diagnostic count 7 -> 10, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-6.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Missing parameter variables are zero-width points; malformed signatures retain different ranges. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Missing parameter variables are zero-width points; malformed signatures retain different ranges. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-12.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Missing parameter variables use zero-width error expressions; body and signature recovery produce additional diagnostics. Explicit diagnostic differences: diagnostic count 7 -> 10, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-19.json"
       }
     },
     "parser/errorHandling/recovery.test#22": {
@@ -607,18 +655,22 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing array separator discards the damaged assignment at statement synchronization. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-7.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Missing array separators discard the damaged assignment at statement synchronization. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Missing array separators discard the damaged assignment at statement synchronization. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-13.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing array separator discards the damaged assignment at statement synchronization. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-20.json"
       }
     },
     "parser/errorHandling/recovery.test#23": {
@@ -627,18 +679,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing return type discards the damaged function rather than manufacturing a missing type. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-8.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "A missing return type discards the damaged function at statement synchronization. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "A missing return type discards the damaged function at statement synchronization. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-14.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing return type discards the damaged function rather than manufacturing a missing type. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-21.json"
       }
     },
     "parser/errorHandling/recovery.test#24": {
@@ -647,16 +703,20 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "An unterminated string inside a damaged array emits an additional lexical diagnostic; neither implementation accepts it cleanly. Explicit diagnostic differences: completion aborted -> recovered, diagnostic count 1 -> 2, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-9.json"
       },
       "positions": {
         "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "An unterminated string inside a damaged array emits an additional lexical diagnostic; neither implementation accepts it cleanly. Explicit diagnostic differences: completion aborted -> recovered, diagnostic count 1 -> 2, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-22.json"
       }
     },
     "parser/errorHandling/recovery.test#25": {
@@ -665,18 +725,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Missing member terminators synchronize at the following member, retaining different member ranges. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-10.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Unterminated class members synchronize at the next member and retain different member ranges. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Unterminated class members synchronize at the next member and retain different member ranges. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-15.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Missing member terminators synchronize at the following member, retaining different member ranges. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-23.json"
       }
     },
     "parser/errorHandling/recovery.test#3": {
@@ -685,18 +749,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing right operand is represented by an explicit zero-width error expression. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-11.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Retains an explicit missing right operand after the binary operator. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Retains an explicit missing right operand after the binary operator. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-16.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing right operand is represented by an explicit zero-width error expression. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-24.json"
       }
     },
     "parser/errorHandling/recovery.test#4": {
@@ -705,18 +773,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing right operand before a closing brace is an error expression; the brace remains owned by its body. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-12.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Retains an explicit missing right operand before the function closing brace. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Retains an explicit missing right operand before the function closing brace. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-17.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing right operand before a closing brace is an error expression; the brace remains owned by its body. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-25.json"
       }
     },
     "parser/errorHandling/recovery.test#5": {
@@ -725,18 +797,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The malformed while header is discarded through synchronization; later statements survive. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-13.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Drops the malformed while header at statement synchronization. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Drops the malformed while header at statement synchronization. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-18.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The malformed while header is discarded through synchronization; later statements survive. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-26.json"
       }
     },
     "parser/errorHandling/recovery.test#6": {
@@ -745,18 +821,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "An empty while condition retains an error expression and the following body. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-14.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Retains a while condition error node and its body rather than dropping the loop. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Retains a while condition error node and its body rather than dropping the loop. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-19.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "An empty while condition retains an error expression and the following body. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-27.json"
       }
     },
     "parser/errorHandling/recovery.test#7": {
@@ -765,18 +845,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing loop closing brace retains completed inner statements instead of a null reference AST. Explicit diagnostic differences: completion aborted -> recovered, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-15.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Retains completed statements when the loop closing brace is missing instead of a null AST. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Retains completed statements when the loop closing brace is missing instead of a null AST. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-20.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "A missing loop closing brace retains completed inner statements instead of a null reference AST. Explicit diagnostic differences: completion aborted -> recovered, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-28.json"
       }
     },
     "parser/errorHandling/recovery.test#8": {
@@ -785,7 +869,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -793,8 +877,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The missing member name is diagnosed at its delimiter and a recovered member expression is retained. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-29.json"
       }
     },
     "parser/errorHandling/recovery.test#9": {
@@ -803,7 +889,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       },
       "positions": {
@@ -811,8 +897,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The missing member name before the function closing brace produces one syntax diagnostic; unwinding terminator errors are suppressed. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-30.json"
       }
     },
     "parser/expr/alternative_array_syntax.test#0": {
@@ -829,7 +917,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -847,12 +935,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "PHP 8 curly-offset rejection synchronizes damaged expressions at statement boundaries rather than retaining the reference suffix blocks. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "PHP 8 curly-offset rejection synchronizes damaged expressions at statement boundaries rather than retaining the reference suffix blocks. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-21.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "PHP 8 curly-offset rejection synchronizes damaged expressions at statement boundaries rather than retaining the reference suffix blocks. Explicit diagnostic differences: diagnostic count 9 -> 11, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-31.json"
       }
     },
     "parser/expr/argumentList.test#0": {
@@ -913,7 +1003,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -931,7 +1021,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -949,7 +1039,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -967,7 +1057,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -985,7 +1075,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1003,7 +1093,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1043,7 +1133,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1061,7 +1151,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1079,7 +1169,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1097,7 +1187,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1115,7 +1205,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1133,7 +1223,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1151,7 +1241,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1169,7 +1259,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1187,7 +1277,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1205,7 +1295,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1223,7 +1313,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1241,7 +1331,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1259,7 +1349,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1277,7 +1367,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1295,7 +1385,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1313,7 +1403,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1331,7 +1421,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1349,7 +1439,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1367,7 +1457,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1385,7 +1475,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1403,7 +1493,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1421,7 +1511,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1439,7 +1529,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1457,7 +1547,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1475,7 +1565,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1493,7 +1583,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1511,7 +1601,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1529,7 +1619,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1547,7 +1637,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1565,7 +1655,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1583,7 +1673,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1601,7 +1691,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1619,7 +1709,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1637,7 +1727,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1655,7 +1745,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1673,7 +1763,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1691,7 +1781,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1709,7 +1799,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1727,7 +1817,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1737,18 +1827,22 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Drops new without a class rather than retaining a missing-name placeholder. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-structure-16.json"
       },
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Drops new without a class rather than retaining a missing-name placeholder. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Drops new without a class rather than retaining a missing-name placeholder. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-22.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Drops new without a class rather than retaining a missing-name placeholder. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-32.json"
       }
     },
     "parser/expr/nullsafe.test#0": {
@@ -1765,7 +1859,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1849,7 +1943,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1867,7 +1961,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1885,7 +1979,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1903,7 +1997,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1921,7 +2015,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1939,7 +2033,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1957,12 +2051,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P08 discards a damaged global statement through its terminator instead of synthesizing a separate constant expression from an invalid property suffix; following statements are retained. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P08 discards a damaged global statement through its terminator instead of synthesizing a separate constant expression from an invalid property suffix; following statements are retained. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-23.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P08 discards a damaged global statement through its terminator instead of synthesizing a separate constant expression from an invalid property suffix; following statements are retained. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-33.json"
       }
     },
     "parser/expr/uvs/indirectCall.test#0": {
@@ -1979,7 +2075,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -1997,7 +2093,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2015,7 +2111,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2033,7 +2129,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2051,7 +2147,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2069,7 +2165,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2087,7 +2183,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2105,7 +2201,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2123,7 +2219,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2141,7 +2237,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2159,7 +2255,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2177,7 +2273,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2195,7 +2291,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2213,7 +2309,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2231,7 +2327,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2249,7 +2345,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2267,7 +2363,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2285,7 +2381,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2303,8 +2399,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "All eight indentation problems are detected; literal decoding uses native lexical codes and body-oriented ranges/wording. Explicit diagnostic differences: category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-34.json"
       }
     },
     "parser/scalar/float.test#0": {
@@ -2321,7 +2419,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2339,7 +2437,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2357,8 +2455,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The invalid numeric literal has a lexical decoding diagnostic and retained fallback value, rather than a reference contextual code. Explicit diagnostic differences: category, code, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-35.json"
       }
     },
     "parser/scalar/invalidOctal.test#1": {
@@ -2397,7 +2497,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2415,8 +2515,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Illegal separator spellings split into tokens; statement recovery differs from the reference LR error sequence. Explicit diagnostic differences: diagnostic count 8 -> 9, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-36.json"
       }
     },
     "parser/scalar/unicodeEscape.test#0": {
@@ -2433,7 +2535,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2473,12 +2575,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-24.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-37.json"
       }
     },
     "parser/scalar/unicodeEscape.test#3": {
@@ -2495,12 +2599,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-25.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-38.json"
       }
     },
     "parser/scalar/unicodeEscape.test#4": {
@@ -2517,12 +2623,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-26.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-39.json"
       }
     },
     "parser/scalar/unicodeEscape.test#5": {
@@ -2539,12 +2647,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-27.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-40.json"
       }
     },
     "parser/scalar/unicodeEscape.test#6": {
@@ -2561,12 +2671,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-28.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-41.json"
       }
     },
     "parser/scalar/unicodeEscape.test#7": {
@@ -2583,12 +2695,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-29.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-42.json"
       }
     },
     "parser/scalar/unicodeEscape.test#8": {
@@ -2605,12 +2719,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-30.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-43.json"
       }
     },
     "parser/scalar/unicodeEscape.test#9": {
@@ -2627,12 +2743,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-31.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Explicit diagnostic differences: completion aborted -> recovered, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-44.json"
       }
     },
     "parser/semiReserved.test#0": {
@@ -2649,7 +2767,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2667,7 +2785,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2685,7 +2803,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2703,7 +2821,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2721,7 +2839,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2739,7 +2857,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2757,7 +2875,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2775,7 +2893,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2793,7 +2911,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2811,7 +2929,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2829,7 +2947,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2847,7 +2965,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2865,7 +2983,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2883,7 +3001,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2901,7 +3019,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2919,7 +3037,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2937,7 +3055,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2955,7 +3073,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2973,7 +3091,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -2991,7 +3109,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3009,7 +3127,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3027,7 +3145,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3045,7 +3163,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3063,7 +3181,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3081,7 +3199,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3099,7 +3217,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3117,7 +3235,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3135,7 +3253,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3153,7 +3271,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3171,7 +3289,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3189,7 +3307,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3207,7 +3325,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3225,12 +3343,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-32.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-45.json"
       }
     },
     "parser/stmt/class/name.test#12": {
@@ -3247,7 +3367,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3265,7 +3385,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3283,7 +3403,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3301,12 +3421,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-33.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-46.json"
       }
     },
     "parser/stmt/class/name.test#3": {
@@ -3323,7 +3445,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3341,7 +3463,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3359,7 +3481,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3377,7 +3499,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3395,7 +3517,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3413,7 +3535,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3431,7 +3553,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3449,7 +3571,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3467,7 +3589,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3485,7 +3607,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3503,7 +3625,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3521,7 +3643,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3539,7 +3661,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3557,7 +3679,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3575,7 +3697,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3593,7 +3715,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3611,7 +3733,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3651,7 +3773,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3669,7 +3791,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3687,7 +3809,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3705,12 +3827,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-34.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-47.json"
       }
     },
     "parser/stmt/class/readonlyAsClassName.test#1": {
@@ -3727,7 +3851,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3745,7 +3869,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3763,7 +3887,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3781,7 +3905,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3799,7 +3923,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3817,7 +3941,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3835,7 +3959,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3853,7 +3977,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3871,7 +3995,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3889,7 +4013,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3907,7 +4031,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3925,7 +4049,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3943,7 +4067,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -3983,7 +4107,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4001,7 +4125,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4019,7 +4143,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4037,7 +4161,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4055,7 +4179,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4095,7 +4219,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4113,7 +4237,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4131,7 +4255,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4149,7 +4273,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4167,7 +4291,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4185,7 +4309,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4203,7 +4327,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4221,7 +4345,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4239,7 +4363,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4257,7 +4381,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4275,7 +4399,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4293,7 +4417,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4311,7 +4435,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4329,7 +4453,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4347,7 +4471,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4365,7 +4489,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4383,7 +4507,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4401,7 +4525,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4441,7 +4565,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4459,7 +4583,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4477,7 +4601,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4495,7 +4619,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4513,7 +4637,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4531,7 +4655,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4549,7 +4673,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4567,7 +4691,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4585,7 +4709,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4603,7 +4727,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4621,7 +4745,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4639,7 +4763,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4657,7 +4781,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4677,7 +4801,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4695,7 +4819,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4713,8 +4837,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "The malformed halt is diagnosed at the actual expected terminator, without enabling raw-tail scanning. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-48.json"
       }
     },
     "parser/stmt/haltCompilerOffset.test#0": {
@@ -4733,7 +4859,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4755,7 +4881,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4773,7 +4899,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4791,7 +4917,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4809,7 +4935,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4827,7 +4953,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4845,7 +4971,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4863,7 +4989,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4881,7 +5007,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4899,7 +5025,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4917,7 +5043,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4935,7 +5061,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4953,7 +5079,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4971,7 +5097,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -4989,8 +5115,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-49.json"
       }
     },
     "parser/stmt/namespace/groupUseErrors.test#1": {
@@ -5007,12 +5135,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P09 synchronizes the malformed grouped import through its braced suffix instead of reinterpreting import fragments as ordinary statements; subsequent valid statements are retained. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P09 synchronizes the malformed grouped import through its braced suffix instead of reinterpreting import fragments as ordinary statements; subsequent valid statements are retained. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-35.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P09 synchronizes the malformed grouped import through its braced suffix instead of reinterpreting import fragments as ordinary statements; subsequent valid statements are retained. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-50.json"
       }
     },
     "parser/stmt/namespace/groupUseErrors.test#2": {
@@ -5029,12 +5159,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "P09 diagnoses an extra leading separator in a grouped import and retains the recovered import item with a normalized name; the reference drops the import and reinterprets the suffix as a constant expression. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "P09 diagnoses an extra leading separator in a grouped import and retains the recovered import item with a normalized name; the reference drops the import and reinterprets the suffix as a constant expression. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-36.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "P09 diagnoses an extra leading separator in a grouped import and retains the recovered import item with a normalized name; the reference drops the import and reinterprets the suffix as a constant expression. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-51.json"
       }
     },
     "parser/stmt/namespace/groupUsePositions.test#0": {
@@ -5051,7 +5183,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5069,7 +5201,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5087,7 +5219,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5105,7 +5237,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5123,8 +5255,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-52.json"
       }
     },
     "parser/stmt/namespace/mix.test#0": {
@@ -5139,12 +5273,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-37.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Explicit diagnostic differences: wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-53.json"
       }
     },
     "parser/stmt/namespace/mix.test#1": {
@@ -5159,12 +5295,14 @@
       "positions": {
         "state": "intentional-difference",
         "phase": "P10",
-        "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. P11 reviewed this recovery choice; metadata describes the retained tree exactly.",
         "expectation": "differences/p10-positions-38.json"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Explicit diagnostic differences: diagnostic count 1 -> 2, category, code, wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-54.json"
       }
     },
     "parser/stmt/namespace/name.test#0": {
@@ -5181,7 +5319,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5199,8 +5337,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-55.json"
       }
     },
     "parser/stmt/namespace/notBraced.test#0": {
@@ -5217,7 +5357,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5235,7 +5375,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5253,7 +5393,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5271,7 +5411,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5289,8 +5429,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording, primary ranges. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-56.json"
       }
     },
     "parser/stmt/namespace/outsideStmtInvalid.test#1": {
@@ -5307,8 +5449,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-57.json"
       }
     },
     "parser/stmt/namespace/outsideStmtInvalid.test#2": {
@@ -5325,8 +5469,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Namespace/import parser-local constraints are checked; whole-file grouping determines diagnostic ranges and emission order. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-58.json"
       }
     },
     "parser/stmt/newInInitializer.test#0": {
@@ -5343,7 +5489,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5361,7 +5507,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5379,7 +5525,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5397,7 +5543,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5415,7 +5561,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5433,7 +5579,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5473,8 +5619,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Lexical errors retain their exact source bytes; rejected bytes are skipped by grammar navigation without syntax cascades. Explicit diagnostic differences: wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-59.json"
       }
     },
     "project/adapter/bom": {
@@ -5491,7 +5639,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5509,7 +5657,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5529,8 +5677,10 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
-        "phase": "P11"
+        "state": "intentional-difference",
+        "phase": "P11",
+        "reason": "Missing closing parenthesis at EOF retains a partial root, with an explicit found EOF and related opening delimiter. Explicit diagnostic differences: completion aborted -> recovered, wording. Native codes, order, expected/found tokens and related locations are checked separately.",
+        "expectation": "differences/p11-diagnostics-60.json"
       }
     },
     "project/adapter/halt-tail": {
@@ -5549,7 +5699,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5567,7 +5717,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5585,7 +5735,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5603,7 +5753,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5621,7 +5771,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5639,7 +5789,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5657,7 +5807,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5675,7 +5825,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5693,7 +5843,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5711,7 +5861,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5729,7 +5879,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5747,7 +5897,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5765,7 +5915,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5783,7 +5933,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     },
@@ -5801,7 +5951,7 @@
         "phase": "P10"
       },
       "diagnostics": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P11"
       }
     }

@@ -428,7 +428,7 @@ impl Parser {
             self.error_meta(
                 D::InvalidContext,
                 &meta,
-                "cannot use try without catch or finally",
+                "Cannot use try without catch or finally",
             )?;
         }
         Ok(StmtKind::Try(Box::new(TryStatement {

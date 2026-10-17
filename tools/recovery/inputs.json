@@ -1,0 +1,698 @@
+[
+  {
+    "id": "bad-bytes",
+    "source": {
+      "bytes": "3c3f70687020246265666f72653d313b0001202461667465723d323b"
+    },
+    "target": "8.4",
+    "reason": "Rejected bytes must not create syntax cascades or discard adjacent assignments."
+  },
+  {
+    "id": "bad-byte-expression",
+    "source": {
+      "bytes": "3c3f706870202478203d2031202b0020323b206563686f20333b"
+    },
+    "target": "8.4",
+    "reason": "Invalid bytes are retained and diagnosed while significant grammar continues."
+  },
+  {
+    "id": "missing-terminator",
+    "source": {
+      "bytes": "3c3f70687020246265666f72653d31206563686f20323b202461667465723d333b"
+    },
+    "target": "8.4",
+    "reason": "A missing terminator preserves the following statement."
+  },
+  {
+    "id": "halt-missing-open",
+    "source": {
+      "bytes": "3c3f706870205f5f68616c745f636f6d70696c6572206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "A malformed halt must leave the unexpected echo token for recovery."
+  },
+  {
+    "id": "halt-missing-close",
+    "source": {
+      "bytes": "3c3f706870205f5f68616c745f636f6d70696c657228206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "A malformed halt must not consume a following statement or authorize raw tail."
+  },
+  {
+    "id": "halt-missing-semicolon",
+    "source": {
+      "bytes": "3c3f706870205f5f68616c745f636f6d70696c65722829206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "The terminator expectation must identify echo and preserve it."
+  },
+  {
+    "id": "halt-eof",
+    "source": {
+      "bytes": "3c3f706870205f5f68616c745f636f6d70696c65722829"
+    },
+    "target": "8.4",
+    "reason": "EOF is an explicit found token with an empty primary span."
+  },
+  {
+    "id": "halt-nested",
+    "source": {
+      "bytes": "3c3f70687020696620287472756529207b205f5f68616c745f636f6d70696c657228293b207d206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Nested halt aborts without entering raw tail."
+  },
+  {
+    "id": "delimiter-paren",
+    "source": {
+      "bytes": "3c3f70687020666f6f28313b206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Missing call delimiter diagnoses the semicolon and labels the opening parenthesis."
+  },
+  {
+    "id": "delimiter-bracket",
+    "source": {
+      "bytes": "3c3f7068702024613d5b313b206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Missing array delimiter preserves the next statement."
+  },
+  {
+    "id": "delimiter-brace",
+    "source": {
+      "bytes": "3c3f70687020696620287472756529207b206563686f20313b"
+    },
+    "target": "8.4",
+    "reason": "Unclosed body identifies EOF and its opening brace."
+  },
+  {
+    "id": "argument-hole",
+    "source": {
+      "bytes": "3c3f706870206628312c202c2033293b206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "An argument hole must be diagnosed without losing the subsequent statement."
+  },
+  {
+    "id": "argument-name",
+    "source": {
+      "bytes": "3c3f7068702066286e616d653a293b206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Missing named argument value is an error expression."
+  },
+  {
+    "id": "parameter-hole",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662824612c202c20246329207b7d206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Signature recovery must progress at repeated commas."
+  },
+  {
+    "id": "parameter-type",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628466f6f2c20696e7420246229207b7d206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Missing parameter variables retain useful signature structure."
+  },
+  {
+    "id": "parameter-default",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e2461203d203129207b7d"
+    },
+    "target": "8.4",
+    "reason": "Variadic default validation is parser local."
+  },
+  {
+    "id": "void-parameter",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "8.4",
+    "reason": "The reference checks void on a parameter."
+  },
+  {
+    "id": "member-missing-value",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b20636f6e73742058203d203b207075626c69632066756e6374696f6e2061667465722829207b7d207d206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Member synchronization retains the following method."
+  },
+  {
+    "id": "member-missing-name",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b207075626c6963203b207075626c69632066756e6374696f6e2061667465722829207b7d207d206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "A damaged property must not consume the next member."
+  },
+  {
+    "id": "hook-missing-close",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b20676574203d3e20313b207075626c69632066756e6374696f6e2061667465722829207b7d207d206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Hook recovery recognizes a subsequent class member."
+  },
+  {
+    "id": "namespace-anchor",
+    "source": {
+      "bytes": "3c3f706870202478203d202b206e616d657370616365204e207b206563686f2034323b207d"
+    },
+    "target": "8.4",
+    "reason": "Statement synchronization retains a following namespace."
+  },
+  {
+    "id": "class-anchor",
+    "source": {
+      "bytes": "3c3f706870202478203d202b20636c6173732043207b7d206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Statement synchronization retains a following class."
+  },
+  {
+    "id": "function-anchor",
+    "source": {
+      "bytes": "3c3f706870202478203d202b2066756e6374696f6e20662829207b7d206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Statement synchronization retains a following function."
+  },
+  {
+    "id": "interpolation",
+    "source": {
+      "bytes": "3c3f70687020227b24782d3e7d223b206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Interpolation errors remain bounded at the string boundary."
+  },
+  {
+    "id": "interpolation-eof",
+    "source": {
+      "bytes": "3c3f70687020227b2478"
+    },
+    "target": "8.4",
+    "reason": "Truncated interpolation produces a lexical/syntax failure."
+  },
+  {
+    "id": "string-eof",
+    "source": {
+      "bytes": "3c3f7068702022756e7465726d696e61746564"
+    },
+    "target": "8.4",
+    "reason": "Unterminated strings fail strict parsing with retained source."
+  },
+  {
+    "id": "doc-indent",
+    "source": {
+      "bytes": "3c3f706870202473203d203c3c3c444f430a20780a2020444f433b0a6563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Heredoc indentation failure is reported while later statements survive."
+  },
+  {
+    "id": "nowdoc-eof",
+    "source": {
+      "bytes": "3c3f706870203c3c3c27444f43270a74657874"
+    },
+    "target": "8.4",
+    "reason": "Unterminated nowdoc retains all source bytes."
+  },
+  {
+    "id": "try-context",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d206563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "A try without catch/finally is parser local validation."
+  },
+  {
+    "id": "namespace-mix",
+    "source": {
+      "bytes": "3c3f706870206e616d65737061636520413b206e616d6573706163652042207b7d"
+    },
+    "target": "8.4",
+    "reason": "Namespace styles cannot be mixed."
+  },
+  {
+    "id": "namespace-nested",
+    "source": {
+      "bytes": "3c3f706870206e616d6573706163652041207b206e616d6573706163652042207b7d207d"
+    },
+    "target": "8.4",
+    "reason": "Nested namespaces are diagnosed."
+  },
+  {
+    "id": "method-two-errors",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b2073746174696320726561646f6e6c792066756e6374696f6e205f5f636f6e7374727563742829207b7d207d"
+    },
+    "target": "8.4",
+    "reason": "Static magic method and readonly errors must both be emitted."
+  },
+  {
+    "id": "constant-three-errors",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b2073746174696320616273747261637420726561646f6e6c7920636f6e73742058203d20313b207d"
+    },
+    "target": "8.4",
+    "reason": "Each invalid class constant modifier has its own diagnostic."
+  },
+  {
+    "id": "modifier-related",
+    "source": {
+      "bytes": "3c3f7068702066696e616c20616273747261637420636c6173732043207b7d"
+    },
+    "target": "8.4",
+    "reason": "Modifier conflicts identify both the offending and prior modifier."
+  },
+  {
+    "id": "visibility-related",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b207075626c696320707269766174652024783b207d"
+    },
+    "target": "8.4",
+    "reason": "Conflicting visibility has a related location."
+  },
+  {
+    "id": "hook-get-params",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b206765742829203d3e20313b207d207d"
+    },
+    "target": "8.4",
+    "reason": "A get parameter list is diagnosed at its opening parenthesis."
+  },
+  {
+    "id": "hook-empty",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b7d207d"
+    },
+    "target": "8.4",
+    "reason": "An empty hook list is diagnosed at its opening brace."
+  },
+  {
+    "id": "hook-unknown",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b206665746368203d3e20313b207d207d"
+    },
+    "target": "8.4",
+    "reason": "Unknown hook names are parser local errors."
+  },
+  {
+    "id": "hook-modifiers",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b207075626c6963202478207b207075626c6963207075626c696320676574203d3e20313b207d207d"
+    },
+    "target": "8.4",
+    "reason": "Duplicate and forbidden modifiers at one token are independent context errors."
+  },
+  {
+    "id": "array-holes",
+    "source": {
+      "bytes": "3c3f706870205b2c312c2c5d3b"
+    },
+    "target": "8.4",
+    "reason": "Array holes are validated after possible assignment-pattern conversion."
+  },
+  {
+    "id": "destructure-control",
+    "source": {
+      "bytes": "3c3f706870205b2c2024615d203d202476616c7565733b"
+    },
+    "target": "8.4",
+    "reason": "The same array holes are valid in destructuring patterns."
+  },
+  {
+    "id": "semantic-control",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b20636f6e74696e75653b2072657475726e20313b20676f746f206d697373696e673b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "8.4",
+    "reason": "Compiler-level loop scope, label resolution and duplicate parameter checks are out of scope."
+  },
+  {
+    "id": "trait-name-control",
+    "source": {
+      "bytes": "3c3f7068702074726169742073656c66207b7d"
+    },
+    "target": "8.4",
+    "reason": "The reference does not apply the class-name validation to traits."
+  },
+  {
+    "id": "type-control",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628696e7426737472696e67202478293a20766f6964207b7d"
+    },
+    "target": "8.4",
+    "reason": "The parser does not perform compiler-level type consistency checks."
+  },
+  {
+    "id": "halt-valid",
+    "source": {
+      "bytes": "3c3f706870205f5f68616c745f636f6d70696c657228293b006e6f7420504850"
+    },
+    "target": "8.4",
+    "reason": "Authorized outermost halt preserves arbitrary raw tail without diagnostics."
+  },
+  {
+    "id": "eof-cascade",
+    "source": {
+      "bytes": "3c3f7068702024"
+    },
+    "target": "8.4",
+    "reason": "One unexpected EOF must not produce multiple unwinding syntax errors."
+  },
+  {
+    "id": "multi-error-lines",
+    "source": {
+      "bytes": "3c3f7068700d0a2461203d203b0d0a2462203d203b0d0a6563686f2034323b"
+    },
+    "target": "8.4",
+    "reason": "Separate syntax errors retain deterministic CRLF byte coordinates."
+  },
+  {
+    "id": "variadic/7.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "7.0",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/7.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "7.0",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/7.0",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "7.0",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/7.0",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "7.0",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  },
+  {
+    "id": "variadic/7.1",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "7.1",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/7.1",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "7.1",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/7.1",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "7.1",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/7.1",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "7.1",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  },
+  {
+    "id": "variadic/7.2",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "7.2",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/7.2",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "7.2",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/7.2",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "7.2",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/7.2",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "7.2",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  },
+  {
+    "id": "variadic/7.3",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "7.3",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/7.3",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "7.3",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/7.3",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "7.3",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/7.3",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "7.3",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  },
+  {
+    "id": "variadic/7.4",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "7.4",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/7.4",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "7.4",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/7.4",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "7.4",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/7.4",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "7.4",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  },
+  {
+    "id": "variadic/8.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "8.0",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/8.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "8.0",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/8.0",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "8.0",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/8.0",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "8.0",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  },
+  {
+    "id": "variadic/8.1",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "8.1",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/8.1",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "8.1",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/8.1",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "8.1",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/8.1",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "8.1",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  },
+  {
+    "id": "variadic/8.2",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "8.2",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/8.2",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "8.2",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/8.2",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "8.2",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/8.2",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "8.2",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  },
+  {
+    "id": "variadic/8.3",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "8.3",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/8.3",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "8.3",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/8.3",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "8.3",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/8.3",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "8.3",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  },
+  {
+    "id": "variadic/8.4",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e2066282e2e2e24613d3129207b7d"
+    },
+    "target": "8.4",
+    "reason": "Variadic default validation across every target."
+  },
+  {
+    "id": "void/8.4",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628766f696420246129207b7d"
+    },
+    "target": "8.4",
+    "reason": "Parser-local void validation across every target."
+  },
+  {
+    "id": "try/8.4",
+    "source": {
+      "bytes": "3c3f70687020747279207b7d"
+    },
+    "target": "8.4",
+    "reason": "Try validation across every target."
+  },
+  {
+    "id": "compiler-control/8.4",
+    "source": {
+      "bytes": "3c3f70687020627265616b3b2066756e6374696f6e20662824782c247829207b7d"
+    },
+    "target": "8.4",
+    "reason": "Compiler-only constraints must remain accepted across every target."
+  }
+]

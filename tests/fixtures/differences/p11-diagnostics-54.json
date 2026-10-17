@@ -1,0 +1,44 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "contextual",
+      "code": "reference.contextual",
+      "end": [
+        5,
+        8
+      ],
+      "message": {
+        "bytes": "636f6465206f757473696465206120627261636564206e616d657370616365"
+      },
+      "span": [
+        34,
+        41
+      ],
+      "start": [
+        5,
+        1
+      ]
+    },
+    {
+      "category": "contextual",
+      "code": "reference.contextual",
+      "end": [
+        6,
+        13
+      ],
+      "message": {
+        "bytes": "63616e6e6f74206d6978206e616d657370616365207374796c6573"
+      },
+      "span": [
+        42,
+        54
+      ],
+      "start": [
+        6,
+        1
+      ]
+    }
+  ]
+}

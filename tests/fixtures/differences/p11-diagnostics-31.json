@@ -1,0 +1,215 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        3,
+        4
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        9,
+        10
+      ],
+      "start": [
+        3,
+        3
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        4,
+        4
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        18,
+        19
+      ],
+      "start": [
+        4,
+        3
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        4,
+        10
+      ],
+      "message": {
+        "bytes": "65787065637465642065787072657373696f6e2c20666f756e64205269676874506172656e"
+      },
+      "span": [
+        24,
+        25
+      ],
+      "start": [
+        4,
+        9
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        5,
+        7
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        32,
+        33
+      ],
+      "start": [
+        5,
+        6
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        6,
+        9
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        46,
+        47
+      ],
+      "start": [
+        6,
+        8
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        7,
+        7
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        58,
+        59
+      ],
+      "start": [
+        7,
+        6
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        8,
+        3
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        66,
+        67
+      ],
+      "start": [
+        8,
+        2
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        9,
+        6
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        75,
+        76
+      ],
+      "start": [
+        9,
+        5
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        10,
+        12
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        90,
+        91
+      ],
+      "start": [
+        10,
+        11
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        11,
+        11
+      ],
+      "message": {
+        "bytes": "65787065637465642073746174656d656e74207465726d696e61746f72"
+      },
+      "span": [
+        114,
+        115
+      ],
+      "start": [
+        11,
+        10
+      ]
+    },
+    {
+      "category": "syntax",
+      "code": "reference.syntax",
+      "end": [
+        11,
+        17
+      ],
+      "message": {
+        "bytes": "65787065637465642065787072657373696f6e2c20666f756e64205269676874506172656e"
+      },
+      "span": [
+        120,
+        121
+      ],
+      "start": [
+        11,
+        16
+      ]
+    }
+  ]
+}

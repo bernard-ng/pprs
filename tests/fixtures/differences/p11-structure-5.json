@@ -1,0 +1,40 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "fields": {
+        "byRef": false,
+        "expr": {
+          "fields": {
+            "name": {
+              "bytes": "666f6f"
+            }
+          },
+          "kind": "Expr_Variable"
+        },
+        "keyVar": null,
+        "stmts": [
+          {
+            "fields": {
+              "expr": {
+                "fields": {
+                  "name": {
+                    "bytes": "626172"
+                  }
+                },
+                "kind": "Expr_Variable"
+              }
+            },
+            "kind": "Stmt_Expression"
+          }
+        ],
+        "valueVar": {
+          "fields": {},
+          "kind": "Expr_Error"
+        }
+      },
+      "kind": "Stmt_Foreach"
+    }
+  ]
+}

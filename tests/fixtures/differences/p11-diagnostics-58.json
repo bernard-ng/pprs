@@ -1,0 +1,25 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "diagnostics": [
+    {
+      "category": "contextual",
+      "code": "reference.contextual",
+      "end": [
+        3,
+        18
+      ],
+      "message": {
+        "bytes": "636f6465206f757473696465206120627261636564206e616d657370616365"
+      },
+      "span": [
+        21,
+        38
+      ],
+      "start": [
+        3,
+        1
+      ]
+    }
+  ]
+}

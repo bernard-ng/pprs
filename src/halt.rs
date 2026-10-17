@@ -15,7 +15,7 @@ pub(crate) enum HaltError {
     #[error("__halt_compiler must appear in outermost scope")]
     Scope,
     #[error("invalid __halt_compiler syntax")]
-    Syntax,
+    Syntax(K),
     #[error(transparent)]
     Cursor(#[from] CursorError),
 }
@@ -29,13 +29,15 @@ pub(crate) fn consume<L: TokenSource>(
         return Err(HaltError::Scope);
     }
     for expected in [K::HaltCompiler, K::LeftParen, K::RightParen] {
-        if cursor.bump()?.1.kind() != expected {
-            return Err(HaltError::Syntax);
+        if cursor.peek(0)?.1.kind() != expected {
+            return Err(HaltError::Syntax(expected));
         }
+        cursor.bump()?;
     }
-    if !matches!(cursor.bump()?.1.kind(), K::Semicolon | K::CloseTag) {
-        return Err(HaltError::Syntax);
+    if !matches!(cursor.peek(0)?.1.kind(), K::Semicolon | K::CloseTag) {
+        return Err(HaltError::Syntax(K::Semicolon));
     }
+    cursor.bump()?;
     cursor.enter_halt_tail()?;
     Ok(())
 }
@@ -83,10 +85,10 @@ mod tests {
             let options = ParseOptions::default();
             let scanner = Scanner::new(source.clone(), options);
             let mut cursor = TokenCursor::new(source, scanner, options.limits);
-            assert_eq!(
+            assert!(matches!(
                 consume(&mut cursor, HaltScope::Outermost),
-                Err(HaltError::Syntax)
-            );
+                Err(HaltError::Syntax(_))
+            ));
             let (stream, stop) = cursor.finish();
             assert!(stop.is_none());
             let stream = stream.unwrap();
