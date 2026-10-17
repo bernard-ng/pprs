@@ -49,6 +49,13 @@ impl Parser {
         self.bump()?;
         let by_ref = self.eat(K::Ampersand)?;
         let (at, token) = self.peek()?;
+        if token.kind() == K::Clone {
+            self.record(Diagnostic::error(
+                D::UnsupportedSyntax,
+                token.span(),
+                "clone function declarations require PHP 8.5, beyond the PHP 8.4 ceiling",
+            ))?;
+        }
         let name = if matches!(token.kind(), K::Readonly | K::Exit | K::Clone) {
             self.bump()?;
             let bytes = self.bytes(token).to_vec();

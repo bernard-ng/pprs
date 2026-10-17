@@ -1,0 +1,53 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          2,
+          8
+        ],
+        "span": [
+          6,
+          13
+        ],
+        "start": [
+          2,
+          1
+        ],
+        "token_span": [
+          1,
+          3
+        ]
+      },
+      "path": "/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          2,
+          7
+        ],
+        "span": [
+          6,
+          12
+        ],
+        "start": [
+          2,
+          1
+        ],
+        "token_span": [
+          1,
+          2
+        ]
+      },
+      "path": "/0/fields/expr",
+      "spelling": {}
+    }
+  ]
+}

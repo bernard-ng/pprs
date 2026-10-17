@@ -16,6 +16,7 @@ pub fn invariants(result: &pprs::ParseResult, options: ParseOptions) {
     assert!(result.diagnostics().len() <= options.limits.get(Resource::Diagnostics));
     if let Some(program) = result.program() {
         assert!(pprs::visit::walk(program).count() <= options.limits.get(Resource::Nodes));
+        let mut comments = std::collections::HashSet::new();
         for entry in pprs::visit::walk(program) {
             assert!(entry.depth <= options.limits.get(Resource::Depth));
             let meta = match entry.node {
@@ -56,6 +57,21 @@ pub fn invariants(result: &pprs::ParseResult, options: ParseOptions) {
                 tokens.start() <= tokens.end() && tokens.end() <= result.tokens().tokens().len()
             );
             assert!(result.source().slice(span).is_some());
+            assert_eq!(result.tokens().span(tokens).unwrap(), span);
+            let Origin::Parsed {
+                span: outer,
+                tokens: outer_tokens,
+            } = meta.enclosing_origin()
+            else {
+                panic!("synthetic enclosing origin")
+            };
+            assert!(outer.start() <= span.start() && outer.end() >= span.end());
+            assert_eq!(result.tokens().span(outer_tokens).unwrap(), outer);
+            for &index in meta.comments() {
+                assert!(comments.insert(index), "comment has more than one owner");
+                assert!(result.tokens().tokens()[index].kind().is_comment());
+                assert!(index < tokens.start());
+            }
         }
     }
     if result.status() == ParseStatus::Clean {

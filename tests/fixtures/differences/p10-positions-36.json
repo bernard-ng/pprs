@@ -1,0 +1,127 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [
+        {
+          "kind": "comment",
+          "origin": {
+            "empty": false,
+            "end": [
+              2,
+              22
+            ],
+            "span": [
+              6,
+              27
+            ],
+            "start": [
+              2,
+              1
+            ],
+            "token_span": [
+              1,
+              2
+            ]
+          },
+          "text": {
+            "bytes": "2f2f204578747261204e5320736570617261746f72"
+          }
+        }
+      ],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          16
+        ],
+        "span": [
+          28,
+          43
+        ],
+        "start": [
+          3,
+          1
+        ],
+        "token_span": [
+          3,
+          11
+        ]
+      },
+      "path": "/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          8
+        ],
+        "span": [
+          32,
+          35
+        ],
+        "start": [
+          3,
+          5
+        ],
+        "token_span": [
+          5,
+          6
+        ]
+      },
+      "path": "/0/fields/prefix",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          14
+        ],
+        "span": [
+          37,
+          41
+        ],
+        "start": [
+          3,
+          10
+        ],
+        "token_span": [
+          8,
+          9
+        ]
+      },
+      "path": "/0/fields/uses/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          14
+        ],
+        "span": [
+          37,
+          41
+        ],
+        "start": [
+          3,
+          10
+        ],
+        "token_span": [
+          8,
+          9
+        ]
+      },
+      "path": "/0/fields/uses/0/fields/name",
+      "spelling": {}
+    }
+  ]
+}

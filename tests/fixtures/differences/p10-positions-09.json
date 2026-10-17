@@ -1,0 +1,400 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          12,
+          9
+        ],
+        "span": [
+          6,
+          112
+        ],
+        "start": [
+          2,
+          1
+        ],
+        "token_span": [
+          1,
+          48
+        ]
+      },
+      "path": "/0",
+      "spelling": {
+        "kind": {
+          "integer": "2"
+        }
+      }
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          2,
+          14
+        ],
+        "span": [
+          16,
+          19
+        ],
+        "start": [
+          2,
+          11
+        ],
+        "token_span": [
+          3,
+          4
+        ]
+      },
+      "path": "/0/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          6
+        ],
+        "span": [
+          20,
+          25
+        ],
+        "start": [
+          3,
+          1
+        ],
+        "token_span": [
+          5,
+          8
+        ]
+      },
+      "path": "/0/fields/stmts/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          6
+        ],
+        "span": [
+          24,
+          25
+        ],
+        "start": [
+          3,
+          5
+        ],
+        "token_span": [
+          7,
+          8
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/uses/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          6
+        ],
+        "span": [
+          24,
+          25
+        ],
+        "start": [
+          3,
+          5
+        ],
+        "token_span": [
+          7,
+          8
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/uses/0/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          15
+        ],
+        "span": [
+          26,
+          40
+        ],
+        "start": [
+          4,
+          1
+        ],
+        "token_span": [
+          9,
+          14
+        ]
+      },
+      "path": "/0/fields/stmts/1",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          15
+        ],
+        "span": [
+          39,
+          40
+        ],
+        "start": [
+          4,
+          14
+        ],
+        "token_span": [
+          13,
+          14
+        ]
+      },
+      "path": "/0/fields/stmts/1/fields/uses/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          15
+        ],
+        "span": [
+          39,
+          40
+        ],
+        "start": [
+          4,
+          14
+        ],
+        "token_span": [
+          13,
+          14
+        ]
+      },
+      "path": "/0/fields/stmts/1/fields/uses/0/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          10
+        ],
+        "span": [
+          41,
+          50
+        ],
+        "start": [
+          5,
+          1
+        ],
+        "token_span": [
+          15,
+          22
+        ]
+      },
+      "path": "/0/fields/stmts/2",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          6
+        ],
+        "span": [
+          45,
+          46
+        ],
+        "start": [
+          5,
+          5
+        ],
+        "token_span": [
+          17,
+          18
+        ]
+      },
+      "path": "/0/fields/stmts/2/fields/prefix",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          9
+        ],
+        "span": [
+          48,
+          49
+        ],
+        "start": [
+          5,
+          8
+        ],
+        "token_span": [
+          20,
+          21
+        ]
+      },
+      "path": "/0/fields/stmts/2/fields/uses/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          9
+        ],
+        "span": [
+          48,
+          49
+        ],
+        "start": [
+          5,
+          8
+        ],
+        "token_span": [
+          20,
+          21
+        ]
+      },
+      "path": "/0/fields/stmts/2/fields/uses/0/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          12,
+          7
+        ],
+        "span": [
+          97,
+          110
+        ],
+        "start": [
+          11,
+          1
+        ],
+        "token_span": [
+          43,
+          46
+        ]
+      },
+      "path": "/0/fields/stmts/3",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          12,
+          7
+        ],
+        "span": [
+          104,
+          110
+        ],
+        "start": [
+          12,
+          1
+        ],
+        "token_span": [
+          45,
+          46
+        ]
+      },
+      "path": "/0/fields/stmts/3/fields/expr",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          12,
+          9
+        ],
+        "span": [
+          111,
+          112
+        ],
+        "start": [
+          12,
+          8
+        ],
+        "token_span": [
+          47,
+          48
+        ]
+      },
+      "path": "/0/fields/stmts/4",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          12,
+          9
+        ],
+        "span": [
+          111,
+          112
+        ],
+        "start": [
+          12,
+          8
+        ],
+        "token_span": [
+          47,
+          48
+        ]
+      },
+      "path": "/0/fields/stmts/4/fields/expr",
+      "spelling": {
+        "kind": {
+          "integer": "10"
+        },
+        "rawValue": {
+          "bytes": "32"
+        }
+      }
+    }
+  ]
+}

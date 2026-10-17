@@ -78,6 +78,8 @@ fn corpus_is_complete_pinned_and_byte_preserving() {
 fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
     let states = json_file("coverage.json");
     let cases = records();
+    let reviews = json_file("fidelity/recovery-review.json");
+    let mut reviewed = BTreeSet::new();
     assert_eq!(states["cases"].as_object().unwrap().len(), cases.len());
     for case in &cases {
         let id = case["id"].as_str().unwrap();
@@ -111,7 +113,7 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
                 },
             )
             .unwrap();
-            parser_adapter::observation(&result, target)
+            parser_adapter::full_observation(&result, target)
         });
         for channel in CHANNELS {
             let state = channels.get(channel).expect("explicit channel state");
@@ -119,6 +121,26 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
                 assert_ne!(state["state"], "deferred");
             } else {
                 assert_eq!(state["state"], "deferred");
+            }
+            if case["scope"] == "core"
+                && matches!(channel, "structure" | "positions")
+                && case["oracle"]["status"] == "clean"
+            {
+                assert_eq!(
+                    state["state"], "passing",
+                    "valid fixture must have exact fidelity: {id}/{channel}"
+                );
+            }
+            if channel == "positions" && state["state"] == "intentional-difference" {
+                let review = reviews
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .find(|review| review["id"] == id)
+                    .expect("individual source recovery review");
+                assert!(reviewed.insert(id));
+                assert_eq!(review["reason"], state["reason"]);
+                assert_eq!(review["expectation"], state["expectation"]);
             }
             let difference = state.get("expectation").map(|path| {
                 let path = path.as_str().unwrap();
@@ -129,7 +151,7 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
                 &case["oracle"],
                 if channel == "tokens" {
                     actual.as_ref()
-                } else if channel == "structure" {
+                } else if matches!(channel, "structure" | "positions") {
                     parsed.as_ref()
                 } else {
                     None
@@ -141,6 +163,7 @@ fn recorded_coverage_requires_a_real_implementation_for_promoted_cases() {
             .unwrap_or_else(|error| panic!("{id}: {error}"));
         }
     }
+    assert_eq!(reviewed.len(), reviews.as_array().unwrap().len());
 }
 
 #[test]

@@ -1,0 +1,274 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          8
+        ],
+        "span": [
+          6,
+          26
+        ],
+        "start": [
+          2,
+          1
+        ],
+        "token_span": [
+          1,
+          10
+        ]
+      },
+      "path": "/0",
+      "spelling": {
+        "kind": {
+          "integer": "1"
+        }
+      }
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          2,
+          12
+        ],
+        "span": [
+          16,
+          17
+        ],
+        "start": [
+          2,
+          11
+        ],
+        "token_span": [
+          3,
+          4
+        ]
+      },
+      "path": "/0/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          8
+        ],
+        "span": [
+          19,
+          26
+        ],
+        "start": [
+          3,
+          1
+        ],
+        "token_span": [
+          6,
+          10
+        ]
+      },
+      "path": "/0/fields/stmts/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          7
+        ],
+        "span": [
+          24,
+          25
+        ],
+        "start": [
+          3,
+          6
+        ],
+        "token_span": [
+          8,
+          9
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/exprs/0",
+      "spelling": {
+        "kind": {
+          "integer": "10"
+        },
+        "rawValue": {
+          "bytes": "31"
+        }
+      }
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          6,
+          2
+        ],
+        "span": [
+          27,
+          54
+        ],
+        "start": [
+          4,
+          1
+        ],
+        "token_span": [
+          11,
+          23
+        ]
+      },
+      "path": "/1",
+      "spelling": {
+        "kind": {
+          "integer": "2"
+        }
+      }
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          12
+        ],
+        "span": [
+          37,
+          38
+        ],
+        "start": [
+          4,
+          11
+        ],
+        "token_span": [
+          13,
+          14
+        ]
+      },
+      "path": "/1/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          12
+        ],
+        "span": [
+          45,
+          52
+        ],
+        "start": [
+          5,
+          5
+        ],
+        "token_span": [
+          17,
+          21
+        ]
+      },
+      "path": "/1/fields/stmts/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          11
+        ],
+        "span": [
+          50,
+          51
+        ],
+        "start": [
+          5,
+          10
+        ],
+        "token_span": [
+          19,
+          20
+        ]
+      },
+      "path": "/1/fields/stmts/0/fields/exprs/0",
+      "spelling": {
+        "kind": {
+          "integer": "10"
+        },
+        "rawValue": {
+          "bytes": "32"
+        }
+      }
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          7,
+          8
+        ],
+        "span": [
+          55,
+          62
+        ],
+        "start": [
+          7,
+          1
+        ],
+        "token_span": [
+          24,
+          28
+        ]
+      },
+      "path": "/2",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          7,
+          7
+        ],
+        "span": [
+          60,
+          61
+        ],
+        "start": [
+          7,
+          6
+        ],
+        "token_span": [
+          26,
+          27
+        ]
+      },
+      "path": "/2/fields/exprs/0",
+      "spelling": {
+        "kind": {
+          "integer": "10"
+        },
+        "rawValue": {
+          "bytes": "33"
+        }
+      }
+    }
+  ]
+}

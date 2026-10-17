@@ -1,0 +1,259 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          9
+        ],
+        "span": [
+          7,
+          15
+        ],
+        "start": [
+          3,
+          1
+        ],
+        "token_span": [
+          2,
+          8
+        ]
+      },
+      "path": "/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          8
+        ],
+        "span": [
+          7,
+          14
+        ],
+        "start": [
+          3,
+          1
+        ],
+        "token_span": [
+          2,
+          7
+        ]
+      },
+      "path": "/0/fields/expr",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          3
+        ],
+        "span": [
+          7,
+          9
+        ],
+        "start": [
+          3,
+          1
+        ],
+        "token_span": [
+          2,
+          3
+        ]
+      },
+      "path": "/0/fields/expr/fields/var",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          8
+        ],
+        "span": [
+          12,
+          14
+        ],
+        "start": [
+          3,
+          6
+        ],
+        "token_span": [
+          6,
+          7
+        ]
+      },
+      "path": "/0/fields/expr/fields/expr",
+      "spelling": {
+        "kind": {
+          "integer": "10"
+        },
+        "rawValue": {
+          "bytes": "3432"
+        }
+      }
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          2
+        ],
+        "span": [
+          16,
+          17
+        ],
+        "start": [
+          4,
+          1
+        ],
+        "token_span": [
+          9,
+          10
+        ]
+      },
+      "path": "/1",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          2
+        ],
+        "span": [
+          16,
+          17
+        ],
+        "start": [
+          4,
+          1
+        ],
+        "token_span": [
+          9,
+          10
+        ]
+      },
+      "path": "/1/fields/expr",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          9
+        ],
+        "span": [
+          18,
+          26
+        ],
+        "start": [
+          5,
+          1
+        ],
+        "token_span": [
+          11,
+          17
+        ]
+      },
+      "path": "/2",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          8
+        ],
+        "span": [
+          18,
+          25
+        ],
+        "start": [
+          5,
+          1
+        ],
+        "token_span": [
+          11,
+          16
+        ]
+      },
+      "path": "/2/fields/expr",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          3
+        ],
+        "span": [
+          18,
+          20
+        ],
+        "start": [
+          5,
+          1
+        ],
+        "token_span": [
+          11,
+          12
+        ]
+      },
+      "path": "/2/fields/expr/fields/var",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          8
+        ],
+        "span": [
+          23,
+          25
+        ],
+        "start": [
+          5,
+          6
+        ],
+        "token_span": [
+          15,
+          16
+        ]
+      },
+      "path": "/2/fields/expr/fields/expr",
+      "spelling": {
+        "kind": {
+          "integer": "10"
+        },
+        "rawValue": {
+          "bytes": "3234"
+        }
+      }
+    }
+  ]
+}

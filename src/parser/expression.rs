@@ -310,7 +310,7 @@ impl Parser {
         self.bump()?;
         let mut expr = self.expression(0)?;
         self.expect(K::RightParen)?;
-        expr.meta = self.meta(start);
+        expr.meta.parenthesize(&self.meta(start));
         Ok(expr)
     }
 
@@ -363,7 +363,7 @@ impl Parser {
             let open = (start + 1..self.last_end)
                 .find(|&i| self.cursor.retained()[i].kind() == K::LeftParen)
                 .unwrap();
-            expr.meta = self.meta(open);
+            expr.meta.parenthesize(&self.meta(open));
             while matches!(
                 self.kind()?,
                 K::LeftParen
@@ -384,6 +384,11 @@ impl Parser {
                 },
             )
         } else {
+            self.record(Diagnostic::error(
+                D::UnsupportedSyntax,
+                token.span(),
+                "expanded clone calls require PHP 8.5, beyond the PHP 8.4 ceiling",
+            ))?;
             let name = self.name(start, token)?;
             self.make(
                 start,
@@ -573,7 +578,7 @@ impl Parser {
         Ok(self.target(expr))
     }
     fn grouped_expr(&self, expr: &Expr) -> bool {
-        let Origin::Parsed { tokens, .. } = expr.meta.origin() else {
+        let Origin::Parsed { tokens, .. } = expr.meta.enclosing_origin() else {
             return false;
         };
         let range = &self.cursor.retained()[tokens.range()];
@@ -617,7 +622,7 @@ impl Parser {
                     Target::Name(name) => name.meta(),
                     Target::Expr(expr) => &expr.meta,
                 };
-                match (expr.meta.origin(), class_meta.origin()) {
+                match (expr.meta.origin(), class_meta.enclosing_origin()) {
                     (
                         Origin::Parsed { tokens: whole, .. },
                         Origin::Parsed { tokens: class, .. },
@@ -854,21 +859,21 @@ impl Parser {
         while self.kind()? != close && self.kind()? != K::Eof {
             let at = self.peek()?.0;
             if self.kind()? == K::Comma {
+                self.bump()?;
                 self.alloc()?;
                 let value = Expr {
-                    meta: self.point(at),
+                    meta: self.meta(at),
                     kind: ExprKind::Error,
                 };
                 self.alloc()?;
                 let item = ArrayItem {
-                    meta: self.point(at),
+                    meta: self.meta(at),
                     key: None,
                     value,
                     by_ref: false,
                     unpack: false,
                 };
                 items.push(Some(item));
-                self.bump()?;
                 continue;
             }
             let unpack = self.eat(K::Ellipsis)?;

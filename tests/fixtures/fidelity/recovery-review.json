@@ -1,0 +1,192 @@
+[
+  {
+    "id": "parser/errorHandling/lexerErrors.test#1",
+    "reason": "Retains an error expression for the bad byte between assignments. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-01.json"
+  },
+  {
+    "id": "parser/errorHandling/lexerErrors.test#2",
+    "reason": "Retains an error expression for the NUL byte between assignments. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-02.json"
+  },
+  {
+    "id": "parser/errorHandling/lexerErrors.test#3",
+    "reason": "Retains error expressions for both bad bytes between assignments. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-03.json"
+  },
+  {
+    "id": "parser/errorHandling/lexerErrors.test#4",
+    "reason": "Retains the completed inner statement and trailing unterminated comment instead of a null AST. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-04.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#11",
+    "reason": "Drops unfinished new without a class rather than creating the reference missing-name placeholder. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-05.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#12",
+    "reason": "Drops unfinished instanceof without a class rather than creating a missing-name placeholder. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-06.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#13",
+    "reason": "Missing variable name is a zero-width point after the dollar token. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-07.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#14",
+    "reason": "Missing static property variable name is a zero-width point after the dollar token. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-08.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#16",
+    "reason": "Missing terminators synchronize at later statement starts; retained statement boundaries differ. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-09.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#17",
+    "reason": "Malformed trailing-comma lists use local synchronization and retain different error items. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-10.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#20",
+    "reason": "Malformed foreach headers synchronize before retaining the later recovered loop. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-11.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#21",
+    "reason": "Missing parameter variables are zero-width points; malformed signatures retain different ranges. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-12.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#22",
+    "reason": "Missing array separators discard the damaged assignment at statement synchronization. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-13.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#23",
+    "reason": "A missing return type discards the damaged function at statement synchronization. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-14.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#25",
+    "reason": "Unterminated class members synchronize at the next member and retain different member ranges. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-15.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#3",
+    "reason": "Retains an explicit missing right operand after the binary operator. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-16.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#4",
+    "reason": "Retains an explicit missing right operand before the function closing brace. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-17.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#5",
+    "reason": "Drops the malformed while header at statement synchronization. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-18.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#6",
+    "reason": "Retains a while condition error node and its body rather than dropping the loop. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-19.json"
+  },
+  {
+    "id": "parser/errorHandling/recovery.test#7",
+    "reason": "Retains completed statements when the loop closing brace is missing instead of a null AST. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-20.json"
+  },
+  {
+    "id": "parser/expr/alternative_array_syntax.test#1",
+    "reason": "PHP 8 curly-offset rejection synchronizes damaged expressions at statement boundaries rather than retaining the reference suffix blocks. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-21.json"
+  },
+  {
+    "id": "parser/expr/newWithoutClass.test#0",
+    "reason": "Drops new without a class rather than retaining a missing-name placeholder. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-22.json"
+  },
+  {
+    "id": "parser/expr/uvs/globalNonSimpleVarError.test#0",
+    "reason": "P08 discards a damaged global statement through its terminator instead of synthesizing a separate constant expression from an invalid property suffix; following statements are retained. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-23.json"
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#2",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-24.json"
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#3",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-25.json"
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#4",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-26.json"
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#5",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-27.json"
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#6",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-28.json"
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#7",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-29.json"
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#8",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-30.json"
+  },
+  {
+    "id": "parser/scalar/unicodeEscape.test#9",
+    "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-31.json"
+  },
+  {
+    "id": "parser/stmt/class/name.test#11",
+    "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-32.json"
+  },
+  {
+    "id": "parser/stmt/class/name.test#2",
+    "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-33.json"
+  },
+  {
+    "id": "parser/stmt/class/readonlyAsClassName.test#0",
+    "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-34.json"
+  },
+  {
+    "id": "parser/stmt/namespace/groupUseErrors.test#1",
+    "reason": "P09 synchronizes the malformed grouped import through its braced suffix instead of reinterpreting import fragments as ordinary statements; subsequent valid statements are retained. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-35.json"
+  },
+  {
+    "id": "parser/stmt/namespace/groupUseErrors.test#2",
+    "reason": "P09 diagnoses an extra leading separator in a grouped import and retains the recovered import item with a normalized name; the reference drops the import and reinterprets the suffix as a constant expression. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-36.json"
+  },
+  {
+    "id": "parser/stmt/namespace/mix.test#0",
+    "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-37.json"
+  },
+  {
+    "id": "parser/stmt/namespace/mix.test#1",
+    "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+    "expectation": "differences/p10-positions-38.json"
+  }
+]

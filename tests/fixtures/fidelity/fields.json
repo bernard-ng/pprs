@@ -1,0 +1,656 @@
+{
+    "Arg": [
+        "name",
+        "value",
+        "byRef",
+        "unpack"
+    ],
+    "ArgPlaceholder": [
+        "name"
+    ],
+    "ArrayItem": [
+        "key",
+        "value",
+        "byRef",
+        "unpack"
+    ],
+    "Attribute": [
+        "name",
+        "args"
+    ],
+    "AttributeGroup": [
+        "attrs"
+    ],
+    "ClosureUse": [
+        "var",
+        "byRef"
+    ],
+    "Const": [
+        "name",
+        "value"
+    ],
+    "DeclareItem": [
+        "key",
+        "value"
+    ],
+    "Expr_Array": [
+        "items"
+    ],
+    "Expr_ArrayDimFetch": [
+        "var",
+        "dim"
+    ],
+    "Expr_ArrowFunction": [
+        "attrGroups",
+        "static",
+        "byRef",
+        "params",
+        "returnType",
+        "expr"
+    ],
+    "Expr_Assign": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_BitwiseAnd": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_BitwiseOr": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_BitwiseXor": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_Coalesce": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_Concat": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_Div": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_Minus": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_Mod": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_Mul": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_Plus": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_Pow": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_ShiftLeft": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignOp_ShiftRight": [
+        "var",
+        "expr"
+    ],
+    "Expr_AssignRef": [
+        "var",
+        "expr"
+    ],
+    "Expr_BinaryOp_BitwiseAnd": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_BitwiseOr": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_BitwiseXor": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_BooleanAnd": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_BooleanOr": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Coalesce": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Concat": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Div": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Equal": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Greater": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_GreaterOrEqual": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Identical": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_LogicalAnd": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_LogicalOr": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_LogicalXor": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Minus": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Mod": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Mul": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_NotEqual": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_NotIdentical": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Pipe": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Plus": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Pow": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_ShiftLeft": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_ShiftRight": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Smaller": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_SmallerOrEqual": [
+        "left",
+        "right"
+    ],
+    "Expr_BinaryOp_Spaceship": [
+        "left",
+        "right"
+    ],
+    "Expr_BitwiseNot": [
+        "expr"
+    ],
+    "Expr_BooleanNot": [
+        "expr"
+    ],
+    "Expr_Cast_Array": [
+        "expr"
+    ],
+    "Expr_Cast_Bool": [
+        "expr"
+    ],
+    "Expr_Cast_Double": [
+        "expr"
+    ],
+    "Expr_Cast_Int": [
+        "expr"
+    ],
+    "Expr_Cast_Object": [
+        "expr"
+    ],
+    "Expr_Cast_String": [
+        "expr"
+    ],
+    "Expr_Cast_Unset": [
+        "expr"
+    ],
+    "Expr_Cast_Void": [
+        "expr"
+    ],
+    "Expr_ClassConstFetch": [
+        "class",
+        "name"
+    ],
+    "Expr_Clone": [
+        "expr"
+    ],
+    "Expr_Closure": [
+        "attrGroups",
+        "static",
+        "byRef",
+        "params",
+        "uses",
+        "returnType",
+        "stmts"
+    ],
+    "Expr_ConstFetch": [
+        "name"
+    ],
+    "Expr_Empty": [
+        "expr"
+    ],
+    "Expr_Error": [],
+    "Expr_ErrorSuppress": [
+        "expr"
+    ],
+    "Expr_Eval": [
+        "expr"
+    ],
+    "Expr_Exit": [
+        "expr"
+    ],
+    "Expr_FuncCall": [
+        "name",
+        "args"
+    ],
+    "Expr_Include": [
+        "expr",
+        "type"
+    ],
+    "Expr_Instanceof": [
+        "expr",
+        "class"
+    ],
+    "Expr_Isset": [
+        "vars"
+    ],
+    "Expr_List": [
+        "items"
+    ],
+    "Expr_Match": [
+        "cond",
+        "arms"
+    ],
+    "Expr_MethodCall": [
+        "var",
+        "name",
+        "args"
+    ],
+    "Expr_New": [
+        "class",
+        "args"
+    ],
+    "Expr_NullsafeMethodCall": [
+        "var",
+        "name",
+        "args"
+    ],
+    "Expr_NullsafePropertyFetch": [
+        "var",
+        "name"
+    ],
+    "Expr_PostDec": [
+        "var"
+    ],
+    "Expr_PostInc": [
+        "var"
+    ],
+    "Expr_PreDec": [
+        "var"
+    ],
+    "Expr_PreInc": [
+        "var"
+    ],
+    "Expr_Print": [
+        "expr"
+    ],
+    "Expr_PropertyFetch": [
+        "var",
+        "name"
+    ],
+    "Expr_ShellExec": [
+        "parts"
+    ],
+    "Expr_StaticCall": [
+        "class",
+        "name",
+        "args"
+    ],
+    "Expr_StaticPropertyFetch": [
+        "class",
+        "name"
+    ],
+    "Expr_Ternary": [
+        "cond",
+        "if",
+        "else"
+    ],
+    "Expr_Throw": [
+        "expr"
+    ],
+    "Expr_UnaryMinus": [
+        "expr"
+    ],
+    "Expr_UnaryPlus": [
+        "expr"
+    ],
+    "Expr_Variable": [
+        "name"
+    ],
+    "Expr_Yield": [
+        "key",
+        "value"
+    ],
+    "Expr_YieldFrom": [
+        "expr"
+    ],
+    "Identifier": [
+        "name"
+    ],
+    "InterpolatedStringPart": [
+        "value"
+    ],
+    "IntersectionType": [
+        "types"
+    ],
+    "MatchArm": [
+        "conds",
+        "body"
+    ],
+    "Name": [
+        "name"
+    ],
+    "Name_FullyQualified": [
+        "name"
+    ],
+    "Name_Relative": [
+        "name"
+    ],
+    "NullableType": [
+        "type"
+    ],
+    "Param": [
+        "attrGroups",
+        "flags",
+        "type",
+        "byRef",
+        "variadic",
+        "var",
+        "default",
+        "hooks"
+    ],
+    "PropertyHook": [
+        "attrGroups",
+        "flags",
+        "byRef",
+        "name",
+        "params",
+        "body"
+    ],
+    "PropertyItem": [
+        "name",
+        "default"
+    ],
+    "Scalar_Float": [
+        "value"
+    ],
+    "Scalar_Int": [
+        "value"
+    ],
+    "Scalar_InterpolatedString": [
+        "parts"
+    ],
+    "Scalar_MagicConst_Class": [],
+    "Scalar_MagicConst_Dir": [],
+    "Scalar_MagicConst_File": [],
+    "Scalar_MagicConst_Function": [],
+    "Scalar_MagicConst_Line": [],
+    "Scalar_MagicConst_Method": [],
+    "Scalar_MagicConst_Namespace": [],
+    "Scalar_MagicConst_Property": [],
+    "Scalar_MagicConst_Trait": [],
+    "Scalar_String": [
+        "value"
+    ],
+    "StaticVar": [
+        "var",
+        "default"
+    ],
+    "Stmt_Block": [
+        "stmts"
+    ],
+    "Stmt_Break": [
+        "num"
+    ],
+    "Stmt_Case": [
+        "cond",
+        "stmts"
+    ],
+    "Stmt_Catch": [
+        "types",
+        "var",
+        "stmts"
+    ],
+    "Stmt_Class": [
+        "attrGroups",
+        "flags",
+        "name",
+        "extends",
+        "implements",
+        "stmts"
+    ],
+    "Stmt_ClassConst": [
+        "attrGroups",
+        "flags",
+        "type",
+        "consts"
+    ],
+    "Stmt_ClassMethod": [
+        "attrGroups",
+        "flags",
+        "byRef",
+        "name",
+        "params",
+        "returnType",
+        "stmts"
+    ],
+    "Stmt_Const": [
+        "attrGroups",
+        "consts"
+    ],
+    "Stmt_Continue": [
+        "num"
+    ],
+    "Stmt_Declare": [
+        "declares",
+        "stmts"
+    ],
+    "Stmt_Do": [
+        "stmts",
+        "cond"
+    ],
+    "Stmt_Echo": [
+        "exprs"
+    ],
+    "Stmt_Else": [
+        "stmts"
+    ],
+    "Stmt_ElseIf": [
+        "cond",
+        "stmts"
+    ],
+    "Stmt_Enum": [
+        "attrGroups",
+        "name",
+        "scalarType",
+        "implements",
+        "stmts"
+    ],
+    "Stmt_EnumCase": [
+        "attrGroups",
+        "name",
+        "expr"
+    ],
+    "Stmt_Expression": [
+        "expr"
+    ],
+    "Stmt_Finally": [
+        "stmts"
+    ],
+    "Stmt_For": [
+        "init",
+        "cond",
+        "loop",
+        "stmts"
+    ],
+    "Stmt_Foreach": [
+        "expr",
+        "keyVar",
+        "byRef",
+        "valueVar",
+        "stmts"
+    ],
+    "Stmt_Function": [
+        "attrGroups",
+        "byRef",
+        "name",
+        "params",
+        "returnType",
+        "stmts"
+    ],
+    "Stmt_Global": [
+        "vars"
+    ],
+    "Stmt_Goto": [
+        "name"
+    ],
+    "Stmt_GroupUse": [
+        "type",
+        "prefix",
+        "uses"
+    ],
+    "Stmt_HaltCompiler": [
+        "remaining"
+    ],
+    "Stmt_If": [
+        "cond",
+        "stmts",
+        "elseifs",
+        "else"
+    ],
+    "Stmt_InlineHTML": [
+        "value"
+    ],
+    "Stmt_Interface": [
+        "attrGroups",
+        "name",
+        "extends",
+        "stmts"
+    ],
+    "Stmt_Label": [
+        "name"
+    ],
+    "Stmt_Namespace": [
+        "name",
+        "stmts"
+    ],
+    "Stmt_Nop": [],
+    "Stmt_Property": [
+        "attrGroups",
+        "flags",
+        "type",
+        "props",
+        "hooks"
+    ],
+    "Stmt_Return": [
+        "expr"
+    ],
+    "Stmt_Static": [
+        "vars"
+    ],
+    "Stmt_Switch": [
+        "cond",
+        "cases"
+    ],
+    "Stmt_Trait": [
+        "attrGroups",
+        "name",
+        "stmts"
+    ],
+    "Stmt_TraitUse": [
+        "traits",
+        "adaptations"
+    ],
+    "Stmt_TraitUseAdaptation_Alias": [
+        "trait",
+        "method",
+        "newModifier",
+        "newName"
+    ],
+    "Stmt_TraitUseAdaptation_Precedence": [
+        "trait",
+        "method",
+        "insteadof"
+    ],
+    "Stmt_TryCatch": [
+        "stmts",
+        "catches",
+        "finally"
+    ],
+    "Stmt_Unset": [
+        "vars"
+    ],
+    "Stmt_Use": [
+        "type",
+        "uses"
+    ],
+    "Stmt_While": [
+        "cond",
+        "stmts"
+    ],
+    "UnionType": [
+        "types"
+    ],
+    "UseItem": [
+        "type",
+        "name",
+        "alias"
+    ],
+    "VarLikeIdentifier": [
+        "name"
+    ],
+    "VariadicPlaceholder": []
+}

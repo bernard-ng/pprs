@@ -4,6 +4,7 @@
 //! from an explicit error expression. Raw spelling is obtained from node origins.
 
 mod declarations;
+mod metadata_walk;
 pub use declarations::*;
 mod procedural;
 pub use procedural::*;
@@ -47,6 +48,7 @@ pub enum MetadataError {
 pub struct NodeMeta {
     origin: Origin,
     comments: Vec<usize>,
+    parenthesized: Option<Box<Origin>>,
 }
 
 impl NodeMeta {
@@ -81,6 +83,7 @@ impl NodeMeta {
         Ok(Self {
             origin: Origin::Parsed { span, tokens },
             comments,
+            parenthesized: None,
         })
     }
     pub(crate) fn prefix(
@@ -111,6 +114,7 @@ impl NodeMeta {
                 tokens: TokenRange::prefix(start, end, tokens.len()),
             },
             comments,
+            parenthesized: None,
         }
     }
     /// Metadata for a constructed/transformed node without fabricated offsets.
@@ -119,12 +123,25 @@ impl NodeMeta {
         Self {
             origin: Origin::Synthetic,
             comments: Vec::new(),
+            parenthesized: None,
         }
     }
     /// Source origin, including explicit empty or synthetic cases.
     #[must_use]
     pub const fn origin(&self) -> Origin {
         self.origin
+    }
+    /// Coverage including enclosing grouping parentheses, when present.
+    /// `origin()` continues to describe the semantic node itself.
+    #[must_use]
+    pub const fn enclosing_origin(&self) -> Origin {
+        match &self.parenthesized {
+            Some(origin) => **origin,
+            None => self.origin,
+        }
+    }
+    pub(crate) fn parenthesize(&mut self, outer: &Self) {
+        self.parenthesized = Some(Box::new(outer.origin));
     }
     /// Comment indices in attachment order; comment bytes stay in the token stream.
     #[must_use]
@@ -782,4 +799,12 @@ pub enum StmtKind {
 pub struct Program {
     /// Top-level statements in source order.
     pub statements: Vec<Stmt>,
+}
+
+/// Give each retained comment one owner in outermost-first source traversal.
+pub(crate) fn normalize_comments(program: &mut Program) {
+    let mut owned = std::collections::HashSet::new();
+    metadata_walk::metadata_mut(program, |meta| {
+        meta.comments.retain(|index| owned.insert(*index));
+    });
 }

@@ -1,0 +1,2000 @@
+[
+  {
+    "id": "precedence/7.0",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "precedence/7.1",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "precedence/7.2",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "precedence/7.3",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "precedence/7.4",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "precedence/8.0",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "precedence/8.1",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "precedence/8.2",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "precedence/8.3",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "precedence/8.4",
+    "source": {
+      "bytes": "3c3f7068702031202b2032202e2033202b20343b2031203c3c2032202e2033203c3c20343b202461203f202462203a202463203f202464203a2024653b202461203f3a202462203f3a2024633b202461203f3f202462203f202463203a2024643b"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: precedence",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/7.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/7.1",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/7.2",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/7.3",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/7.4",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/8.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/8.1",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/8.2",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/8.3",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "builtin-types/8.4",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e206628494e542024612c206974657261626c652024622c206f626a6563742024632c206d697865642024642c206e657665722024652c2066616c73652024662c20747275652024672c206e756c6c202468293a20564f4944207b7d"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: builtin-types",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/7.0",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/7.1",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/7.2",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/7.3",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/7.4",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/8.0",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/8.1",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/8.2",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/8.3",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "destructuring/8.4",
+    "source": {
+      "bytes": "3c3f706870205b24612c2c5b24625d5d203d2024783b206c6973742824612c2c6c6973742824622929203d2024783b20666f726561636820282478206173205b24612c2024625d29207b7d"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: destructuring",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/7.0",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/7.1",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/7.2",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/7.3",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/7.4",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/8.0",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/8.1",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/8.2",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/8.3",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "flexible-doc/8.4",
+    "source": {
+      "bytes": "3c3f706870202478203d203c3c3c5458540a2020202076616c75653d24615c6e0a202020205458543b"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: flexible-doc",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/7.0",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/7.1",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/7.2",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/7.3",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/7.4",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/8.0",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/8.1",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/8.2",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/8.3",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "commas/8.4",
+    "source": {
+      "bytes": "3c3f706870206628312c293b2066756e6374696f6e20662824782c29207b7d"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: commas",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/7.0",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/7.1",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/7.2",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/7.3",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/7.4",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/8.0",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/8.1",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/8.2",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/8.3",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "arrow-keyword/8.4",
+    "source": {
+      "bytes": "3c3f706870202478203d20666e28246129203d3e2024613b"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: arrow-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/7.0",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/7.1",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/7.2",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/7.3",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/7.4",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/8.0",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/8.1",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/8.2",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/8.3",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "match-keyword/8.4",
+    "source": {
+      "bytes": "3c3f706870202478203d206d6174636828246129207b313d3e322c2064656661756c743d3e337d3b"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: match-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/7.0",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/7.1",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/7.2",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/7.3",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/7.4",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/8.0",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/8.1",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/8.2",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/8.3",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "enum-keyword/8.4",
+    "source": {
+      "bytes": "3c3f70687020656e756d20453a20737472696e67207b20636173652041203d202261223b207d"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: enum-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/7.0",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/7.1",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/7.2",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/7.3",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/7.4",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/8.0",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/8.1",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/8.2",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/8.3",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "readonly-keyword/8.4",
+    "source": {
+      "bytes": "3c3f70687020726561646f6e6c7920636c6173732043207b207075626c696320726561646f6e6c7920696e742024783b207d"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: readonly-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/7.0",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/7.1",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/7.2",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/7.3",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/7.4",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/8.0",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/8.1",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/8.2",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/8.3",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "property-keyword/8.4",
+    "source": {
+      "bytes": "3c3f706870205f5f50524f50455254595f5f3b20636c6173732043207b207075626c69632070726976617465287365742920737472696e67202478207b20676574203d3e205f5f50524f50455254595f5f3b207365743b207d207d"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: property-keyword",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/7.0",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/7.1",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/7.2",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/7.3",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/7.4",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/8.0",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/8.1",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/8.2",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/8.3",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "curly-offset/8.4",
+    "source": {
+      "bytes": "3c3f7068702024617b307d3b"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: curly-offset",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/7.0",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/7.1",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/7.2",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/7.3",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/7.4",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/8.0",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/8.1",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/8.2",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/8.3",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "new-deref/8.4",
+    "source": {
+      "bytes": "3c3f706870206e6577204328292d3e783b20286e65772043292d3e783b"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: new-deref",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/7.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/7.1",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/7.2",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/7.3",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/7.4",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/8.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/8.1",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/8.2",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/8.3",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "union-intersection/8.4",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20662828412642297c43202478293a20417c42207b7d"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: union-intersection",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/7.0",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/7.1",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/7.2",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/7.3",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/7.4",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/8.0",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/8.1",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/8.2",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/8.3",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "attributes/8.4",
+    "source": {
+      "bytes": "3c3f70687020235b415d2066756e6374696f6e206628235b425d20247829207b7d"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: attributes",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/7.0",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/7.1",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/7.2",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/7.3",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/7.4",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/8.0",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/8.1",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/8.2",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/8.3",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "nullsafe/8.4",
+    "source": {
+      "bytes": "3c3f7068702024613f2d3e6228293b"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: nullsafe",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/7.0",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "7.0",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/7.1",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "7.1",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/7.2",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "7.2",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/7.3",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "7.3",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/7.4",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "7.4",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/8.0",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "8.0",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/8.1",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "8.1",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/8.2",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "8.2",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/8.3",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "8.3",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "unicode-numbers/8.4",
+    "source": {
+      "bytes": "3c3f70687020225c757b31663630307d223b20315f3233343b20306f31343b"
+    },
+    "target": "8.4",
+    "reason": "Audit target interpretation: unicode-numbers",
+    "policy": "reference"
+  },
+  {
+    "id": "ceiling/pipe/7.0",
+    "source": {
+      "bytes": "3c3f706870202461207c3e2066282e2e2e293b"
+    },
+    "target": "7.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/pipe/8.0",
+    "source": {
+      "bytes": "3c3f706870202461207c3e2066282e2e2e293b"
+    },
+    "target": "8.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/pipe/8.4",
+    "source": {
+      "bytes": "3c3f706870202461207c3e2066282e2e2e293b"
+    },
+    "target": "8.4",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/void-cast/7.0",
+    "source": {
+      "bytes": "3c3f7068702028766f6964292024783b"
+    },
+    "target": "7.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/void-cast/8.0",
+    "source": {
+      "bytes": "3c3f7068702028766f6964292024783b"
+    },
+    "target": "8.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/void-cast/8.4",
+    "source": {
+      "bytes": "3c3f7068702028766f6964292024783b"
+    },
+    "target": "8.4",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-expanded/7.0",
+    "source": {
+      "bytes": "3c3f70687020636c6f6e652824612c202462293b"
+    },
+    "target": "7.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-expanded/8.0",
+    "source": {
+      "bytes": "3c3f70687020636c6f6e652824612c202462293b"
+    },
+    "target": "8.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-expanded/8.4",
+    "source": {
+      "bytes": "3c3f70687020636c6f6e652824612c202462293b"
+    },
+    "target": "8.4",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-placeholder/7.0",
+    "source": {
+      "bytes": "3c3f70687020636c6f6e65282e2e2e293b"
+    },
+    "target": "7.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-placeholder/8.0",
+    "source": {
+      "bytes": "3c3f70687020636c6f6e65282e2e2e293b"
+    },
+    "target": "8.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-placeholder/8.4",
+    "source": {
+      "bytes": "3c3f70687020636c6f6e65282e2e2e293b"
+    },
+    "target": "8.4",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-trailing/7.0",
+    "source": {
+      "bytes": "3c3f70687020636c6f6e652824612c293b"
+    },
+    "target": "7.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-trailing/8.0",
+    "source": {
+      "bytes": "3c3f70687020636c6f6e652824612c293b"
+    },
+    "target": "8.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-trailing/8.4",
+    "source": {
+      "bytes": "3c3f70687020636c6f6e652824612c293b"
+    },
+    "target": "8.4",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-stub/7.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20636c6f6e652829207b7d"
+    },
+    "target": "7.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-stub/8.0",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20636c6f6e652829207b7d"
+    },
+    "target": "8.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/clone-stub/8.4",
+    "source": {
+      "bytes": "3c3f7068702066756e6374696f6e20636c6f6e652829207b7d"
+    },
+    "target": "8.4",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/const-attribute/7.0",
+    "source": {
+      "bytes": "3c3f70687020235b415d20636f6e73742058203d20313b"
+    },
+    "target": "7.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/const-attribute/8.0",
+    "source": {
+      "bytes": "3c3f70687020235b415d20636f6e73742058203d20313b"
+    },
+    "target": "8.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/const-attribute/8.4",
+    "source": {
+      "bytes": "3c3f70687020235b415d20636f6e73742058203d20313b"
+    },
+    "target": "8.4",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/final-promotion/7.0",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b2066756e6374696f6e205f5f636f6e7374727563742866696e616c207075626c696320247829207b7d207d"
+    },
+    "target": "7.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/final-promotion/8.0",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b2066756e6374696f6e205f5f636f6e7374727563742866696e616c207075626c696320247829207b7d207d"
+    },
+    "target": "8.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/final-promotion/8.4",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b2066756e6374696f6e205f5f636f6e7374727563742866696e616c207075626c696320247829207b7d207d"
+    },
+    "target": "8.4",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/partial-argument/7.0",
+    "source": {
+      "bytes": "3c3f7068702066283f2c202e2e2e3f293b"
+    },
+    "target": "7.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/partial-argument/8.0",
+    "source": {
+      "bytes": "3c3f7068702066283f2c202e2e2e3f293b"
+    },
+    "target": "8.0",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/partial-argument/8.4",
+    "source": {
+      "bytes": "3c3f7068702066283f2c202e2e2e3f293b"
+    },
+    "target": "8.4",
+    "reason": "8.5/8.6 syntax stays outside the supported ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "source/comments",
+    "source": {
+      "bytes": "3c3f706870202f2a2a206f75746572202a2f20235b41282f2a20617267202a2f2031295d2066756e6374696f6e2066282f2a2a20706172616d202a2f20696e7420246129207b202f2a2072657475726e202a2f2072657475726e20282f2a2076616c7565202a2f202461293b202f2a207461696c202a2f207d202f2f20656e64"
+    },
+    "target": "8.4",
+    "reason": "Independent source fidelity probe",
+    "policy": "reference"
+  },
+  {
+    "id": "source/grouping",
+    "source": {
+      "bytes": "3c3f70687020282461293b20282831202b20322929202a20333b20636c6f6e65282461293b206e657720282461293b"
+    },
+    "target": "8.4",
+    "reason": "Independent source fidelity probe",
+    "policy": "reference"
+  },
+  {
+    "id": "source/spelling",
+    "source": {
+      "bytes": "3c3f70687020305866463b20306f31343b20315f323b20312e3265333b206227726177273b2028494e54454745522924783b2028426f6f6c65616e2924783b202842494e4152592924783b20285245414c2924783b206469652831293b2061727261792831293b205b325d3b"
+    },
+    "target": "8.4",
+    "reason": "Independent source fidelity probe",
+    "policy": "reference"
+  },
+  {
+    "id": "source/line-endings",
+    "source": {
+      "bytes": "3c3f706870202f2a2a20646f63202a2f0d0a7b202f2f20630d2024613b202f2a207461696c202a2f0d0a7d0a"
+    },
+    "target": "8.4",
+    "reason": "Independent source fidelity probe",
+    "policy": "reference"
+  },
+  {
+    "id": "source/inline-newlines",
+    "source": {
+      "bytes": "3c3f706870203f3e746578743c3f706870203f3e0a746578743c3f706870203f3e0d0a746578743c3f706870"
+    },
+    "target": "8.4",
+    "reason": "Independent source fidelity probe",
+    "policy": "reference"
+  },
+  {
+    "id": "source/hook-comments",
+    "source": {
+      "bytes": "3c3f70687020636c6173732043207b202f2a2a2070726f7065727479202a2f207075626c696320737472696e67202461207b202f2a2a20676574202a2f20676574203d3e2024746869732d3e613b20736574282f2a2a20706172616d202a2f20737472696e6720247829207b7d207d207d"
+    },
+    "target": "8.4",
+    "reason": "Independent source fidelity probe",
+    "policy": "reference"
+  },
+  {
+    "id": "ceiling/original/parser/expr/argumentList.test#0/7.0",
+    "source": {
+      "bytes": "3c3f7068700a2f2f20496e76616c69642c20627574206163636570746564206f6e2074686520706172736572206c6576656c2e0a636c6f6e6528293b"
+    },
+    "target": "7.0",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/expr/argumentList.test#0/8.4",
+    "source": {
+      "bytes": "3c3f7068700a2f2f20496e76616c69642c20627574206163636570746564206f6e2074686520706172736572206c6576656c2e0a636c6f6e6528293b"
+    },
+    "target": "8.4",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/expr/argumentList.test#1/7.0",
+    "source": {
+      "bytes": "3c3f7068700a666f6f28262461293b0a666f6f282e2e2e2461293b0a666f6f286e616d653a202461293b0a636c6f6e6528293b0a636c6f6e652824612c2024622c202463293b0a636c6f6e652824612c293b0a636c6f6e65286e616d653a202461293b"
+    },
+    "target": "7.0",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/expr/argumentList.test#1/8.4",
+    "source": {
+      "bytes": "3c3f7068700a666f6f28262461293b0a666f6f282e2e2e2461293b0a666f6f286e616d653a202461293b0a636c6f6e6528293b0a636c6f6e652824612c2024622c202463293b0a636c6f6e652824612c293b0a636c6f6e65286e616d653a202461293b"
+    },
+    "target": "8.4",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/expr/partialFunctionApplication.test#0/7.0",
+    "source": {
+      "bytes": "3c3f7068700a0a2466203d207374726c656e283f293b0a2466203d20666f6f28312c203f293b0a2466203d20666f6f283f2c202e2e2e293b0a2466203d20666f6f286e616d653a203f293b0a2466203d20666f6f28312c203f2c206e616d653a203f2c202e2e2e293b0a2466203d20246f626a2d3e666f6f283f293b0a2466203d20413a3a666f6f283f293b0a0a2f2f2054686573652061726520696e76616c69642c20627574206163636570746564206f6e2074686520706172736572206c6576656c2e0a2466203d206e657720466f6f283f293b0a2466203d20246f626a3f2d3e666f6f283f293b0a2466203d20666f6f282e2e2e2c2031293b0a2466203d20666f6f283f2c293b0a0a235b466f6f283f295d0a66756e6374696f6e20666f6f2829207b7d"
+    },
+    "target": "7.0",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/expr/partialFunctionApplication.test#0/8.4",
+    "source": {
+      "bytes": "3c3f7068700a0a2466203d207374726c656e283f293b0a2466203d20666f6f28312c203f293b0a2466203d20666f6f283f2c202e2e2e293b0a2466203d20666f6f286e616d653a203f293b0a2466203d20666f6f28312c203f2c206e616d653a203f2c202e2e2e293b0a2466203d20246f626a2d3e666f6f283f293b0a2466203d20413a3a666f6f283f293b0a0a2f2f2054686573652061726520696e76616c69642c20627574206163636570746564206f6e2074686520706172736572206c6576656c2e0a2466203d206e657720466f6f283f293b0a2466203d20246f626a3f2d3e666f6f283f293b0a2466203d20666f6f282e2e2e2c2031293b0a2466203d20666f6f283f2c293b0a0a235b466f6f283f295d0a66756e6374696f6e20666f6f2829207b7d"
+    },
+    "target": "8.4",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/expr/partialFunctionApplication.test#1/7.0",
+    "source": {
+      "bytes": "3c3f7068700a2466203d207374726c656e283f293b0a2466203d20666f6f283f2c202e2e2e293b0a2466203d20666f6f286e616d653a203f293b"
+    },
+    "target": "7.0",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/expr/partialFunctionApplication.test#1/8.4",
+    "source": {
+      "bytes": "3c3f7068700a2466203d207374726c656e283f293b0a2466203d20666f6f283f2c202e2e2e293b0a2466203d20666f6f286e616d653a203f293b"
+    },
+    "target": "8.4",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/expr/pipe.test#0/7.0",
+    "source": {
+      "bytes": "3c3f7068700a2461207c3e202462207c3e2024633b0a2461202e202462207c3e202463202e2024643b0a2461207c3e202462203d3d2024633b0a2463203d3d202461207c3e2024623b0a2461207c3e2028666e28247829203d3e20247829207c3e2028666e28247929203d3e202479293b0a2461207c3e20666e28247829203d3e202478207c3e20666e28247929203d3e2024793b"
+    },
+    "target": "7.0",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/expr/pipe.test#0/8.4",
+    "source": {
+      "bytes": "3c3f7068700a2461207c3e202462207c3e2024633b0a2461202e202462207c3e202463202e2024643b0a2461207c3e202462203d3d2024633b0a2463203d3d202461207c3e2024623b0a2461207c3e2028666e28247829203d3e20247829207c3e2028666e28247929203d3e202479293b0a2461207c3e20666e28247829203d3e202478207c3e20666e28247929203d3e2024793b"
+    },
+    "target": "8.4",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/stmt/class/property_promotion.test#0/7.0",
+    "source": {
+      "bytes": "3c3f7068700a0a636c61737320506f696e74207b0a202020207075626c69632066756e6374696f6e205f5f636f6e737472756374280a20202020202020207075626c696320666c6f6174202478203d20302e302c0a202020202020202070726f746563746564206172726179202479203d205b5d2c0a20202020202020207072697661746520737472696e6720247a203d202768656c6c6f272c0a20202020202020207075626c696320726561646f6e6c7920696e74202461203d20302c0a20202020202020207075626c6963202468207b20736574203d3e202476616c75653b207d2c0a20202020202020207075626c6963202467203d2031207b20676574203d3e20323b207d2c0a202020202020202066696e616c2024692c0a2020202029207b7d0a7d"
+    },
+    "target": "7.0",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/stmt/class/property_promotion.test#0/8.4",
+    "source": {
+      "bytes": "3c3f7068700a0a636c61737320506f696e74207b0a202020207075626c69632066756e6374696f6e205f5f636f6e737472756374280a20202020202020207075626c696320666c6f6174202478203d20302e302c0a202020202020202070726f746563746564206172726179202479203d205b5d2c0a20202020202020207072697661746520737472696e6720247a203d202768656c6c6f272c0a20202020202020207075626c696320726561646f6e6c7920696e74202461203d20302c0a20202020202020207075626c6963202468207b20736574203d3e202476616c75653b207d2c0a20202020202020207075626c6963202467203d2031207b20676574203d3e20323b207d2c0a202020202020202066696e616c2024692c0a2020202029207b7d0a7d"
+    },
+    "target": "8.4",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/stmt/const.test#0/7.0",
+    "source": {
+      "bytes": "3c3f7068700a0a636f6e73742041203d20302c2042203d20312e302c2043203d202741272c2044203d20453b0a0a235b4578616d706c655d0a636f6e737420576974684f6e65417474726962757465203d20313b0a0a235b46697273745d0a235b5365636f6e645d0a636f6e73742057697468556e67726f75706564417474726975746573203d20323b0a0a235b46697273742c205365636f6e645d0a636f6e7374205769746847726f757041747472696275746573203d20333b0a0a235b4578616d706c655d0a636f6e737420546869734973496e76616c6964203d20342c0a20202020417474726962757465734f6e4d756c7469706c65436f6e7374616e7473203d20353b"
+    },
+    "target": "7.0",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/stmt/const.test#0/8.4",
+    "source": {
+      "bytes": "3c3f7068700a0a636f6e73742041203d20302c2042203d20312e302c2043203d202741272c2044203d20453b0a0a235b4578616d706c655d0a636f6e737420576974684f6e65417474726962757465203d20313b0a0a235b46697273745d0a235b5365636f6e645d0a636f6e73742057697468556e67726f75706564417474726975746573203d20323b0a0a235b46697273742c205365636f6e645d0a636f6e7374205769746847726f757041747472696275746573203d20333b0a0a235b4578616d706c655d0a636f6e737420546869734973496e76616c6964203d20342c0a20202020417474726962757465734f6e4d756c7469706c65436f6e7374616e7473203d20353b"
+    },
+    "target": "8.4",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/stmt/function/clone_function.test#0/7.0",
+    "source": {
+      "bytes": "3c3f7068700a0a66756e6374696f6e20636c6f6e65286f626a65637420246f626a6563742c20617272617920247769746850726f70657274696573203d205b5d293a206f626a656374207b7d0a636c6f6e652024783b0a636c6f6e65282478293b0a636c6f6e652824782c20293b0a636c6f6e652824782c205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d293b0a636c6f6e652824782c20246172726179293b0a636c6f6e652824782c202461727261792c20246578747261506172616d657465722c2024747261696c696e67436f6d6d612c20293b0a636c6f6e65286f626a6563743a2024782c207769746850726f706572746965733a205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d293b0a636c6f6e652824782c207769746850726f706572746965733a205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d293b0a636c6f6e65286f626a6563743a202478293b0a636c6f6e65286f626a6563743a2024782c205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d293b0a636c6f6e65282e2e2e5b226f626a65637422203d3e2024782c20227769746850726f7065727469657322203d3e205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d5d293b0a636c6f6e65282e2e2e293b"
+    },
+    "target": "7.0",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/stmt/function/clone_function.test#0/8.4",
+    "source": {
+      "bytes": "3c3f7068700a0a66756e6374696f6e20636c6f6e65286f626a65637420246f626a6563742c20617272617920247769746850726f70657274696573203d205b5d293a206f626a656374207b7d0a636c6f6e652024783b0a636c6f6e65282478293b0a636c6f6e652824782c20293b0a636c6f6e652824782c205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d293b0a636c6f6e652824782c20246172726179293b0a636c6f6e652824782c202461727261792c20246578747261506172616d657465722c2024747261696c696e67436f6d6d612c20293b0a636c6f6e65286f626a6563743a2024782c207769746850726f706572746965733a205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d293b0a636c6f6e652824782c207769746850726f706572746965733a205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d293b0a636c6f6e65286f626a6563743a202478293b0a636c6f6e65286f626a6563743a2024782c205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d293b0a636c6f6e65282e2e2e5b226f626a65637422203d3e2024782c20227769746850726f7065727469657322203d3e205b2022666f6f22203d3e2024666f6f2c202262617222203d3e2024626172205d5d293b0a636c6f6e65282e2e2e293b"
+    },
+    "target": "8.4",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/stmt/voidCast.test#0/7.0",
+    "source": {
+      "bytes": "3c3f7068700a28766f696429666f6f28293b0a2820564f4944202920666f6f28293b0a28766f6964292461206f722024623b0a0a2f2f2054686973206973206578706c696369746c7920616c6c6f7765642e0a666f72202828766f6964296128293b2024623b2028766f696429246329207b0a7d0a0a2f2f2050485020646f6573206e6f7420616c6c6f7720746869732c20627574207468652070617273657220616363657074732069742e0a2478203d2028766f6964292024793b"
+    },
+    "target": "7.0",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "ceiling/original/parser/stmt/voidCast.test#0/8.4",
+    "source": {
+      "bytes": "3c3f7068700a28766f696429666f6f28293b0a2820564f4944202920666f6f28293b0a28766f6964292461206f722024623b0a0a2f2f2054686973206973206578706c696369746c7920616c6c6f7765642e0a666f72202828766f6964296128293b2024623b2028766f696429246329207b0a7d0a0a2f2f2050485020646f6573206e6f7420616c6c6f7720746869732c20627574207468652070617273657220616363657074732069742e0a2478203d2028766f6964292024793b"
+    },
+    "target": "8.4",
+    "reason": "Retargeted future/mixed original must not bypass the 8.4 ceiling",
+    "policy": "ceiling"
+  },
+  {
+    "id": "del-byte/7.0",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "7.0",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "del-byte/7.1",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "7.1",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "del-byte/7.2",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "7.2",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "del-byte/7.3",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "7.3",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "del-byte/7.4",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "7.4",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "del-byte/8.0",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "8.0",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "del-byte/8.1",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "8.1",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "del-byte/8.2",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "8.2",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "del-byte/8.3",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "8.3",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "del-byte/8.4",
+    "source": {
+      "bytes": "3c3f7068702024617f3b"
+    },
+    "target": "8.4",
+    "reason": "DEL identifier permission is a printer helper, not lexer emulation",
+    "policy": "reference"
+  },
+  {
+    "id": "source/nested-doc-interpolation",
+    "source": {
+      "bytes": "3c3f706870203c3c3c5458540a20206265666f7265207b24615b2278202462225d7d2061667465720a20205458543b"
+    },
+    "target": "8.4",
+    "reason": "Heredoc segment spelling after a nested interpolated quoted string",
+    "policy": "reference"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "fields": {
+        "expr": {
+          "fields": {},
+          "kind": "Expr_Error"
+        }
+      },
+      "kind": "Stmt_Expression"
+    },
+    {
+      "fields": {
+        "expr": {
+          "fields": {},
+          "kind": "Expr_Error"
+        }
+      },
+      "kind": "Stmt_Expression"
+    }
+  ]
+}

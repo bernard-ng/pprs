@@ -1,7 +1,7 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: P00–P09 complete; P10 onward pending; expression/procedural/declaration grammar, types, lexing, literal utilities and traversal exist
+Status: P00–P10 complete; P11 onward pending; expression/procedural/declaration grammar, types, lexing, literal utilities and traversal exist
 
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
@@ -358,6 +358,8 @@ Deliverables: full in-scope declaration/type grammar.
 Acceptance: every in-scope declaration/type production has an implementation owner and positive/negative coverage; class/property-hook errors do not prevent recovery of later members.
 
 ### P10 — Close version behavior and AST/source fidelity gaps
+
+Status: **complete, 2026-10-17**. [Decision 0009](../docs/decisions/0009-version-source-fidelity.md) and the [version behavior matrix](../docs/implementation/version-behavior.md) record the audit and implementation corrections. All 188 valid core fixtures match structure/value/comment/span/spelling expectations. All 300 positions channels are active: 262 exact, 38 individually explained malformed-input differences. P10's 37 structure obligations are closed (35 exact, two recovery differences). Another 222 probes cover all ten targets, source fidelity and 45 ceiling checks; P07's expanded-clone scope leak is corrected. Diagnostic and broader recovery equivalence remain P11.
 
 Dependencies: P07–P09.
 

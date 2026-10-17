@@ -34,8 +34,8 @@ pub enum StrictError {
 }
 /// Parse owned PHP syntax with recovery. Source, tokens and any partial tree are
 /// retained; inspect status/diagnostics or call `into_strict()` before use as valid PHP.
-/// PHP 7.0–8.4 grammar is implemented; version/source fidelity and broad malformed-file
-/// compatibility are still being audited. This is not a PHP compiler validator.
+/// PHP 7.0–8.4 grammar and valid-input source fidelity are implemented; broad
+/// malformed-file compatibility remains under development. This is not a PHP compiler validator.
 ///
 /// # Errors
 /// Returns `InputTooLarge` before copying/indexing input beyond its byte budget.
@@ -164,6 +164,7 @@ impl Parser {
                 break;
             }
         }
+        crate::ast::normalize_comments(&mut program);
         let completion = if self.aborted {
             Completion::Aborted(Some(program))
         } else {
@@ -349,7 +350,7 @@ impl Parser {
         Ok(Name::new(
             bytes.split(|b| *b == b'\\').map(Into::into).collect(),
             qualification,
-            self.meta(index),
+            NodeMeta::prefix(&self.source, self.cursor.retained(), index, index + 1),
         )
         .expect("lexer name components"))
     }
@@ -421,12 +422,14 @@ impl Parser {
                 self.last_end = self.cursor.position();
                 match result {
                     Ok(()) => {
+                        let halt_end = self.last_end;
                         let tail = if self.kind()? == K::HaltTail {
                             let (_, t) = self.bump()?;
                             self.bytes(t).into()
                         } else {
                             crate::ByteString::default()
                         };
+                        self.last_end = halt_end;
                         StmtKind::HaltCompiler(tail)
                     }
                     Err(HaltError::Cursor(error)) => {
@@ -531,10 +534,11 @@ impl Parser {
         Ok(body)
     }
     fn trailing_nop(&mut self, index: usize) -> PResult<Option<Stmt>> {
-        let meta = self.point(index);
-        if meta.comments().is_empty() {
+        let before = self.point(index);
+        let Some(&last) = before.comments().last() else {
             return Ok(None);
-        }
+        };
+        let meta = self.point(last + 1);
         self.enter()?;
         let allocated = self.alloc();
         self.depth -= 1;

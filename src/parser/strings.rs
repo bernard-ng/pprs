@@ -116,7 +116,7 @@ impl Parser {
                 }
                 K::DollarOpenCurly => {
                     self.bump()?;
-                    let expr = if self.kind()? == K::StringVarname {
+                    let mut expr = if self.kind()? == K::StringVarname {
                         let (index, name) = self.bump()?;
                         let bytes = self.bytes(name).to_vec();
                         let id = self.identifier(index, &bytes)?;
@@ -138,6 +138,7 @@ impl Parser {
                         self.make(at, ExprKind::DynamicVariable(name))?
                     };
                     self.expect(K::RightBrace)?;
+                    expr.meta = self.meta(at);
                     raw.push(Part::Expr(expr));
                 }
                 _ => {

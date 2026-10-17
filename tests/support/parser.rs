@@ -14,7 +14,8 @@ fn integer(value: i64) -> Value {
     json!({"integer":value.to_string()})
 }
 fn identifier(value: &Identifier, varlike: bool) -> Value {
-    node(
+    mnode(
+        value.meta(),
         if varlike {
             "VarLikeIdentifier"
         } else {
@@ -31,7 +32,8 @@ fn name(value: &Name) -> Value {
         }
         raw.extend_from_slice(part.as_bytes());
     }
-    node(
+    mnode(
+        value.meta(),
         match value.qualification() {
             Qualification::Normal => "Name",
             Qualification::FullyQualified => "Name_FullyQualified",
@@ -43,36 +45,39 @@ fn name(value: &Name) -> Value {
 fn target(value: &Target) -> Value {
     match value {
         Target::Name(value) => name(value),
-        Target::Expr(value) => expr(value),
+        Target::Expr(value) => expression(value),
     }
 }
 fn member(value: &Member, varlike: bool) -> Value {
     match value {
         Member::Identifier(value) => identifier(value, varlike),
-        Member::Expr(value) => expr(value),
+        Member::Expr(value) => expression(value),
     }
 }
 fn arg(value: &Argument) -> Value {
     if let Some(val) = &value.value {
-        node(
+        mnode(
+            &value.meta,
             "Arg",
-            json!({"name":value.name.as_ref().map(|v|identifier(v,false)),"value":expr(val),"byRef":value.by_ref,"unpack":value.unpack}),
+            json!({"name":value.name.as_ref().map(|v|identifier(v,false)),"value":expression(val),"byRef":value.by_ref,"unpack":value.unpack}),
         )
     } else {
-        node("VariadicPlaceholder", json!({}))
+        mnode(&value.meta, "VariadicPlaceholder", json!({}))
     }
 }
 fn items(values: &[Option<ArrayItem>]) -> Value {
-    json!(values.iter().map(|item|item.as_ref().map(|item|node("ArrayItem",json!({"key":item.key.as_ref().map(expr),"value":expr(&item.value),"byRef":item.by_ref,"unpack":item.unpack})))).collect::<Vec<_>>())
+    json!(values.iter().map(|item|item.as_ref().map(|item|mnode(&item.meta,"ArrayItem",json!({"key":item.key.as_ref().map(expression),"value":expression(&item.value),"byRef":item.by_ref,"unpack":item.unpack})))).collect::<Vec<_>>())
 }
 fn parts(values: &[StringPart]) -> Vec<Value> {
     values
         .iter()
         .map(|part| match part {
-            StringPart::Text { value, .. } => {
-                node("InterpolatedStringPart", json!({"value":bytes(value)}))
-            }
-            StringPart::Expr(value) => expr(value),
+            StringPart::Text { value, meta } => mnode(
+                meta,
+                "InterpolatedStringPart",
+                json!({"value":bytes(value)}),
+            ),
+            StringPart::Expr(value) => expression(value),
         })
         .collect()
 }
@@ -80,12 +85,14 @@ fn ty(value: &Type) -> Value {
     match value {
         Type::Name(n) => name(n),
         Type::Builtin(n) => identifier(n, false),
-        Type::Nullable { inner, .. } => node("NullableType", json!({"type":ty(inner)})),
-        Type::Union { types, .. } => node(
+        Type::Nullable { inner, meta } => mnode(meta, "NullableType", json!({"type":ty(inner)})),
+        Type::Union { types, meta } => mnode(
+            meta,
             "UnionType",
             json!({"types":types.iter().map(ty).collect::<Vec<_>>()}),
         ),
-        Type::Intersection { types, .. } => node(
+        Type::Intersection { types, meta } => mnode(
+            meta,
             "IntersectionType",
             json!({"types":types.iter().map(ty).collect::<Vec<_>>()}),
         ),
@@ -95,18 +102,19 @@ fn params(s: &Signature) -> Vec<Value> {
     parameters(&s.params)
 }
 fn parameters(values: &[Parameter]) -> Vec<Value> {
-    values.iter().map(|p|node("Param",json!({"attrGroups":attributes(&p.attributes),"flags":integer(i64::from(p.flags.0)),"type":p.ty.as_ref().map(ty),"byRef":p.by_ref,"variadic":p.variadic,"var":expr(&p.variable),"default":p.default.as_ref().map(|v|expr(v)),"hooks":p.hooks.iter().map(hook).collect::<Vec<_>>()}))).collect()
+    values.iter().map(|p|mnode(&p.meta,"Param",json!({"attrGroups":attributes(&p.attributes),"flags":integer(i64::from(p.flags.0)),"type":p.ty.as_ref().map(ty),"byRef":p.by_ref,"variadic":p.variadic,"var":expression(&p.variable),"default":p.default.as_ref().map(|v|expression(v)),"hooks":p.hooks.iter().map(hook).collect::<Vec<_>>()}))).collect()
 }
 fn attributes(values: &[AttributeGroup]) -> Vec<Value> {
-    values.iter().map(|g|node("AttributeGroup",json!({"attrs":g.attributes.iter().map(|a|node("Attribute",json!({"name":name(&a.name),"args":a.args.iter().map(arg).collect::<Vec<_>>()}))).collect::<Vec<_>>()}))).collect()
+    values.iter().map(|g|mnode(&g.meta,"AttributeGroup",json!({"attrs":g.attributes.iter().map(|a|mnode(&a.meta,"Attribute",json!({"name":name(&a.name),"args":a.args.iter().map(arg).collect::<Vec<_>>()}))).collect::<Vec<_>>()}))).collect()
 }
 fn hook(h: &PropertyHook) -> Value {
     let body = match &h.body {
         HookBody::Abstract => Value::Null,
         HookBody::Block(s) => json!(statements(s)),
-        HookBody::Expression(e) => expr(e),
+        HookBody::Expression(e) => expression(e),
     };
-    node(
+    mnode(
+        &h.meta,
         "PropertyHook",
         json!({"attrGroups":attributes(&h.attributes),"flags":integer(i64::from(h.flags.0)),"byRef":h.by_ref,"name":identifier(&h.name,false),"params":parameters(&h.params),"body":body}),
     )
@@ -148,8 +156,9 @@ fn adaptation(a: &TraitAdaptation) -> Value {
             method,
             modifier,
             alias,
-            ..
-        } => node(
+            meta,
+        } => mnode(
+            meta,
             "Stmt_TraitUseAdaptation_Alias",
             json!({"trait":trait_name.as_ref().map(name),"method":identifier(method,false),"newModifier":modifier.map(|m|integer(i64::from(m.0))),"newName":alias.as_ref().map(|n|identifier(n,false))}),
         ),
@@ -157,15 +166,16 @@ fn adaptation(a: &TraitAdaptation) -> Value {
             trait_name,
             method,
             instead_of,
-            ..
-        } => node(
+            meta,
+        } => mnode(
+            meta,
             "Stmt_TraitUseAdaptation_Precedence",
             json!({"trait":name(trait_name),"method":identifier(method,false),"insteadof":instead_of.iter().map(name).collect::<Vec<_>>()}),
         ),
     }
 }
 fn constants(c: &Constants, class: bool) -> Value {
-    let mut fields = json!({"attrGroups":attributes(&c.attributes),"consts":c.constants.iter().map(|c|node("Const",json!({"name":identifier(&c.name,false),"value":expr(&c.value)}))).collect::<Vec<_>>()});
+    let mut fields = json!({"attrGroups":attributes(&c.attributes),"consts":c.constants.iter().map(|c|mnode(&c.meta,"Const",json!({"name":identifier(&c.name,false),"value":expression(&c.value)}))).collect::<Vec<_>>()});
     if class {
         fields["flags"] = integer(i64::from(c.flags.0));
         fields["type"] = c.ty.as_ref().map_or(Value::Null, ty);
@@ -234,233 +244,288 @@ fn unary(op: UnaryOp) -> &'static str {
     clippy::too_many_lines,
     reason = "explicit reference projection for each public expression variant"
 )]
-pub fn expr(value: &Expr) -> Value {
-    match &value.kind {
-        ExprKind::NewAnonymous(c) => node(
-            "Expr_New",
-            json!({"class":class(&c.declaration),"args":c.args.iter().map(arg).collect::<Vec<_>>()}),
-        ),
-        ExprKind::Closure(c) => node(
-            "Expr_Closure",
-            json!({"attrGroups":attributes(&c.attributes),"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"uses":c.uses.iter().map(|u|node("ClosureUse",json!({"var":expr(&u.variable),"byRef":u.by_ref}))).collect::<Vec<_>>(),"returnType":c.signature.return_type.as_ref().map(ty),"stmts":statements(&c.body)}),
-        ),
-        ExprKind::ArrowFunction(c) => node(
-            "Expr_ArrowFunction",
-            json!({"attrGroups":attributes(&c.attributes),"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"returnType":c.signature.return_type.as_ref().map(ty),"expr":expr(&c.expr)}),
-        ),
-        ExprKind::Integer { value, .. } => node("Scalar_Int", json!({"value":integer(*value)})),
-        ExprKind::Float(value) => node(
-            "Scalar_Float",
-            json!({"value":{"float64":format!("{:016x}",value.to_bits())}}),
-        ),
-        ExprKind::String { value, .. } => node("Scalar_String", json!({"value":bytes(value)})),
-        ExprKind::Variable(value) => node("Expr_Variable", json!({"name":bytes(value.bytes())})),
-        ExprKind::DynamicVariable(value) => node("Expr_Variable", json!({"name":expr(value)})),
-        ExprKind::ConstFetch(value) => node("Expr_ConstFetch", json!({"name":name(value)})),
-        ExprKind::MagicConstant(value) => node(
-            &format!(
-                "Scalar_MagicConst_{}",
-                match value {
-                    MagicConstant::Line => "Line",
-                    MagicConstant::File => "File",
-                    MagicConstant::Directory => "Dir",
-                    MagicConstant::Class => "Class",
-                    MagicConstant::Trait => "Trait",
-                    MagicConstant::Method => "Method",
-                    MagicConstant::Function => "Function",
-                    MagicConstant::Namespace => "Namespace",
-                    MagicConstant::Property => "Property",
-                }
+fn expression(value: &Expr) -> Value {
+    with_meta(
+        match &value.kind {
+            ExprKind::NewAnonymous(c) => node(
+                "Expr_New",
+                json!({"class":with_meta(class(&c.declaration), &c.meta),"args":c.args.iter().map(arg).collect::<Vec<_>>()}),
             ),
-            json!({}),
-        ),
-        ExprKind::Assign { target, value } => node(
-            "Expr_Assign",
-            json!({"var":expr(target),"expr":expr(value)}),
-        ),
-        ExprKind::AssignRef { target, value } => node(
-            "Expr_AssignRef",
-            json!({"var":expr(target),"expr":expr(value)}),
-        ),
-        ExprKind::AssignOp { op, target, value } => node(
-            &format!("Expr_AssignOp_{}", binary(*op)),
-            json!({"var":expr(target),"expr":expr(value)}),
-        ),
-        ExprKind::Binary { op, left, right } => node(
-            &format!("Expr_BinaryOp_{}", binary(*op)),
-            json!({"left":expr(left),"right":expr(right)}),
-        ),
-        ExprKind::Unary { op, expr: value } => node(
-            &format!("Expr_{}", unary(*op)),
-            if matches!(
-                op,
-                UnaryOp::PreIncrement
-                    | UnaryOp::PostIncrement
-                    | UnaryOp::PreDecrement
-                    | UnaryOp::PostDecrement
-            ) {
-                json!({"var":expr(value)})
-            } else {
-                json!({"expr":expr(value)})
-            },
-        ),
-        ExprKind::Ternary {
-            condition,
-            then,
-            otherwise,
-        } => node(
-            "Expr_Ternary",
-            json!({"cond":expr(condition),"if":then.as_ref().map(|e|expr(e)),"else":expr(otherwise)}),
-        ),
-        ExprKind::Array { items: values, .. } => node("Expr_Array", json!({"items":items(values)})),
-        ExprKind::List { items: values, .. } => node("Expr_List", json!({"items":items(values)})),
-        ExprKind::ArrayDim { array, dim } => node(
-            "Expr_ArrayDimFetch",
-            json!({"var":expr(array),"dim":dim.as_ref().map(|e|expr(e))}),
-        ),
-        ExprKind::Call {
-            target: value,
-            args,
-        } => node(
-            "Expr_FuncCall",
-            json!({"name":target(value),"args":args.iter().map(arg).collect::<Vec<_>>()}),
-        ),
-        ExprKind::Property {
-            object,
-            name,
-            nullsafe,
-        } => node(
-            if *nullsafe {
-                "Expr_NullsafePropertyFetch"
-            } else {
-                "Expr_PropertyFetch"
-            },
-            json!({"var":expr(object),"name":member(name,false)}),
-        ),
-        ExprKind::MethodCall {
-            object,
-            name,
-            args,
-            nullsafe,
-        } => node(
-            if *nullsafe {
-                "Expr_NullsafeMethodCall"
-            } else {
-                "Expr_MethodCall"
-            },
-            json!({"var":expr(object),"name":member(name,false),"args":args.iter().map(arg).collect::<Vec<_>>()}),
-        ),
-        ExprKind::StaticProperty { class, name } => node(
-            "Expr_StaticPropertyFetch",
-            json!({"class":target(class),"name":member(name,true)}),
-        ),
-        ExprKind::ClassConst { class, name } => node(
-            "Expr_ClassConstFetch",
-            json!({"class":target(class),"name":member(name,false)}),
-        ),
-        ExprKind::StaticCall { class, name, args } => node(
-            "Expr_StaticCall",
-            json!({"class":target(class),"name":member(name,false),"args":args.iter().map(arg).collect::<Vec<_>>()}),
-        ),
-        ExprKind::New { class, args } => node(
-            "Expr_New",
-            json!({"class":target(class),"args":args.iter().map(arg).collect::<Vec<_>>()}),
-        ),
-        ExprKind::Instanceof { expr: value, class } => node(
-            "Expr_Instanceof",
-            json!({"expr":expr(value),"class":target(class)}),
-        ),
-        ExprKind::Cast { kind, expr: value } => node(
-            &format!(
-                "Expr_Cast_{}",
-                match kind {
-                    CastKind::Integer => "Int",
-                    CastKind::Float => "Double",
-                    CastKind::String => "String",
-                    CastKind::Array => "Array",
-                    CastKind::Object => "Object",
-                    CastKind::Boolean => "Bool",
-                    CastKind::Unset => "Unset",
-                }
+            ExprKind::Closure(c) => node(
+                "Expr_Closure",
+                json!({"attrGroups":attributes(&c.attributes),"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"uses":c.uses.iter().map(|u|mnode(&u.meta,"ClosureUse",json!({"var":expression(&u.variable),"byRef":u.by_ref}))).collect::<Vec<_>>(),"returnType":c.signature.return_type.as_ref().map(ty),"stmts":statements(&c.body)}),
             ),
-            json!({"expr":expr(value)}),
-        ),
-        ExprKind::Include { kind, expr: value } => node(
-            "Expr_Include",
-            json!({"expr":expr(value),"type":integer(match kind {IncludeKind::Include=>1,IncludeKind::IncludeOnce=>2,IncludeKind::Require=>3,IncludeKind::RequireOnce=>4})}),
-        ),
-        ExprKind::Isset(values) => node(
-            "Expr_Isset",
-            json!({"vars":values.iter().map(expr).collect::<Vec<_>>()}),
-        ),
-        ExprKind::Exit(value) => node("Expr_Exit", json!({"expr":value.as_ref().map(|e|expr(e))})),
-        ExprKind::Yield { key, value } => node(
-            "Expr_Yield",
-            json!({"key":key.as_ref().map(|e|expr(e)),"value":value.as_ref().map(|e|expr(e))}),
-        ),
-        ExprKind::Match { condition, arms } => node(
-            "Expr_Match",
-            json!({"cond":expr(condition),"arms":arms.iter().map(|arm|node("MatchArm",json!({"conds":arm.conditions.as_ref().map(|c|c.iter().map(expr).collect::<Vec<_>>()),"body":expr(&arm.body)}))).collect::<Vec<_>>()}),
-        ),
-        ExprKind::Interpolated { parts: values, .. } => {
-            node("Scalar_InterpolatedString", json!({"parts":parts(values)}))
-        }
-        ExprKind::ShellExec(values) => node("Expr_ShellExec", json!({"parts":parts(values)})),
-        ExprKind::Error => node("Expr_Error", json!({})),
-        _ => panic!("unmapped expression"),
-    }
+            ExprKind::ArrowFunction(c) => node(
+                "Expr_ArrowFunction",
+                json!({"attrGroups":attributes(&c.attributes),"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"returnType":c.signature.return_type.as_ref().map(ty),"expr":expression(&c.expr)}),
+            ),
+            ExprKind::Integer { value, .. } => node("Scalar_Int", json!({"value":integer(*value)})),
+            ExprKind::Float(value) => node(
+                "Scalar_Float",
+                json!({"value":{"float64":format!("{:016x}",value.to_bits())}}),
+            ),
+            ExprKind::String { value, .. } => node("Scalar_String", json!({"value":bytes(value)})),
+            ExprKind::Variable(value) => {
+                node("Expr_Variable", json!({"name":bytes(value.bytes())}))
+            }
+            ExprKind::DynamicVariable(value) => {
+                node("Expr_Variable", json!({"name":expression(value)}))
+            }
+            ExprKind::ConstFetch(value) => node("Expr_ConstFetch", json!({"name":name(value)})),
+            ExprKind::MagicConstant(value) => node(
+                &format!(
+                    "Scalar_MagicConst_{}",
+                    match value {
+                        MagicConstant::Line => "Line",
+                        MagicConstant::File => "File",
+                        MagicConstant::Directory => "Dir",
+                        MagicConstant::Class => "Class",
+                        MagicConstant::Trait => "Trait",
+                        MagicConstant::Method => "Method",
+                        MagicConstant::Function => "Function",
+                        MagicConstant::Namespace => "Namespace",
+                        MagicConstant::Property => "Property",
+                    }
+                ),
+                json!({}),
+            ),
+            ExprKind::Assign { target, value } => node(
+                "Expr_Assign",
+                json!({"var":expression(target),"expr":expression(value)}),
+            ),
+            ExprKind::AssignRef { target, value } => node(
+                "Expr_AssignRef",
+                json!({"var":expression(target),"expr":expression(value)}),
+            ),
+            ExprKind::AssignOp { op, target, value } => node(
+                &format!("Expr_AssignOp_{}", binary(*op)),
+                json!({"var":expression(target),"expr":expression(value)}),
+            ),
+            ExprKind::Binary { op, left, right } => node(
+                &format!("Expr_BinaryOp_{}", binary(*op)),
+                json!({"left":expression(left),"right":expression(right)}),
+            ),
+            ExprKind::Unary { op, expr: value } => node(
+                &format!("Expr_{}", unary(*op)),
+                if matches!(
+                    op,
+                    UnaryOp::PreIncrement
+                        | UnaryOp::PostIncrement
+                        | UnaryOp::PreDecrement
+                        | UnaryOp::PostDecrement
+                ) {
+                    json!({"var":expression(value)})
+                } else {
+                    json!({"expr":expression(value)})
+                },
+            ),
+            ExprKind::Ternary {
+                condition,
+                then,
+                otherwise,
+            } => node(
+                "Expr_Ternary",
+                json!({"cond":expression(condition),"if":then.as_ref().map(|e|expression(e)),"else":expression(otherwise)}),
+            ),
+            ExprKind::Array { items: values, .. } => {
+                node("Expr_Array", json!({"items":items(values)}))
+            }
+            ExprKind::List { items: values, .. } => {
+                node("Expr_List", json!({"items":items(values)}))
+            }
+            ExprKind::ArrayDim { array, dim } => node(
+                "Expr_ArrayDimFetch",
+                json!({"var":expression(array),"dim":dim.as_ref().map(|e|expression(e))}),
+            ),
+            ExprKind::Call {
+                target: value,
+                args,
+            } => node(
+                "Expr_FuncCall",
+                json!({"name":target(value),"args":args.iter().map(arg).collect::<Vec<_>>()}),
+            ),
+            ExprKind::Property {
+                object,
+                name,
+                nullsafe,
+            } => node(
+                if *nullsafe {
+                    "Expr_NullsafePropertyFetch"
+                } else {
+                    "Expr_PropertyFetch"
+                },
+                json!({"var":expression(object),"name":member(name,false)}),
+            ),
+            ExprKind::MethodCall {
+                object,
+                name,
+                args,
+                nullsafe,
+            } => node(
+                if *nullsafe {
+                    "Expr_NullsafeMethodCall"
+                } else {
+                    "Expr_MethodCall"
+                },
+                json!({"var":expression(object),"name":member(name,false),"args":args.iter().map(arg).collect::<Vec<_>>()}),
+            ),
+            ExprKind::StaticProperty { class, name } => node(
+                "Expr_StaticPropertyFetch",
+                json!({"class":target(class),"name":member(name,true)}),
+            ),
+            ExprKind::ClassConst { class, name } => node(
+                "Expr_ClassConstFetch",
+                json!({"class":target(class),"name":member(name,false)}),
+            ),
+            ExprKind::StaticCall { class, name, args } => node(
+                "Expr_StaticCall",
+                json!({"class":target(class),"name":member(name,false),"args":args.iter().map(arg).collect::<Vec<_>>()}),
+            ),
+            ExprKind::New { class, args } => node(
+                "Expr_New",
+                json!({"class":target(class),"args":args.iter().map(arg).collect::<Vec<_>>()}),
+            ),
+            ExprKind::Instanceof { expr: value, class } => node(
+                "Expr_Instanceof",
+                json!({"expr":expression(value),"class":target(class)}),
+            ),
+            ExprKind::Cast { kind, expr: value } => node(
+                &format!(
+                    "Expr_Cast_{}",
+                    match kind {
+                        CastKind::Integer => "Int",
+                        CastKind::Float => "Double",
+                        CastKind::String => "String",
+                        CastKind::Array => "Array",
+                        CastKind::Object => "Object",
+                        CastKind::Boolean => "Bool",
+                        CastKind::Unset => "Unset",
+                    }
+                ),
+                json!({"expr":expression(value)}),
+            ),
+            ExprKind::Include { kind, expr: value } => node(
+                "Expr_Include",
+                json!({"expr":expression(value),"type":integer(match kind {IncludeKind::Include=>1,IncludeKind::IncludeOnce=>2,IncludeKind::Require=>3,IncludeKind::RequireOnce=>4})}),
+            ),
+            ExprKind::Isset(values) => node(
+                "Expr_Isset",
+                json!({"vars":values.iter().map(expression).collect::<Vec<_>>()}),
+            ),
+            ExprKind::Exit(value) => node(
+                "Expr_Exit",
+                json!({"expr":value.as_ref().map(|e|expression(e))}),
+            ),
+            ExprKind::Yield { key, value } => node(
+                "Expr_Yield",
+                json!({"key":key.as_ref().map(|e|expression(e)),"value":value.as_ref().map(|e|expression(e))}),
+            ),
+            ExprKind::Match { condition, arms } => node(
+                "Expr_Match",
+                json!({"cond":expression(condition),"arms":arms.iter().map(|arm|mnode(&arm.meta,"MatchArm",json!({"conds":arm.conditions.as_ref().map(|c|c.iter().map(expression).collect::<Vec<_>>()),"body":expression(&arm.body)}))).collect::<Vec<_>>()}),
+            ),
+            ExprKind::Interpolated { parts: values, .. } => {
+                node("Scalar_InterpolatedString", json!({"parts":parts(values)}))
+            }
+            ExprKind::ShellExec(values) => node("Expr_ShellExec", json!({"parts":parts(values)})),
+            ExprKind::Error => node("Expr_Error", json!({})),
+            _ => panic!("unmapped expression"),
+        },
+        &value.meta,
+    )
 }
 fn statements(stmts: &[Stmt]) -> Vec<Value> {
     let mut out = Vec::new();
     for stmt in stmts {
-        out.push(match &stmt.kind {
+        out.push(with_meta(match &stmt.kind {
             StmtKind::Namespace(n)=>node("Stmt_Namespace",json!({"name":n.name.as_ref().map(name),"stmts":n.body.as_ref().map(|b|statements(b))})),
             StmtKind::Use(u)=>{
-                let mut fields=json!({"type":use_kind(u.kind),"uses":u.items.iter().map(|u|node("UseItem",json!({"type":use_kind(u.kind),"name":name(&u.name),"alias":u.alias.as_ref().map(|a|identifier(a,false))}))).collect::<Vec<_>>()});
+                let mut fields=json!({"type":use_kind(u.kind),"uses":u.items.iter().map(|u|mnode(&u.meta,"UseItem",json!({"type":use_kind(u.kind),"name":name(&u.name),"alias":u.alias.as_ref().map(|a|identifier(a,false))}))).collect::<Vec<_>>()});
                 if let Some(prefix)=&u.prefix {fields["prefix"]=name(prefix);}
                 node(if u.prefix.is_some(){"Stmt_GroupUse"}else{"Stmt_Use"},fields)
             },
             StmtKind::Constants(c)=>constants(c,false), StmtKind::ClassConstants(c)=>constants(c,true),
             StmtKind::Class(c)=>class(c),
             StmtKind::Method(m)=>node("Stmt_ClassMethod",json!({"attrGroups":attributes(&m.attributes),"flags":integer(i64::from(m.flags.0)),"byRef":m.signature.by_ref,"name":identifier(&m.name,false),"params":params(&m.signature),"returnType":m.signature.return_type.as_ref().map(ty),"stmts":m.body.as_ref().map(|b|statements(b))})),
-            StmtKind::Property(p)=>node("Stmt_Property",json!({"attrGroups":attributes(&p.attributes),"flags":integer(i64::from(p.flags.0)),"type":p.ty.as_ref().map(ty),"props":p.items.iter().map(|p|node("PropertyItem",json!({"name":identifier(&p.name,true),"default":p.default.as_ref().map(|e|expr(e))}))).collect::<Vec<_>>(),"hooks":p.hooks.iter().map(hook).collect::<Vec<_>>()})),
+            StmtKind::Property(p)=>node("Stmt_Property",json!({"attrGroups":attributes(&p.attributes),"flags":integer(i64::from(p.flags.0)),"type":p.ty.as_ref().map(ty),"props":p.items.iter().map(|p|mnode(&p.meta,"PropertyItem",json!({"name":identifier(&p.name,true),"default":p.default.as_ref().map(|e|expression(e))}))).collect::<Vec<_>>(),"hooks":p.hooks.iter().map(hook).collect::<Vec<_>>()})),
             StmtKind::TraitUse(t)=>node("Stmt_TraitUse",json!({"traits":t.traits.iter().map(name).collect::<Vec<_>>(),"adaptations":t.adaptations.iter().map(adaptation).collect::<Vec<_>>()})),
-            StmtKind::EnumCase(c)=>node("Stmt_EnumCase",json!({"attrGroups":attributes(&c.attributes),"name":identifier(&c.name,false),"expr":c.value.as_ref().map(|e|expr(e))})),
-            StmtKind::Expression(value) => node("Stmt_Expression", json!({"expr":expr(value)})),
+            StmtKind::EnumCase(c)=>node("Stmt_EnumCase",json!({"attrGroups":attributes(&c.attributes),"name":identifier(&c.name,false),"expr":c.value.as_ref().map(|e|expression(e))})),
+            StmtKind::Expression(value) => node("Stmt_Expression", json!({"expr":expression(value)})),
             StmtKind::Nop => node("Stmt_Nop", json!({})),
             StmtKind::InlineHtml(value) => node("Stmt_InlineHTML", json!({"value":bytes(value)})),
             StmtKind::Echo(values) => node(
                 "Stmt_Echo",
-                json!({"exprs":values.iter().map(expr).collect::<Vec<_>>()}),
+                json!({"exprs":values.iter().map(expression).collect::<Vec<_>>()}),
             ),
             StmtKind::Return(value) => {
-                node("Stmt_Return", json!({"expr":value.as_ref().map(expr)}))
+                node("Stmt_Return", json!({"expr":value.as_ref().map(expression)}))
             }
             StmtKind::Block(values) => node("Stmt_Block", json!({"stmts":statements(values)})),
             StmtKind::HaltCompiler(value) => {
                 node("Stmt_HaltCompiler", json!({"remaining":bytes(value)}))
             }
             StmtKind::Function(f) => node("Stmt_Function",json!({"attrGroups":attributes(&f.attributes),"byRef":f.signature.by_ref,"name":identifier(&f.name,false),"params":params(&f.signature),"returnType":f.signature.return_type.as_ref().map(ty),"stmts":statements(&f.body)})),
-            StmtKind::If(s) => node("Stmt_If",json!({"cond":expr(&s.condition),"stmts":statements(&s.body),"elseifs":s.elseifs.iter().map(|b|node("Stmt_ElseIf",json!({"cond":expr(&b.condition),"stmts":statements(&b.body)}))).collect::<Vec<_>>(),"else":s.otherwise.as_ref().map(|b|node("Stmt_Else",json!({"stmts":statements(&b.body)})))})),
-            StmtKind::While(s) => node("Stmt_While",json!({"cond":expr(&s.condition),"stmts":statements(&s.body)})),
-            StmtKind::Do(s) => node("Stmt_Do",json!({"cond":expr(&s.condition),"stmts":statements(&s.body)})),
-            StmtKind::For(s) => node("Stmt_For",json!({"init":s.init.iter().map(expr).collect::<Vec<_>>(),"cond":s.conditions.iter().map(expr).collect::<Vec<_>>(),"loop":s.steps.iter().map(expr).collect::<Vec<_>>(),"stmts":statements(&s.body)})),
-            StmtKind::Foreach(s) => node("Stmt_Foreach",json!({"expr":expr(&s.iterable),"keyVar":s.key.as_ref().map(|v|expr(v)),"valueVar":expr(&s.value),"byRef":s.by_ref,"stmts":statements(&s.body)})),
-            StmtKind::Switch(s) => node("Stmt_Switch",json!({"cond":expr(&s.condition),"cases":s.cases.iter().map(|c|node("Stmt_Case",json!({"cond":c.condition.as_ref().map(|e|expr(e)),"stmts":statements(&c.body)}))).collect::<Vec<_>>()})),
-            StmtKind::Break(e) => node("Stmt_Break",json!({"num":e.as_ref().map(expr)})),
-            StmtKind::Continue(e) => node("Stmt_Continue",json!({"num":e.as_ref().map(expr)})),
+            StmtKind::If(s) => node("Stmt_If",json!({"cond":expression(&s.condition),"stmts":statements(&s.body),"elseifs":s.elseifs.iter().map(|b|mnode(&b.meta,"Stmt_ElseIf",json!({"cond":expression(&b.condition),"stmts":statements(&b.body)}))).collect::<Vec<_>>(),"else":s.otherwise.as_ref().map(|b|mnode(&b.meta,"Stmt_Else",json!({"stmts":statements(&b.body)})))})),
+            StmtKind::While(s) => node("Stmt_While",json!({"cond":expression(&s.condition),"stmts":statements(&s.body)})),
+            StmtKind::Do(s) => node("Stmt_Do",json!({"cond":expression(&s.condition),"stmts":statements(&s.body)})),
+            StmtKind::For(s) => node("Stmt_For",json!({"init":s.init.iter().map(expression).collect::<Vec<_>>(),"cond":s.conditions.iter().map(expression).collect::<Vec<_>>(),"loop":s.steps.iter().map(expression).collect::<Vec<_>>(),"stmts":statements(&s.body)})),
+            StmtKind::Foreach(s) => node("Stmt_Foreach",json!({"expr":expression(&s.iterable),"keyVar":s.key.as_ref().map(|v|expression(v)),"valueVar":expression(&s.value),"byRef":s.by_ref,"stmts":statements(&s.body)})),
+            StmtKind::Switch(s) => node("Stmt_Switch",json!({"cond":expression(&s.condition),"cases":s.cases.iter().map(|c|mnode(&c.meta,"Stmt_Case",json!({"cond":c.condition.as_ref().map(|e|expression(e)),"stmts":statements(&c.body)}))).collect::<Vec<_>>()})),
+            StmtKind::Break(e) => node("Stmt_Break",json!({"num":e.as_ref().map(expression)})),
+            StmtKind::Continue(e) => node("Stmt_Continue",json!({"num":e.as_ref().map(expression)})),
             StmtKind::Goto(n) => node("Stmt_Goto",json!({"name":identifier(n,false)})),
             StmtKind::Label(n) => node("Stmt_Label",json!({"name":identifier(n,false)})),
-            StmtKind::Global(v) => node("Stmt_Global",json!({"vars":v.iter().map(expr).collect::<Vec<_>>()})),
-            StmtKind::Unset(v) => node("Stmt_Unset",json!({"vars":v.iter().map(expr).collect::<Vec<_>>()})),
-            StmtKind::Static(v) => node("Stmt_Static",json!({"vars":v.iter().map(|v|node("StaticVar",json!({"var":expr(&v.variable),"default":v.default.as_ref().map(|e|expr(e))}))).collect::<Vec<_>>()})),
-            StmtKind::Declare(s) => node("Stmt_Declare",json!({"declares":s.items.iter().map(|d|node("DeclareItem",json!({"key":identifier(&d.key,false),"value":expr(&d.value)}))).collect::<Vec<_>>(),"stmts":s.body.as_ref().map(|b|statements(b))})),
-            StmtKind::Try(s) => node("Stmt_TryCatch",json!({"stmts":statements(&s.body),"catches":s.catches.iter().map(|c|node("Stmt_Catch",json!({"types":c.types.iter().map(name).collect::<Vec<_>>(),"var":c.variable.as_ref().map(|e|expr(e)),"stmts":statements(&c.body)}))).collect::<Vec<_>>(),"finally":s.finally.as_ref().map(|f|node("Stmt_Finally",json!({"stmts":statements(&f.body)})))})),
+            StmtKind::Global(v) => node("Stmt_Global",json!({"vars":v.iter().map(expression).collect::<Vec<_>>()})),
+            StmtKind::Unset(v) => node("Stmt_Unset",json!({"vars":v.iter().map(expression).collect::<Vec<_>>()})),
+            StmtKind::Static(v) => node("Stmt_Static",json!({"vars":v.iter().map(|v|mnode(&v.meta,"StaticVar",json!({"var":expression(&v.variable),"default":v.default.as_ref().map(|e|expression(e))}))).collect::<Vec<_>>()})),
+            StmtKind::Declare(s) => node("Stmt_Declare",json!({"declares":s.items.iter().map(|d|mnode(&d.meta,"DeclareItem",json!({"key":identifier(&d.key,false),"value":expression(&d.value)}))).collect::<Vec<_>>(),"stmts":s.body.as_ref().map(|b|statements(b))})),
+            StmtKind::Try(s) => node("Stmt_TryCatch",json!({"stmts":statements(&s.body),"catches":s.catches.iter().map(|c|mnode(&c.meta,"Stmt_Catch",json!({"types":c.types.iter().map(name).collect::<Vec<_>>(),"var":c.variable.as_ref().map(|e|expression(e)),"stmts":statements(&c.body)}))).collect::<Vec<_>>(),"finally":s.finally.as_ref().map(|f|mnode(&f.meta,"Stmt_Finally",json!({"stmts":statements(&f.body)})))})),
             _ => panic!("unmapped statement"),
-        });
+        }, &stmt.meta));
     }
     out
 }
+#[path = "metadata.rs"]
+mod metadata;
+fn with_meta(mut value: Value, meta: &NodeMeta) -> Value {
+    value["_meta"] = metadata::raw(meta);
+    value
+}
+fn mnode(meta: &NodeMeta, kind: &str, fields: Value) -> Value {
+    with_meta(node(kind, fields), meta)
+}
+fn strip(value: &mut Value) {
+    match value {
+        Value::Object(map) => {
+            map.remove("_meta");
+            for v in map.values_mut() {
+                strip(v);
+            }
+        }
+        Value::Array(values) => {
+            for v in values {
+                strip(v);
+            }
+        }
+        _ => {}
+    }
+}
+#[allow(dead_code)]
+pub fn expr(value: &Expr) -> Value {
+    let mut value = expression(value);
+    strip(&mut value);
+    value
+}
+#[allow(dead_code)]
 pub fn observation(result: &ParseResult, target: &str) -> Value {
-    json!({"target":target,"status":match result.status(){ParseStatus::Clean=>"clean",ParseStatus::Recovered=>"recovered",ParseStatus::Aborted=>"aborted"},"ast":result.program().map(|p|statements(&p.statements))})
+    let mut value = full_observation(result, target);
+    value.as_object_mut().unwrap().remove("metadata");
+    value
+}
+pub fn full_observation(result: &ParseResult, target: &str) -> Value {
+    let mut ast = result
+        .program()
+        .map_or(Value::Null, |p| json!(statements(&p.statements)));
+    let metadata = metadata::extract(&mut ast, result);
+    json!({"target":target,"status":match result.status(){ParseStatus::Clean=>"clean",ParseStatus::Recovered=>"recovered",ParseStatus::Aborted=>"aborted"},"ast":ast,"metadata":metadata})
 }

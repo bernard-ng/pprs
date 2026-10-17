@@ -11,7 +11,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -29,7 +29,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -47,7 +47,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -65,7 +65,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -79,11 +79,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -97,11 +97,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -115,11 +115,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -133,11 +133,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -151,11 +151,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -173,7 +173,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -191,7 +191,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -209,7 +209,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -227,7 +227,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -245,8 +245,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Retains an error expression for the bad byte between assignments. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-01.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -263,8 +265,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Retains an error expression for the NUL byte between assignments. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-02.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -281,8 +285,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Retains error expressions for both bad bytes between assignments. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-03.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -299,8 +305,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Retains the completed inner statement and trailing unterminated comment instead of a null AST. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-04.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -317,7 +325,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -335,7 +343,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -353,7 +361,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -371,8 +379,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Drops unfinished new without a class rather than creating the reference missing-name placeholder. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-05.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -389,8 +399,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Drops unfinished instanceof without a class rather than creating a missing-name placeholder. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-06.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -407,8 +419,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Missing variable name is a zero-width point after the dollar token. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-07.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -425,8 +439,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Missing static property variable name is a zero-width point after the dollar token. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-08.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -443,7 +459,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -461,8 +477,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Missing terminators synchronize at later statement starts; retained statement boundaries differ. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-09.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -479,8 +497,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Malformed trailing-comma lists use local synchronization and retain different error items. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-10.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -497,7 +517,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -515,7 +535,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -533,7 +553,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -551,8 +571,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Malformed foreach headers synchronize before retaining the later recovered loop. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-11.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -569,8 +591,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Missing parameter variables are zero-width points; malformed signatures retain different ranges. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-12.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -587,8 +611,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Missing array separators discard the damaged assignment at statement synchronization. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-13.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -605,8 +631,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "A missing return type discards the damaged function at statement synchronization. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-14.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -623,7 +651,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -641,8 +669,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Unterminated class members synchronize at the next member and retain different member ranges. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-15.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -659,8 +689,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Retains an explicit missing right operand after the binary operator. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-16.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -677,8 +709,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Retains an explicit missing right operand before the function closing brace. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-17.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -695,8 +729,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Drops the malformed while header at statement synchronization. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-18.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -713,8 +749,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Retains a while condition error node and its body rather than dropping the loop. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-19.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -731,8 +769,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Retains completed statements when the loop closing brace is missing instead of a null AST. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-20.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -749,7 +789,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -767,7 +807,7 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -781,11 +821,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -799,12 +839,16 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "PHP 8 curly-offset rejection uses statement-boundary recovery rather than retaining reference suffix blocks.",
+        "expectation": "differences/p10-structure-curly.json"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "PHP 8 curly-offset rejection synchronizes damaged expressions at statement boundaries rather than retaining the reference suffix blocks. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-21.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -865,7 +909,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -883,7 +927,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -901,7 +945,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -919,7 +963,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -937,7 +981,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -955,7 +999,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -995,7 +1039,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1013,7 +1057,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1031,7 +1075,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1049,7 +1093,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1067,7 +1111,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1085,7 +1129,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1099,11 +1143,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1117,11 +1161,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1139,7 +1183,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1157,7 +1201,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1175,7 +1219,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1193,7 +1237,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1211,7 +1255,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1229,7 +1273,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1247,7 +1291,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1265,7 +1309,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1283,7 +1327,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1301,7 +1345,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1319,7 +1363,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1337,7 +1381,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1355,7 +1399,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1373,7 +1417,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1391,7 +1435,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1409,7 +1453,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1427,7 +1471,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1445,7 +1489,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1463,7 +1507,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1481,7 +1525,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1499,7 +1543,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1517,7 +1561,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1535,7 +1579,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1553,7 +1597,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1571,7 +1615,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1589,7 +1633,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1607,7 +1651,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1625,7 +1669,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1643,7 +1687,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1661,7 +1705,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1679,7 +1723,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1697,8 +1741,10 @@
         "phase": "P11"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Drops new without a class rather than retaining a missing-name placeholder. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-22.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -1715,7 +1761,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1799,7 +1845,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1817,7 +1863,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1831,11 +1877,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1853,7 +1899,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1871,7 +1917,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1889,7 +1935,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1909,8 +1955,10 @@
         "expectation": "differences/p08-global-recovery.json"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P08 discards a damaged global statement through its terminator instead of synthesizing a separate constant expression from an invalid property suffix; following statements are retained. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-23.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -1927,7 +1975,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1945,7 +1993,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1963,7 +2011,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1981,7 +2029,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -1999,7 +2047,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2017,7 +2065,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2031,11 +2079,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2053,7 +2101,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2067,11 +2115,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2085,11 +2133,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2103,11 +2151,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2125,7 +2173,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2143,7 +2191,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2161,7 +2209,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2179,7 +2227,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2197,7 +2245,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2215,7 +2263,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2233,7 +2281,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2251,7 +2299,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2269,7 +2317,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2287,7 +2335,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2305,7 +2353,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2345,7 +2393,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2363,7 +2411,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2381,7 +2429,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2423,8 +2471,10 @@
         "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006."
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-24.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -2443,8 +2493,10 @@
         "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006."
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-25.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -2463,8 +2515,10 @@
         "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006."
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-26.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -2483,8 +2537,10 @@
         "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006."
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-27.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -2503,8 +2559,10 @@
         "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006."
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-28.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -2523,8 +2581,10 @@
         "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006."
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-29.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -2543,8 +2603,10 @@
         "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006."
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-30.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -2563,8 +2625,10 @@
         "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006."
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P07 retains Expr_Error for invalid Unicode escapes and continues; reference aborts the tree. See ADR 0006. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-31.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -2581,7 +2645,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2599,7 +2663,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2617,7 +2681,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2635,7 +2699,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2653,7 +2717,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2671,7 +2735,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2689,7 +2753,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2703,11 +2767,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2721,11 +2785,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2739,11 +2803,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2761,7 +2825,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2779,7 +2843,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2797,7 +2861,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2815,7 +2879,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2833,7 +2897,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2851,7 +2915,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2869,7 +2933,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2887,7 +2951,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2905,7 +2969,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2923,7 +2987,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2941,7 +3005,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2959,7 +3023,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2977,7 +3041,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -2995,7 +3059,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3013,7 +3077,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3031,7 +3095,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3049,7 +3113,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3067,7 +3131,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3085,7 +3149,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3103,7 +3167,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3121,7 +3185,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3139,7 +3203,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3159,8 +3223,10 @@
         "expectation": "differences/p09-recovery-1.json"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-32.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -3177,7 +3243,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3195,7 +3261,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3213,7 +3279,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3233,8 +3299,10 @@
         "expectation": "differences/p09-recovery-2.json"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-33.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -3251,7 +3319,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3269,7 +3337,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3287,7 +3355,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3305,7 +3373,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3323,7 +3391,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3341,7 +3409,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3359,7 +3427,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3377,7 +3445,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3395,7 +3463,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3413,7 +3481,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3431,7 +3499,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3449,7 +3517,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3467,7 +3535,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3485,7 +3553,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3503,7 +3571,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3521,7 +3589,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3539,7 +3607,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3579,7 +3647,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3597,7 +3665,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3615,7 +3683,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3635,8 +3703,10 @@
         "expectation": "differences/p09-recovery-3.json"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-34.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -3653,7 +3723,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3671,7 +3741,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3689,7 +3759,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3707,7 +3777,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3725,7 +3795,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3743,7 +3813,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3761,7 +3831,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3779,7 +3849,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3797,7 +3867,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3815,7 +3885,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3833,7 +3903,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3851,7 +3921,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3869,7 +3939,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3909,7 +3979,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3927,7 +3997,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3945,7 +4015,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3963,7 +4033,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -3981,7 +4051,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4021,7 +4091,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4039,7 +4109,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4057,7 +4127,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4075,7 +4145,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4093,7 +4163,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4111,7 +4181,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4129,7 +4199,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4147,7 +4217,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4165,7 +4235,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4183,7 +4253,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4201,7 +4271,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4219,7 +4289,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4237,7 +4307,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4255,7 +4325,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4273,7 +4343,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4291,7 +4361,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4309,7 +4379,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4327,7 +4397,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4367,7 +4437,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4385,7 +4455,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4403,7 +4473,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4421,7 +4491,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4439,7 +4509,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4457,7 +4527,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4475,7 +4545,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4493,7 +4563,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4511,7 +4581,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4529,7 +4599,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4547,7 +4617,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4565,7 +4635,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4583,7 +4653,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4603,7 +4673,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4621,7 +4691,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4639,7 +4709,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4659,7 +4729,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4681,7 +4751,7 @@
         "expectation": "differences/p08-nested-halt.json"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4699,7 +4769,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4717,7 +4787,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4735,7 +4805,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4753,7 +4823,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4771,7 +4841,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4789,7 +4859,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4807,7 +4877,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4825,7 +4895,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4843,7 +4913,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4861,7 +4931,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4875,11 +4945,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4897,7 +4967,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4915,7 +4985,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4935,8 +5005,10 @@
         "expectation": "differences/p09-recovery-4.json"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P09 synchronizes the malformed grouped import through its braced suffix instead of reinterpreting import fragments as ordinary statements; subsequent valid statements are retained. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-35.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -4955,8 +5027,10 @@
         "expectation": "differences/p09-recovery-5.json"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "P09 diagnoses an extra leading separator in a grouped import and retains the recovered import item with a normalized name; the reference drops the import and reinterprets the suffix as a constant expression. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-36.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -4969,11 +5043,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -4991,7 +5065,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5009,7 +5083,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5027,7 +5101,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5045,7 +5119,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5063,8 +5137,10 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-37.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -5081,8 +5157,10 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Invalid mixed namespace styles retain complete braced declaration ranges rather than trimming the closing brace. Metadata describes the retained recovery tree; P11 owns recovery equivalence.",
+        "expectation": "differences/p10-positions-38.json"
       },
       "diagnostics": {
         "state": "pending",
@@ -5099,7 +5177,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5117,7 +5195,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5135,7 +5213,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5153,7 +5231,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5171,7 +5249,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5189,7 +5267,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5207,7 +5285,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5225,7 +5303,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5243,7 +5321,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5261,7 +5339,7 @@
         "phase": "P09"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5279,7 +5357,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5297,7 +5375,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5315,7 +5393,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5333,7 +5411,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5351,7 +5429,7 @@
         "phase": "P08"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5387,11 +5465,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5405,11 +5483,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5423,11 +5501,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5441,11 +5519,13 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P10"
+        "state": "intentional-difference",
+        "phase": "P10",
+        "reason": "Incomplete function signature retains an empty recovered program instead of aborting with null AST.",
+        "expectation": "differences/p10-structure-eof.json"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5461,11 +5541,11 @@
         "expectation": "differences/lexical-halt-4.json"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5479,11 +5559,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5497,11 +5577,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5519,7 +5599,7 @@
         "phase": "P07"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5533,11 +5613,11 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5551,11 +5631,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5569,11 +5649,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5587,11 +5667,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5605,11 +5685,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5623,11 +5703,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5641,11 +5721,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5659,11 +5739,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5677,11 +5757,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5695,11 +5775,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {
@@ -5713,11 +5793,11 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "positions": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P10"
       },
       "diagnostics": {

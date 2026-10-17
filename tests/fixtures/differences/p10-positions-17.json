@@ -1,0 +1,156 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          2
+        ],
+        "span": [
+          6,
+          33
+        ],
+        "start": [
+          2,
+          1
+        ],
+        "token_span": [
+          1,
+          14
+        ]
+      },
+      "path": "/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          2,
+          14
+        ],
+        "span": [
+          15,
+          19
+        ],
+        "start": [
+          2,
+          10
+        ],
+        "token_span": [
+          3,
+          4
+        ]
+      },
+      "path": "/0/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          8
+        ],
+        "span": [
+          28,
+          31
+        ],
+        "start": [
+          3,
+          5
+        ],
+        "token_span": [
+          9,
+          12
+        ]
+      },
+      "path": "/0/fields/stmts/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          8
+        ],
+        "span": [
+          28,
+          31
+        ],
+        "start": [
+          3,
+          5
+        ],
+        "token_span": [
+          9,
+          12
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/expr",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          3,
+          6
+        ],
+        "span": [
+          28,
+          29
+        ],
+        "start": [
+          3,
+          5
+        ],
+        "token_span": [
+          9,
+          10
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/expr/fields/left",
+      "spelling": {
+        "kind": {
+          "integer": "10"
+        },
+        "rawValue": {
+          "bytes": "31"
+        }
+      }
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": true,
+        "end": [
+          4,
+          1
+        ],
+        "span": [
+          32,
+          32
+        ],
+        "start": [
+          4,
+          1
+        ],
+        "token_span": [
+          13,
+          13
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/expr/fields/right",
+      "spelling": {}
+    }
+  ]
+}

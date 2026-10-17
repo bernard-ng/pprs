@@ -1,0 +1,468 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          9,
+          2
+        ],
+        "span": [
+          6,
+          135
+        ],
+        "start": [
+          2,
+          1
+        ],
+        "token_span": [
+          1,
+          38
+        ]
+      },
+      "path": "/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          2,
+          8
+        ],
+        "span": [
+          12,
+          13
+        ],
+        "start": [
+          2,
+          7
+        ],
+        "token_span": [
+          3,
+          4
+        ]
+      },
+      "path": "/0/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          8,
+          6
+        ],
+        "span": [
+          62,
+          133
+        ],
+        "start": [
+          6,
+          5
+        ],
+        "token_span": [
+          13,
+          36
+        ]
+      },
+      "path": "/0/fields/stmts/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          6,
+          32
+        ],
+        "span": [
+          78,
+          89
+        ],
+        "start": [
+          6,
+          21
+        ],
+        "token_span": [
+          17,
+          18
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          6,
+          42
+        ],
+        "span": [
+          90,
+          99
+        ],
+        "start": [
+          6,
+          33
+        ],
+        "token_span": [
+          19,
+          22
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/params/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          6,
+          39
+        ],
+        "span": [
+          90,
+          96
+        ],
+        "start": [
+          6,
+          33
+        ],
+        "token_span": [
+          19,
+          20
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/params/0/fields/type",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          6,
+          42
+        ],
+        "span": [
+          97,
+          99
+        ],
+        "start": [
+          6,
+          40
+        ],
+        "token_span": [
+          21,
+          22
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/params/0/fields/var",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          7,
+          25
+        ],
+        "span": [
+          111,
+          127
+        ],
+        "start": [
+          7,
+          9
+        ],
+        "token_span": [
+          26,
+          34
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/stmts/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          7,
+          24
+        ],
+        "span": [
+          111,
+          126
+        ],
+        "start": [
+          7,
+          9
+        ],
+        "token_span": [
+          26,
+          33
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/stmts/0/fields/expr",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          7,
+          19
+        ],
+        "span": [
+          111,
+          121
+        ],
+        "start": [
+          7,
+          9
+        ],
+        "token_span": [
+          26,
+          29
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/stmts/0/fields/expr/fields/var",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          7,
+          14
+        ],
+        "span": [
+          111,
+          116
+        ],
+        "start": [
+          7,
+          9
+        ],
+        "token_span": [
+          26,
+          27
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/stmts/0/fields/expr/fields/var/fields/var",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          7,
+          19
+        ],
+        "span": [
+          118,
+          121
+        ],
+        "start": [
+          7,
+          16
+        ],
+        "token_span": [
+          28,
+          29
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/stmts/0/fields/expr/fields/var/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          7,
+          24
+        ],
+        "span": [
+          124,
+          126
+        ],
+        "start": [
+          7,
+          22
+        ],
+        "token_span": [
+          32,
+          33
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/stmts/0/fields/expr/fields/expr",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          12,
+          2
+        ],
+        "span": [
+          136,
+          163
+        ],
+        "start": [
+          10,
+          1
+        ],
+        "token_span": [
+          39,
+          54
+        ]
+      },
+      "path": "/1",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          10,
+          8
+        ],
+        "span": [
+          142,
+          143
+        ],
+        "start": [
+          10,
+          7
+        ],
+        "token_span": [
+          41,
+          42
+        ]
+      },
+      "path": "/1/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          11,
+          16
+        ],
+        "span": [
+          150,
+          161
+        ],
+        "start": [
+          11,
+          5
+        ],
+        "token_span": [
+          45,
+          52
+        ]
+      },
+      "path": "/1/fields/stmts/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          11,
+          16
+        ],
+        "span": [
+          156,
+          161
+        ],
+        "start": [
+          11,
+          11
+        ],
+        "token_span": [
+          47,
+          52
+        ]
+      },
+      "path": "/1/fields/stmts/0/fields/consts/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          11,
+          12
+        ],
+        "span": [
+          156,
+          157
+        ],
+        "start": [
+          11,
+          11
+        ],
+        "token_span": [
+          47,
+          48
+        ]
+      },
+      "path": "/1/fields/stmts/0/fields/consts/0/fields/name",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          11,
+          16
+        ],
+        "span": [
+          160,
+          161
+        ],
+        "start": [
+          11,
+          15
+        ],
+        "token_span": [
+          51,
+          52
+        ]
+      },
+      "path": "/1/fields/stmts/0/fields/consts/0/fields/value",
+      "spelling": {
+        "kind": {
+          "integer": "10"
+        },
+        "rawValue": {
+          "bytes": "31"
+        }
+      }
+    }
+  ]
+}

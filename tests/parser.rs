@@ -38,9 +38,15 @@ fn expression_oracle_is_reproducible_and_matches_every_probe() {
             },
         )
         .unwrap();
+        // P10 enforces the 8.4 ceiling even where the newer reference accepts expanded clone calls.
+        let expected = if case["id"] == "clone-forms" {
+            serde_json::from_str(include_str!("fixtures/fidelity/clone-forms.json")).unwrap()
+        } else {
+            case["expected"].clone()
+        };
         assert_eq!(
             adapter::observation(&result, target),
-            case["expected"],
+            expected,
             "{}: {:?}",
             case["id"],
             result.diagnostics()

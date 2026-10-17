@@ -105,8 +105,8 @@ impl Parser {
         let (kind, prefix) = if self.eat(K::NamespaceSeparator)? {
             self.expect(K::LeftBrace)?;
             loop {
-                let start = self.peek()?.0;
                 let inline = self.use_kind()?;
+                let start = self.peek()?.0;
                 if explicit.is_some() && inline.is_some() {
                     let (_, token) = self.peek()?;
                     self.record(Diagnostic::error(

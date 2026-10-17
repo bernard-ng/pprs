@@ -1,0 +1,125 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          29
+        ],
+        "span": [
+          32,
+          60
+        ],
+        "start": [
+          4,
+          1
+        ],
+        "token_span": [
+          15,
+          30
+        ]
+      },
+      "path": "/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          14
+        ],
+        "span": [
+          41,
+          45
+        ],
+        "start": [
+          4,
+          10
+        ],
+        "token_span": [
+          18,
+          19
+        ]
+      },
+      "path": "/0/fields/expr",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": true,
+        "end": [
+          4,
+          18
+        ],
+        "span": [
+          49,
+          49
+        ],
+        "start": [
+          4,
+          18
+        ],
+        "token_span": [
+          22,
+          22
+        ]
+      },
+      "path": "/0/fields/valueVar",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          27
+        ],
+        "span": [
+          53,
+          58
+        ],
+        "start": [
+          4,
+          22
+        ],
+        "token_span": [
+          26,
+          28
+        ]
+      },
+      "path": "/0/fields/stmts/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          4,
+          26
+        ],
+        "span": [
+          53,
+          57
+        ],
+        "start": [
+          4,
+          22
+        ],
+        "token_span": [
+          26,
+          27
+        ]
+      },
+      "path": "/0/fields/stmts/0/fields/expr",
+      "spelling": {}
+    }
+  ]
+}

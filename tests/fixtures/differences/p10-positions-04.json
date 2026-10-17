@@ -1,0 +1,55 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [
+        {
+          "kind": "comment",
+          "origin": {
+            "empty": false,
+            "end": [
+              6,
+              2
+            ],
+            "span": [
+              33,
+              50
+            ],
+            "start": [
+              5,
+              5
+            ],
+            "token_span": [
+              17,
+              18
+            ]
+          },
+          "text": {
+            "bytes": "2f2a20756e7465726d696e617465640a7d"
+          }
+        }
+      ],
+      "origin": {
+        "empty": true,
+        "end": [
+          6,
+          2
+        ],
+        "span": [
+          50,
+          50
+        ],
+        "start": [
+          6,
+          2
+        ],
+        "token_span": [
+          18,
+          18
+        ]
+      },
+      "path": "/0",
+      "spelling": {}
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "target": "8.4",
+  "metadata": [
+    {
+      "comments": [
+        {
+          "kind": "comment",
+          "origin": {
+            "empty": false,
+            "end": [
+              2,
+              67
+            ],
+            "span": [
+              6,
+              72
+            ],
+            "start": [
+              2,
+              1
+            ],
+            "token_span": [
+              1,
+              2
+            ]
+          },
+          "text": {
+            "bytes": "2f2f2043616e2774207265636f7665722074686973207965742c2061732074686520277d2720666f722074686520696e6e65725f73746174656d656e745f6c697374"
+          }
+        },
+        {
+          "kind": "comment",
+          "origin": {
+            "empty": false,
+            "end": [
+              3,
+              23
+            ],
+            "span": [
+              73,
+              95
+            ],
+            "start": [
+              3,
+              1
+            ],
+            "token_span": [
+              3,
+              4
+            ]
+          },
+          "text": {
+            "bytes": "2f2f20697320616c776179732072657175697265642e"
+          }
+        }
+      ],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          8
+        ],
+        "span": [
+          97,
+          104
+        ],
+        "start": [
+          5,
+          1
+        ],
+        "token_span": [
+          5,
+          11
+        ]
+      },
+      "path": "/0",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          7
+        ],
+        "span": [
+          97,
+          103
+        ],
+        "start": [
+          5,
+          1
+        ],
+        "token_span": [
+          5,
+          10
+        ]
+      },
+      "path": "/0/fields/expr",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          3
+        ],
+        "span": [
+          97,
+          99
+        ],
+        "start": [
+          5,
+          1
+        ],
+        "token_span": [
+          5,
+          6
+        ]
+      },
+      "path": "/0/fields/expr/fields/var",
+      "spelling": {}
+    },
+    {
+      "comments": [],
+      "origin": {
+        "empty": false,
+        "end": [
+          5,
+          7
+        ],
+        "span": [
+          102,
+          103
+        ],
+        "start": [
+          5,
+          6
+        ],
+        "token_span": [
+          9,
+          10
+        ]
+      },
+      "path": "/0/fields/expr/fields/expr",
+      "spelling": {
+        "kind": {
+          "integer": "10"
+        },
+        "rawValue": {
+          "bytes": "30"
+        }
+      }
+    }
+  ]
+}

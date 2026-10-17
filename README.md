@@ -2,7 +2,7 @@
 
 A PHP parser library written in Rust. The first release is planned to support **PHP 7.0–8.4**, using [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) as its compatibility reference.
 
-**Status:** P00–P09 are complete. `parse`, `parse_source` and `parse_strict` deliver expression, procedural, callable and declaration parsing, with owned ASTs, lossless tokens, diagnostics, recovery and read-only traversal. Namespaces, classes, traits, enums, attributes, promoted parameters, declaration types and PHP 8.4 property hooks are implemented. Version/source fidelity and broader diagnostic parity remain P10/P11. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md) and [P09 contract](docs/decisions/0008-declaration-parser.md).
+**Status:** P00–P10 are complete. `parse`, `parse_source` and `parse_strict` deliver expression, procedural, callable and declaration parsing, with owned ASTs, lossless tokens, diagnostics, recovery and read-only traversal. Namespaces, classes, traits, enums, attributes, promoted parameters, declaration types and PHP 8.4 property hooks are implemented. All valid core fixtures now match reference AST values, comments, spelling and source ranges. Broader diagnostic and malformed-input recovery parity remains P11. There is no product binary or PHP runtime dependency. See the [implementation plan](plans/README.md) and [P10 contract](docs/decisions/0009-version-source-fidelity.md).
 
 ## Development
 

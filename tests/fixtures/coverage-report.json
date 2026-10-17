@@ -39,7 +39,8 @@
       "passing": 96
     },
     "P10": {
-      "pending": 337
+      "intentional-difference": 40,
+      "passing": 297
     },
     "P11": {
       "pending": 334

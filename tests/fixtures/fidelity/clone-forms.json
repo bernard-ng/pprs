@@ -1,0 +1,235 @@
+{
+  "target": "8.4",
+  "status": "recovered",
+  "ast": [
+    {
+      "kind": "Stmt_Expression",
+      "fields": {
+        "expr": {
+          "kind": "Expr_FuncCall",
+          "fields": {
+            "name": {
+              "kind": "Name",
+              "fields": {
+                "name": {
+                  "bytes": "636c6f6e65"
+                }
+              }
+            },
+            "args": []
+          }
+        }
+      }
+    },
+    {
+      "kind": "Stmt_Expression",
+      "fields": {
+        "expr": {
+          "kind": "Expr_FuncCall",
+          "fields": {
+            "name": {
+              "kind": "Name",
+              "fields": {
+                "name": {
+                  "bytes": "636c6f6e65"
+                }
+              }
+            },
+            "args": [
+              {
+                "kind": "VariadicPlaceholder",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "Stmt_Expression",
+      "fields": {
+        "expr": {
+          "kind": "Expr_FuncCall",
+          "fields": {
+            "name": {
+              "kind": "Name",
+              "fields": {
+                "name": {
+                  "bytes": "636c6f6e65"
+                }
+              }
+            },
+            "args": [
+              {
+                "kind": "Arg",
+                "fields": {
+                  "name": null,
+                  "value": {
+                    "kind": "Expr_Variable",
+                    "fields": {
+                      "name": {
+                        "bytes": "61"
+                      }
+                    }
+                  },
+                  "byRef": false,
+                  "unpack": false
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "Stmt_Expression",
+      "fields": {
+        "expr": {
+          "kind": "Expr_FuncCall",
+          "fields": {
+            "name": {
+              "kind": "Name",
+              "fields": {
+                "name": {
+                  "bytes": "636c6f6e65"
+                }
+              }
+            },
+            "args": [
+              {
+                "kind": "Arg",
+                "fields": {
+                  "name": null,
+                  "value": {
+                    "kind": "Expr_Variable",
+                    "fields": {
+                      "name": {
+                        "bytes": "61"
+                      }
+                    }
+                  },
+                  "byRef": false,
+                  "unpack": false
+                }
+              },
+              {
+                "kind": "Arg",
+                "fields": {
+                  "name": null,
+                  "value": {
+                    "kind": "Expr_Variable",
+                    "fields": {
+                      "name": {
+                        "bytes": "62"
+                      }
+                    }
+                  },
+                  "byRef": false,
+                  "unpack": false
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "Stmt_Expression",
+      "fields": {
+        "expr": {
+          "kind": "Expr_FuncCall",
+          "fields": {
+            "name": {
+              "kind": "Name",
+              "fields": {
+                "name": {
+                  "bytes": "636c6f6e65"
+                }
+              }
+            },
+            "args": [
+              {
+                "kind": "Arg",
+                "fields": {
+                  "name": {
+                    "kind": "Identifier",
+                    "fields": {
+                      "name": {
+                        "bytes": "78"
+                      }
+                    }
+                  },
+                  "value": {
+                    "kind": "Expr_Variable",
+                    "fields": {
+                      "name": {
+                        "bytes": "61"
+                      }
+                    }
+                  },
+                  "byRef": false,
+                  "unpack": false
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "Stmt_Expression",
+      "fields": {
+        "expr": {
+          "kind": "Expr_Clone",
+          "fields": {
+            "expr": {
+              "kind": "Expr_PropertyFetch",
+              "fields": {
+                "var": {
+                  "kind": "Expr_Variable",
+                  "fields": {
+                    "name": {
+                      "bytes": "61"
+                    }
+                  }
+                },
+                "name": {
+                  "kind": "Identifier",
+                  "fields": {
+                    "name": {
+                      "bytes": "78"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "Stmt_Expression",
+      "fields": {
+        "expr": {
+          "kind": "Expr_Clone",
+          "fields": {
+            "expr": {
+              "kind": "Expr_FuncCall",
+              "fields": {
+                "name": {
+                  "kind": "Expr_Variable",
+                  "fields": {
+                    "name": {
+                      "bytes": "61"
+                    }
+                  }
+                },
+                "args": []
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
