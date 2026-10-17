@@ -1,12 +1,21 @@
-//! Read-only, iterative traversal in source order, including auxiliary AST nodes.
+//! Read-only traversal in structural preorder, including auxiliary AST nodes.
+//!
+//! The program has depth one. Each node precedes its children; child lists keep
+//! source order. Traversal is not PHP execution order. Signatures and declaration
+//! payloads add no wrappers. Simple types yield names/identifiers, composite types
+//! yield [`Node::Type`], and interpolated expressions yield [`Node::Expr`].
+//! Absent children and array holes yield no entries. Comments remain token indices
+//! accessible through [`Node::meta`]. Use iterator adapters to stop early; filtering
+//! entries does not skip their descendants.
 use crate::ast::{
     AnonymousClass, Argument, ArrayItem, Attribute, AttributeGroup, Case, Catch, ClassDeclaration,
     ClosureUse, Constant, DeclareItem, Else, ElseIf, Expr, ExprKind, Finally, HookBody, Identifier,
-    MatchArm, Member, Name, Parameter, Program, PropertyHook, PropertyItem, Signature,
+    MatchArm, Member, Name, NodeMeta, Parameter, Program, PropertyHook, PropertyItem, Signature,
     StaticVariable, Stmt, StmtKind, StringPart, Target, TraitAdaptation, Type, UseItem,
 };
 /// A borrowed AST node; traversal does not mutate metadata or semantic values.
 #[derive(Clone, Copy, Debug)]
+#[non_exhaustive]
 pub enum Node<'a> {
     /// Anonymous class declaration.
     AnonymousClass(&'a AnonymousClass),
@@ -63,6 +72,44 @@ pub enum Node<'a> {
     /// Match arm.
     MatchArm(&'a MatchArm),
 }
+impl<'a> Node<'a> {
+    /// Source origin and attached comment indices. The program root has no metadata.
+    /// Simple types appear as names or identifiers; interpolated expressions appear
+    /// as expressions. Neither gains an extra wrapper during traversal.
+    #[must_use]
+    pub fn meta(self) -> Option<&'a NodeMeta> {
+        Some(match self {
+            Self::Program(_) => return None,
+            Self::Stmt(n) => &n.meta,
+            Self::Expr(n) => &n.meta,
+            Self::Name(n) => n.meta(),
+            Self::Identifier(n) => n.meta(),
+            Self::Type(n) => n.meta(),
+            Self::TraitAdaptation(n) => n.meta(),
+            Self::StringPart(StringPart::Text { meta, .. }) => meta,
+            Self::StringPart(StringPart::Expr(e)) => &e.meta,
+            Self::AnonymousClass(n) => &n.meta,
+            Self::Attribute(n) => &n.meta,
+            Self::AttributeGroup(n) => &n.meta,
+            Self::Constant(n) => &n.meta,
+            Self::UseItem(n) => &n.meta,
+            Self::PropertyItem(n) => &n.meta,
+            Self::PropertyHook(n) => &n.meta,
+            Self::Argument(n) => &n.meta,
+            Self::ArrayItem(n) => &n.meta,
+            Self::MatchArm(n) => &n.meta,
+            Self::Parameter(n) => &n.meta,
+            Self::ClosureUse(n) => &n.meta,
+            Self::ElseIf(n) => &n.meta,
+            Self::Else(n) => &n.meta,
+            Self::Case(n) => &n.meta,
+            Self::Catch(n) => &n.meta,
+            Self::Finally(n) => &n.meta,
+            Self::StaticVariable(n) => &n.meta,
+            Self::DeclareItem(n) => &n.meta,
+        })
+    }
+}
 /// A node and its depth, where the starting node has depth one.
 #[derive(Clone, Copy, Debug)]
 pub struct Entry<'a> {
@@ -72,11 +119,20 @@ pub struct Entry<'a> {
     pub depth: usize,
 }
 /// Explicit-stack preorder iterator. No recursive visitor calls are used.
+///
+/// Dropping the iterator or using `find`, `any` or `try_for_each` stops traversal.
+/// An early exit can be resumed with the same iterator. Children of the returned
+/// node are already queued, but their children have not been inspected.
+/// `filter` skips returned entries, not their subtrees. Exhaustion is permanent.
 pub struct Walk<'a> {
     pending: Vec<Entry<'a>>,
     children: Vec<Node<'a>>,
 }
-/// Traverse a program in source order.
+/// Traverse a program in structural preorder, visiting each node before its children.
+///
+/// Child lists retain source order. This is neither evaluation order nor a sort
+/// by byte offset: enclosing nodes precede their contents, and `for` steps precede
+/// its body. See the module documentation for wrapper and metadata rules.
 #[must_use]
 pub fn walk(program: &Program) -> Walk<'_> {
     walk_node(Node::Program(program))
@@ -100,6 +156,8 @@ impl<'a> Iterator for Walk<'a> {
         Some(entry)
     }
 }
+impl std::iter::FusedIterator for Walk<'_> {}
+
 fn target<'a>(value: &'a Target, out: &mut Vec<Node<'a>>) {
     out.push(match value {
         Target::Name(name) => Node::Name(name),
@@ -122,7 +180,7 @@ fn type_node(ty: &Type) -> Node<'_> {
     match ty {
         Type::Name(n) => Node::Name(n),
         Type::Builtin(n) => Node::Identifier(n),
-        _ => Node::Type(ty),
+        Type::Nullable { .. } | Type::Union { .. } | Type::Intersection { .. } => Node::Type(ty),
     }
 }
 fn signature<'a>(value: &'a Signature, out: &mut Vec<Node<'a>>) {

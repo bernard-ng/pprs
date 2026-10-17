@@ -3,13 +3,22 @@ name = "pprs"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.85"
-description = "A Rust PHP parser library targeting PHP 7.0–8.4 (under development)"
+description = "A byte-preserving PHP parser library for Rust"
 readme = "README.md"
 keywords = ["php", "parser", "ast"]
 categories = ["parsing", "development-tools"]
 # Enable publication after choosing the original-code license and completing release checks.
 publish = false
 autobins = false
+include = [
+    "/src/**",
+    "/docs/guide.md",
+    "/Cargo.toml",
+    "/Cargo.lock",
+    "/README.md",
+    "/THIRD_PARTY_NOTICES.md",
+    "/reference/LICENSE.nikic-PHP-Parser",
+]
 
 [lib]
 path = "src/lib.rs"

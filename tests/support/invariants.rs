@@ -49,7 +49,9 @@ pub fn invariants(result: &pprs::ParseResult, options: ParseOptions) {
                 Node::Finally(n) => &n.meta,
                 Node::StaticVariable(n) => &n.meta,
                 Node::DeclareItem(n) => &n.meta,
+                _ => panic!("new visitor node needs an independent invariant check"),
             };
+            assert_eq!(entry.node.meta(), Some(meta));
             let Origin::Parsed { span, tokens } = meta.origin() else {
                 panic!("synthetic parser node")
             };

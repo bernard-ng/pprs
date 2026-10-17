@@ -272,7 +272,7 @@ pub enum StringKind {
     /// Nowdoc.
     Nowdoc,
 }
-/// Binary operators needed by the first expression slice.
+/// PHP binary operators.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[non_exhaustive]
 pub enum BinaryOp {
@@ -503,7 +503,7 @@ pub struct Expr {
     /// Typed expression structure.
     pub kind: ExprKind,
 }
-/// Initial expression family; remaining reference nodes are tracked in the ledger.
+/// PHP expression variants. Match with a fallback for future variants.
 #[derive(Debug, Clone, PartialEq)]
 #[non_exhaustive]
 pub enum ExprKind {
@@ -653,7 +653,7 @@ pub enum ExprKind {
         /// Arguments.
         args: Vec<Argument>,
     },
-    /// Object construction; anonymous classes arrive in P09.
+    /// Named or dynamic object construction. See also [`ExprKind::NewAnonymous`].
     New {
         /// Class expression/name.
         class: Target,
@@ -685,7 +685,7 @@ pub enum ExprKind {
     Isset(Vec<Expr>),
     /// Simple exit/die syntax; complex argument forms are calls, matching the reference.
     Exit(Option<Box<Expr>>),
-    /// Yield expression; generator context validation arrives with callable bodies.
+    /// Yield expression. The parser does not validate generator context.
     Yield {
         /// Optional key.
         key: Option<Box<Expr>>,

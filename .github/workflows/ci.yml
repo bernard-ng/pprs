@@ -45,6 +45,8 @@ jobs:
           cargo clippy --locked --manifest-path tools/perf/Cargo.toml --all-targets --all-features -- -D warnings
       - name: Build documentation
         run: cargo doc --locked --no-deps
+      - name: Test the packaged library outside the checkout
+        run: python3 tools/check_package.py --toolchain stable
       - name: Compile lexer and parser fuzz targets
         run: cargo check --locked --manifest-path fuzz/Cargo.toml
 
@@ -75,8 +77,8 @@ jobs:
       # --all-targets does not run doctests; keep this explicit.
       - name: Run documentation tests
         run: cargo +${{ matrix.toolchain }} test --locked --doc
-      - name: Check downstream consumer
-        run: cargo +${{ matrix.toolchain }} check --locked --manifest-path tests/consumer/Cargo.toml
+      - name: Test downstream consumer
+        run: cargo +${{ matrix.toolchain }} test --locked --manifest-path tests/consumer/Cargo.toml
       - name: Check development measurement harness
         run: cargo +${{ matrix.toolchain }} check --locked --manifest-path tools/perf/Cargo.toml --all-features
 

@@ -21,7 +21,8 @@ pub enum LexStop {
     Limit(Resource),
 }
 
-/// Input rejected before copying source bytes or building a line index.
+/// Input exceeds its configured byte budget. Raw-input entry points reject it
+/// before copying/indexing. Source entry points receive already indexed storage.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
 #[error("input length {length} exceeds the configured limit {limit}")]
 pub struct InputTooLarge {

@@ -1,4 +1,4 @@
-//! Private lazy cursor contract. P05 supplies the production token source.
+//! Private lazy cursor over the production token source.
 
 use crate::{
     Limits, SourceText,

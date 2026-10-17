@@ -29,7 +29,7 @@ pub struct ParseResult {
 }
 
 // Only the parser may assert completion. No public constructor can manufacture
-// successful parsing before a parser exists. Unit tests exercise assembly now.
+// successful parsing from arbitrary caller-supplied parts.
 #[allow(dead_code)]
 pub(crate) enum Completion {
     Complete(Program),
@@ -111,6 +111,19 @@ impl ParseResult {
 #[derive(Debug)]
 pub struct ParsedFile(ParseResult);
 impl ParsedFile {
+    /// The complete root guaranteed by strict success, including an empty file.
+    #[must_use]
+    #[allow(
+        clippy::missing_panics_doc,
+        reason = "only private assembly can violate the clean-root invariant"
+    )]
+    pub fn program(&self) -> &Program {
+        self.0
+            .program
+            .as_ref()
+            .expect("clean completion retains a program")
+    }
+
     /// Inspect source, tokens, diagnostics and root without changing clean status.
     #[must_use]
     pub const fn result(&self) -> &ParseResult {

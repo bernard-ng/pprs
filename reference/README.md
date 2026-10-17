@@ -1,6 +1,6 @@
 # Frozen PHP-Parser reference
 
-P00 baseline, frozen on 2026-10-16. This directory records provenance and integrity; `.references/` remains an ignored, separate checkout.
+Reference frozen on 2026-10-16. This directory records provenance and integrity; `.references/` remains an ignored, separate checkout.
 
 | Property | Frozen value |
 |---|---|
@@ -13,7 +13,7 @@ P00 baseline, frozen on 2026-10-16. This directory records provenance and integr
 | Project targets | PHP 7.0–7.4 and 8.0–8.4; default 8.4 |
 | Reference scope warning | README says 8.4; newest target is 8.5; grammar also has experimental 8.6 partial application |
 
-[lock.json](lock.json) records the Git commit/tree, observed remote, file-manifest hash, counts and P00 inventory hashes. The public upstream URL is canonicalized; the original remote's capitalization is retained separately.
+[lock.json](lock.json) records the Git commit/tree, observed remote, file-manifest hash, counts and original inventory hashes. The public upstream URL is canonicalized; the original remote's capitalization is retained separately.
 
 ## Verification
 
@@ -32,7 +32,7 @@ For a checkout without `.references`, validate committed metadata alone:
 python3 tools/reference/verify_p00.py --metadata-only
 ```
 
-This cannot certify the absent reference bytes. Ordinary Rust tests use the [P02 exported fixtures](../tests/fixtures/README.md) and do not depend on this checkout or Python.
+This cannot certify the absent reference bytes. Ordinary Rust tests use the [exported fixtures](../tests/fixtures/README.md) and do not depend on this checkout or Python.
 
 ## Recreating the ignored checkout
 
@@ -48,8 +48,11 @@ Do not reset an existing modified checkout to reproduce the baseline. Inspect it
 
 ## Baseline changes
 
-P00 inventories are a frozen scope snapshot, not a live test-pass dashboard. Every implementation status remains pending/not implemented at this point. P02 maintains [conformance states](../tests/fixtures/coverage.json) separately; all parser cases remain pending. The lock's `oracle_execution` field is historical P00 state; the P02 corpus manifest records the executed oracle profile.
+The inventories preserve the original scope snapshot. Their implementation-status
+fields do not describe the current parser. The [comparison ledger](../tests/fixtures/coverage.json)
+records current results. The lock's `oracle_execution` field records the state at
+the reference freeze; the corpus manifest records the executed oracle profile.
 
-An intentional reference update must review upstream grammar, AST, lexer and fixture changes, update the scope classifications, recompute the file manifest and corresponding lock hashes, regenerate affected inventories, and run verification. Inventory-only corrections require a reviewable metadata/hash change but must not silently change the upstream commit. Do not “fix” a verification failure by accepting new hashes without investigating the difference.
+An intentional reference update must review upstream grammar, AST, lexer and fixture changes, update the scope classifications, recompute the file manifest and corresponding lock hashes, regenerate affected inventories, and run verification. Inventory-only corrections require a reviewable metadata/hash change but must not silently change the upstream commit. Do not "fix" a verification failure by accepting new hashes without investigating the difference.
 
-The fixture inventory records **raw section bytes before canonicalization and macro evaluation**. These hashes identify source material; they are not expanded PHP source or oracle outputs. See the [compatibility matrix](../docs/compatibility/README.md) and [test strategy](../plans/reference-and-testing-strategy.md).
+The fixture inventory records **raw section bytes before canonicalization and macro evaluation**. These hashes identify source material; they are not expanded PHP source or oracle outputs. See the [compatibility matrix](../docs/compatibility/README.md) and [corpus contract](../tests/fixtures/README.md).

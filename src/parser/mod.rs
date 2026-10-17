@@ -32,6 +32,9 @@ pub enum StrictError {
     #[error(transparent)]
     Parse(#[from] crate::ParseError),
 }
+/// Parse a whole file, starting outside PHP mode. Untagged input is inline HTML;
+/// use `<?php` or `<?=` to enter PHP mode. There is no snippet/expression entry point.
+///
 /// Parse owned PHP syntax with recovery. Source, tokens and any partial tree are
 /// retained; inspect status/diagnostics or call `into_strict()` before use as valid PHP.
 /// PHP 7.0–8.4 grammar, source fidelity and reviewed malformed-input recovery are

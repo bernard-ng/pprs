@@ -1,6 +1,6 @@
 # P04 source, token, AST and result contracts
 
-Status: accepted, 2026-10-16. Implements the foundations in [P04](../../plans/technical-implementation-plan.md), following [behavior decision 0001](0001-parser-behavior.md) and [strategy decision 0002](0002-parser-strategy.md). Production lexing/parsing entry points remain P05–P07 work. These pre-release types may evolve as the remaining syntax is implemented.
+Status: accepted, 2026-10-16. Records the original foundation contracts, following [behavior decision 0001](0001-parser-behavior.md) and [strategy decision 0002](0002-parser-strategy.md). Production lexing/parsing entry points remain P05–P07 work. These pre-release types may evolve as the remaining syntax is implemented.
 
 ## Source ownership and positions
 

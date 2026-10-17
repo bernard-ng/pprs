@@ -86,4 +86,4 @@ Raw-section hashes in the P00 inventory are not canonicalized/macro-expanded sou
 
 Ordinary clone expressions remain core; expanded clone calls do not. `expr/argumentList.test#1` is mixed even though its mode is PHP7.4. `partialFunctionApplication.test#1` is deferred despite the same old mode. No filename-only or version-tag-only filter can replace classification.
 
-Evidence: [case inventory](../compatibility/fixtures.jsonl), [matrix](../compatibility/README.md), [testing strategy](../../plans/reference-and-testing-strategy.md).
+Evidence: [case inventory](../compatibility/fixtures.jsonl), [matrix](../compatibility/README.md), [corpus contract](../../tests/fixtures/README.md).

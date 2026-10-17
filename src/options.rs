@@ -112,7 +112,7 @@ pub struct InvalidLimit {
     pub minimum: usize,
 }
 
-/// Validated finite budgets. Defaults were exercised by the P12 bounded stress suite:
+/// Validated finite budgets. Defaults:
 /// 16 MiB input, depth 128, 1,000,000 tokens, 250,000 nodes and 100 diagnostics.
 ///
 /// These are work/structure bounds, not a process-memory quota. Source indexing,
