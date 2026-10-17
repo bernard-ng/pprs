@@ -1,6 +1,6 @@
 # Implementation plans
 
-Status: **P00–P08 complete** (2026-10-17). The public expression/procedural/callable parser, production lexing, literal utilities and read-only traversal are available.
+Status: **P00–P09 complete** (2026-10-17). The public expression/procedural/callable/declaration parser, production lexing, literal utilities and read-only traversal are available.
 
 The first stable release will be a reusable Rust library for PHP **7.0–8.4**, as confirmed on 2026-10-16. There is no product CLI.
 
@@ -25,4 +25,6 @@ P07 delivered the [public parser](../src/parser/mod.rs), expression grammar, int
 
 P08 delivered [procedural statements](../src/parser/statements.rs), [callables and signature types](../src/parser/callables.rs), recovery and traversal extensions. [Decision 0007](../docs/decisions/0007-procedural-parser.md) records 49 dedicated probes, 49 additional exact upstream structure matches, two explicit recovery differences and six complete-file ownership corrections to P09. Deep nesting, every probe truncation, small budgets and malformed token sequences are tested.
 
-Next: **P09**, implement namespaces, declarations, class members and declaration type contexts. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.
+P09 delivered [declarations and class members](../src/parser/declarations.rs), [namespace/import parsing and grouping](../src/parser/namespaces.rs), attributes, anonymous classes, enums, promotion, hooks, asymmetric visibility and shared declaration types. [Decision 0008](../docs/decisions/0008-declaration-parser.md) records 60 dedicated probes, 96 additional exact upstream structure matches and five pinned malformed-input recovery differences. All 190 in-scope node families have implementation mappings; metadata and diagnostic completeness are still separate gates.
+
+Next: **P10**, audit version behavior and AST/source fidelity. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.

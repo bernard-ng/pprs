@@ -1,7 +1,7 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: P00–P08 complete; P09 onward pending; public expression/procedural/callable parsing, signature types, lexing, literal utilities and traversal exist
+Status: P00–P09 complete; P10 onward pending; expression/procedural/declaration grammar, types, lexing, literal utilities and traversal exist
 
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
@@ -342,6 +342,8 @@ Acceptance: assigned statement/function/generator/loop cases pass, including mal
 
 ### P09 — Implement namespaces, declarations, class members, and types
 
+Status: **complete, 2026-10-17**. [Decision 0008](../docs/decisions/0008-declaration-parser.md) records namespace/import parsing and grouping, class/member/attribute grammar, PHP 8.4 hooks and visibility, shared types, local recovery and traversal. Evidence: 96 additional passing upstream structure channels, five exact recovery differences, 60 dedicated probes, all-probe truncation/budget checks and production ownership in the [declaration ledger](../docs/implementation/declarations.md). No P09 structure channel remains pending; metadata and broad diagnostics remain P10/P11.
+
 Dependencies: P08.
 
 - Parse braced/unbraced namespaces, imports, aliases, function/constant imports, and grouped use statements.
@@ -361,7 +363,7 @@ Dependencies: P07–P09.
 
 - Audit every supported minor version, with targeted transition tests for 7.0/7.1, 7.3, 7.4, and 8.0–8.4 features and interpretation changes.
 - Verify PHP 7 versus PHP 8 concatenation precedence, ternary handling, historical syntax acceptance/removal, keyword changes, and type-name interpretation against the pinned behavior.
-- Finish AST normalization: semicolon namespace grouping, destructuring conversion, empty elements, comments/doc comments, trailing-comment no-ops, and source ranges.
+- Audit AST normalization: semicolon namespace grouping (implemented in P09), destructuring conversion, empty elements, comments/doc comments, trailing-comment no-ops, and source ranges.
 - Preserve syntax distinctions needed by future printers: array/string kind, numeric raw spelling, quote/doc-label information, namespace form and cast/exit spelling.
 - Check locations on every node, including damaged/empty nodes; keep byte spans, token ranges, and comment ownership independently testable.
 - Audit PHP 8.5/8.6 fixtures for accidental inclusion. A best-effort older target does not lift the project's 8.4 feature ceiling.

@@ -25,7 +25,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -43,9 +43,8 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -1136,9 +1135,8 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -1425,9 +1423,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -1480,9 +1477,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -1679,9 +1675,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -2346,7 +2341,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2582,9 +2577,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -2601,7 +2595,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2637,7 +2631,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2655,7 +2649,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2673,7 +2667,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2691,7 +2685,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2763,7 +2757,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2781,7 +2775,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2799,7 +2793,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2817,7 +2811,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2835,7 +2829,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2853,7 +2847,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2871,7 +2865,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2889,7 +2883,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2907,7 +2901,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2925,7 +2919,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2943,7 +2937,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2961,7 +2955,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2979,7 +2973,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -2997,7 +2991,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3015,7 +3009,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3033,7 +3027,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3051,7 +3045,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3069,7 +3063,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3087,7 +3081,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3105,9 +3099,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3124,9 +3117,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3143,9 +3135,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3162,9 +3153,10 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "intentional-difference",
         "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable.",
+        "expectation": "differences/p09-recovery-1.json"
       },
       "positions": {
         "state": "pending",
@@ -3181,9 +3173,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3200,9 +3191,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3219,9 +3209,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3238,9 +3227,10 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "intentional-difference",
         "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable.",
+        "expectation": "differences/p09-recovery-2.json"
       },
       "positions": {
         "state": "pending",
@@ -3257,9 +3247,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3276,9 +3265,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3295,9 +3283,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3314,9 +3301,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3333,9 +3319,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3352,9 +3337,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3371,9 +3355,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3390,7 +3373,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3408,7 +3391,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3426,7 +3409,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3444,7 +3427,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3462,7 +3445,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3480,7 +3463,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3498,7 +3481,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3516,7 +3499,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3534,7 +3517,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3552,7 +3535,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3592,7 +3575,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3610,7 +3593,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3628,7 +3611,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3646,9 +3629,10 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "intentional-difference",
         "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "reason": "P09 discards the damaged class/interface declaration including its braces instead of exposing its body as a standalone block; subsequent declarations/statements remain recoverable.",
+        "expectation": "differences/p09-recovery-3.json"
       },
       "positions": {
         "state": "pending",
@@ -3665,9 +3649,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3684,7 +3667,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3702,9 +3685,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3721,7 +3703,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3739,7 +3721,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3757,7 +3739,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3775,7 +3757,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3793,7 +3775,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3811,7 +3793,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3829,7 +3811,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3847,9 +3829,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -3866,7 +3847,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -3884,7 +3865,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -4072,9 +4053,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -4127,9 +4107,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -4254,9 +4233,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -4475,9 +4453,8 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete file includes class/member or global constant declarations owned by P09; P08 signature portions are independently checked by tests/fixtures/statements/statements.json."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -4640,9 +4617,8 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09",
-        "reason": "Complete-file structure requires control flow/callable bodies (P08) or declarations/anonymous classes (P09); P07 expression-only probes live in tests/fixtures/parser. Frozen P00/P02 inventories remain unchanged."
+        "state": "passing",
+        "phase": "P09"
       },
       "positions": {
         "state": "pending",
@@ -4863,7 +4839,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -4881,7 +4857,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -4917,7 +4893,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -4935,7 +4911,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -4953,8 +4929,10 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09"
+        "state": "intentional-difference",
+        "phase": "P09",
+        "reason": "P09 synchronizes the malformed grouped import through its braced suffix instead of reinterpreting import fragments as ordinary statements; subsequent valid statements are retained.",
+        "expectation": "differences/p09-recovery-4.json"
       },
       "positions": {
         "state": "pending",
@@ -4971,8 +4949,10 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
-        "phase": "P09"
+        "state": "intentional-difference",
+        "phase": "P09",
+        "reason": "P09 diagnoses an extra leading separator in a grouped import and retains the recovered import item with a normalized name; the reference drops the import and reinterprets the suffix as a constant expression.",
+        "expectation": "differences/p09-recovery-5.json"
       },
       "positions": {
         "state": "pending",
@@ -5007,7 +4987,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5025,7 +5005,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5043,7 +5023,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5061,7 +5041,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5079,7 +5059,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5097,7 +5077,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5115,7 +5095,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5133,7 +5113,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5151,7 +5131,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5169,7 +5149,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5187,7 +5167,7 @@
         "phase": "P06"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5205,7 +5185,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5223,7 +5203,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5241,7 +5221,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5259,7 +5239,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {
@@ -5277,7 +5257,7 @@
         "phase": "P05"
       },
       "structure": {
-        "state": "pending",
+        "state": "passing",
         "phase": "P09"
       },
       "positions": {

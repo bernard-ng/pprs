@@ -57,3 +57,19 @@ pub fn parse_and_count(input: &[u8]) -> Result<usize, pprs::StrictError> {
         .program()
         .map_or(0, |program| pprs::visit::walk(program).count()))
 }
+
+/// Inspect declared property hook names through the downstream public API.
+///
+/// # Errors
+/// Returns preflight, syntax or resource failures.
+pub fn property_hook_names(input: &[u8]) -> Result<Vec<pprs::ByteString>, pprs::StrictError> {
+    let parsed = pprs::parse_strict(input, ParseOptions::default())?;
+    Ok(parsed.result().program().map_or_else(Vec::new, |program| {
+        pprs::visit::walk(program)
+            .filter_map(|entry| match entry.node {
+                pprs::visit::Node::PropertyHook(hook) => Some(hook.name.bytes().clone()),
+                _ => None,
+            })
+            .collect()
+    }))
+}

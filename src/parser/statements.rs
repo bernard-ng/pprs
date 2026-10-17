@@ -70,18 +70,24 @@ impl Parser {
         if self.eat(K::LeftBrace)? {
             return self.block();
         }
-        if self.kind()? == K::Function
-            && !(self.ahead(1)? == K::LeftParen
-                || self.ahead(1)? == K::Ampersand && self.ahead(2)? == K::LeftParen)
-        {
-            let (_, token) = self.peek()?;
-            self.record(Diagnostic::error(
-                D::UnexpectedToken,
-                token.span(),
-                "function declaration requires a statement list or braced body",
-            ))?;
+        let statement = self.statement()?;
+        if let Some(stmt) = &statement {
+            if matches!(
+                stmt.kind,
+                StmtKind::Function(_)
+                    | StmtKind::Class(_)
+                    | StmtKind::Namespace(_)
+                    | StmtKind::Use(_)
+                    | StmtKind::Constants(_)
+            ) {
+                self.error_meta(
+                    D::UnexpectedToken,
+                    &stmt.meta,
+                    "declaration requires a statement list or braced body",
+                )?;
+            }
         }
-        Ok(match self.statement()? {
+        Ok(match statement {
             Some(Stmt {
                 kind: StmtKind::Block(body),
                 ..

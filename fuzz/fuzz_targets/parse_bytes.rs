@@ -21,6 +21,12 @@ fuzz_target!(|data: &[u8]| {
         b"<?php try {} catch (",
         b"<?php if ($x):",
         b"<?php switch ($x) {case 1:",
+        b"<?php class C {",
+        b"<?php class C {public $x {",
+        b"<?php class C {use T {",
+        b"<?php namespace A; use Foo\\{",
+        b"<?php #[",
+        b"<?php $x=new class {",
         b"<?php \"{$a[",
     ] {
         let input = [prefix, data].concat();

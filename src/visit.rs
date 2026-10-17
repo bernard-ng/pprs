@@ -1,12 +1,29 @@
 //! Read-only, iterative traversal in source order, including auxiliary AST nodes.
 use crate::ast::{
-    Argument, ArrayItem, Case, Catch, ClosureUse, DeclareItem, Else, ElseIf, Expr, ExprKind,
-    Finally, Identifier, MatchArm, Member, Name, Parameter, Program, Signature, StaticVariable,
-    Stmt, StmtKind, StringPart, Target, Type,
+    AnonymousClass, Argument, ArrayItem, Attribute, AttributeGroup, Case, Catch, ClassDeclaration,
+    ClosureUse, Constant, DeclareItem, Else, ElseIf, Expr, ExprKind, Finally, HookBody, Identifier,
+    MatchArm, Member, Name, Parameter, Program, PropertyHook, PropertyItem, Signature,
+    StaticVariable, Stmt, StmtKind, StringPart, Target, TraitAdaptation, Type, UseItem,
 };
 /// A borrowed AST node; traversal does not mutate metadata or semantic values.
 #[derive(Clone, Copy, Debug)]
 pub enum Node<'a> {
+    /// Anonymous class declaration.
+    AnonymousClass(&'a AnonymousClass),
+    /// Attribute invocation.
+    Attribute(&'a Attribute),
+    /// Attribute group.
+    AttributeGroup(&'a AttributeGroup),
+    /// Constant initializer.
+    Constant(&'a Constant),
+    /// Import item.
+    UseItem(&'a UseItem),
+    /// Property item.
+    PropertyItem(&'a PropertyItem),
+    /// Property hook.
+    PropertyHook(&'a PropertyHook),
+    /// Trait adaptation.
+    TraitAdaptation(&'a TraitAdaptation),
     /// File root.
     Program(&'a Program),
     /// Statement.
@@ -109,6 +126,19 @@ fn signature<'a>(value: &'a Signature, out: &mut Vec<Node<'a>>) {
     out.extend(value.params.iter().map(Node::Parameter));
     out.extend(value.return_type.iter().map(type_node));
 }
+fn attributes<'a>(values: &'a [AttributeGroup], out: &mut Vec<Node<'a>>) {
+    out.extend(values.iter().map(Node::AttributeGroup));
+}
+fn class_header<'a>(value: &'a ClassDeclaration, out: &mut Vec<Node<'a>>) {
+    attributes(&value.attributes, out);
+    out.extend(value.name.iter().map(Node::Identifier));
+}
+fn class_body<'a>(value: &'a ClassDeclaration, out: &mut Vec<Node<'a>>) {
+    out.extend(value.scalar_type.iter().map(type_node));
+    out.extend(value.extends.iter().map(Node::Name));
+    out.extend(value.implements.iter().map(Node::Name));
+    out.extend(value.members.iter().map(Node::Stmt));
+}
 #[allow(
     clippy::too_many_lines,
     reason = "exhaustive child ordering for the typed AST"
@@ -118,11 +148,55 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
     match node {
         Node::Program(program) => out.extend(program.statements.iter().map(Node::Stmt)),
         Node::Stmt(stmt) => match &stmt.kind {
+            StmtKind::Namespace(ns) => {
+                out.extend(ns.name.iter().map(Node::Name));
+                if let Some(body) = &ns.body {
+                    out.extend(body.iter().map(Node::Stmt));
+                }
+            }
+            StmtKind::Use(u) => {
+                out.extend(u.prefix.iter().map(Node::Name));
+                out.extend(u.items.iter().map(Node::UseItem));
+            }
+            StmtKind::Constants(c) | StmtKind::ClassConstants(c) => {
+                attributes(&c.attributes, &mut out);
+                out.extend(c.ty.iter().map(type_node));
+                out.extend(c.constants.iter().map(Node::Constant));
+            }
+            StmtKind::Class(c) => {
+                class_header(c, &mut out);
+                class_body(c, &mut out);
+            }
+            StmtKind::Method(m) => {
+                attributes(&m.attributes, &mut out);
+                out.push(Node::Identifier(&m.name));
+                signature(&m.signature, &mut out);
+                if let Some(body) = &m.body {
+                    out.extend(body.iter().map(Node::Stmt));
+                }
+            }
+            StmtKind::Property(p) => {
+                attributes(&p.attributes, &mut out);
+                out.extend(p.ty.iter().map(type_node));
+                out.extend(p.items.iter().map(Node::PropertyItem));
+                out.extend(p.hooks.iter().map(Node::PropertyHook));
+            }
+            StmtKind::TraitUse(t) => {
+                out.extend(t.traits.iter().map(Node::Name));
+                out.extend(t.adaptations.iter().map(Node::TraitAdaptation));
+            }
+            StmtKind::EnumCase(c) => {
+                attributes(&c.attributes, &mut out);
+                out.push(Node::Identifier(&c.name));
+                out.extend(c.value.iter().map(|e| Node::Expr(e)));
+            }
+
             StmtKind::Expression(expr) => out.push(Node::Expr(expr)),
             StmtKind::Echo(exprs) => out.extend(exprs.iter().map(Node::Expr)),
             StmtKind::Return(expr) => out.extend(expr.iter().map(Node::Expr)),
             StmtKind::Block(stmts) => out.extend(stmts.iter().map(Node::Stmt)),
             StmtKind::Function(f) => {
+                attributes(&f.attributes, &mut out);
                 out.push(Node::Identifier(&f.name));
                 signature(&f.signature, &mut out);
                 out.extend(f.body.iter().map(Node::Stmt));
@@ -179,6 +253,7 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
             StmtKind::Nop | StmtKind::InlineHtml(_) | StmtKind::HaltCompiler(_) => {}
         },
         Node::Expr(expr) => match &expr.kind {
+            ExprKind::NewAnonymous(c) => out.push(Node::AnonymousClass(c)),
             ExprKind::Variable(name) => out.push(Node::Identifier(name)),
             ExprKind::ConstFetch(name) => out.push(Node::Name(name)),
             ExprKind::DynamicVariable(expr)
@@ -260,12 +335,14 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
                 parts(values, &mut out);
             }
             ExprKind::Closure(c) => {
+                attributes(&c.attributes, &mut out);
                 out.extend(c.signature.params.iter().map(Node::Parameter));
                 out.extend(c.uses.iter().map(Node::ClosureUse));
                 out.extend(c.signature.return_type.iter().map(type_node));
                 out.extend(c.body.iter().map(Node::Stmt));
             }
             ExprKind::ArrowFunction(f) => {
+                attributes(&f.attributes, &mut out);
                 signature(&f.signature, &mut out);
                 out.push(Node::Expr(&f.expr));
             }
@@ -274,6 +351,60 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
             | ExprKind::String { .. }
             | ExprKind::MagicConstant(_)
             | ExprKind::Error => {}
+        },
+        Node::AnonymousClass(c) => {
+            class_header(&c.declaration, &mut out);
+            out.extend(c.args.iter().map(Node::Argument));
+            class_body(&c.declaration, &mut out);
+        }
+        Node::AttributeGroup(g) => out.extend(g.attributes.iter().map(Node::Attribute)),
+        Node::Attribute(a) => {
+            out.push(Node::Name(&a.name));
+            out.extend(a.args.iter().map(Node::Argument));
+        }
+        Node::Constant(c) => {
+            out.push(Node::Identifier(&c.name));
+            out.push(Node::Expr(&c.value));
+        }
+        Node::UseItem(u) => {
+            out.push(Node::Name(&u.name));
+            out.extend(u.alias.iter().map(Node::Identifier));
+        }
+        Node::PropertyItem(p) => {
+            out.push(Node::Identifier(&p.name));
+            out.extend(p.default.iter().map(|e| Node::Expr(e)));
+        }
+        Node::PropertyHook(h) => {
+            attributes(&h.attributes, &mut out);
+            out.push(Node::Identifier(&h.name));
+            out.extend(h.params.iter().map(Node::Parameter));
+            match &h.body {
+                HookBody::Abstract => {}
+                HookBody::Block(stmts) => out.extend(stmts.iter().map(Node::Stmt)),
+                HookBody::Expression(e) => out.push(Node::Expr(e)),
+            }
+        }
+        Node::TraitAdaptation(a) => match a {
+            TraitAdaptation::Alias {
+                trait_name,
+                method,
+                alias,
+                ..
+            } => {
+                out.extend(trait_name.iter().map(Node::Name));
+                out.push(Node::Identifier(method));
+                out.extend(alias.iter().map(Node::Identifier));
+            }
+            TraitAdaptation::Precedence {
+                trait_name,
+                method,
+                instead_of,
+                ..
+            } => {
+                out.push(Node::Name(trait_name));
+                out.push(Node::Identifier(method));
+                out.extend(instead_of.iter().map(Node::Name));
+            }
         },
         Node::Argument(arg) => {
             out.extend(arg.name.iter().map(Node::Identifier));
@@ -298,9 +429,11 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
             Type::Builtin(n) => out.push(Node::Identifier(n)),
         },
         Node::Parameter(p) => {
+            attributes(&p.attributes, &mut out);
             out.extend(p.ty.iter().map(type_node));
             out.push(Node::Expr(&p.variable));
             out.extend(p.default.iter().map(|e| Node::Expr(e)));
+            out.extend(p.hooks.iter().map(Node::PropertyHook));
         }
         Node::ClosureUse(u) => out.push(Node::Expr(&u.variable)),
         Node::ElseIf(s) => {

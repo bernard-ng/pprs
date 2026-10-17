@@ -1,8 +1,10 @@
-//! Recovering parser for expressions, statements and callables, with finite resource budgets.
+//! Recovering parser for expressions, statements, callables and declarations, with finite resource budgets.
 // Grammar/semantics adapted from nikic/PHP-Parser, Copyright (c) 2011 Nikita Popov.
 // See THIRD_PARTY_NOTICES.md and reference/LICENSE.nikic-PHP-Parser (BSD-3-Clause).
 mod callables;
+mod declarations;
 mod expression;
+mod namespaces;
 mod operators;
 mod statements;
 mod strings;
@@ -32,7 +34,8 @@ pub enum StrictError {
 }
 /// Parse owned PHP syntax with recovery. Source, tokens and any partial tree are
 /// retained; inspect status/diagnostics or call `into_strict()` before use as valid PHP.
-/// Namespaces, class declarations, members and attributes remain unsupported until P09.
+/// PHP 7.0–8.4 grammar is implemented; version/source fidelity and broad malformed-file
+/// compatibility are still being audited. This is not a PHP compiler validator.
 ///
 /// # Errors
 /// Returns `InputTooLarge` before copying/indexing input beyond its byte budget.
@@ -122,7 +125,15 @@ impl Parser {
                 let _ = self.bump();
             }
         }
-        let program = Program { statements };
+        let mut program = Program {
+            statements: self.normalize_namespaces(statements),
+        };
+        if crate::visit::walk(&program)
+            .any(|entry| entry.depth > self.options.limits.get(Resource::Depth).min(128))
+        {
+            let _ = self.limit(Resource::Depth);
+            program.statements.clear();
+        }
         // Array-hole diagnostics are delayed until assignment has converted patterns.
         let holes: Vec<_> = crate::visit::walk(&program)
             .filter_map(|entry| match entry.node {
@@ -388,9 +399,11 @@ impl Parser {
             }
             K::LeftBrace => {
                 self.bump()?;
+                self.enter()?;
                 self.block_depth += 1;
                 let result = self.block();
                 self.block_depth -= 1;
+                self.depth -= 1;
                 StmtKind::Block(result?)
             }
             K::HaltCompiler => {
@@ -457,29 +470,37 @@ impl Parser {
                 if !(matches!(self.ahead(1)?, K::LeftParen)
                     || self.ahead(1)? == K::Ampersand && self.ahead(2)? == K::LeftParen) =>
             {
-                self.function_statement()?
+                self.function_statement(Vec::new())?
             }
             K::Identifier if self.ahead(1)? == K::Colon => {
                 let name = self.plain_identifier()?;
                 self.bump()?;
                 StmtKind::Label(name)
             }
-            K::Class
-            | K::Interface
-            | K::Trait
-            | K::Enum
-            | K::Namespace
-            | K::Use
-            | K::Const
-            | K::Attribute => {
-                self.record(Diagnostic::error(
-                    D::UnsupportedSyntax,
-                    token.span(),
-                    "declarations are scheduled for P09",
-                ))?;
-                self.bump()?;
-                return Err(());
+            K::Class | K::Interface | K::Trait | K::Enum | K::Abstract | K::Final | K::Readonly
+                if token.kind() != K::Readonly || self.ahead(1)? != K::LeftParen =>
+            {
+                StmtKind::Class(self.class_declaration(Vec::new(), false)?.0)
             }
+            K::Namespace | K::Use | K::Const => {
+                if self.block_depth > 0 {
+                    self.record(Diagnostic::error(
+                        D::InvalidContext,
+                        token.span(),
+                        "declaration requires top-level scope",
+                    ))?;
+                }
+                match token.kind() {
+                    K::Namespace => self.namespace_statement()?,
+                    K::Use => self.use_statement()?,
+                    _ => self.constants_statement(
+                        Vec::new(),
+                        crate::ast::Modifiers::default(),
+                        false,
+                    )?,
+                }
+            }
+            K::Attribute => self.attributed_statement()?,
             _ => {
                 let expr = self.expression(0)?;
                 self.terminate()?;
@@ -543,6 +564,15 @@ impl Parser {
                     | K::QuotedString
                     | K::Echo
                     | K::Return
+                    | K::Use
+                    | K::Namespace
+                    | K::Const
+                    | K::Class
+                    | K::Interface
+                    | K::Trait
+                    | K::Enum
+                    | K::Function
+                    | K::Attribute
                     | K::RightBrace
                     | K::Eof
             ) {

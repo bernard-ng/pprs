@@ -1,8 +1,10 @@
-//! Typed AST for the expression parsing slice. Callable/declaration nodes arrive later.
+//! Typed PHP syntax for expressions, statements, callables and declarations.
 //!
 //! Children are owned. An absent optional child differs from an empty list and
 //! from an explicit error expression. Raw spelling is obtained from node origins.
 
+mod declarations;
+pub use declarations::*;
 mod procedural;
 pub use procedural::*;
 
@@ -488,6 +490,8 @@ pub struct Expr {
 #[derive(Debug, Clone, PartialEq)]
 #[non_exhaustive]
 pub enum ExprKind {
+    /// Anonymous class construction.
+    NewAnonymous(Box<AnonymousClass>),
     /// Signed 64-bit PHP integer model, independent of pointer width. A lexical
     /// sign remains a separate operator when the grammar treats it as syntax.
     Integer {
@@ -707,6 +711,24 @@ pub struct Stmt {
 #[derive(Debug, Clone, PartialEq)]
 #[non_exhaustive]
 pub enum StmtKind {
+    /// Namespace declaration and grouped body.
+    Namespace(Box<Namespace>),
+    /// Simple or grouped imports.
+    Use(Box<UseStatement>),
+    /// Global constant declaration.
+    Constants(Box<Constants>),
+    /// Class, interface, trait or enum declaration.
+    Class(Box<ClassDeclaration>),
+    /// Class constant declaration.
+    ClassConstants(Box<Constants>),
+    /// Class method.
+    Method(Box<Method>),
+    /// Class property declaration.
+    Property(Box<Property>),
+    /// Trait imports and adaptations.
+    TraitUse(Box<TraitUse>),
+    /// Enum case.
+    EnumCase(Box<EnumCase>),
     /// Expression followed by statement termination.
     Expression(Expr),
     /// Empty statement or comment-carrying no-op.

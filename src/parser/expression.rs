@@ -66,7 +66,7 @@ impl Parser {
                 let right = self.expression(if by_ref { 80 } else { 24 })?;
                 if by_ref
                     && !self.writable(&right, false)
-                    && !matches!(right.kind, ExprKind::New { .. })
+                    && !matches!(right.kind, ExprKind::New { .. } | ExprKind::NewAnonymous(_))
                 {
                     self.error_meta(
                         D::InvalidContext,
@@ -74,7 +74,8 @@ impl Parser {
                         "reference requires a variable",
                     )?;
                 }
-                if by_ref && matches!(right.kind, ExprKind::New { .. }) {
+                if by_ref && matches!(right.kind, ExprKind::New { .. } | ExprKind::NewAnonymous(_))
+                {
                     self.error_meta(
                         D::InvalidContext,
                         &right.meta,
@@ -175,6 +176,11 @@ impl Parser {
             K::QuotedString => self.quoted_literal(start, token),
             K::DoubleQuote | K::Backtick | K::StartHeredoc => self.string_expression(),
             K::Variable | K::Dollar => self.variable(),
+            K::Attribute => {
+                let start = self.peek()?.0;
+                let attributes = self.attributes()?;
+                self.callable_expression_with(attributes, start)
+            }
             K::Function | K::Fn => self.callable_expression(),
             K::Static if matches!(self.ahead(1)?, K::Function | K::Fn) => {
                 self.callable_expression()
@@ -310,6 +316,23 @@ impl Parser {
 
     fn new_expression(&mut self, start: usize) -> PResult<Box<Expr>> {
         self.bump()?;
+        if matches!(
+            self.kind()?,
+            K::Class | K::Attribute | K::Readonly | K::Abstract | K::Final
+        ) {
+            let at = self.peek()?.0;
+            let attributes = self.attributes()?;
+            let (declaration, args) = self.class_declaration(attributes, true)?;
+            self.alloc()?;
+            return self.make(
+                start,
+                ExprKind::NewAnonymous(Box::new(crate::ast::AnonymousClass {
+                    meta: self.meta(at),
+                    declaration,
+                    args,
+                })),
+            );
+        }
         let class = self.class_target()?;
         let args = if self.kind()? == K::LeftParen {
             self.arguments()?
@@ -587,7 +610,7 @@ impl Parser {
             ExprKind::String { kind, .. } | ExprKind::Interpolated { kind, .. } => {
                 matches!(kind, StringKind::SingleQuoted | StringKind::DoubleQuoted)
             }
-            ExprKind::Array { .. } => true,
+            ExprKind::Array { .. } | ExprKind::NewAnonymous(_) => true,
             ExprKind::ClassConst { .. } => next != K::LeftParen,
             ExprKind::New { class, .. } => {
                 let class_meta = match class {
@@ -755,7 +778,7 @@ impl Parser {
         self.expect(close)?;
         self.make(start, ExprKind::ArrayDim { array: left, dim })
     }
-    fn arguments(&mut self) -> PResult<Vec<Argument>> {
+    pub(super) fn arguments(&mut self) -> PResult<Vec<Argument>> {
         self.expect(K::LeftParen)?;
         let mut args = Vec::new();
         while self.kind()? != K::RightParen && self.kind()? != K::Eof {
@@ -994,7 +1017,7 @@ impl Parser {
         }
     }
 }
-fn is_identifier(bytes: &[u8]) -> bool {
+pub(super) fn is_identifier(bytes: &[u8]) -> bool {
     bytes
         .first()
         .is_some_and(|b| b.is_ascii_alphabetic() || *b == b'_' || *b >= 128)

@@ -1,0 +1,41 @@
+{
+  "ast": [
+    {
+      "fields": {
+        "prefix": {
+          "fields": {
+            "name": {
+              "bytes": "466f6f"
+            }
+          },
+          "kind": "Name"
+        },
+        "type": {
+          "integer": "0"
+        },
+        "uses": [
+          {
+            "fields": {
+              "alias": null,
+              "name": {
+                "fields": {
+                  "name": {
+                    "bytes": "426172"
+                  }
+                },
+                "kind": "Name"
+              },
+              "type": {
+                "integer": "1"
+              }
+            },
+            "kind": "UseItem"
+          }
+        ]
+      },
+      "kind": "Stmt_GroupUse"
+    }
+  ],
+  "status": "recovered",
+  "target": "8.4"
+}

@@ -337,7 +337,6 @@ fn invalid_grammar_contexts_cannot_be_clean() {
         "f(1: 1);",
         "1 = 2;",
         "++1;",
-        "new class {};",
     ] {
         let input = format!("<?php {source} echo 42;");
         let result = pprs::parse(&input, ParseOptions::default()).unwrap();

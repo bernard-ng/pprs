@@ -3,8 +3,8 @@ use super::{PResult, Parser};
 use crate::{
     PhpVersion,
     ast::{
-        ArrowFunction, Closure, ClosureUse, Expr, ExprKind, Function, Identifier, Name, Parameter,
-        Signature, StmtKind, Type,
+        ArrowFunction, AttributeGroup, Closure, ClosureUse, Expr, ExprKind, Function, Identifier,
+        Name, Parameter, Signature, StmtKind, Type,
     },
     diagnostic::{Diagnostic, DiagnosticCode as D},
     token::TokenKind as K,
@@ -42,7 +42,10 @@ impl Parser {
         }
         Ok(())
     }
-    pub(super) fn function_statement(&mut self) -> PResult<StmtKind> {
+    pub(super) fn function_statement(
+        &mut self,
+        attributes: Vec<AttributeGroup>,
+    ) -> PResult<StmtKind> {
         self.bump()?;
         let by_ref = self.eat(K::Ampersand)?;
         let (at, token) = self.peek()?;
@@ -57,6 +60,7 @@ impl Parser {
         let return_type = self.return_type()?;
         let body = self.callable_body()?;
         Ok(StmtKind::Function(Box::new(Function {
+            attributes,
             name,
             signature: Signature {
                 by_ref,
@@ -68,7 +72,23 @@ impl Parser {
     }
     pub(super) fn callable_expression(&mut self) -> PResult<Box<Expr>> {
         let start = self.peek()?.0;
+        self.callable_expression_with(Vec::new(), start)
+    }
+    pub(super) fn callable_expression_with(
+        &mut self,
+        attributes: Vec<AttributeGroup>,
+        start: usize,
+    ) -> PResult<Box<Expr>> {
         let is_static = self.eat(K::Static)?;
+        if !matches!(self.kind()?, K::Function | K::Fn) {
+            let (_, token) = self.peek()?;
+            self.record(Diagnostic::error(
+                D::UnexpectedToken,
+                token.span(),
+                "attributes require a declaration or callable",
+            ))?;
+            return Err(());
+        }
         let (_, token) = self.bump()?;
         let arrow = token.kind() == K::Fn;
         let by_ref = self.eat(K::Ampersand)?;
@@ -107,6 +127,7 @@ impl Parser {
             self.make(
                 start,
                 ExprKind::ArrowFunction(Box::new(ArrowFunction {
+                    attributes,
                     is_static,
                     signature,
                     expr: result?,
@@ -117,6 +138,7 @@ impl Parser {
             self.make(
                 start,
                 ExprKind::Closure(Box::new(Closure {
+                    attributes,
                     is_static,
                     signature,
                     uses,
@@ -125,7 +147,7 @@ impl Parser {
             )
         }
     }
-    fn callable_body(&mut self) -> PResult<Vec<crate::ast::Stmt>> {
+    pub(super) fn callable_body(&mut self) -> PResult<Vec<crate::ast::Stmt>> {
         if self.kind()? == K::LeftBrace {
             self.braced_body()
         } else {
@@ -139,7 +161,7 @@ impl Parser {
             Ok(Vec::new())
         }
     }
-    fn parameters(&mut self) -> PResult<Vec<Parameter>> {
+    pub(super) fn parameters(&mut self) -> PResult<Vec<Parameter>> {
         self.expect(K::LeftParen)?;
         let mut params = Vec::new();
         while !matches!(self.kind()?, K::RightParen | K::Eof) {
@@ -172,6 +194,8 @@ impl Parser {
     }
     fn parameter(&mut self) -> PResult<Parameter> {
         let start = self.peek()?.0;
+        let attributes = self.attributes()?;
+        let flags = self.modifiers(super::declarations::ModifierMode::Parameter)?;
         let ty = if matches!(self.kind()?, K::Ampersand | K::Ellipsis | K::Variable) {
             None
         } else {
@@ -195,6 +219,11 @@ impl Parser {
         } else {
             None
         };
+        let hooks = if self.kind()? == K::LeftBrace {
+            self.property_hooks()?
+        } else {
+            Vec::new()
+        };
         if variadic {
             if let Some(value) = &default {
                 self.error_meta(
@@ -215,6 +244,9 @@ impl Parser {
         }
         self.alloc()?;
         Ok(Parameter {
+            attributes,
+            flags,
+            hooks,
             meta: self.meta(start),
             variable,
             ty,
@@ -223,7 +255,7 @@ impl Parser {
             default,
         })
     }
-    fn return_type(&mut self) -> PResult<Option<Type>> {
+    pub(super) fn return_type(&mut self) -> PResult<Option<Type>> {
         if self.eat(K::Colon)? {
             Ok(Some(self.parse_type(true)?))
         } else {
@@ -329,7 +361,7 @@ impl Parser {
             false,
         ))
     }
-    fn atomic_type(&mut self, allow_static: bool) -> PResult<Type> {
+    pub(super) fn atomic_type(&mut self, allow_static: bool) -> PResult<Type> {
         let (start, token) = self.peek()?;
         if token.kind() == K::Static && allow_static {
             self.bump()?;

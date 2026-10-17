@@ -1,10 +1,11 @@
-//! Byte-preserving PHP 7.0–8.4 parsing, with expressions, statements and callables.
+//! Byte-preserving PHP 7.0–8.4 parsing, with owned declaration and expression ASTs.
 //!
 //! [`lex`] and [`lex_source`] implement PHP lexical modes and file boundaries.
 //! [`literal`] decodes byte strings and numeric values. Raw halt tails require
 //! parser authorization; standalone lexing keeps scanning ordinary PHP tokens.
 //! [`parse`], [`parse_source`] and [`parse_strict`] return owned syntax and diagnostics.
-//! Namespaces, classes, members and attributes remain later implementation phases.
+//! Namespaces, declarations, attributes and PHP 8.4 property hooks are implemented.
+//! Version/source fidelity and broad diagnostic compatibility remain under development.
 //! Strict completion rejects recovery, errors and resource aborts.
 //!
 //! ```
@@ -26,6 +27,19 @@
 //! let StmtKind::Function(function) = &program.statements[0].kind else { panic!() };
 //! assert_eq!(function.signature.params.len(), 2);
 //! assert!(matches!(function.signature.return_type, Some(Type::Builtin(_))));
+//! # Ok::<(), pprs::StrictError>(())
+//! ```
+//!
+//! ```
+//! use pprs::{ast::{StmtKind, Modifiers}, parse_strict, ParseOptions};
+//! let file = parse_strict(
+//!     "<?php class User { public private(set) string $name { get => 'Ada'; } }",
+//!     ParseOptions::default(),
+//! )?;
+//! let StmtKind::Class(class) = &file.result().program().unwrap().statements[0].kind else { panic!() };
+//! let StmtKind::Property(property) = &class.members[0].kind else { panic!() };
+//! assert!(property.flags.contains(Modifiers::PRIVATE_SET));
+//! assert_eq!(property.hooks.len(), 1);
 //! # Ok::<(), pprs::StrictError>(())
 //! ```
 //!

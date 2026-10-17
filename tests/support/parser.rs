@@ -92,7 +92,92 @@ fn ty(value: &Type) -> Value {
     }
 }
 fn params(s: &Signature) -> Vec<Value> {
-    s.params.iter().map(|p|node("Param",json!({"attrGroups":[],"flags":integer(0),"type":p.ty.as_ref().map(ty),"byRef":p.by_ref,"variadic":p.variadic,"var":expr(&p.variable),"default":p.default.as_ref().map(|v|expr(v)),"hooks":[]}))).collect()
+    parameters(&s.params)
+}
+fn parameters(values: &[Parameter]) -> Vec<Value> {
+    values.iter().map(|p|node("Param",json!({"attrGroups":attributes(&p.attributes),"flags":integer(i64::from(p.flags.0)),"type":p.ty.as_ref().map(ty),"byRef":p.by_ref,"variadic":p.variadic,"var":expr(&p.variable),"default":p.default.as_ref().map(|v|expr(v)),"hooks":p.hooks.iter().map(hook).collect::<Vec<_>>()}))).collect()
+}
+fn attributes(values: &[AttributeGroup]) -> Vec<Value> {
+    values.iter().map(|g|node("AttributeGroup",json!({"attrs":g.attributes.iter().map(|a|node("Attribute",json!({"name":name(&a.name),"args":a.args.iter().map(arg).collect::<Vec<_>>()}))).collect::<Vec<_>>()}))).collect()
+}
+fn hook(h: &PropertyHook) -> Value {
+    let body = match &h.body {
+        HookBody::Abstract => Value::Null,
+        HookBody::Block(s) => json!(statements(s)),
+        HookBody::Expression(e) => expr(e),
+    };
+    node(
+        "PropertyHook",
+        json!({"attrGroups":attributes(&h.attributes),"flags":integer(i64::from(h.flags.0)),"byRef":h.by_ref,"name":identifier(&h.name,false),"params":parameters(&h.params),"body":body}),
+    )
+}
+fn class(c: &ClassDeclaration) -> Value {
+    let mut fields = json!({"attrGroups":attributes(&c.attributes),"name":c.name.as_ref().map(|n|identifier(n,false)),"stmts":statements(&c.members)});
+    let kind = match c.kind {
+        ClassKind::Class => {
+            fields["flags"] = integer(i64::from(c.flags.0));
+            fields["extends"] = c.extends.first().map_or(Value::Null, name);
+            fields["implements"] = json!(c.implements.iter().map(name).collect::<Vec<_>>());
+            "Stmt_Class"
+        }
+        ClassKind::Interface => {
+            fields["extends"] = json!(c.extends.iter().map(name).collect::<Vec<_>>());
+            "Stmt_Interface"
+        }
+        ClassKind::Trait => "Stmt_Trait",
+        ClassKind::Enum => {
+            fields["scalarType"] = c.scalar_type.as_ref().map_or(Value::Null, ty);
+            fields["implements"] = json!(c.implements.iter().map(name).collect::<Vec<_>>());
+            "Stmt_Enum"
+        }
+    };
+    node(kind, fields)
+}
+fn use_kind(k: UseKind) -> Value {
+    integer(match k {
+        UseKind::Inherited => 0,
+        UseKind::Normal => 1,
+        UseKind::Function => 2,
+        UseKind::Constant => 3,
+    })
+}
+fn adaptation(a: &TraitAdaptation) -> Value {
+    match a {
+        TraitAdaptation::Alias {
+            trait_name,
+            method,
+            modifier,
+            alias,
+            ..
+        } => node(
+            "Stmt_TraitUseAdaptation_Alias",
+            json!({"trait":trait_name.as_ref().map(name),"method":identifier(method,false),"newModifier":modifier.map(|m|integer(i64::from(m.0))),"newName":alias.as_ref().map(|n|identifier(n,false))}),
+        ),
+        TraitAdaptation::Precedence {
+            trait_name,
+            method,
+            instead_of,
+            ..
+        } => node(
+            "Stmt_TraitUseAdaptation_Precedence",
+            json!({"trait":name(trait_name),"method":identifier(method,false),"insteadof":instead_of.iter().map(name).collect::<Vec<_>>()}),
+        ),
+    }
+}
+fn constants(c: &Constants, class: bool) -> Value {
+    let mut fields = json!({"attrGroups":attributes(&c.attributes),"consts":c.constants.iter().map(|c|node("Const",json!({"name":identifier(&c.name,false),"value":expr(&c.value)}))).collect::<Vec<_>>()});
+    if class {
+        fields["flags"] = integer(i64::from(c.flags.0));
+        fields["type"] = c.ty.as_ref().map_or(Value::Null, ty);
+    }
+    node(
+        if class {
+            "Stmt_ClassConst"
+        } else {
+            "Stmt_Const"
+        },
+        fields,
+    )
 }
 fn binary(op: BinaryOp) -> &'static str {
     match op {
@@ -151,13 +236,17 @@ fn unary(op: UnaryOp) -> &'static str {
 )]
 pub fn expr(value: &Expr) -> Value {
     match &value.kind {
+        ExprKind::NewAnonymous(c) => node(
+            "Expr_New",
+            json!({"class":class(&c.declaration),"args":c.args.iter().map(arg).collect::<Vec<_>>()}),
+        ),
         ExprKind::Closure(c) => node(
             "Expr_Closure",
-            json!({"attrGroups":[],"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"uses":c.uses.iter().map(|u|node("ClosureUse",json!({"var":expr(&u.variable),"byRef":u.by_ref}))).collect::<Vec<_>>(),"returnType":c.signature.return_type.as_ref().map(ty),"stmts":statements(&c.body)}),
+            json!({"attrGroups":attributes(&c.attributes),"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"uses":c.uses.iter().map(|u|node("ClosureUse",json!({"var":expr(&u.variable),"byRef":u.by_ref}))).collect::<Vec<_>>(),"returnType":c.signature.return_type.as_ref().map(ty),"stmts":statements(&c.body)}),
         ),
         ExprKind::ArrowFunction(c) => node(
             "Expr_ArrowFunction",
-            json!({"attrGroups":[],"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"returnType":c.signature.return_type.as_ref().map(ty),"expr":expr(&c.expr)}),
+            json!({"attrGroups":attributes(&c.attributes),"static":c.is_static,"byRef":c.signature.by_ref,"params":params(&c.signature),"returnType":c.signature.return_type.as_ref().map(ty),"expr":expr(&c.expr)}),
         ),
         ExprKind::Integer { value, .. } => node("Scalar_Int", json!({"value":integer(*value)})),
         ExprKind::Float(value) => node(
@@ -325,6 +414,18 @@ fn statements(stmts: &[Stmt]) -> Vec<Value> {
     let mut out = Vec::new();
     for stmt in stmts {
         out.push(match &stmt.kind {
+            StmtKind::Namespace(n)=>node("Stmt_Namespace",json!({"name":n.name.as_ref().map(name),"stmts":n.body.as_ref().map(|b|statements(b))})),
+            StmtKind::Use(u)=>{
+                let mut fields=json!({"type":use_kind(u.kind),"uses":u.items.iter().map(|u|node("UseItem",json!({"type":use_kind(u.kind),"name":name(&u.name),"alias":u.alias.as_ref().map(|a|identifier(a,false))}))).collect::<Vec<_>>()});
+                if let Some(prefix)=&u.prefix {fields["prefix"]=name(prefix);}
+                node(if u.prefix.is_some(){"Stmt_GroupUse"}else{"Stmt_Use"},fields)
+            },
+            StmtKind::Constants(c)=>constants(c,false), StmtKind::ClassConstants(c)=>constants(c,true),
+            StmtKind::Class(c)=>class(c),
+            StmtKind::Method(m)=>node("Stmt_ClassMethod",json!({"attrGroups":attributes(&m.attributes),"flags":integer(i64::from(m.flags.0)),"byRef":m.signature.by_ref,"name":identifier(&m.name,false),"params":params(&m.signature),"returnType":m.signature.return_type.as_ref().map(ty),"stmts":m.body.as_ref().map(|b|statements(b))})),
+            StmtKind::Property(p)=>node("Stmt_Property",json!({"attrGroups":attributes(&p.attributes),"flags":integer(i64::from(p.flags.0)),"type":p.ty.as_ref().map(ty),"props":p.items.iter().map(|p|node("PropertyItem",json!({"name":identifier(&p.name,true),"default":p.default.as_ref().map(|e|expr(e))}))).collect::<Vec<_>>(),"hooks":p.hooks.iter().map(hook).collect::<Vec<_>>()})),
+            StmtKind::TraitUse(t)=>node("Stmt_TraitUse",json!({"traits":t.traits.iter().map(name).collect::<Vec<_>>(),"adaptations":t.adaptations.iter().map(adaptation).collect::<Vec<_>>()})),
+            StmtKind::EnumCase(c)=>node("Stmt_EnumCase",json!({"attrGroups":attributes(&c.attributes),"name":identifier(&c.name,false),"expr":c.value.as_ref().map(|e|expr(e))})),
             StmtKind::Expression(value) => node("Stmt_Expression", json!({"expr":expr(value)})),
             StmtKind::Nop => node("Stmt_Nop", json!({})),
             StmtKind::InlineHtml(value) => node("Stmt_InlineHTML", json!({"value":bytes(value)})),
@@ -339,7 +440,7 @@ fn statements(stmts: &[Stmt]) -> Vec<Value> {
             StmtKind::HaltCompiler(value) => {
                 node("Stmt_HaltCompiler", json!({"remaining":bytes(value)}))
             }
-            StmtKind::Function(f) => node("Stmt_Function",json!({"attrGroups":[],"byRef":f.signature.by_ref,"name":identifier(&f.name,false),"params":params(&f.signature),"returnType":f.signature.return_type.as_ref().map(ty),"stmts":statements(&f.body)})),
+            StmtKind::Function(f) => node("Stmt_Function",json!({"attrGroups":attributes(&f.attributes),"byRef":f.signature.by_ref,"name":identifier(&f.name,false),"params":params(&f.signature),"returnType":f.signature.return_type.as_ref().map(ty),"stmts":statements(&f.body)})),
             StmtKind::If(s) => node("Stmt_If",json!({"cond":expr(&s.condition),"stmts":statements(&s.body),"elseifs":s.elseifs.iter().map(|b|node("Stmt_ElseIf",json!({"cond":expr(&b.condition),"stmts":statements(&b.body)}))).collect::<Vec<_>>(),"else":s.otherwise.as_ref().map(|b|node("Stmt_Else",json!({"stmts":statements(&b.body)})))})),
             StmtKind::While(s) => node("Stmt_While",json!({"cond":expr(&s.condition),"stmts":statements(&s.body)})),
             StmtKind::Do(s) => node("Stmt_Do",json!({"cond":expr(&s.condition),"stmts":statements(&s.body)})),

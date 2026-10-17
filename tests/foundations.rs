@@ -407,7 +407,7 @@ fn live_node_ledger_preserves_inventory_and_requires_evidence_for_parser_progres
         } else {
             assert!(["pending", "slice"].contains(&row["parser_status"].as_str().unwrap()));
             if row["parser_status"] == "slice" {
-                assert!(["P07", "P08"].contains(&row["parser_phase"].as_str().unwrap()));
+                assert!(["P07", "P08", "P09"].contains(&row["parser_phase"].as_str().unwrap()));
                 for path in row["evidence"].as_array().unwrap() {
                     assert!(
                         std::path::Path::new(env!("CARGO_MANIFEST_DIR"))

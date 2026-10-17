@@ -1,5 +1,5 @@
 //! Callable signatures and procedural statement payloads.
-use super::{Expr, Identifier, Name, NodeMeta, Stmt};
+use super::{AttributeGroup, Expr, Identifier, Modifiers, Name, NodeMeta, PropertyHook, Stmt};
 
 /// A syntactic PHP type, without compiler-level type resolution.
 #[derive(Debug, Clone, PartialEq)]
@@ -56,6 +56,12 @@ pub struct Signature {
 /// A parameter, including an explicit error expression when its variable is missing.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Parameter {
+    /// Promotion modifiers.
+    pub flags: Modifiers,
+    /// Promoted property hooks.
+    pub hooks: Vec<PropertyHook>,
+    /// Attribute groups.
+    pub attributes: Vec<AttributeGroup>,
     /// Source origin.
     pub meta: NodeMeta,
     /// Simple variable or recovery hole.
@@ -72,6 +78,8 @@ pub struct Parameter {
 /// Named function declaration.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Function {
+    /// Attribute groups.
+    pub attributes: Vec<AttributeGroup>,
     /// Declared name.
     pub name: Identifier,
     /// Signature.
@@ -92,6 +100,8 @@ pub struct ClosureUse {
 /// Anonymous function expression.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Closure {
+    /// Attribute groups.
+    pub attributes: Vec<AttributeGroup>,
     /// Static closure.
     pub is_static: bool,
     /// Signature.
@@ -104,6 +114,8 @@ pub struct Closure {
 /// Arrow-function expression with implicit captures.
 #[derive(Debug, Clone, PartialEq)]
 pub struct ArrowFunction {
+    /// Attribute groups.
+    pub attributes: Vec<AttributeGroup>,
     /// Static arrow function.
     pub is_static: bool,
     /// Signature.
