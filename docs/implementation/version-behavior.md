@@ -1,6 +1,6 @@
 # Implemented PHP version behavior
 
-P10 audit, 2026-10-17. The fixed default is **8.4**; accepted targets are exactly 7.0–7.4 and 8.0–8.4. This matrix describes the frozen PHP 8.5.6-hosted nikic reference's parser behavior, not PHP compiler validation. Evidence is in the [222-probe oracle](../../tests/fixtures/fidelity/fidelity.json), [core channel ledger](../../tests/fixtures/coverage.json), and earlier lexical/literal/declaration oracles.
+Version and source fidelity audit, 2026-10-17. The fixed default is **8.4**; accepted targets are exactly 7.0–7.4 and 8.0–8.4. This matrix describes the frozen PHP 8.5.6-hosted nikic reference's parser behavior, not PHP compiler validation. Evidence is in the [222-probe oracle](../../tests/fixtures/fidelity/fidelity.json), [core channel ledger](../../tests/fixtures/coverage.json), and earlier lexical/literal/declaration oracles.
 
 | Transition | Implemented target behavior | Implementation owner / probe |
 | --- | --- | --- |
@@ -12,11 +12,11 @@ P10 audit, 2026-10-17. The fixed default is **8.4**; accepted targets are exactl
 | 8.0 | Concatenation binds below addition/shifts; curly offsets leave the grammar; `match` becomes a keyword; `mixed`, `null`, `false` become builtins; property-hook grammar uses the PHP 8 family | `parser/operators.rs::binary`, `parser/expression.rs::{expression_inner,class_target_inner}`, `lexer/keywords.rs`, `parser/callables.rs`, `parser/declarations.rs::property_hooks`; `precedence`, `curly-offset`, `match-keyword`, `builtin-types`, `property-keyword` |
 | 8.1 | `enum` and `readonly` token emulation changes; `never` becomes builtin | `lexer/keywords.rs`, `parser/callables.rs`; `enum-keyword`, `readonly-keyword`, `builtin-types` |
 | 8.2 | `true` becomes builtin | `parser/callables.rs`; `builtin-types/8.1`, `/8.2` |
-| 8.3 | No additional parser target branch; typed class constants follow reference grammar permissiveness | P09 declaration/type probes and core typed-constant fixtures |
-| 8.4 | `__PROPERTY__` keyword and combined asymmetric-visibility tokens become available | `lexer/keywords.rs`, `lexer/scanner.rs`; `property-keyword` and P05 lexical oracle |
+| 8.3 | No additional parser target branch; typed class constants follow reference grammar permissiveness | declaration and type probes and core typed-constant fixtures |
+| 8.4 | `__PROPERTY__` keyword and combined asymmetric-visibility tokens become available | `lexer/keywords.rs`, `lexer/scanner.rs`; `property-keyword` and regular-lexer oracle |
 | All targets | Left-associative full ternary and short ternary, coalesce associativity, canonical builtin type spelling, attributes/nullsafe tokens, numeric separators/explicit octal, DNF types and new dereferences follow the reference | `precedence`, `attributes`, `nullsafe`, `unicode-numbers`, `union-intersection`, `new-deref` |
 
-The table accounts for every explicit version comparison in production parser/lexer code. Other uses merely pass the selected version into these policies. No new parser-version branch was required by the P10 probes. Future changes to version comparisons must update this table and add a boundary probe.
+The table accounts for every explicit version comparison in production parser/lexer code. Other uses merely pass the selected version into these policies. No new parser-version branch was required by these version probes. Future changes to version comparisons must update this table and add a boundary probe.
 
 Several upstream `PhpVersion` helpers are used by printers, not parser acceptance. `supportsShortArrayDestructuring`, `supportsFlexibleHeredoc`, `supportsTrailingCommaInParamList`, `supportsAttributes`, `supportsNewDereferenceWithoutParentheses` and `allowsDelInIdentifiers` must not become invented parser rejection gates. In particular, the pinned host rejects DEL lexically at every target, including 7.0; ten probes record that behavior and its recovery differences. Arbitrary high bytes continue to be preserved without UTF-8 conversion.
 
@@ -34,6 +34,6 @@ Several upstream `PhpVersion` helpers are used by printers, not parser acceptanc
 
 ## Source fidelity support
 
-All 188 valid core parser fixtures and all 132 valid in-scope new probes have exact structure/value/comment/span/spelling matches. No valid-input difference is exempted. The source projection covers every AST family represented by P07–P09, including auxiliary types, arguments, items, branches, attributes and hooks. Original source bytes retain spelling even when semantic values are canonicalized or decoded. `origin()` excludes grouping parentheses from the semantic child; `enclosing_origin()` retains the outer grouped form.
+All 188 valid core parser fixtures and all 132 valid in-scope new probes have exact structure/value/comment/span/spelling matches. No valid-input difference is exempted. The source projection covers every AST family represented by expression, statement and declaration parsing, including auxiliary types, arguments, items, branches, attributes and hooks. Original source bytes retain spelling even when semantic values are canonicalized or decoded. `origin()` excludes grouping parentheses from the semantic child; `enclosing_origin()` retains the outer grouped form.
 
-P11 closes malformed-input recovery and diagnostic review with exact, individually explained expectations; see [decision 0010](../decisions/0010-diagnostics-and-recovery.md). Instrumented robustness campaigns and performance baselines remain P12. The frozen P00 feature inventory remains historical; this document and the live coverage report describe implementation status.
+The [diagnostic and recovery decision](../decisions/0010-diagnostics-and-recovery.md) records exact, individually explained expectations for malformed input. The [robustness report](../benchmarks/robustness-performance.md) records instrumented campaigns and performance baselines. The frozen reference baseline feature inventory remains historical; this document and the live coverage report describe implementation status.

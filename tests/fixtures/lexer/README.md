@@ -1,6 +1,6 @@
-# P05/P06 lexical oracle
+# Lexical oracle
 
-`regular.json` contains 104 observations and `short-tags.json` contains five. Inputs come from [tools/lexer/inputs.json](../../../tools/lexer/inputs.json), shaped by the frozen `LexerTest.php`, `Lexer/EmulativeTest.php`, `Lexer.php`, keyword/version emulators and P02 edge cases. They are project-authored probes, not copied upstream test definitions.
+`regular.json` contains 104 observations and `short-tags.json` contains five. Inputs come from [tools/lexer/inputs.json](../../../tools/lexer/inputs.json), shaped by the frozen `LexerTest.php`, `Lexer/EmulativeTest.php`, `Lexer.php`, keyword/version emulators and reference corpus edge cases. They are project-authored probes, not copied upstream test definitions.
 
 The exporter calls the **pinned Emulative lexer only**, never PHP evaluation or the parser. It records token names, bytes, half-open spans, PPRS coordinates and lexical errors. Provenance includes the reference commit, PHP 8.5.6 / 64-bit profile, explicit short-tag setting and hashes of exporter inputs/helpers. Ordinary Rust tests verify those hashes and source definitions without PHP.
 
@@ -13,9 +13,9 @@ php -n -d short_open_tag=1 tools/lexer/export.php --short-tags --check
 
 Use `--write` in place of `--check` only for reviewed fixture changes. Updating these snapshots does not modify compatibility coverage. The public Rust-to-oracle mapping is test-only in `tests/support/lexer.rs` and `token_names.rs`; a single public ampersand kind projects to the reference's contextual split.
 
-P06 adds 34 string/interpolation/doc-string probes to the original 75. Zero-byte native string-offset transition tokens remain in these observations; the dedicated test explicitly omits them when projecting to PPRS’s positive-width token contract. Additional PPRS unfinished-string diagnostics are asserted separately. See [decision 0005](../../../docs/decisions/0005-strings-literals-and-halt.md).
+The string-mode tests add 34 string/interpolation/doc-string probes to the original 75. Zero-byte native string-offset transition tokens remain in these observations; the dedicated test explicitly omits them when projecting to PPRS's positive-width token contract. Additional PPRS unfinished-string diagnostics are asserted separately. See [decision 0005](../../../docs/decisions/0005-strings-literals-and-halt.md).
 
-The P02 token gate separately enforces 296 passing channels and four exact intentional halt differences. For a read-only list of complete token streams matching their recorded policy:
+The reference corpus token gate separately enforces 296 passing channels and four exact intentional halt differences. For a read-only list of complete token streams matching their recorded policy:
 
 ```sh
 PPRS_REPORT_TOKENS=1 cargo test --locked --test lexer complete_corpus_tokens_match_recorded_policy -- --nocapture

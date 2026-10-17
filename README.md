@@ -1,4 +1,4 @@
-# PPRS
+# PPRS : PHP Parser written in Rust
 
 A Rust library for parsing PHP 7.0 through 8.4. PPRS returns an owned AST, preserves
 source bytes and comments, and reports errors with byte spans. It uses
@@ -59,7 +59,7 @@ Malformed-input trees and diagnostic wording can differ from the reference.
 
 The [compatibility records](docs/compatibility/README.md) describe the supported
 scope. The [test corpus](tests/fixtures/README.md) records exact comparisons and
-reviewed differences. [Performance measurements](docs/benchmarks/p12.md) include
+reviewed differences. [Performance measurements](docs/benchmarks/robustness-performance.md) include
 allocation and memory behavior. Resource limits are not a process-memory quota.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for checks and reference regeneration.

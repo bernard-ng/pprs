@@ -1,10 +1,10 @@
-# P03 hard cases
+# Parser strategy test cases
 
-Seventeen project-authored inputs exercise the selected lexer/parser strategy. Definitions and frozen upstream production links are in `tools/strategy/inputs.json`; `cases.json` retains the byte-encoded inputs and P02-schema oracle observations. The reference commit, runtime version and input-file hash are recorded. The one known malformed-halt assertion is explicit, not an omitted case.
+Seventeen project-authored inputs exercise the selected lexer/parser strategy. Definitions and frozen upstream production links are in `tools/strategy/inputs.json`; `cases.json` retains the byte-encoded inputs and reference-schema oracle observations. The reference commit, runtime version and input-file hash are recorded. The one known malformed-halt assertion is explicit, not an omitted case.
 
-These are architecture probes. P02's 313-case corpus, comparison states and phase report remain unchanged. No passing prototype case counts as implemented PHP support.
+These are architecture probes. The 313-case reference corpus, comparison states and coverage report remain unchanged. No passing prototype case counts as implemented PHP support.
 
-Run `cargo test --locked --test strategy` without PHP or `.references`. The suite checks clean projected reference shapes, explicit malformed-input recovery, complete byte ranges, interpolation/heredoc boundaries, all 495 input prefixes, arbitrary byte values, reference-marker trivia and depth-limit termination. The projection intentionally treats literals/templates/names as atoms; full AST values and tokenization are later-phase obligations.
+Run `cargo test --locked --test strategy` without PHP or `.references`. The suite checks clean projected reference shapes, explicit malformed-input recovery, complete byte ranges, interpolation/heredoc boundaries, all 495 input prefixes, arbitrary byte values, reference-marker trivia and depth-limit termination. The projection intentionally treats literals/templates/names as atoms; the production parser and lexer suites check full AST values and tokenization.
 
 Regenerate only with the pinned oracle profile:
 

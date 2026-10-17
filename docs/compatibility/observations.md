@@ -1,4 +1,4 @@
-# P00 observations
+# Reference behavior observations
 
 These are narrowly scoped source inspections/probes, not a PHP-Parser test-suite run.
 
@@ -23,4 +23,4 @@ In contrast, pinned `lib/PhpParser/Token.php::getEndLine()` adds `substr_count(t
 
 Source inspection establishes that the PHP7.4-mode case `parser/expr/partialFunctionApplication.test#1` expects argument-placeholder nodes from experimental PHP8.6 syntax. Similarly, `parser/expr/argumentList.test#1` combines ordinary call forms with PHP8.5 clone-call forms under PHP7.4 mode. These cases are respectively deferred and mixed in the inventory.
 
-The grammar declares ternary with `%left '?' ':'` outside the PHP7/PHP8 conditional blocks. The inspected parser helper contains no non-associative-ternary validation. P00 therefore makes no promise of enforcing PHP8 engine ternary validity through nikic-compatible parsing.
+The grammar declares ternary with `%left '?' ':'` outside the PHP7/PHP8 conditional blocks. The inspected parser helper contains no non-associative-ternary validation. The reference baseline therefore makes no promise of enforcing PHP8 engine ternary validity through nikic-compatible parsing.

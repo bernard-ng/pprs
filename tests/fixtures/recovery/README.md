@@ -1,4 +1,4 @@
-# P11 diagnostics and recovery observations
+# Diagnostics and recovery observations
 
 `recovery.json` preserves 87 focused observations, with source bytes, targets, reasons, frozen-reference identity, PHP 8.5.6/64-bit host metadata and exporter/input hashes. There are 85 successful oracle observations and two explicit reference assertion failures. Ordinary Rust tests need neither PHP nor `.references`.
 
@@ -23,4 +23,4 @@ An explicit development audit writes actual observations without modifying expec
 PPRS_RECOVERY_REPORT=/tmp/pprs-recovery.json cargo test --locked --test recovery export_recovery_audit -- --ignored
 ```
 
-The suite checks strict/recovering equivalence, repeated-call determinism, every focused byte prefix, small budgets, error storms, diagnostic comparison mutations, related locations and survival of following statements/declarations/members. Existing all-core/source/AST invariants and prior randomized regressions continue to run. This is not an instrumented fuzz campaign; that remains P12.
+The suite checks strict/recovering equivalence, repeated-call determinism, every focused byte prefix, small budgets, error storms, diagnostic comparison mutations, related locations and survival of following statements/declarations/members. Existing all-core/source/AST invariants and prior randomized regressions continue to run. Instrumented fuzz campaigns are recorded separately in the [robustness report](../../../docs/benchmarks/robustness-performance.md).

@@ -1,8 +1,8 @@
-# P09 declaration oracle
+# Declaration oracle
 
 `declarations.json` contains 60 exact semantic AST/status observations from frozen PHP-Parser commit `8d2b672aff65a1a4dbf7936cec27d19f51989412`, PHP 8.5.6 and 64-bit integers. The exporter records hashes of its inputs, source, bootstrap and normalizer. Thirty observations cover all ten targets for declaration types/modifiers, namespaces/imports and attributes; thirty cover class/member/trait/enum/hook grammar, parser checks and recovery. Target selection follows reference parser interpretation, not strict historical compiler validation.
 
-The inputs are project-authored. `tests/declarations.rs` verifies exact observations and provenance offline, then checks every byte truncation, small resource budgets, arbitrary declaration tokens, deep nesting, malformed-member recovery, visitor ordering and namespace ranges. Existing P07/P08 oracles remain unchanged. The separate upstream ledger promotes 96 P09 structure channels and pins five recovery differences; no P09 structure obligation remains pending.
+The inputs are project-authored. `tests/declarations.rs` verifies exact observations and provenance offline, then checks every byte truncation, small resource budgets, arbitrary declaration tokens, deep nesting, malformed-member recovery, visitor ordering and namespace ranges. Existing expression and statement oracles remain unchanged. The separate upstream ledger promotes 96 declaration structure channels and pins five recovery differences; no declaration-grammar comparison remains pending.
 
 ```sh
 php -n -d short_open_tag=0 tools/declarations/export.php --write

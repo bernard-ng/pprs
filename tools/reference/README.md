@@ -13,7 +13,7 @@ git clone --no-checkout https://github.com/nikic/PHP-Parser.git .references
 git -C .references checkout --detach 8d2b672aff65a1a4dbf7936cec27d19f51989412
 ```
 
-Keep that checkout clean; do not install a Composer vendor tree there. The oracle needs no third-party PHP packages: an isolated PSR-4 autoloader loads the pinned library and `CodeTestParser`. The small `canonicalize()` helper is attributed to and adapted from upstream `test/bootstrap.php`, avoiding its PHPUnit/Composer bootstrap requirement. All 668 reference-file hashes are verified **before** upstream code is loaded or fixture macros are evaluated. The Python entry point also checks the clean Git commit/tree and P00 inventories.
+Keep that checkout clean; do not install a Composer vendor tree there. The oracle needs no third-party PHP packages: an isolated PSR-4 autoloader loads the pinned library and `CodeTestParser`. The small `canonicalize()` helper is attributed to and adapted from upstream `test/bootstrap.php`, avoiding its PHPUnit/Composer bootstrap requirement. All 668 reference-file hashes are verified **before** upstream code is loaded or fixture macros are evaluated. The Python entry point also checks the clean Git commit/tree and reference baseline inventories.
 
 This invokes the reference parser and trusted fixture macros only. Parsed fixture application code is never executed. No arbitrary fixture path or macro input is accepted by the exporter. `inputs.json` source bytes are parsed, not evaluated.
 
@@ -48,6 +48,6 @@ The importer uses upstream order: canonicalize raw fixture bytes, evaluate trust
 - `test_export.php`: independent expected values for macro expansion order, mode parsing, invalid UTF-8/NUL, integers/floats, comments, empty origins, CR/LF mapping and diagnostic end conventions. Requires the pinned oracle.
 - `test_corpus.py`: offline importer/provenance and coverage negative checks, including missing cases and modified files.
 - `tests/compatibility.rs`: offline Rust corpus reader, byte reconstruction/range invariants, independently specified adapter edge cases, deliberate comparison mutations, and active-state regression gates.
-- `test_verify_p00.py`: immutable P00 metadata regressions.
+- `test_verify_p00.py`: immutable reference baseline metadata regressions.
 
 Regular CI runs the Rust and offline Python layers. Oracle regeneration is an explicit local development check; it is not downloaded or executed during a Cargo build. Host PHP availability does not change parser compatibility states.

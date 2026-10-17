@@ -1,12 +1,12 @@
-# P10 version and source fidelity observations
+# Version and source fidelity observations
 
 `fidelity.json` contains 222 observations from the frozen reference: 177 compatibility/source probes and 45 PHP 8.5/8.6 ceiling probes. Target transitions cover all ten supported minors. Every record retains its input, target, reason and policy, plus AST/status and full normalized metadata. Original raw reference attributes are retained for audit; comparison ignores only that existing provenance field.
 
 `fields.json` is the deterministic `getType()` / `getSubNodeNames()` schema of the pinned node classes. It supplies reference preorder to the independent Rust projection, including auxiliary nodes, without consulting expected observations.
 
-`differences.json` contains 69 individually identified exact observations: 29 historical malformed-input recovery differences and 40 ceiling differences. The test rejects obsolete differences and asserts that every ceiling case fails clean/strict parsing. All 132 clean in-scope probes match the reference exactly. The remaining 21 exact observations include rejected inputs; P11 restored all ten DEL-byte probes to exact source/AST parity. `clone-forms.json` records P10's explicit 8.4-ceiling status correction to the unchanged P07 oracle.
+`differences.json` contains 69 individually identified exact observations: 29 historical malformed-input recovery differences and 40 ceiling differences. The test rejects obsolete differences and asserts that every ceiling case fails clean/strict parsing. All 132 clean in-scope probes match the reference exactly. The remaining 21 exact observations include rejected inputs; the diagnostic and recovery review restored all ten DEL-byte probes to exact source/AST parity. `clone-forms.json` records the explicit PHP 8.4 scope correction to the unchanged expression oracle.
 
-`recovery-review.json` maps the 35 remaining core position-channel exceptions to their reasons and exact files in `../differences`. P11 reviewed these recovery choices and restored three rejected-byte fixtures to exact fidelity. No valid core fixture has a metadata exemption.
+`recovery-review.json` maps the 35 remaining core position-channel exceptions to their reasons and exact files in `../differences`. The diagnostic review checked these recovery choices and restored three rejected-byte fixtures to exact fidelity. No valid core fixture has a metadata exemption.
 
 Regenerate or verify the oracle and node schema, using PHP 8.5.6 and the verified `.references` checkout:
 

@@ -1,6 +1,6 @@
-# P12 robustness and performance baseline
+# Robustness and performance baseline
 
-Measured 2026-10-17 on Apple M5 (10 logical CPUs, 16 GiB RAM), Darwin 27.0.0, aarch64-apple-darwin, Rust 1.99.0 (`b940084d7`, LLVM 23.1.1). This checkpoint builds on `58fbd10`; the raw reports pin the actual measured source files by SHA-256, including the P12 traversal change. The base commit alone does not identify the modified implementation.
+Measured 2026-10-17 on Apple M5 (10 logical CPUs, 16 GiB RAM), Darwin 27.0.0, aarch64-apple-darwin, Rust 1.99.0 (`b940084d7`, LLVM 23.1.1). This checkpoint builds on `58fbd10`; the raw reports pin the actual measured source files by SHA-256, including the traversal buffer reuse change. The base commit alone does not identify the modified implementation.
 
 ## Reproduce and interpret
 
@@ -63,7 +63,7 @@ The newline boundary case retains about 144 MiB of requested heap for a 16 MiB i
 
 ## Optimization evidence
 
-[Before measurements](p12-before.json) retain nine normal-allocator timing samples and independent allocation results from the P11 walker. The input definitions, parse/drop loop and machine are the same. These sequential runs are not randomized experiments; timing deltas are observations. Allocation changes directly reflect reusing the walker's child vector during parser accounting; output and retained result heap remain identical.
+[Before measurements](p12-before.json) retain nine normal-allocator timing samples and independent allocation results from the walker before child-buffer reuse. The input definitions, parse/drop loop and machine are the same. These sequential runs are not randomized experiments; timing deltas are observations. Allocation changes directly reflect reusing the walker's child vector during parser accounting; output and retained result heap remain identical.
 
 | Dataset | Before / after allocations | Before / after median ms | Observed time reduction |
 | --- | ---: | ---: | ---: |

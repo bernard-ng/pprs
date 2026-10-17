@@ -1,6 +1,6 @@
-# P00 behavior decisions
+# Behavior decisions
 
-Status: accepted implementation baseline, 2026-10-16. These decisions define future behavior; no parser is implemented yet. Changes require an explicit decision update and corresponding compatibility tests.
+Accepted 2026-10-16. These decisions set the compatibility contract before implementation began. Changes require a decision update and corresponding compatibility tests.
 
 ## D01 — Library boundary and reference contract
 
@@ -8,7 +8,7 @@ Deliver one Rust library for PHP 7.0–7.4 and 8.0–8.4. Runtime parsing has no
 
 The pinned nikic grammar, actions, AST definitions and parser-local checks are the main compatibility authority. Official PHP documentation supplies language-version context. PHP compiler/runtime validity is a distinct question; no interpreter, semantic/type checker, standard printer or namespace resolver is implied by parsing.
 
-Follow reference meaning rather than PHP implementation details: use typed Rust structures, retain raw origin metadata, and keep framework-specific types private. Complete AST topology can differ where a documented normalization preserves meaning. Parser-framework selection remains P03 work; this decision does not preselect a crate.
+Follow reference meaning rather than PHP implementation details: use typed Rust structures, retain raw origin metadata, and keep framework-specific types private. Complete AST topology can differ where a documented normalization preserves meaning. The [parser strategy study](0002-parser-strategy.md) records the framework selection.
 
 Evidence: upstream `grammar/php.y`, `ParserAbstract.php`, `Node/`, `ParserFactory.php`; [frozen reference](../../reference/README.md).
 
@@ -46,11 +46,11 @@ Convert reference positions at the compatibility boundary:
 
 PPRS line/column accessors use one-based lines and **byte** columns. Recognize LF, CRLF as one break, and lone CR as one break; do not change source bytes. An offset inside a multi-byte line ending remains a byte offset in the preceding line; the next line begins after the complete ending. Unicode/editor-display coordinates belong in adapters.
 
-This deliberately provides a consistent line index where upstream helpers disagree: native tokenization counts lone CR as a new line, while `Token::getEndLine()` counts only LF and `Error` column calculations search LF. The structured oracle should recompute comparable coordinates from source spans under the PPRS rule, preserving raw upstream attributes separately. Add CR-only, CRLF, mixed-line-ending and EOF cases in P04/P02; do not hide byte-span differences as line-normalization differences.
+This deliberately provides a consistent line index where upstream helpers disagree: native tokenization counts lone CR as a new line, while `Token::getEndLine()` counts only LF and `Error` column calculations search LF. The structured oracle should recompute comparable coordinates from source spans under the PPRS rule, preserving raw upstream attributes separately. Add CR-only, CRLF, mixed-line-ending and EOF cases in source-map and reference-export tests; do not hide byte-span differences as line-normalization differences.
 
-Default `short_open_tag=false`; expose an explicit option. `<?=` remains recognized. Do not strip BOM/hashbang/leading HTML bytes. Preserve whitespace/comments and raw `__halt_compiler()` tails; invalid halt syntax/scope cannot silently hide the rest of the input. Parser-aware halt handling remains a P03/P06 implementation decision.
+Default `short_open_tag=false`; expose an explicit option. `<?=` remains recognized. Do not strip BOM/hashbang/leading HTML bytes. Preserve whitespace/comments and raw `__halt_compiler()` tails; invalid halt syntax/scope cannot silently hide the rest of the input. The [string and halt decision](0005-strings-literals-and-halt.md) records parser-aware halt handling.
 
-Evidence: `Token.php`, `Lexer.php`, `Error.php`, `ParserAbstract.php`, byte-string fixtures; the [P00 probe](../compatibility/observations.md).
+Evidence: `Token.php`, `Lexer.php`, `Error.php`, `ParserAbstract.php`, byte-string fixtures; the [reference behavior probe](../compatibility/observations.md).
 
 ## D04 — Numeric interpretation
 
@@ -58,7 +58,7 @@ Use a **64-bit PHP integer model** regardless of the Rust host's pointer width. 
 
 Treat a sign as syntax around a numeric literal where the grammar does so; the spelling of a minimum-value expression is not sufficient reason to fold its unary operation into a literal. Follow upstream special handling for numeric offsets inside interpolation. Malformed octal behavior differs for PHP5 versus PHP7; only PHP7+ target behavior is in scope.
 
-Fixture exchange uses byte-safe values and tagged non-finite floats/large integers. Host PHP word size and version belong in the P02 export profile. A 32-bit PHP interpretation mode, arbitrary-precision arithmetic and constant-expression execution are deferred.
+Fixture exchange uses byte-safe values and tagged non-finite floats/large integers. Host PHP word size and version belong in the reference corpus export profile. A 32-bit PHP interpretation mode, arbitrary-precision arithmetic and constant-expression execution are deferred.
 
 Evidence: `Node/Scalar/Int_.php`, `Float_.php`, `ParserAbstract.php::parseLNumber`/`parseNumString`, `scalar/int.test`, `float.test` and `encapsedNegVarOffset.test`.
 
@@ -70,7 +70,7 @@ Strict parsing succeeds only on clean completion. It preserves diagnostic inform
 
 Use structured lexical, syntax, parser-context and resource-limit diagnostics with byte spans, stable codes and ordered messages. Match the detected problem, useful position and surviving unaffected structure; exact English wording and LR recovery choices inside damaged regions are not public compatibility promises. Every intentional difference receives a focused expectation and explanation.
 
-Every recovery loop must advance, return at a delimiter owned by its caller, or stop under a budget. Introduce finite interim limits for input size, nesting/tree depth, nodes/tokens and diagnostics from P04; select measured defaults in P12. Guard traversal and teardown as well as parser recursion. System-wide allocation failure is not a promised recoverable condition.
+Every recovery loop must advance, return at a delimiter owned by its caller, or stop under a budget. The source and AST contracts define limits for input size, nesting/tree depth, nodes/tokens and diagnostics. The [robustness measurements](0011-robustness-and-performance.md) record the chosen defaults. Guard traversal and teardown as well as parser recursion. System-wide allocation failure is not a promised recoverable condition.
 
 Apply parser-local checks supported by the reference (modifiers, namespace placement, parameters, hooks, destructuring and similar constraints). Do not infer complete class inheritance, constant-expression legality, symbol resolution, type or runtime checking.
 
@@ -80,9 +80,9 @@ Evidence: `ParserAbstract.php`, `ErrorHandler/Collecting.php`, `Expr/Error.php`,
 
 Freeze the Git commit/tree, all tracked bytes and the upstream license. Preserve source path/section IDs before porting any fixture. Treat the 530 cases as a whole-checkout inventory, not the supported parser count.
 
-P00 assigns all 290 parser cases: **277 core, nine deferred, four mixed**. Mixed cases require explicit derived inputs and regenerated expectations in P02; their original expected dump is not an acceptance oracle for a shortened input. All 240 printing cases are separately deferred as product capabilities. The 277 core cases include malformed inputs and deliberately permissive parser behavior, not just valid PHP programs.
+The reference inventory classifies all 290 parser cases: **277 core, nine deferred, four mixed**. Mixed cases require explicit derived inputs and regenerated expectations in the reference corpus; their original expected dump is not an acceptance oracle for a shortened input. All 240 printing cases are separately deferred as product capabilities. The 277 core cases include malformed inputs and deliberately permissive parser behavior, not just valid PHP programs.
 
-Raw-section hashes in the P00 inventory are not canonicalized/macro-expanded source hashes. P02 must use the upstream canonicalize → macro expansion → section parsing order and preserve original modes separately from the explicit in-scope oracle target. Normal Cargo tests consume checked-in exports with no PHP requirement.
+Raw-section hashes in the frozen inventory are not canonicalized/macro-expanded source hashes. The reference exporter must canonicalize input, expand macros and parse sections in the upstream order and preserve original modes separately from the explicit in-scope oracle target. Normal Cargo tests consume checked-in exports with no PHP requirement.
 
 Ordinary clone expressions remain core; expanded clone calls do not. `expr/argumentList.test#1` is mixed even though its mode is PHP7.4. `partialFunctionApplication.test#1` is deferred despite the same old mode. No filename-only or version-tag-only filter can replace classification.
 

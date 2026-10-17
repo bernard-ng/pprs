@@ -1,12 +1,12 @@
 # 0010 — Diagnostics, recovery and parser-local validation
 
-Accepted: 2026-10-17. Supersedes the pending P11 gates in decisions 0006–0009. PHP targets remain 7.0–8.4; the pinned reference and original observations are unchanged.
+Accepted: 2026-10-17. Completes the diagnostic and recovery checks identified in the expression, statement, declaration and source fidelity decisions. PHP targets remain 7.0–8.4; the pinned reference and original observations are unchanged.
 
 ## Compatibility contract
 
 Malformed PHP is an ordinary parse result. Strict parsing preserves the recovering result on failure. A partial or recovered tree is never a clean success. Input-size rejection happens before copying/indexing the input and returns `InputTooLarge`, without constructing a parse result. Resource or nested-halt aborts retain available structure and an explicit unscanned suffix. The result model also supports an absent tree; its assembly/strict-conversion tests cover that distinction. The current parser retains a root, possibly empty, after construction starts. There is no parser reuse API or shared parser state.
 
-Exact English wording and LR recovery choices within damaged syntax were excluded from the public compatibility promise in decision 0001. P11 closes the review of these differences rather than claiming identical LR recovery. All 112 invalid core fixtures have an individual [review and native diagnostic expectation](../../tests/fixtures/recovery/core-review.json). Missing-name placeholders, partial trees after unmatched delimiters, Unicode decoding failures, malformed lists and namespace grouping remain explicit differences. Skipped bytes remain visible through lossless tokens; missing expressions use `ExprKind::Error` where the grammar can preserve a useful enclosing construct. No generic skipped-region AST wrapper is introduced.
+Exact English wording and LR recovery choices within damaged syntax were excluded from the public compatibility promise in decision 0001. This review documents each difference from LR recovery. All 112 invalid core fixtures have an individual [review and native diagnostic expectation](../../tests/fixtures/recovery/core-review.json). Missing-name placeholders, partial trees after unmatched delimiters, Unicode decoding failures, malformed lists and namespace grouping remain explicit differences. Skipped bytes remain visible through lossless tokens; missing expressions use `ExprKind::Error` where the grammar can preserve a useful enclosing construct. No generic skipped-region AST wrapper is introduced.
 
 ## Diagnostic rules
 
@@ -20,7 +20,7 @@ Exact English wording and LR recovery choices within damaged syntax were exclude
 
 ## Recovery corrections
 
-The parser cursor skips lexically rejected bytes while retaining them and their lexical diagnostics. This removes fabricated syntax cascades between otherwise valid statements, restores three upstream source/AST cases, and restores all ten P10 DEL-byte probes to exact reference structure and metadata.
+The parser cursor skips lexically rejected bytes while retaining them and their lexical diagnostics. This removes fabricated syntax cascades between otherwise valid statements, restores three upstream source/AST cases, and restores all ten DEL-byte probes in the source fidelity suite to exact reference structure and metadata.
 
 Halt validation now checks before consuming each token. A malformed halt diagnoses the actual unexpected token and leaves it for recovery; raw tail mode is authorized only after a complete outermost halt statement. Statement synchronization recognizes declaration and control-flow starts. A damaged expression yields at an unambiguous statement start instead of consuming it; named function declarations are distinguished from closure expressions. Following echo statements, functions, classes, namespaces and class methods have direct survival regressions.
 
@@ -34,6 +34,6 @@ The test-only diagnostic adapter maps native unexpected-token/context codes and 
 
 The [87 focused probes](../../tests/fixtures/recovery/README.md) add all-target parser-local checks, compiler-only controls, malformed boundaries and compound validation failures: 57 exact reference diagnostic observations, 28 explicit differences and two recorded reference assertion failures. The frozen reference asserts in `inlineHtmlHasLeadingNewline()` for malformed halt probes lacking a closing parenthesis or terminator before `echo`. The exporter requires assertions enabled, admits only those two named failures with the exact assertion text, and never presents them as successful oracle observations. Rust survival and non-clean results are checked independently.
 
-Every core invalid case is parsed repeatedly and through the strict entry point. Focused probes run every byte prefix and tiny depth, token, node and diagnostic budgets. Shared checks verify all diagnostic/related spans, unique expected kinds, found-token consistency, cascade suppression, terminal resource errors, source retention and AST metadata invariants. Error storms explicitly check bounded output and the unscanned suffix. Larger instrumented fuzz campaigns and measured performance baselines remain P12.
+Every core invalid case is parsed repeatedly and through the strict entry point. Focused probes run every byte prefix and tiny depth, token, node and diagnostic budgets. Shared checks verify all diagnostic/related spans, unique expected kinds, found-token consistency, cascade suppression, terminal resource errors, source retention and AST metadata invariants. Error storms explicitly check bounded output and the unscanned suffix. The later [robustness report](../benchmarks/robustness-performance.md) records instrumented fuzz campaigns and measured performance baselines.
 
 Validation: 82 Rust tests and five doctests pass on stable and Rust 1.85.0; the two explicit development audit exporters are ignored in ordinary runs. Formatting, Clippy, rustdoc, downstream-consumer and fuzz-target compilation, 13 Python tooling tests, reference integrity, coverage non-demotion and every oracle reproduction check pass locally. No hosted CI run or instrumented fuzz campaign is claimed.

@@ -1,6 +1,6 @@
 # Recovery and validation ledger
 
-P11 review against `.references/lib/PhpParser/ParserAbstract.php`, `Modifiers.php`, the generated PHP 7/8 parsers and all 112 malformed core observations. See [decision 0010](../decisions/0010-diagnostics-and-recovery.md) for the public contract and [case reviews](../../tests/fixtures/recovery/core-review.json) for exact retained behavior.
+This review compares recovery behavior with `.references/lib/PhpParser/ParserAbstract.php`, `Modifiers.php`, the generated PHP 7/8 parsers and all 112 malformed core observations. See [decision 0010](../decisions/0010-diagnostics-and-recovery.md) for the public contract and [case reviews](../../tests/fixtures/recovery/core-review.json) for exact retained behavior.
 
 ## Recovery ownership and progress
 
@@ -18,7 +18,7 @@ P11 review against `.references/lib/PhpParser/ParserAbstract.php`, `Modifiers.ph
 | EOF | All loops | EOF is sticky. Loops stop/return failure there; no recovery loop relies on consuming EOF for progress. |
 | Resource stop | Parser, cursor, scanner | Depth (including native-stack ceiling), tokens, nodes and diagnostics are bounded. Stop on failure; do not request additional tokens after abort. The result retains an explicit unscanned suffix and EOF sentinel. |
 
-Every nesting/recovery loop either consumes input, returns to its delimiter owner, or reaches a configured limit. Dedicated tests cover all focused byte prefixes, damaged statement/member survival, tiny limits, repeated parsing, and strict conversion. Original parser/declaration arbitrary-token and arbitrary-byte regressions remain active. Instrumented fuzzing is a separate P12 gate.
+Every nesting/recovery loop either consumes input, returns to its delimiter owner, or reaches a configured limit. Dedicated tests cover all focused byte prefixes, damaged statement/member survival, tiny limits, repeated parsing, and strict conversion. Original parser/declaration arbitrary-token and arbitrary-byte regressions remain active. The [robustness report](../benchmarks/robustness-performance.md) records the bounded instrumented fuzz campaigns.
 
 ## Parser-local validation ownership
 
@@ -34,9 +34,9 @@ Every nesting/recovery loop either consumes input, returns to its delimiter owne
 | Try without catch/finally | `statements::try_statement` | Upstream and ten-target checks |
 | Namespace position, mixed styles, nesting, outside code | Namespace parser/grouping | All invalid namespace fixtures and focused probes |
 | Empty array items vs assignment patterns | Delayed `Parser::run` validation | Upstream empty-element fixture and destructuring clean control |
-| Invalid lvalues / references / foreach targets / grammar contexts | Expression and statement parsers | Existing P07–P09 negative/context tests and malformed foreach fixtures |
+| Invalid lvalues / references / foreach targets / grammar contexts | Expression and statement parsers | Expression, statement and declaration context tests and malformed foreach fixtures |
 | Outer-scope halt | Statement/halt boundary | Upstream nested halt and focused mismatch/survival checks |
-| Literal validity, indentation and escapes | Literal decoding / string parser | P06 literal oracle, invalid octal/Unicode/doc core cases |
-| Features beyond PHP 8.4 | Explicit unsupported syntax checks and grammar | P10 ceiling suite remains active |
+| Literal validity, indentation and escapes | Literal decoding / string parser | literal oracle, invalid octal/Unicode/doc core cases |
+| Features beyond PHP 8.4 | Explicit unsupported syntax checks and grammar | version-ceiling suite remains active |
 
 Symbol resolution, duplicate declarations/parameters, undefined labels, break/continue scope, type inhabitation and other compiler/runtime checks are intentionally absent. The reference accepts the corresponding clean controls; no later semantic-validation phase is implied by the parser API.

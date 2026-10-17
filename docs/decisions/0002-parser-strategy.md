@@ -1,10 +1,10 @@
-# P03 — Lexer and parser strategy
+# Lexer and parser strategy
 
-Accepted 2026-10-16. Choose **Logos for regular byte tokens, explicit byte-oriented lexical states, recursive descent for statements/declarations/types, and Pratt parsing for expressions**. Keep all framework types private. P04 defines the production contracts; P05 onward implements them. The retained P03 implementation is test-only.
+Accepted 2026-10-16. Choose **Logos for regular byte tokens, explicit byte-oriented lexical states, recursive descent for statements/declarations/types, and Pratt parsing for expressions**. Keep all framework types private. The [source and AST contracts](0003-foundation-contracts.md) define the production types. The retained strategy prototype is test-only.
 
 ## Evidence and experiment boundary
 
-The shared input set has [17 hard cases](../../tools/strategy/inputs.json), exported against the frozen nikic commit using the P02 normalizer. It includes mixed HTML/PHP, invalid UTF-8 names/strings, nested quoted interpolation, flexible heredoc/nowdoc endings and indentation, contextual member names, intersection/reference ampersands, PHP7/PHP8 precedence, call/member/index chains, a DNF parameter type, recovery, and valid/invalid/nested halt directives.
+The shared input set has [17 hard cases](../../tools/strategy/inputs.json), exported against the frozen nikic commit using the reference corpus normalizer. It includes mixed HTML/PHP, invalid UTF-8 names/strings, nested quoted interpolation, flexible heredoc/nowdoc endings and indentation, contextual member names, intersection/reference ampersands, PHP7/PHP8 precedence, call/member/index chains, a DNF parameter type, recovery, and valid/invalid/nested halt directives.
 
 Two regular-scanning backends (a byte cursor and Logos 0.16.1) ran behind the same PHP state controller and parser. They produced identical tokens, events, lexical diagnostics and prototype trees for all 17 inputs. Logos required both `#[logos(utf8 = false)]` and explicitly byte-oriented `(?-u:...)` identifier regexes: byte input alone did not make the default Unicode regex classes accept arbitrary high bytes. The retained implementation enables `forbid_unsafe`.
 
@@ -44,38 +44,38 @@ A 57-byte input was repeated 20,000 times per stage, release mode, on aarch64 ma
 
 These timings are observations of these prototypes, not intrinsic framework speed ratios or release throughput targets. LR includes token-vector, surrogate and generic-tree `String` allocation; RD uses static tree tags. Table construction (about 1.9 ms for both variants) is excluded from parsing timings. A generated parser and typed actions would change LR cost; the selected Logos+Pratt combination was not separately benchmarked in this comparison. The choice primarily follows state coordination and compatibility requirements.
 
-The combined experiment process used 5.88–5.95 MB maximum resident memory. This is a process-level observation including both candidates, not per-parser allocation evidence. On this host the prototype token is 24 bytes and a tree header 56 bytes; vector capacities and children are additional. Tokens borrow source via byte ranges. Allocation profiling, large-source memory, generated-table size and production benchmarking remain P12 work.
+The combined experiment process used 5.88–5.95 MB maximum resident memory. This is a process-level observation including both candidates, not per-parser allocation evidence. On this host the prototype token is 24 bytes and a tree header 56 bytes; vector capacities and children are additional. Tokens borrow source via byte ranges. These prototype measurements do not measure production allocations or large-source memory. The later [robustness and performance report](../benchmarks/robustness-performance.md) records production measurements.
 
 The comparison cursor and LR implementation were discarded after recording results. Only the selected backend/controller/parser probe and reusable cases are retained. The discarded comparison is not an ongoing supported benchmark; retained correctness checks are reproducible through Cargo.
 
 ## Required production interfaces
 
 1. `SourceText` owns immutable bytes; all scanners and grammar decisions use byte spans. No UTF-8 conversion is required for PHP values.
-2. A project-owned token buffer requests tokens lazily from the stateful lexer, preserves trivia and original indices, and supplies significant lookahead. It yields a complete retained stream when parsing finishes, including uninterpreted halt tails and EOF. P04 resolved abort finalization as an explicit unscanned suffix with no further lexing; see [decision 0003](0003-foundation-contracts.md). P11 audits integration with recovery.
-3. The lexer owns HTML/PHP, quoted string, interpolation and heredoc/nowdoc states. P06 will expose string parts and embedded PHP tokens; P03's coarse template atoms are not the final token model.
+2. A project-owned token buffer requests tokens lazily from the stateful lexer, preserves trivia and original indices, and supplies significant lookahead. It yields a complete retained stream when parsing finishes, including uninterpreted halt tails and EOF. The source and AST contract defines abort finalization as an explicit unscanned suffix with no further lexing; see [decision 0003](0003-foundation-contracts.md). The [diagnostic and recovery review](0010-diagnostics-and-recovery.md) covers integration with recovery.
+3. The lexer owns HTML/PHP, quoted string, interpolation and heredoc/nowdoc states. String lexing exposes text parts and embedded PHP tokens. The prototype used coarse template atoms instead.
 4. The parser can commit terminal tail handling only after recognizing a complete `__halt_compiler();` at an allowed scope and statement boundary. No tail token is requested first. Invalid syntax or scope must leave subsequent input available.
 5. Statements/declarations own their synchronization delimiters and contextual checks. Expression parsing takes explicit target-dependent binding powers. Type parsing is a separate production context, not a public boolean mode.
-6. Public ASTs, diagnostics and token kinds are project-owned types. Logos enums and prototype `Tree` tags never cross the library boundary. The prototype's span-bearing dynamic tree is replaced by P04's typed contracts.
+6. Public ASTs, diagnostics and token kinds are project-owned types. Logos enums and prototype `Tree` tags never cross the library boundary. The prototype's span-bearing dynamic tree is replaced by the typed source and AST contracts.
 
 ## Traceability and staged implementation
 
-`tools/strategy/inputs.json` lists frozen upstream nonterminals for every case; tests reject unknown production names. Keep the existing P00 grammar ledger immutable and add a live production-to-implementation mapping as production code arrives.
+`tools/strategy/inputs.json` lists frozen upstream nonterminals for every case; tests reject unknown production names. Keep the existing reference baseline grammar ledger immutable and add a live production-to-implementation mapping as production code arrives.
 
-| Frozen reference family | Prototype responsibility | Production phase |
+| Frozen reference family | Prototype responsibility | Production component |
 |---|---|---|
-| `top_statement`, `statement` | `Parser::program`, scope/synchronization, halt boundary | P08/P11; halt lexing in P06 |
-| `expr` and top-of-file precedence declarations | `Parser::expression`, PHP7/PHP8 binding powers | P07 |
-| `callable_variable`, `member_name`, `argument_list` | Postfix loop and argument delimiters | P07 |
-| `type`, `parameter`, `ampersand` | Type context and reference lookahead | P09; general declaration contracts P04 |
-| `scalar`, `encaps_list`, `encaps_var` | `Scanner::quoted`, interpolation and heredoc boundaries | P06/P07 |
+| `top_statement`, `statement` | `Parser::program`, scope/synchronization, halt boundary | statement parser and recovery; string lexer and halt handling |
+| `expr` and top-of-file precedence declarations | `Parser::expression`, PHP7/PHP8 binding powers | expression parser |
+| `callable_variable`, `member_name`, `argument_list` | Postfix loop and argument delimiters | expression parser |
+| `type`, `parameter`, `ampersand` | Type context and reference lookahead | declaration parser and shared AST types |
+| `scalar`, `encaps_list`, `encaps_var` | `Scanner::quoted`, interpolation and heredoc boundaries | string decoding and expression parsing |
 
 ## Known limits and oracle finding
 
-P03 proves architecture on a bounded subset. It does not implement PHP tokens/ASTs generally, full keyword/version handling, complete string escapes, all heredoc cases, declaration rules or production diagnostics. Templates and heredocs are coarse atoms; nested interpolation is checked as boundary events. The oracle projection deliberately maps those literal values, names and integers to atoms, drops inline-HTML AST statements, and compares semantic operator/postfix/type shape. Full literal/value/comment/token parity remains P05–P11 work. The 300 P02 compatibility cases remain pending; none were promoted by prototype success.
+The strategy prototype tests the architecture on a bounded subset. It does not implement PHP tokens/ASTs generally, full keyword/version handling, complete string escapes, all heredoc cases, declaration rules or production diagnostics. Templates and heredocs are coarse atoms; nested interpolation is checked as boundary events. The oracle projection deliberately maps those literal values, names and integers to atoms, drops inline-HTML AST statements, and compares semantic operator/postfix/type shape. Full literal, value, comment and token parity requires the production parser and compatibility tests. At the time of this study, all 300 reference corpus cases were pending. Prototype success did not promote any case.
 
 Under PHP 8.5.6 with assertions enabled, the pinned reference throws `AssertionError: assert($prevToken->id == \T_CLOSE_TAG)` while parsing `<?php __halt_compiler(1); 7;` (`ParserAbstract.php::inlineHtmlHasLeadingNewline`, line 998). A direct native-tokenizer probe classifies the remaining `; 7;` as `T_INLINE_HTML`, so the tokenization/halt boundary has already changed how subsequent input is classified. The fixture records this exact oracle failure rather than turning it into a clean/recovered oracle observation. No assertion was disabled and no reference code was modified. This is not a full upstream issue analysis.
 
-P00's behavior decision still applies: the selected probe diagnoses the malformed directive and preserves the following `7;`. It also diagnoses a nested halt directive while retaining the following statement. These are explicit project recovery requirements, not claims of matching an oracle tree that was never returned.
+The reference baseline's behavior decision still applies: the selected probe diagnoses the malformed directive and preserves the following `7;`. It also diagnoses a nested halt directive while retaining the following statement. These are explicit project recovery requirements, not claims of matching an oracle tree that was never returned.
 
 ## Reproduce retained checks
 
