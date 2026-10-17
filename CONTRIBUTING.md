@@ -87,6 +87,12 @@ Before publishing:
    the initial release and push the tag. Use the corresponding package version
    for later tags. Check the docs.rs build and installation from a fresh consumer.
 
+Pushing a `v*` tag starts `.github/workflows/release.yml`. It checks the tag against
+`Cargo.toml` and the dated changelog, tests and builds the library, and uploads the
+portable `.crate` package and `SHA256SUMS` as an Actions artifact. A separate job
+verifies the checksum and creates or updates the GitHub release with those files.
+This workflow does not upload to crates.io; follow the registry steps above first.
+
 Published versions cannot be overwritten. Correct a broken release with a new
 version; use `cargo yank` when an existing version should no longer be selected
 for new dependency resolutions. An upload is separate from preparing or testing

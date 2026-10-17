@@ -1,0 +1,106 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -D warnings
+  RUSTDOCFLAGS: -D warnings
+
+jobs:
+  build:
+    name: Build library package
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Check release tag and changelog
+        run: |
+          python3 - <<'PY'
+          import os
+          import re
+          import tomllib
+          from pathlib import Path
+
+          package = tomllib.loads(Path('Cargo.toml').read_text())['package']
+          version = package['version']
+          assert os.environ['GITHUB_REF_NAME'] == f'v{version}', 'tag must match Cargo.toml'
+          assert re.search(r'^## ' + re.escape(version) + r' \(\d{4}-\d{2}-\d{2}\)$',
+                           Path('CHANGELOG.md').read_text(), re.M), 'release must have a dated changelog entry'
+          PY
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # master
+        with:
+          toolchain: stable
+      - name: Test
+        run: |
+          cargo test --all-targets --locked
+          cargo test --doc --locked
+      - name: Build release library
+        run: cargo build --release --locked --lib
+      - name: Test the package outside the checkout
+        run: python3 tools/check_package.py --toolchain stable
+      - name: Package library and checksum
+        run: |
+          cargo package --locked
+          python3 - <<'PY'
+          import hashlib
+          import shutil
+          import tomllib
+          from pathlib import Path
+
+          package = tomllib.loads(Path('Cargo.toml').read_text())['package']
+          filename = f"{package['name']}-{package['version']}.crate"
+          directory = Path('dist')
+          directory.mkdir()
+          archive = directory / filename
+          shutil.copyfile(Path('target/package') / filename, archive)
+          checksum = hashlib.sha256(archive.read_bytes()).hexdigest()
+          (directory / 'SHA256SUMS').write_text(f'{checksum}  {filename}\n')
+          PY
+      - name: Upload package artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pprs-${{ github.ref_name }}
+          path: |
+            dist/*.crate
+            dist/SHA256SUMS
+          if-no-files-found: error
+
+  publish:
+    name: Publish GitHub release
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Download package artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: pprs-${{ github.ref_name }}
+          path: dist
+      - name: Verify artifact checksum
+        working-directory: dist
+        run: sha256sum --check SHA256SUMS
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" dist/*.crate dist/SHA256SUMS --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" dist/*.crate dist/SHA256SUMS --generate-notes --verify-tag
+          fi
