@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate (--write) or reproduce (--check) the P02 oracle. Requires pinned PHP."""
+"""Regenerate (--write) or reproduce (--check) the reference oracle. Requires pinned PHP."""
 import argparse
 import hashlib
 import json

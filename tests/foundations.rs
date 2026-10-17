@@ -1,4 +1,4 @@
-//! Public P04 contracts, independent of PHP and the production lexer/parser.
+//! Public source, token, AST and result contracts, independent of PHP and production parsing.
 
 use pprs::{
     ByteString, Limits, ParseOptions, PhpVersion, SourceText,

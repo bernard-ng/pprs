@@ -1,4 +1,4 @@
-//! Offline P07 expression grammar oracle and public parser contract.
+//! Offline expression grammar oracle and public parser contract.
 #[path = "support/parser.rs"]
 mod adapter;
 use pprs::{ParseOptions, ParseStatus, PhpVersion};
@@ -38,7 +38,7 @@ fn expression_oracle_is_reproducible_and_matches_every_probe() {
             },
         )
         .unwrap();
-        // P10 enforces the 8.4 ceiling even where the newer reference accepts expanded clone calls.
+        // The PHP 8.4 feature ceiling excludes expanded clone calls accepted by the newer reference.
         let expected = if case["id"] == "clone-forms" {
             serde_json::from_str(include_str!("fixtures/fidelity/clone-forms.json")).unwrap()
         } else {

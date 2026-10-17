@@ -1,4 +1,4 @@
-//! Bounded P03 scanner: strings are coarse atoms with explicit boundary events.
+//! Bounded strategy prototype scanner: strings are coarse atoms with explicit boundary events.
 use logos::Logos;
 use std::ops::Range;
 

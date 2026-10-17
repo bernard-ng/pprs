@@ -1,4 +1,4 @@
-//! P08 procedural grammar and callable reference probes.
+//! Procedural grammar and callable reference probes.
 #[path = "support/parser.rs"]
 mod adapter;
 use pprs::{ParseOptions, ParseStatus};

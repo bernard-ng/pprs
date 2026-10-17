@@ -1,4 +1,4 @@
-//! Offline P02 corpus integrity and comparison adapter tests.
+//! Offline reference corpus integrity and comparison adapter tests.
 #[path = "support/diagnostics.rs"]
 #[allow(dead_code)]
 mod diagnostic_adapter;

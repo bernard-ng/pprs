@@ -1,4 +1,4 @@
-//! P03 experiments are test-only and do not certify parser compatibility.
+//! Parser strategy experiments are test-only and do not certify parser compatibility.
 mod strategy_support;
 use serde_json::Value;
 use strategy_support::{

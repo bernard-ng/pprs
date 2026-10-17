@@ -1,4 +1,4 @@
-//! P10 source fidelity and version boundary probes.
+//! Source fidelity and version boundary probes.
 #[path = "support/parser.rs"]
 mod adapter;
 use serde_json::Value;

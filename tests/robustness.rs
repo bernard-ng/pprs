@@ -1,4 +1,4 @@
-//! P12 bounded adversarial workloads and result lifecycle checks.
+//! Bounded adversarial workloads and result lifecycle checks.
 #[path = "support/parser.rs"]
 mod adapter;
 #[path = "support/invariants.rs"]

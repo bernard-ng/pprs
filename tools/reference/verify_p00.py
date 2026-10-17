@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Verify the immutable P00 baseline. Read-only; no PHP, downloads or regeneration.
+"""Verify the immutable reference baseline. Read-only; no PHP, downloads or regeneration.
 
 Default: verify metadata and the local Git checkout. --metadata-only supports
 checking the committed inventory when the ignored .references checkout is absent.
-This inventories raw fixture sections; PHP macro expansion belongs to P02.
+This inventories raw fixture sections; the reference exporter handles PHP macro expansion.
 """
 
 import argparse

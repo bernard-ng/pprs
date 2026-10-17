@@ -1,4 +1,4 @@
-//! P09 declaration grammar and public AST contract.
+//! Declaration grammar and public AST contract.
 #[path = "support/parser.rs"]
 mod adapter;
 use pprs::{ParseOptions, ParseStatus};

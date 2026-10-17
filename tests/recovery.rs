@@ -1,4 +1,4 @@
-//! P11 diagnostic and recovery contract.
+//! Diagnostic and recovery contract.
 #[path = "support/parser.rs"]
 mod adapter;
 #[path = "support/diagnostics.rs"]
