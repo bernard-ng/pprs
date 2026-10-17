@@ -47,6 +47,8 @@ jobs:
         run: cargo doc --locked --no-deps
       - name: Test the packaged library outside the checkout
         run: python3 tools/check_package.py --toolchain stable
+      - name: Verify crates.io publication without uploading
+        run: cargo publish --locked --dry-run
       - name: Compile lexer and parser fuzz targets
         run: cargo check --locked --manifest-path fuzz/Cargo.toml
 

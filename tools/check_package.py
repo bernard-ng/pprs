@@ -32,9 +32,12 @@ def main():
             for member in relative:
                 assert (member.startswith('src/') or member in {
                     'docs/guide.md', 'Cargo.toml', 'Cargo.toml.orig', 'Cargo.lock',
-                    'README.md', 'THIRD_PARTY_NOTICES.md',
+                    'README.md', 'LICENSE', 'CHANGELOG.md', 'THIRD_PARTY_NOTICES.md',
                     'reference/LICENSE.nikic-PHP-Parser', '.cargo_vcs_info.json',
                 }), f'unexpected package file: {member}'
+            for required in ('LICENSE', 'CHANGELOG.md', 'THIRD_PARTY_NOTICES.md',
+                             'reference/LICENSE.nikic-PHP-Parser', 'docs/guide.md'):
+                assert required in relative, f'missing package file: {required}'
             source.extractall(directory, filter='data')
         library = directory / name
         consumer = directory / 'consumer'

@@ -4,11 +4,14 @@ version = "0.1.0"
 edition = "2024"
 rust-version = "1.85"
 description = "A byte-preserving PHP parser library for Rust"
+# Original code is MIT; reference-derived portions retain BSD-3-Clause conditions.
+license = "MIT AND BSD-3-Clause"
+repository = "https://github.com/bernard-ng/pprs"
+documentation = "https://docs.rs/pprs"
 readme = "README.md"
 keywords = ["php", "parser", "ast"]
 categories = ["parsing", "development-tools"]
-# Enable publication after choosing the original-code license and completing release checks.
-publish = false
+publish = ["crates-io"]
 autobins = false
 include = [
     "/src/**",
@@ -16,6 +19,8 @@ include = [
     "/Cargo.toml",
     "/Cargo.lock",
     "/README.md",
+    "/LICENSE",
+    "/CHANGELOG.md",
     "/THIRD_PARTY_NOTICES.md",
     "/reference/LICENSE.nikic-PHP-Parser",
 ]

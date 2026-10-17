@@ -54,8 +54,40 @@ Keep their formatting, lint and compile checks in sync with CI.
 `Cargo.toml` lists the files included in the library archive. Tests, PHP tools,
 reference source, benchmark evidence and repository planning material are not
 runtime dependencies. The package includes the Rust source, embedded API guide,
-README and upstream notices.
+README, changelog, MIT license and upstream notices.
 
-Publication remains disabled in Cargo metadata. Choosing the license for original
-PPRS code and authorizing publication are separate repository-owner decisions.
-The copied upstream BSD license does not license original PPRS code.
+Original PPRS code is MIT licensed. Reference-derived material retains the
+BSD-3-Clause conditions documented in `THIRD_PARTY_NOTICES.md`. Include both
+license notices in the archive. Cargo's `MIT AND BSD-3-Clause` expression records
+these combined obligations; it does not offer a choice between licenses.
+
+## Release to crates.io
+
+Follow [Cargo's publishing guide](https://doc.rust-lang.org/cargo/reference/publishing.html).
+Before publishing:
+
+1. Update the package version and changelog. Replace the release's `unreleased`
+   marker with its release date. Keep the API compatibility policy and MSRV
+   current, and update README dependency examples when the compatible version
+   changes.
+2. Run the checks above, including Rust 1.85 tests and the isolated package
+   consumer check on both stable and Rust 1.85. Commit the release changes and
+   require green CI on that exact commit, including Linux, macOS and Windows.
+3. Inspect `cargo package --list` and run `cargo publish --locked --dry-run` from
+   the clean release checkout. The dry run builds the archive without uploading.
+   Check that licenses and the embedded guide are present and that test corpora,
+   local reference source and build artifacts are absent.
+   Cargo may report that repository integration tests are omitted from the
+   archive; those tests run separately in CI and in the checks above.
+4. Confirm the crate name/version is available and the publisher's crates.io
+   account has a verified email address and permission to publish. Authenticate
+   locally with `cargo login`; never put a registry token in a commit or chat.
+5. After the repository owner authorizes the upload, run `cargo publish --locked`.
+   Confirm the version on crates.io, then tag that same commit as `v0.1.0` for
+   the initial release and push the tag. Use the corresponding package version
+   for later tags. Check the docs.rs build and installation from a fresh consumer.
+
+Published versions cannot be overwritten. Correct a broken release with a new
+version; use `cargo yank` when an existing version should no longer be selected
+for new dependency resolutions. An upload is separate from preparing or testing
+the repository.

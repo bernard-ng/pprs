@@ -8,7 +8,7 @@ Copyright (c) 2011, Nikita Popov. All rights reserved.
 
 The upstream BSD-3-Clause license is reproduced in full in [reference/LICENSE.nikic-PHP-Parser](reference/LICENSE.nikic-PHP-Parser). Preserve that notice with copied/adapted grammar, source or tests, including future exported fixtures and distributed packages. Attribution does not imply endorsement.
 
-The reference test corpus includes copied parser fixture files, expanded/normalized oracle expectations and derived test cases under `tests/fixtures/upstream/`, with a full license copy in that directory. `tools/reference/bootstrap.php` adapts the upstream fixture canonicalization helper. The complete upstream implementation remains in the separate ignored checkout. This notice does not choose a license for original PPRS code. That package-license decision remains open before release.
+The reference test corpus includes copied parser fixture files, expanded/normalized oracle expectations and derived test cases under `tests/fixtures/upstream/`, with a full license copy in that directory. `tools/reference/bootstrap.php` adapts the upstream fixture canonicalization helper. The complete upstream implementation remains in the separate ignored checkout. Original PPRS code is licensed under [MIT](LICENSE); reference-derived material retains the BSD-3-Clause notice and conditions above.
 
 The literal decoder in `src/literal/` and its oracle exporter adapt literal interpretation behavior from upstream `Node/Scalar/String_.php`, `Int_.php`, `Float_.php`, and `ParserAbstract.php`. The copyright and BSD-3-Clause notice above apply to those adaptations. Dedicated lexer/literal inputs are project-authored; their snapshots contain observations of the pinned reference.
 

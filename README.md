@@ -5,11 +5,11 @@ source bytes and comments, and reports errors with byte spans. It uses
 [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) as its compatibility reference.
 
 PPRS requires Rust 1.85 or later. It has no PHP runtime dependency and no command-line
-program. Add a local checkout to your project's `Cargo.toml`:
+program. Add it to your project's `Cargo.toml`:
 
 ```toml
 [dependencies]
-pprs = { path = "../pprs" }
+pprs = "0.1"
 ```
 
 ## Parse PHP
@@ -39,9 +39,10 @@ returns a separate `InputTooLarge` error.
 
 ## Work with the result
 
-The [API guide](docs/guide.md) has examples for file input, declarations, comments,
-source spans, error recovery and shared source storage. Run `cargo doc --open`
-for API documentation. The guide's Rust examples run as documentation tests.
+The [API guide](https://docs.rs/pprs) has examples for file input, declarations,
+comments, source spans, error recovery and shared source storage. Run
+`cargo doc --open` for local API documentation. The guide's Rust examples run
+as documentation tests.
 
 - Source and decoded strings preserve arbitrary bytes, including invalid UTF-8.
 - Spans use half-open byte offsets. Line and byte-column numbers start at one.
@@ -57,11 +58,15 @@ Malformed-input trees and diagnostic wording can differ from the reference.
 
 ## Compatibility and testing
 
-The [compatibility records](docs/compatibility/README.md) describe the supported
-scope. The [test corpus](tests/fixtures/README.md) records exact comparisons and
-reviewed differences. [Performance measurements](docs/benchmarks/robustness-performance.md) include
+The [compatibility records](https://github.com/bernard-ng/pprs/blob/main/docs/compatibility/README.md) describe the supported
+scope. The [test corpus](https://github.com/bernard-ng/pprs/blob/main/tests/fixtures/README.md) records exact comparisons and
+reviewed differences. [Performance measurements](https://github.com/bernard-ng/pprs/blob/main/docs/benchmarks/robustness-performance.md) include
 allocation and memory behavior. Resource limits are not a process-memory quota.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for checks and reference regeneration.
+See [CONTRIBUTING.md](https://github.com/bernard-ng/pprs/blob/main/CONTRIBUTING.md) for checks and reference regeneration.
+
+## License
+
+Original PPRS code is licensed under the [MIT license](LICENSE).
 Upstream attribution and its BSD license are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
 and [reference/LICENSE.nikic-PHP-Parser](reference/LICENSE.nikic-PHP-Parser).
