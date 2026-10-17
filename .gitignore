@@ -6,3 +6,7 @@
 /fuzz/corpus
 /fuzz/artifacts
 /fuzz/coverage
+
+/tools/perf/target
+/tools/perf/target-allocations
+/tools/perf/target-cold

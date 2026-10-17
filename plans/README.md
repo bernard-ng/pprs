@@ -1,6 +1,6 @@
 # Implementation plans
 
-Status: **P00–P11 complete** (2026-10-17). The public expression/procedural/callable/declaration parser, production lexing, literal utilities and read-only traversal are available.
+Status: **P00–P12 complete** (2026-10-17). The public expression/procedural/callable/declaration parser, production lexing, literal utilities and read-only traversal are available.
 
 The first stable release will be a reusable Rust library for PHP **7.0–8.4**, as confirmed on 2026-10-16. There is no product CLI.
 
@@ -31,4 +31,6 @@ P10 delivered [version/source fidelity](../docs/decisions/0009-version-source-fi
 
 P11 delivered [diagnostics and recovery](../docs/decisions/0010-diagnostics-and-recovery.md), lexical-error cascade suppression, halt/statement recovery fixes, independent parser-local checks and related locations. All 112 invalid core cases have reviewed native diagnostics; all 300 core cases exercise every comparison channel. The 87 additional probes cover all targets, recovery boundaries and compiler-only controls. No core channel remains pending.
 
-Next: **P12**, harden robustness and establish performance baselines. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.
+P12 delivered [bounded robustness checks](../docs/decisions/0011-robustness-and-performance.md), a minimized test-projection stack regression, clean instrumented campaigns totaling 1,107,937 executions, and [release baselines](../docs/benchmarks/p12.md) for 13 datasets. Reusing the traversal child buffer reduces allocation calls without changing compatibility. Existing default limits are retained with measured memory caveats.
+
+Next: **P13**, finish the consumer-facing library API and documentation. Follow the dependency order in the technical plan. A phase is complete only when its acceptance checks pass. Update these documents when evidence changes a design decision or the agreed scope changes.

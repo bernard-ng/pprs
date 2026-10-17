@@ -1,7 +1,7 @@
 # PHP parser library: technical implementation plan
 
 Date: 2026-10-16  
-Status: P00–P10 complete; P11 onward pending; expression/procedural/declaration grammar, types, lexing, literal utilities and traversal exist
+Status: P00–P12 complete; P13 onward pending; expression/procedural/declaration grammar, types, lexing, literal utilities and traversal exist
 
 Crate: `pprs`  
 First stable PHP scope: **7.0–8.4**, confirmed by the user
@@ -393,6 +393,8 @@ Acceptance: all in-scope invalid fixtures have reviewed diagnostic and recovery 
 
 ### P12 — Harden robustness and establish performance baselines
 
+Status: **complete, 2026-10-17**. [Decision 0011](../docs/decisions/0011-robustness-and-performance.md) records default limits, lifecycle guarantees and a minimized test-only projection stack fix. Three bounded ASan/coverage campaigns completed 1,107,937 executions without findings. Deterministic stress and all-version generated inputs run in CI. The [baseline](../docs/benchmarks/p12.md) records 13 lex/parse workloads, allocations, result size, process memory, builds and dependencies. Reusing traversal child storage halves allocation calls for the wide argument case; all compatibility expectations remain unchanged.
+
 Dependencies: P10–P11; fuzz targets/measurements begin earlier.
 
 - Run lexer/parser fuzzing with arbitrary bytes, truncations, mutation of imported cases, and bounded grammar-generated programs; minimize every failure into a regression.
@@ -473,7 +475,7 @@ Implement these only when prioritized; they do not block the parser-library rele
 | Project license | Maintainer choice before package release; upstream notices retained from P00 |
 | Exact MSRV/dependency versions | P01 validated Rust 1.85.0 with no dependencies; P02 test-only JSON/hash/hex dependencies also pass MSRV checks; validate future dependency versions as introduced |
 | Short-open-tag profile | P00 fixes default disabled; implement explicit option and matching oracle settings in P05 |
-| Default resource limits | Measurements and stress testing in P12, with safe interim bounds from P04 |
+| Default resource limits | Retained after P12 stress and measurements; see decision 0011 for work bounds and memory caveats |
 | Lexer complexity hidden by reference runtime | Treat standalone lexing as a first-class phase and test against token oracles |
 | Reference/oracle drift or permissive version behavior | Pinned revisions, explicit targets, recorded host settings, separate strict-validation claims |
 | Corrupted binary/float fixture values | Byte-safe structured export, tagged floats, importer tests |

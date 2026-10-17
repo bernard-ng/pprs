@@ -523,6 +523,25 @@ pub fn observation(result: &ParseResult, target: &str) -> Value {
     value
 }
 pub fn full_observation(result: &ParseResult, target: &str) -> Value {
+    // The independent JSON oracle projection has much larger debug-build frames
+    // than production parsing. Keep maximum-depth observations off small test
+    // worker stacks; no stack growth or serialization dependency enters pprs.
+    if result
+        .program()
+        .is_some_and(|p| pprs::visit::walk(p).any(|n| n.depth > 64))
+    {
+        return std::thread::scope(|scope| {
+            std::thread::Builder::new()
+                .stack_size(8 * 1024 * 1024)
+                .spawn_scoped(scope, || full_observation_inner(result, target))
+                .unwrap()
+                .join()
+                .unwrap()
+        });
+    }
+    full_observation_inner(result, target)
+}
+fn full_observation_inner(result: &ParseResult, target: &str) -> Value {
     let mut ast = result
         .program()
         .map_or(Value::Null, |p| json!(statements(&p.statements)));

@@ -74,6 +74,7 @@ pub struct Entry<'a> {
 /// Explicit-stack preorder iterator. No recursive visitor calls are used.
 pub struct Walk<'a> {
     pending: Vec<Entry<'a>>,
+    children: Vec<Node<'a>>,
 }
 /// Traverse a program in source order.
 #[must_use]
@@ -83,14 +84,16 @@ pub fn walk(program: &Program) -> Walk<'_> {
 pub(crate) fn walk_node(node: Node<'_>) -> Walk<'_> {
     Walk {
         pending: vec![Entry { node, depth: 1 }],
+        children: Vec::new(),
     }
 }
 impl<'a> Iterator for Walk<'a> {
     type Item = Entry<'a>;
     fn next(&mut self) -> Option<Self::Item> {
         let entry = self.pending.pop()?;
+        children(entry.node, &mut self.children);
         self.pending
-            .extend(children(entry.node).into_iter().rev().map(|node| Entry {
+            .extend(self.children.drain(..).rev().map(|node| Entry {
                 node,
                 depth: entry.depth + 1,
             }));
@@ -143,8 +146,8 @@ fn class_body<'a>(value: &'a ClassDeclaration, out: &mut Vec<Node<'a>>) {
     clippy::too_many_lines,
     reason = "exhaustive child ordering for the typed AST"
 )]
-fn children(node: Node<'_>) -> Vec<Node<'_>> {
-    let mut out = Vec::new();
+fn children<'a>(node: Node<'a>, out: &mut Vec<Node<'a>>) {
+    debug_assert!(out.is_empty(), "walker drains its reusable child buffer");
     match node {
         Node::Program(program) => out.extend(program.statements.iter().map(Node::Stmt)),
         Node::Stmt(stmt) => match &stmt.kind {
@@ -159,24 +162,24 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
                 out.extend(u.items.iter().map(Node::UseItem));
             }
             StmtKind::Constants(c) | StmtKind::ClassConstants(c) => {
-                attributes(&c.attributes, &mut out);
+                attributes(&c.attributes, out);
                 out.extend(c.ty.iter().map(type_node));
                 out.extend(c.constants.iter().map(Node::Constant));
             }
             StmtKind::Class(c) => {
-                class_header(c, &mut out);
-                class_body(c, &mut out);
+                class_header(c, out);
+                class_body(c, out);
             }
             StmtKind::Method(m) => {
-                attributes(&m.attributes, &mut out);
+                attributes(&m.attributes, out);
                 out.push(Node::Identifier(&m.name));
-                signature(&m.signature, &mut out);
+                signature(&m.signature, out);
                 if let Some(body) = &m.body {
                     out.extend(body.iter().map(Node::Stmt));
                 }
             }
             StmtKind::Property(p) => {
-                attributes(&p.attributes, &mut out);
+                attributes(&p.attributes, out);
                 out.extend(p.ty.iter().map(type_node));
                 out.extend(p.items.iter().map(Node::PropertyItem));
                 out.extend(p.hooks.iter().map(Node::PropertyHook));
@@ -186,7 +189,7 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
                 out.extend(t.adaptations.iter().map(Node::TraitAdaptation));
             }
             StmtKind::EnumCase(c) => {
-                attributes(&c.attributes, &mut out);
+                attributes(&c.attributes, out);
                 out.push(Node::Identifier(&c.name));
                 out.extend(c.value.iter().map(|e| Node::Expr(e)));
             }
@@ -196,9 +199,9 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
             StmtKind::Return(expr) => out.extend(expr.iter().map(Node::Expr)),
             StmtKind::Block(stmts) => out.extend(stmts.iter().map(Node::Stmt)),
             StmtKind::Function(f) => {
-                attributes(&f.attributes, &mut out);
+                attributes(&f.attributes, out);
                 out.push(Node::Identifier(&f.name));
-                signature(&f.signature, &mut out);
+                signature(&f.signature, out);
                 out.extend(f.body.iter().map(Node::Stmt));
             }
             StmtKind::If(s) => {
@@ -290,36 +293,36 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
                 target: callee,
                 args,
             } => {
-                target(callee, &mut out);
+                target(callee, out);
                 out.extend(args.iter().map(Node::Argument));
             }
             ExprKind::Property { object, name, .. } => {
                 out.push(Node::Expr(object));
-                member(name, &mut out);
+                member(name, out);
             }
             ExprKind::MethodCall {
                 object, name, args, ..
             } => {
                 out.push(Node::Expr(object));
-                member(name, &mut out);
+                member(name, out);
                 out.extend(args.iter().map(Node::Argument));
             }
             ExprKind::StaticProperty { class, name } | ExprKind::ClassConst { class, name } => {
-                target(class, &mut out);
-                member(name, &mut out);
+                target(class, out);
+                member(name, out);
             }
             ExprKind::StaticCall { class, name, args } => {
-                target(class, &mut out);
-                member(name, &mut out);
+                target(class, out);
+                member(name, out);
                 out.extend(args.iter().map(Node::Argument));
             }
             ExprKind::New { class, args } => {
-                target(class, &mut out);
+                target(class, out);
                 out.extend(args.iter().map(Node::Argument));
             }
             ExprKind::Instanceof { expr, class } => {
                 out.push(Node::Expr(expr));
-                target(class, &mut out);
+                target(class, out);
             }
             ExprKind::Isset(exprs) => out.extend(exprs.iter().map(Node::Expr)),
             ExprKind::Exit(expr) => out.extend(expr.iter().map(|e| Node::Expr(e))),
@@ -332,18 +335,18 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
                 out.extend(arms.iter().map(Node::MatchArm));
             }
             ExprKind::Interpolated { parts: values, .. } | ExprKind::ShellExec(values) => {
-                parts(values, &mut out);
+                parts(values, out);
             }
             ExprKind::Closure(c) => {
-                attributes(&c.attributes, &mut out);
+                attributes(&c.attributes, out);
                 out.extend(c.signature.params.iter().map(Node::Parameter));
                 out.extend(c.uses.iter().map(Node::ClosureUse));
                 out.extend(c.signature.return_type.iter().map(type_node));
                 out.extend(c.body.iter().map(Node::Stmt));
             }
             ExprKind::ArrowFunction(f) => {
-                attributes(&f.attributes, &mut out);
-                signature(&f.signature, &mut out);
+                attributes(&f.attributes, out);
+                signature(&f.signature, out);
                 out.push(Node::Expr(&f.expr));
             }
             ExprKind::Integer { .. }
@@ -353,9 +356,9 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
             | ExprKind::Error => {}
         },
         Node::AnonymousClass(c) => {
-            class_header(&c.declaration, &mut out);
+            class_header(&c.declaration, out);
             out.extend(c.args.iter().map(Node::Argument));
-            class_body(&c.declaration, &mut out);
+            class_body(&c.declaration, out);
         }
         Node::AttributeGroup(g) => out.extend(g.attributes.iter().map(Node::Attribute)),
         Node::Attribute(a) => {
@@ -375,7 +378,7 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
             out.extend(p.default.iter().map(|e| Node::Expr(e)));
         }
         Node::PropertyHook(h) => {
-            attributes(&h.attributes, &mut out);
+            attributes(&h.attributes, out);
             out.push(Node::Identifier(&h.name));
             out.extend(h.params.iter().map(Node::Parameter));
             match &h.body {
@@ -429,7 +432,7 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
             Type::Builtin(n) => out.push(Node::Identifier(n)),
         },
         Node::Parameter(p) => {
-            attributes(&p.attributes, &mut out);
+            attributes(&p.attributes, out);
             out.extend(p.ty.iter().map(type_node));
             out.push(Node::Expr(&p.variable));
             out.extend(p.default.iter().map(|e| Node::Expr(e)));
@@ -461,5 +464,4 @@ fn children(node: Node<'_>) -> Vec<Node<'_>> {
         }
         Node::Name(_) | Node::Identifier(_) | Node::StringPart(_) => {}
     }
-    out
 }

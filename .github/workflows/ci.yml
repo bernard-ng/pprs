@@ -34,10 +34,15 @@ jobs:
           cargo fmt --all --check
           cargo fmt --manifest-path tests/consumer/Cargo.toml --all --check
           cargo fmt --manifest-path fuzz/Cargo.toml --all --check
+          cargo fmt --manifest-path tools/perf/Cargo.toml --all --check
       - name: Lint library and tests
         run: cargo clippy --locked --all-targets -- -D warnings
       - name: Lint downstream consumer
         run: cargo clippy --locked --manifest-path tests/consumer/Cargo.toml --all-targets -- -D warnings
+      - name: Lint development measurement harness
+        run: |
+          cargo clippy --locked --manifest-path tools/perf/Cargo.toml --all-targets -- -D warnings
+          cargo clippy --locked --manifest-path tools/perf/Cargo.toml --all-targets --all-features -- -D warnings
       - name: Build documentation
         run: cargo doc --locked --no-deps
       - name: Compile lexer and parser fuzz targets
@@ -72,6 +77,8 @@ jobs:
         run: cargo +${{ matrix.toolchain }} test --locked --doc
       - name: Check downstream consumer
         run: cargo +${{ matrix.toolchain }} check --locked --manifest-path tests/consumer/Cargo.toml
+      - name: Check development measurement harness
+        run: cargo +${{ matrix.toolchain }} check --locked --manifest-path tools/perf/Cargo.toml --all-features
 
   reference-metadata:
     name: Reference corpus and coverage

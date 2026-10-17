@@ -112,7 +112,13 @@ pub struct InvalidLimit {
     pub minimum: usize,
 }
 
-/// Validated finite budgets. Defaults are provisional until P12 stress testing.
+/// Validated finite budgets. Defaults were exercised by the P12 bounded stress suite:
+/// 16 MiB input, depth 128, 1,000,000 tokens, 250,000 nodes and 100 diagnostics.
+///
+/// These are work/structure bounds, not a process-memory quota. Source indexing,
+/// retained semantic bytes and AST nodes amplify input size. Callers with tighter
+/// memory constraints should lower these limits. Manually constructed ASTs are
+/// outside the parser's depth guarantee.
 ///
 /// Token limits reserve two slots for an unscanned suffix and EOF. Diagnostic
 /// limits reserve one slot for the terminating resource-limit diagnostic.

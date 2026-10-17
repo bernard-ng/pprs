@@ -1,5 +1,7 @@
 #![no_main]
 use libfuzzer_sys::fuzz_target;
+#[path = "../../tests/support/invariants.rs"]
+mod checks;
 use pprs::{Limits, ParseOptions, ParseStatus, PhpVersion, parse, visit};
 fuzz_target!(|data: &[u8]| {
     if data.len() > 65536 {
@@ -31,6 +33,7 @@ fuzz_target!(|data: &[u8]| {
     ] {
         let input = [prefix, data].concat();
         let result = parse(&input, options).unwrap();
+        checks::invariants(&result, options);
         let mut offset = 0;
         for (index, token) in result.tokens().tokens().iter().enumerate() {
             assert_eq!(token.span().start(), offset);
